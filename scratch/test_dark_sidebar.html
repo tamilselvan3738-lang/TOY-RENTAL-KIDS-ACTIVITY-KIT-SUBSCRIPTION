@@ -1,0 +1,2592 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parent Portal Dashboard • PlayLoop Kids</title>
+
+  <!-- Google Fonts: Outfit (Heading) & Plus Jakarta Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6.5.1 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            brand: ['"Outfit"', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              50: '#f5f7fa',
+              100: '#eaedf3',
+              200: '#d0d7e4',
+              300: '#a6b4cc',
+              400: '#748bb0',
+              500: '#4b6691',
+              600: '#395076',
+              700: '#2d3e5c',
+              800: '#1e293f',
+              900: '#172033',
+              950: '#0c111c',
+            },
+            cream: {
+              50: '#fdfcfb',
+              100: '#F8F5EF',
+              200: '#f1ede2',
+              300: '#e6decb',
+            },
+            brand: {
+              50: '#faf7f0',
+              100: '#f3ede0',
+              200: '#e8dcc4',
+              300: '#dccaa3',
+              400: '#d2b984',
+              500: '#C9A96E',
+              600: '#b99455',
+              700: '#9a7842',
+              800: '#7d6139',
+              900: '#675031',
+            },
+            playTeal: {
+              400: '#a7bcb0',
+              500: '#8FA99A',
+              600: '#759281',
+              700: '#5d7667',
+            },
+            roseAccent: {
+              400: '#e1b9b3',
+              500: '#D8A7A0',
+              600: '#c48d85',
+              700: '#a87169',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Continuous Gentle Rotation for Logo Rental Loop (Matches about.html) */
+    @keyframes gentleSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .logo-rental-loop {
+      animation: gentleSpin 24s linear infinite;
+      transform-origin: center;
+      transition: animation-duration 0.4s ease;
+    }
+    .group:hover .logo-rental-loop {
+      animation-duration: 5s;
+    }
+
+    /* Floating / Bobbing Animation for 3D Activity Box inside Logo */
+    @keyframes floatKit {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-2.5px) rotate(3deg); }
+    }
+    .logo-activity-box {
+      animation: floatKit 3.2s ease-in-out infinite;
+    }
+
+    /* Button Sheen Shimmer */
+    .btn-sheen {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-sheen::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.35), transparent);
+      transform: rotate(25deg);
+      transition: all 0.75s ease;
+    }
+    .btn-sheen:hover::after {
+      left: 120%;
+    }
+
+    /* Active Sidebar Navigation Item Styling (Matches Reference Image) */
+    .sidebar-nav-item.active {
+      background-color: rgba(201, 169, 110, 0.12);
+      color: #C9A96E;
+      border-inline-start: 3px solid #C9A96E;
+      font-weight: 700;
+    }
+    .dark .sidebar-nav-item.active {
+      background-color: rgba(201, 169, 110, 0.15);
+      color: #f3ede0;
+      border-inline-start: 3px solid #C9A96E;
+    }
+
+    /* Smooth Fade In for Dynamic View Panels */
+    @keyframes fadeInView {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .view-panel.active-view {
+      display: block;
+      animation: fadeInView 0.3s ease-out forwards;
+    }
+    .view-panel {
+      display: none;
+    }
+
+    /* Custom Slim Scrollbar for Page */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(150, 150, 150, 0.25);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(150, 150, 150, 0.45);
+    }
+
+    
+    /* Bulletproof Sticky Positioning for Desktop User Portal Sidebar */
+    @media (min-width: 1024px) {
+      #portalSidebar {
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        top: 80px !important;
+        align-self: flex-start !important;
+        height: auto !important;
+        max-height: calc(100vh - 5.5rem) !important;
+        z-index: 30 !important;
+        overflow-y: auto !important;
+        scrollbar-width: none !important; /* Firefox */
+        -ms-overflow-style: none !important; /* IE 10+ */
+      }
+      #portalSidebar::-webkit-scrollbar {
+        display: none !important; /* Chrome, Safari, Edge */
+      }
+    }
+
+    /* Custom Dedicated Visible Scrollbar for Sticky Sidebar */
+    .custom-sidebar-scroll {
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      scrollbar-width: thin;
+      scrollbar-color: #C9A96E rgba(0, 0, 0, 0.08);
+      -webkit-overflow-scrolling: touch;
+    }
+    .dark .custom-sidebar-scroll {
+      scrollbar-color: #C9A96E rgba(255, 255, 255, 0.12);
+    }
+    .custom-sidebar-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-sidebar-scroll::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.04);
+      border-radius: 9999px;
+      margin: 8px 0;
+    }
+    .dark .custom-sidebar-scroll::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .custom-sidebar-scroll::-webkit-scrollbar-thumb {
+      background: #C9A96E;
+      border-radius: 9999px;
+    }
+    .custom-sidebar-scroll::-webkit-scrollbar-thumb:hover {
+      background: #b99455;
+    }
+  
+    /* Off-canvas drawer sliding direction aware of RTL (from about.html) */
+    #mobileDrawer {
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s, opacity 0.3s;
+      opacity: 0;
+    }
+    html[dir="ltr"] #mobileDrawer {
+      right: 0 !important;
+      left: auto !important;
+      transform: translateX(100%);
+      visibility: hidden;
+      pointer-events: none;
+    }
+    html[dir="rtl"] #mobileDrawer {
+      left: 0 !important;
+      right: auto !important;
+      transform: translateX(-100%);
+      visibility: hidden;
+      pointer-events: none;
+    }
+    html[dir="ltr"] #mobileDrawer.drawer-open,
+    html[dir="rtl"] #mobileDrawer.drawer-open {
+      transform: translateX(0);
+      visibility: visible;
+      pointer-events: auto;
+      opacity: 1;
+    }
+
+  </style>
+</head>
+
+<body class="bg-[#F8F5EF] dark:bg-[#0c111c] text-slate-800 dark:text-[#F8F5EF] font-sans antialiased min-h-screen flex flex-col transition-colors duration-300">
+
+  <!-- ========================================================
+       TOP NAVIGATION BAR (Matches Reference Layout with PlayLoop Brand)
+       ======================================================== -->
+    <!-- ========================================================
+       PRIMARY NAVBAR: FLOATING ISLAND PILL DESIGN (Matches about.html)
+       Floating glassmorphism capsule with rounded corners & elevated shadow
+       Laptop: [LOGO Far Left] ----------- [MENU Center] ----------- [ACTIONS Right]
+       Tablet/Mobile: [LOGO Left] ------------------------- [HAMBURGER Right]
+       ======================================================== -->
+      <!-- ========================================================
+       TOP HEADER BAR (Matches Locksmith Reference Layout)
+       Desktop (lg: >= 1024px): [PlayLoop KIDS Logo] ------------------ [Back to Home] [(SM) Sarah Miller v]
+       Mobile & Tablet (< lg):  [PlayLoop KIDS Logo] ------------------ [Hamburger Menu]
+                                                                        [Back to Home]
+                                                                        [(SM) Avatar]
+       ======================================================== -->
+  <header class="fixed top-0 inset-x-0 z-40 w-full bg-[#F8F5EF]/95 dark:bg-[#0c111c]/95 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-800/80 shadow-sm transition-all duration-300">
+    <div class="max-w-[1550px] w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-3 sm:py-3.5 flex items-start lg:items-center justify-between">
+
+      <!-- 1. LEFT: BRAND LOGO (Matches about.html and Locksmith) -->
+      <div class="flex-shrink-0 flex items-center mt-0.5 lg:mt-0">
+        <a href="index.html" class="group flex items-center gap-2.5 focus:outline-none focus:ring-2 focus:ring-brand-400 rounded-full p-0.5 transition-all" title="PlayLoop Kids Home">
+          
+          <!-- Animated SVG Logo Mark -->
+          <div class="relative w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center">
+            <svg class="w-8 h-8 sm:w-9 sm:h-9 text-brand-500 logo-rental-loop" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="44" class="fill-orange-50 dark:fill-orange-950/40" />
+              <path d="M50 10 A40 40 0 0 1 90 50" stroke="url(#loopGrad1)" stroke-width="6" stroke-linecap="round" stroke-dasharray="3 3"/>
+              <path d="M90 50 A40 40 0 0 1 50 90" stroke="url(#loopGrad2)" stroke-width="6" stroke-linecap="round"/>
+              <path d="M50 90 A40 40 0 0 1 10 50" stroke="url(#loopGrad1)" stroke-width="6" stroke-linecap="round" stroke-dasharray="3 3"/>
+              <path d="M10 50 A40 40 0 0 1 50 10" stroke="url(#loopGrad2)" stroke-width="6" stroke-linecap="round"/>
+              <polygon points="52,6 44,11 44,1" fill="#C9A96E"/>
+              <polygon points="48,94 56,89 56,99" fill="#8FA99A"/>
+
+              <defs>
+                <linearGradient id="loopGrad1" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#C9A96E"/>
+                  <stop offset="100%" stop-color="#D8A7A0"/>
+                </linearGradient>
+                <linearGradient id="loopGrad2" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#8FA99A"/>
+                  <stop offset="100%" stop-color="#172033"/>
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <!-- Central Floating 3D Kit Symbol -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div class="w-4 h-4 sm:w-4.5 sm:h-4.5 bg-gradient-to-br from-[#172033] via-[#24334f] to-[#C9A96E] rounded shadow-sm flex items-center justify-center text-white logo-activity-box transform group-hover:scale-110 transition-transform duration-300">
+                <i class="fa-solid fa-shapes text-[9px] text-yellow-200"></i>
+              </div>
+            </div>
+            
+            <!-- Sparkle Ping -->
+            <span class="absolute -top-0.5 -right-0.5 flex h-2 w-2 items-center justify-center">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8FA99A] opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#8FA99A]"></span>
+            </span>
+          </div>
+
+          <!-- Brand Typography -->
+          <div class="flex flex-col text-left rtl:text-right">
+            <div class="flex items-center gap-1">
+              <span class="font-brand text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center leading-none">
+                Play<span class="bg-gradient-to-r from-[#C9A96E] to-[#b99455] bg-clip-text text-transparent">Loop</span>
+              </span>
+              <span class="bg-brand-100 dark:bg-brand-900/60 text-brand-700 dark:text-brand-300 text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded-full tracking-wide leading-tight">
+                KIDS
+              </span>
+            </div>
+            <span class="text-[8.5px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase leading-tight mt-0.5 hidden sm:inline-block">
+              Toy Rental &bull; Activity Kits
+            </span>
+          </div>
+        </a>
+      </div>
+
+      <!-- 2. RIGHT: CONTROLS GROUP (Matches Locksmith Desktop & Mobile/Tablet Layout) -->
+      <div class="flex flex-col items-end lg:flex-row lg:items-center gap-2 sm:gap-2.5 lg:gap-3 shrink-0 ms-auto">
+        
+        <!-- 2a. MOBILE & TABLET HAMBURGER BUTTON (Top in column on < lg, Hidden on Desktop lg:hidden) -->
+        <div class="flex items-center lg:hidden order-1">
+          <button 
+            id="hamburgerBtn" 
+            type="button" 
+            aria-label="Open Mobile Menu" 
+            aria-controls="mobileDrawer"
+            aria-expanded="false"
+            class="btn-tool w-9 h-9 rounded-xl flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 bg-slate-100/90 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/60 focus:outline-none shadow-sm transition-all"
+          >
+            <i class="fa-solid fa-bars text-sm"></i>
+          </button>
+        </div>
+
+        <!-- 2b. BACK TO HOME BUTTON (Middle on < lg, Left on Desktop lg:order-1) -->
+        <a 
+          href="index.html" 
+          class="order-2 lg:order-1 inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-[13px] font-semibold text-slate-800 dark:text-white bg-slate-100 dark:bg-slate-800/90 hover:bg-[#C9A96E]/15 hover:border-[#C9A96E] dark:hover:border-[#C9A96E] border border-slate-200 dark:border-slate-700/80 transition-all shadow-sm whitespace-nowrap shrink-0 group/back"
+          title="Return to PlayLoop Kids Homepage"
+        >
+          <i class="fa-solid fa-arrow-left text-[11px] text-[#C9A96E] group-hover/back:-translate-x-0.5 rtl:group-hover/back:translate-x-0.5 transition-transform rtl:rotate-180"></i>
+          <span>Back to Home</span>
+        </a>
+
+        <!-- 2c. USER PROFILE DROPDOWN WIDGET (Bottom on < lg, Right on Desktop lg:order-2) -->
+        <div class="relative order-3 lg:order-2">
+          <button 
+            id="userProfileDropdownBtn" 
+            type="button" 
+            class="inline-flex items-center gap-2 sm:gap-2.5 p-1 lg:px-3 lg:py-1.5 rounded-full bg-slate-100/80 dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-700/80 hover:border-[#C9A96E] dark:hover:border-[#C9A96E] text-xs sm:text-[13px] font-semibold text-slate-800 dark:text-white transition-all shadow-sm focus:outline-none"
+          >
+            <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#C9A96E] text-slate-950 font-black text-xs flex items-center justify-center shrink-0 shadow-sm ring-2 ring-[#C9A96E]/50 dark:ring-[#C9A96E]/40">
+              SM
+            </span>
+            <span class="hidden lg:inline">Sarah Miller</span>
+            <i class="fa-solid fa-chevron-down text-[9.5px] text-slate-400 transition-transform duration-200 hidden lg:inline-block" id="profileDropdownCaret"></i>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div 
+            id="userProfileDropdownMenu" 
+            class="hidden absolute end-0 mt-2 w-56 rounded-2xl bg-white dark:bg-[#172033] border border-slate-200/80 dark:border-slate-800 shadow-2xl py-2 z-50 text-xs animate-fade-in"
+          >
+            <div class="px-4 py-2 border-b border-slate-100 dark:border-slate-800/80">
+              <div class="font-bold text-slate-900 dark:text-white">Sarah Miller</div>
+              <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">sarah.miller@example.com</div>
+              <div class="mt-1.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 text-[10px] font-black uppercase">
+                <i class="fa-solid fa-circle-check text-[9px]"></i> Atelier Hybrid Member
+              </div>
+            </div>
+            
+            <a href="#profile" class="nav-switch-link flex items-center gap-2 px-4 py-2.5 hover:bg-slate-50 dark:hover:bg-slate-800/60 text-slate-700 dark:text-slate-200 transition-colors" data-view="profileView">
+              <i class="fa-solid fa-user text-slate-400 w-4"></i> My Profile
+            </a>
+            <a href="#subscription" class="nav-switch-link flex items-center gap-2 px-4 py-2.5 hover:bg-slate-50 dark:hover:bg-slate-800/60 text-slate-700 dark:text-slate-200 transition-colors" data-view="subscriptionView">
+              <i class="fa-solid fa-crown text-amber-400 w-4"></i> My Subscription
+            </a>
+            <a href="#notifications" class="nav-switch-link flex items-center gap-2 px-4 py-2.5 hover:bg-slate-50 dark:hover:bg-slate-800/60 text-slate-700 dark:text-slate-200 transition-colors" data-view="notificationsView">
+              <i class="fa-solid fa-bell text-sky-400 w-4"></i> Notifications
+              <span class="ms-auto px-1.5 py-0.2 rounded-full bg-rose-500 text-white text-[9px] font-black">3</span>
+            </a>
+
+            <div class="pt-1 border-t border-slate-100 dark:border-slate-800/80">
+              <button 
+                type="button" 
+                class="logout-trigger-btn w-full flex items-center gap-2 px-4 py-2.5 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/30 text-left rtl:text-right font-bold transition-colors"
+              >
+                <i class="fa-solid fa-arrow-right-from-bracket w-4"></i> Log Out
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================
+       MOBILE & TABLET SLIDE-OUT DRAWER (Matches about.html structure)
+       Slides from the right (end-0) with backdrop blur
+       ======================================================== -->
+  <div 
+    id="drawerBackdrop" 
+    class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"
+    aria-hidden="true"
+  ></div>
+
+  <aside 
+    id="mobileDrawer" 
+    class="fixed top-0 bottom-0 end-0 w-full sm:w-96 max-w-[88vw] bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl z-50 shadow-2xl flex flex-col justify-between border-s border-slate-200 dark:border-slate-800 transition-transform duration-300"
+    aria-label="Mobile Navigation"
+  >
+    <!-- Drawer Header -->
+    <div class="p-4 sm:p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-amber-600 flex items-center justify-center text-white shadow-sm">
+          <i class="fa-solid fa-shapes text-xs text-yellow-200"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-brand text-base sm:text-lg font-bold tracking-tight text-slate-900 dark:text-white">
+            Play<span class="text-brand-500">Loop</span> Portal
+          </span>
+          <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider -mt-0.5">
+            Parent Telemetry &amp; Navigation
+          </span>
+        </div>
+      </div>
+
+      <!-- Close Drawer Button -->
+      <button 
+        id="closeDrawerBtn" 
+        type="button" 
+        aria-label="Close Menu"
+        class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 transition-all focus:outline-none"
+      >
+        <i class="fa-solid fa-xmark text-base"></i>
+      </button>
+    </div>
+
+    <!-- Drawer Navigation Links (Scrollable) -->
+    <div class="flex-1 overflow-y-auto px-4 sm:px-5 py-4 space-y-4 text-xs font-semibold custom-sidebar-scroll">
+      
+      <!-- 1. DASHBOARD MODULES SWITCHER (All 11 Modules in Drawer) -->
+      <div>
+        <div class="px-2 pb-2 text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 flex items-center gap-1.5">
+          <i class="fa-solid fa-gauge-high"></i>
+          <span>Parent Portal Modules</span>
+        </div>
+        <div class="space-y-1">
+          <button type="button" class="mobile-drawer-nav-item active w-full flex items-center gap-2.5 py-2 px-3 rounded-xl text-start transition-colors bg-brand-50 dark:bg-brand-950/40 text-brand-700 dark:text-brand-300 font-bold border border-brand-500/40" data-view="overviewView">
+            <i class="fa-solid fa-gauge-high w-4 text-center"></i>
+            <span>Dashboard Overview</span>
+          </button>
+          <button type="button" class="mobile-drawer-nav-item w-full flex items-center gap-2.5 py-2 px-3 rounded-xl text-start text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors" data-view="profileView">
+            <i class="fa-solid fa-user w-4 text-center text-slate-400"></i>
+            <span>My Profile</span>
+          </button>
+          <button type="button" class="mobile-drawer-nav-item w-full flex items-center gap-2.5 py-2 px-3 rounded-xl text-start text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors" data-view="subscriptionView">
+            <i class="fa-solid fa-crown w-4 text-center text-amber-500"></i>
+            <span class="flex-1">My Subscription</span>
+            <span class="text-[9px] font-bold uppercase text-brand-600 bg-brand-100 dark:bg-brand-900/60 px-1.5 py-0.2 rounded">Atelier</span>
+          </button>
+          <button type="button" class="mobile-drawer-nav-item w-full flex items-center gap-2.5 py-2 px-3 rounded-xl text-start text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors" data-view="rentalToysView">
+            <i class="fa-solid fa-shapes w-4 text-center text-teal-500"></i>
+            <span class="flex-1">My Rental Toys</span>
+            <span class="text-[10px] font-bold text-slate-500 bg-slate-200 dark:bg-slate-800 px-1.5 py-0.2 rounded-full">6</span>
+          </button>
+          <button type="button" class="mobile-drawer-nav-item w-full flex items-center gap-2.5 py-2 px-3 rounded-xl text-start text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors" data-view="toyRotationView">
+            <i class="fa-solid fa-arrows-rotate w-4 text-center text-emerald-500"></i>
+            <span class="flex-1">Toy Rotation</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          </button>
+          <button type="button" class="mobile-drawer-nav-item w-full flex items-center gap-2.5 py-2 px-3 rounded-xl text-start text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors" data-view="earlySwapView">
+            <i class="fa-solid fa-right-left w-4 text-center text-sky-500"></i>
+            <span class="flex-1">Early Swap Requests</span>
+            <span class="text-[9px] font-bold text-sky-500 bg-sky-500/10 px-1.5 py-0.2 rounded">1 Free</span>
+          </button>
+          <button type="button" class="mobile-drawer-nav-item w-full flex items-center gap-2.5 py-2 px-3 rounded-xl text-start text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors" data-view="returnsView">
+            <i class="fa-solid fa-box-open w-4 text-center text-indigo-500"></i>
+            <span>Returns</span>
+          </button>
+          <button type="button" class="mobile-drawer-nav-item w-full flex items-center gap-2.5 py-2 px-3 rounded-xl text-start text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors" data-view="activityKitsView">
+            <i class="fa-solid fa-paintbrush w-4 text-center text-rose-500"></i>
+            <span class="flex-1">Activity Kits</span>
+            <span class="text-[9px] font-bold text-teal-600 bg-teal-500/10 px-1.5 py-0.2 rounded">Keep</span>
+          </button>
+          <button type="button" class="mobile-drawer-nav-item w-full flex items-center gap-2.5 py-2 px-3 rounded-xl text-start text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors" data-view="billingHistoryView">
+            <i class="fa-solid fa-clock-rotate-left w-4 text-center text-slate-400"></i>
+            <span>Billing History</span>
+          </button>
+          <button type="button" class="mobile-drawer-nav-item w-full flex items-center gap-2.5 py-2 px-3 rounded-xl text-start text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors" data-view="invoicesView">
+            <i class="fa-solid fa-file-invoice-dollar w-4 text-center text-slate-400"></i>
+            <span>Invoices</span>
+          </button>
+          <button type="button" class="mobile-drawer-nav-item w-full flex items-center gap-2.5 py-2 px-3 rounded-xl text-start text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors" data-view="notificationsView">
+            <i class="fa-solid fa-bell w-4 text-center text-amber-500"></i>
+            <span class="flex-1">Notifications</span>
+            <span class="px-1.5 py-0.2 rounded-full bg-rose-500 text-white text-[9px] font-bold">3</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 2. SITE NAVIGATION LINKS -->
+      <div class="pt-3 border-t border-slate-100 dark:border-slate-800/80">
+        <div class="px-2 pb-2 text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+          <i class="fa-solid fa-compass"></i>
+          <span>Site Navigation</span>
+        </div>
+        <div class="grid grid-cols-2 gap-1 text-xs">
+          <a href="index.html" class="flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <i class="fa-solid fa-house text-slate-400"></i>
+            <span>Home</span>
+          </a>
+          <a href="about.html" class="flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <i class="fa-solid fa-circle-info text-slate-400"></i>
+            <span>About</span>
+          </a>
+          <a href="catalog.html" class="flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <i class="fa-solid fa-cubes-stacked text-slate-400"></i>
+            <span>Catalog</span>
+          </a>
+          <a href="plans.html" class="flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <i class="fa-solid fa-tags text-slate-400"></i>
+            <span>Plans</span>
+          </a>
+          <a href="hygiene.html" class="flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <i class="fa-solid fa-shield-heart text-slate-400"></i>
+            <span>Hygiene</span>
+          </a>
+          <a href="contact.html" class="flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <i class="fa-solid fa-envelope text-slate-400"></i>
+            <span>Contact</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Drawer Footer: Dark Mode + RTL + Logout -->
+    <div class="p-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/70 space-y-3 backdrop-blur-md">
+      <div class="grid grid-cols-2 gap-2.5">
+        <button 
+          id="mobileDarkToggle" 
+          type="button" 
+          class="btn-tool flex items-center justify-center gap-2 py-2 px-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-brand-500 text-xs font-bold shadow-sm focus:outline-none"
+        >
+          <span class="relative flex items-center justify-center">
+            <i class="fa-solid fa-moon text-slate-600 dark:hidden text-xs"></i>
+            <i class="fa-solid fa-sun text-yellow-400 hidden dark:block text-xs"></i>
+          </span>
+          <span id="mobileDarkLabel" class="text-[11px]">Dark Mode</span>
+        </button>
+
+        <button 
+          id="mobileRtlToggle" 
+          type="button" 
+          class="btn-tool flex items-center justify-center gap-2 py-2 px-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-brand-500 text-xs font-bold shadow-sm focus:outline-none"
+        >
+          <i class="fa-solid fa-right-left text-brand-500 text-[11px]"></i>
+          <span id="mobileRtlLabel" class="text-[11px]">RTL View</span>
+          <span id="mobileRtlIndicator" class="hidden w-1.5 h-1.5 rounded-full bg-brand-500 absolute top-1.5 right-1.5"></span>
+        </button>
+      </div>
+
+      <button 
+        type="button" 
+        class="logout-trigger-btn w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl font-bold text-xs uppercase tracking-wider text-white bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 shadow-sm active:scale-95 transition-all text-center"
+      >
+        <i class="fa-solid fa-arrow-right-from-bracket text-xs"></i>
+        <span>Logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ========================================================
+       MAIN PORTAL WORKSPACE: EXPANSIVE CONTAINER (Matches about.html max-w-[1550px])
+       ======================================================== -->
+  <div class="flex-1 max-w-[1550px] w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-[150px] sm:pt-[155px] lg:pt-[82px] pb-16 flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
+    
+    <!-- ======================================================
+         LEFT SIDEBAR: DESKTOP USER PORTAL NAVIGATION
+         Sticky, visible custom scrollbar, perfectly aligned
+         ====================================================== -->
+    <aside id="portalSidebar" style="position: sticky; top: 80px; align-self: flex-start;" class="hidden lg:flex flex-col w-72 sticky top-[80px] self-start rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-[#131b2e] p-3.5 sm:p-4 shrink-0 shadow-sm transition-colors duration-300 z-30 overflow-hidden">
+      <!-- 1. Sticky Header: Portal Title + Fast Dark/RTL Toggles (Matches User Screenshot, Never Scrolls Away) -->
+      <div class="sticky top-0 z-20 bg-white/95 dark:bg-[#131b2e]/95 backdrop-blur-md pb-2.5 mb-1.5 border-b border-slate-200/80 dark:border-slate-800 pt-0.5 -mx-3.5 sm:-mx-4 px-3.5 sm:px-4 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-8 rounded-xl bg-[#C9A96E]/20 text-[#C9A96E] flex items-center justify-center text-sm shadow-sm">
+            <i class="fa-solid fa-shapes"></i>
+          </span>
+          <span class="font-brand font-black text-xs uppercase tracking-wider text-slate-900 dark:text-white">
+            Parent Portal
+          </span>
+        </div>
+
+        <!-- Fast Toggles in Sidebar Header (Matches User Screenshot) -->
+        <div class="flex items-center gap-1.5">
+          <!-- Sidebar Dark Mode Toggle -->
+          <button 
+            id="sidebarDarkToggle" 
+            type="button" 
+            title="Toggle Dark / Light Mode" 
+            class="w-7 h-7 rounded-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-[#C9A96E] bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors shadow-sm"
+          >
+            <i class="fa-solid fa-moon text-xs dark:hidden text-slate-700"></i>
+            <i class="fa-solid fa-sun text-xs hidden dark:block text-yellow-400"></i>
+          </button>
+
+          <!-- Sidebar RTL Toggle -->
+          <button 
+            id="sidebarRtlToggle" 
+            type="button" 
+            title="Toggle Layout Direction (LTR / RTL)" 
+            class="w-7 h-7 rounded-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-[#C9A96E] bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors relative shadow-sm"
+          >
+            <i class="fa-solid fa-right-left text-xs text-slate-700 dark:text-slate-300"></i>
+            <span id="sidebarRtlIndicator" class="hidden absolute top-1 end-1 w-1.5 h-1.5 rounded-full bg-[#C9A96E]"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 2. Scrollable Navigation List (Internal scroll with gold scrollbar) -->
+      <div class="space-y-1">
+        <nav class="space-y-1 text-xs">
+          
+          <!-- 1. Dashboard Overview -->
+          <button 
+            type="button" 
+            class="sidebar-nav-item active w-full flex items-center gap-2.5 px-3 py-1.5 sm:py-2 rounded-xl text-start transition-all"
+            data-view="overviewView"
+          >
+            <i class="fa-solid fa-gauge-high w-4 text-center"></i>
+            <span class="flex-1">Dashboard Overview</span>
+          </button>
+
+          <!-- 2. My Profile -->
+          <button 
+            type="button" 
+            class="sidebar-nav-item w-full flex items-center gap-2.5 px-3 py-1.5 sm:py-2 rounded-xl text-start text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all"
+            data-view="profileView"
+          >
+            <i class="fa-solid fa-user w-4 text-center"></i>
+            <span class="flex-1">My Profile</span>
+          </button>
+
+          <!-- 3. My Subscription -->
+          <button 
+            type="button" 
+            class="sidebar-nav-item w-full flex items-center gap-2.5 px-3 py-1.5 sm:py-2 rounded-xl text-start text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all"
+            data-view="subscriptionView"
+          >
+            <i class="fa-solid fa-crown w-4 text-center text-amber-500"></i>
+            <span class="flex-1">My Subscription</span>
+            <span class="text-[9px] font-black uppercase text-[#C9A96E] bg-[#C9A96E]/15 px-1.5 py-0.5 rounded-md">Atelier</span>
+          </button>
+
+          <!-- 4. My Rental Toys -->
+          <button 
+            type="button" 
+            class="sidebar-nav-item w-full flex items-center gap-2.5 px-3 py-1.5 sm:py-2 rounded-xl text-start text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all"
+            data-view="rentalToysView"
+          >
+            <i class="fa-solid fa-shapes w-4 text-center text-teal-500"></i>
+            <span class="flex-1">My Rental Toys</span>
+            <span class="text-[10px] font-bold text-slate-500 bg-slate-200 dark:bg-slate-800 px-1.5 py-0.2 rounded-full">6</span>
+          </button>
+
+          <!-- 5. Toy Rotation -->
+          <button 
+            type="button" 
+            class="sidebar-nav-item w-full flex items-center gap-2.5 px-3 py-1.5 sm:py-2 rounded-xl text-start text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all"
+            data-view="toyRotationView"
+          >
+            <i class="fa-solid fa-arrows-rotate w-4 text-center text-emerald-500"></i>
+            <span class="flex-1">Toy Rotation</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          </button>
+
+          <!-- 6. Early Swap Requests -->
+          <button 
+            type="button" 
+            class="sidebar-nav-item w-full flex items-center gap-2.5 px-3 py-1.5 sm:py-2 rounded-xl text-start text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all"
+            data-view="earlySwapView"
+          >
+            <i class="fa-solid fa-right-left w-4 text-center text-sky-500"></i>
+            <span class="flex-1">Early Swap Requests</span>
+            <span class="text-[9px] font-extrabold text-sky-500 bg-sky-500/10 px-1.5 py-0.5 rounded-md">1 Free</span>
+          </button>
+
+          <!-- 7. Returns -->
+          <button 
+            type="button" 
+            class="sidebar-nav-item w-full flex items-center gap-2.5 px-3 py-1.5 sm:py-2 rounded-xl text-start text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all"
+            data-view="returnsView"
+          >
+            <i class="fa-solid fa-box-open w-4 text-center text-indigo-500"></i>
+            <span class="flex-1">Returns</span>
+          </button>
+
+          <!-- 8. Activity Kits -->
+          <button 
+            type="button" 
+            class="sidebar-nav-item w-full flex items-center gap-2.5 px-3 py-1.5 sm:py-2 rounded-xl text-start text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all"
+            data-view="activityKitsView"
+          >
+            <i class="fa-solid fa-paintbrush w-4 text-center text-teal-500"></i>
+            <span class="flex-1">Activity Kits</span>
+            <span class="text-[9px] font-black uppercase text-teal-600 dark:text-teal-400 bg-teal-500/10 px-1.5 py-0.5 rounded-md">Keep</span>
+          </button>
+
+          <!-- 9. Billing History -->
+          <button 
+            type="button" 
+            class="sidebar-nav-item w-full flex items-center gap-2.5 px-3 py-1.5 sm:py-2 rounded-xl text-start text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all"
+            data-view="billingHistoryView"
+          >
+            <i class="fa-solid fa-clock-rotate-left w-4 text-center text-slate-400"></i>
+            <span class="flex-1">Billing History</span>
+          </button>
+
+          <!-- 10. Invoices -->
+          <button 
+            type="button" 
+            class="sidebar-nav-item w-full flex items-center gap-2.5 px-3 py-1.5 sm:py-2 rounded-xl text-start text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all"
+            data-view="invoicesView"
+          >
+            <i class="fa-solid fa-file-invoice-dollar w-4 text-center text-slate-400"></i>
+            <span class="flex-1">Invoices</span>
+          </button>
+
+          <!-- 11. Notifications -->
+          <button 
+            type="button" 
+            class="sidebar-nav-item w-full flex items-center gap-2.5 px-3 py-1.5 sm:py-2 rounded-xl text-start text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all"
+            data-view="notificationsView"
+          >
+            <i class="fa-solid fa-bell w-4 text-center text-amber-400"></i>
+            <span class="flex-1">Notifications</span>
+            <span class="px-1.5 py-0.2 rounded-full bg-rose-500 text-white text-[9px] font-black">3</span>
+          </button>
+
+          <!-- 12. Logout Action -->
+          <div class="pt-1.5 mt-1.5 border-t border-slate-200/80 dark:border-slate-800">
+            <button 
+              type="button" 
+              class="logout-trigger-btn w-full flex items-center gap-2.5 px-3 py-1.5 sm:py-2 rounded-xl text-start text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/30 font-bold transition-all"
+            >
+              <i class="fa-solid fa-arrow-right-from-bracket w-4 text-center"></i>
+              <span class="flex-1">Logout</span>
+            </button>
+          </div>
+
+        </nav>
+      </div>
+    </aside>
+
+
+    <main class="flex-1 w-full min-w-0 space-y-6">
+
+      <!-- ====================================================
+           VIEW 1: DASHBOARD OVERVIEW
+           ==================================================== -->
+      <div id="overviewView" class="view-panel active-view space-y-6">
+        
+        <!-- View Header with Status Pill (Matches Reference Image) -->
+        <div class="flex items-start sm:items-center justify-between gap-4 flex-wrap pb-2">
+          <div>
+            <h1 class="font-brand text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              Dashboard Overview
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              Welcome back, Sarah! Here is your active playroom rotation telemetry.
+            </p>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-black uppercase tracking-wider shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+            <span>Atelier Hybrid &bull; Active Member</span>
+          </div>
+        </div>
+
+        <!-- 4 Key Telemetry Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <!-- Card 1: Active Subscription -->
+          <div class="p-5 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-2">
+            <div class="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs">
+              <span>Active Subscription</span>
+              <i class="fa-solid fa-crown text-amber-400"></i>
+            </div>
+            <div class="font-brand text-2xl font-black text-slate-900 dark:text-white">Atelier Hybrid</div>
+            <div class="text-[11px] text-emerald-500 font-semibold flex items-center gap-1">
+              <i class="fa-solid fa-check"></i> $59.00 / month &bull; Active
+            </div>
+          </div>
+
+          <!-- Card 2: Current Rental Summary -->
+          <div class="p-5 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-2">
+            <div class="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs">
+              <span>Current Rental</span>
+              <i class="fa-solid fa-shapes text-[#C9A96E]"></i>
+            </div>
+            <div class="font-brand text-2xl font-black text-slate-900 dark:text-white">6 Toys in Use</div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400">
+              Plus 1 Keep-Forever Kit
+            </div>
+          </div>
+
+          <!-- Card 3: Next Rotation Date -->
+          <div class="p-5 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-2">
+            <div class="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs">
+              <span>Next Rotation Date</span>
+              <i class="fa-solid fa-arrows-rotate text-[#8FA99A]"></i>
+            </div>
+            <div class="font-brand text-2xl font-black text-[#C9A96E]">Oct 14, 2026</div>
+            <div class="text-[11px] text-[#8FA99A] font-semibold">
+              12 Days Remaining in Cycle
+            </div>
+          </div>
+
+          <!-- Card 4: Upcoming Return Date & Pending Swap -->
+          <div class="p-5 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-2">
+            <div class="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs">
+              <span>Doorstep Courier Window</span>
+              <i class="fa-solid fa-truck-fast text-sky-400"></i>
+            </div>
+            <div class="font-brand text-xl font-bold text-slate-900 dark:text-white">Oct 14 &bull; 10am-2pm</div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400">
+              Pending Swap: <strong class="text-emerald-500">0 Active Swaps</strong>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Middle Section: Currently Rented Toys Showcase & Quick Action Hub -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          <!-- Left: Currently Rented Toys (8 cols) -->
+          <div class="lg:col-span-8 p-6 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-brand font-bold text-base text-slate-900 dark:text-white">Currently Rented Toys in Your Home</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">6 milestone wooden toys currently in your playroom rotation.</p>
+              </div>
+              <button type="button" class="nav-switch-link text-xs font-bold text-[#C9A96E] hover:underline" data-view="rentalToysView">
+                View All Details &rarr;
+              </button>
+            </div>
+
+            <!-- Mini Toy Grid (3 items preview) -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+              <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-[#172033] border border-slate-200/80 dark:border-slate-800 space-y-2.5">
+                <img src="images/index_toy_discs.jpg" alt="Interlocking Beechwood Discs" class="w-full h-24 object-cover rounded-xl" loading="lazy" />
+                <div>
+                  <h4 class="font-bold text-xs text-slate-900 dark:text-white truncate">Interlocking Discs</h4>
+                  <div class="text-[10px] text-slate-500">Sensory &bull; Infant</div>
+                </div>
+                <span class="inline-block text-[9px] font-extrabold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-md">Heirloom Grade</span>
+              </div>
+
+              <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-[#172033] border border-slate-200/80 dark:border-slate-800 space-y-2.5">
+                <img src="images/index_toy_stepping_stones.jpg" alt="Curved Stepping Stones" class="w-full h-24 object-cover rounded-xl" loading="lazy" />
+                <div>
+                  <h4 class="font-bold text-xs text-slate-900 dark:text-white truncate">Curved Balance Stones</h4>
+                  <div class="text-[10px] text-slate-500">Gross Motor &bull; Toddler</div>
+                </div>
+                <span class="inline-block text-[9px] font-extrabold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-md">Heirloom Grade</span>
+              </div>
+
+              <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-[#172033] border border-slate-200/80 dark:border-slate-800 space-y-2.5">
+                <img src="images/index_toy_arches.jpg" alt="Waldorf Rainbow Arches" class="w-full h-24 object-cover rounded-xl" loading="lazy" />
+                <div>
+                  <h4 class="font-bold text-xs text-slate-900 dark:text-white truncate">Waldorf Building Arches</h4>
+                  <div class="text-[10px] text-slate-500">Spatial &bull; Preschool</div>
+                </div>
+                <span class="inline-block text-[9px] font-extrabold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-md">Heirloom Grade</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Current Keep-Forever Activity Kit Spotlight (4 cols) -->
+          <div class="lg:col-span-4 p-6 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-black uppercase text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded-md">Keep Forever Kit</span>
+                <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+              </div>
+              <img src="images/index_kit_astronaut.jpg" alt="Cyanotype Solar Lab" class="w-full h-32 object-cover rounded-2xl" loading="lazy" />
+              <div>
+                <h4 class="font-brand font-bold text-sm text-slate-900 dark:text-white">Cyanotype Sun-Print Lab</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mt-1">Consumable STEAM science exploration. Yours to keep permanently!</p>
+              </div>
+              <!-- Progress Bar -->
+              <div class="space-y-1">
+                <div class="flex items-center justify-between text-[10px] text-slate-500">
+                  <span>Kit Completion Status:</span>
+                  <strong class="text-emerald-500">80% Done</strong>
+                </div>
+                <div class="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                  <div class="h-full bg-emerald-500 rounded-full w-4/5"></div>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" class="nav-switch-link w-full py-2 text-center rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-[#C9A96E] hover:text-[#172033] font-bold text-xs uppercase tracking-wider transition-colors" data-view="activityKitsView">
+              Activity Kit Guide &rarr;
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Bottom: Quick Action Cards Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <button type="button" class="nav-switch-link p-4 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm hover:border-[#C9A96E] flex items-center gap-3 text-start transition-all" data-view="toyRotationView">
+            <span class="w-10 h-10 rounded-xl bg-[#C9A96E]/15 text-[#C9A96E] flex items-center justify-center text-base shrink-0">
+              <i class="fa-solid fa-shapes"></i>
+            </span>
+            <div>
+              <div class="font-bold text-xs text-slate-900 dark:text-white">Curate Next Rotation</div>
+              <div class="text-[11px] text-slate-500">Select 6 toys for Oct 14</div>
+            </div>
+          </button>
+
+          <button type="button" class="nav-switch-link p-4 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm hover:border-sky-500 flex items-center gap-3 text-start transition-all" data-view="earlySwapView">
+            <span class="w-10 h-10 rounded-xl bg-sky-500/15 text-sky-500 flex items-center justify-center text-base shrink-0">
+              <i class="fa-solid fa-right-left"></i>
+            </span>
+            <div>
+              <div class="font-bold text-xs text-slate-900 dark:text-white">Request Early Swap</div>
+              <div class="text-[11px] text-slate-500">1 free swap available</div>
+            </div>
+          </button>
+
+          <button type="button" class="nav-switch-link p-4 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm hover:border-emerald-500 flex items-center gap-3 text-start transition-all" data-view="invoicesView">
+            <span class="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center text-base shrink-0">
+              <i class="fa-solid fa-file-invoice-dollar"></i>
+            </span>
+            <div>
+              <div class="font-bold text-xs text-slate-900 dark:text-white">Download Invoice</div>
+              <div class="text-[11px] text-slate-500">Invoice #PL-2026-0915</div>
+            </div>
+          </button>
+        </div>
+
+      </div>
+
+
+      <!-- ====================================================
+           VIEW 2: MY PROFILE (Matches Reference Image Layout)
+           ==================================================== -->
+      <div id="profileView" class="view-panel space-y-6">
+        
+        <!-- Header with Gold Status Badge -->
+        <div class="flex items-start sm:items-center justify-between gap-4 flex-wrap pb-2">
+          <div>
+            <h1 class="font-brand text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              My Profile
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              Manage your contact information, credentials, and gold membership tier.
+            </p>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#C9A96E]/15 border border-[#C9A96E]/40 text-[#C9A96E] text-xs font-black uppercase tracking-wider shadow-sm">
+            <span>Gold Shield Status</span>
+          </div>
+        </div>
+
+        <!-- Split Cards (Exact Match to Screenshot Structure) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          <!-- Left Card: Account Details (7 cols) -->
+          <div class="lg:col-span-7 p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-5">
+            <h2 class="font-brand font-bold text-lg text-slate-900 dark:text-white">
+              Account Details
+            </h2>
+
+            <form id="profileForm" class="space-y-4" onsubmit="event.preventDefault(); alert('Profile information updated successfully!');">
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300">Full Name</label>
+                <input 
+                  type="text" 
+                  value="Sarah Miller" 
+                  class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#C9A96E]"
+                  required
+                />
+              </div>
+
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300">Email Address</label>
+                <input 
+                  type="email" 
+                  value="sarah.miller@example.com" 
+                  class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#C9A96E]"
+                  required
+                />
+              </div>
+
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300">Phone Number</label>
+                <input 
+                  type="tel" 
+                  value="+1 (555) 902-8697" 
+                  class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#C9A96E]"
+                  required
+                />
+              </div>
+
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300">Shipping / Delivery Address</label>
+                <input 
+                  type="text" 
+                  value="742 Evergreen Terrace, Suite 400, Portland, OR 97201" 
+                  class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#C9A96E]"
+                  required
+                />
+              </div>
+
+              <div class="pt-2">
+                <button 
+                  type="submit" 
+                  class="btn-sheen px-6 py-3 rounded-xl bg-[#C9A96E] hover:bg-[#b99455] text-[#172033] font-brand font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all"
+                >
+                  Save Profile Changes
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right Card: Security & MFA (5 cols, Matches Screenshot Toggles) -->
+          <div class="lg:col-span-5 p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-5 flex flex-col justify-between">
+            <div class="space-y-5">
+              <div>
+                <h2 class="font-brand font-bold text-lg text-slate-900 dark:text-white">Security &amp; MFA</h2>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Protect your credentials and saved keys with multi-factor authentication.</p>
+              </div>
+
+              <!-- Toggle 1: Two-Factor Auth -->
+              <div class="flex items-center justify-between gap-3 pt-2">
+                <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">Enable Two-Factor Authentication</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" checked class="sr-only peer" />
+                  <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-400"></div>
+                </label>
+              </div>
+
+              <!-- Toggle 2: Require PIN -->
+              <div class="flex items-center justify-between gap-3">
+                <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">Require PIN for Early Swap Dispatch</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" checked class="sr-only peer" />
+                  <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-400"></div>
+                </label>
+              </div>
+
+              <!-- Password Change Fields -->
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
+                <div class="space-y-1">
+                  <label class="block text-[11px] text-slate-500">Current Password</label>
+                  <input type="password" placeholder="••••••••••••" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white" />
+                </div>
+                <div class="space-y-1">
+                  <label class="block text-[11px] text-slate-500">New Password</label>
+                  <input type="password" placeholder="New secure password" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white" />
+                </div>
+              </div>
+            </div>
+
+            <button 
+              type="button" 
+              onclick="alert('Password updated successfully!');"
+              class="w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs uppercase tracking-wider transition-colors"
+            >
+              Change Account Password
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Bottom Card: Child Profiles & Toy Interests -->
+        <div class="p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-5">
+          <div class="flex items-center justify-between flex-wrap gap-3">
+            <div>
+              <h2 class="font-brand font-bold text-lg text-slate-900 dark:text-white">Child Profiles &amp; Preferred Toy Interests</h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Our pediatric curriculum uses these profiles to calibrate every monthly box.</p>
+            </div>
+            <button 
+              type="button" 
+              onclick="document.getElementById('addChildModal').classList.remove('hidden');"
+              class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#C9A96E] text-[#172033] font-bold text-xs uppercase tracking-wider hover:bg-[#b99455] transition-colors shadow-sm"
+            >
+              <i class="fa-solid fa-plus text-[10px]"></i> Add Child Profile
+            </button>
+          </div>
+
+          <!-- Child Profile Cards List -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <!-- Child 1 -->
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-[#172033] border border-slate-200/80 dark:border-slate-800 space-y-3">
+              <div class="flex items-start justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="w-10 h-10 rounded-2xl bg-emerald-500/20 text-emerald-500 flex items-center justify-center font-black text-sm">L</span>
+                  <div>
+                    <h3 class="font-bold text-sm text-slate-900 dark:text-white">Leo Miller</h3>
+                    <div class="text-[11px] text-slate-500">Born March 12, 2024 &bull; <strong>2 Years Old</strong> (Toddler Cohort)</div>
+                  </div>
+                </div>
+                <button type="button" onclick="alert('Editing profile for Leo Miller');" class="text-xs text-[#C9A96E] hover:underline font-bold">Edit</button>
+              </div>
+              <div class="space-y-1">
+                <div class="text-[11px] font-bold text-slate-700 dark:text-slate-300">Preferred Interests:</div>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="px-2 py-0.5 rounded-md bg-white dark:bg-slate-800 text-[10px] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Gross Motor</span>
+                  <span class="px-2 py-0.5 rounded-md bg-white dark:bg-slate-800 text-[10px] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Balance Stepping</span>
+                  <span class="px-2 py-0.5 rounded-md bg-white dark:bg-slate-800 text-[10px] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Sensory Stacking</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Child 2 -->
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-[#172033] border border-slate-200/80 dark:border-slate-800 space-y-3">
+              <div class="flex items-start justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="w-10 h-10 rounded-2xl bg-purple-500/20 text-purple-500 flex items-center justify-center font-black text-sm">M</span>
+                  <div>
+                    <h3 class="font-bold text-sm text-slate-900 dark:text-white">Maya Miller</h3>
+                    <div class="text-[11px] text-slate-500">Born August 5, 2022 &bull; <strong>4 Years Old</strong> (Preschool Cohort)</div>
+                  </div>
+                </div>
+                <button type="button" onclick="alert('Editing profile for Maya Miller');" class="text-xs text-[#C9A96E] hover:underline font-bold">Edit</button>
+              </div>
+              <div class="space-y-1">
+                <div class="text-[11px] font-bold text-slate-700 dark:text-slate-300">Preferred Interests:</div>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="px-2 py-0.5 rounded-md bg-white dark:bg-slate-800 text-[10px] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">STEAM Engineering</span>
+                  <span class="px-2 py-0.5 rounded-md bg-white dark:bg-slate-800 text-[10px] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Waldorf Architecture</span>
+                  <span class="px-2 py-0.5 rounded-md bg-white dark:bg-slate-800 text-[10px] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Clay Pottery</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ====================================================
+           VIEW 3: MY SUBSCRIPTION
+           ==================================================== -->
+      <div id="subscriptionView" class="view-panel space-y-6">
+        <div class="flex items-start sm:items-center justify-between gap-4 flex-wrap pb-2">
+          <div>
+            <h1 class="font-brand text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              My Subscription
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              Manage your monthly membership tier, billing frequency, or pause anytime.
+            </p>
+          </div>
+          <span class="px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 text-xs font-black uppercase">
+            Active &bull; Auto-Renewing
+          </span>
+        </div>
+
+        <!-- Subscription Overview Card -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#172033] via-[#1b263b] to-[#0c111c] text-white border-2 border-[#C9A96E]/40 shadow-xl space-y-6">
+          <div class="flex items-start justify-between flex-wrap gap-4">
+            <div>
+              <span class="px-3 py-1 rounded-full bg-[#C9A96E] text-[#172033] text-[10px] font-black uppercase tracking-wider">
+                Current Plan
+              </span>
+              <h2 class="font-brand text-3xl font-black mt-2 text-[#F8F5EF]">Atelier Hybrid Plan</h2>
+              <p class="text-xs text-slate-300 mt-1">6 Rotating Heirloom Wooden Toys + 1 Keep-Forever STEAM Activity Kit every month.</p>
+            </div>
+            <div class="text-start sm:text-end">
+              <div class="font-brand text-3xl font-black text-[#C9A96E]">$59.00 <span class="text-xs font-normal text-slate-400">/ month</span></div>
+              <div class="text-[11px] text-slate-400 mt-0.5">Billed monthly via Visa •••• 4242</div>
+            </div>
+          </div>
+
+          <!-- Plan Details Grid -->
+          <div class="pt-6 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+            <div>
+              <div class="text-slate-400 text-[11px]">Subscription Start Date</div>
+              <div class="font-bold text-white mt-0.5">January 15, 2025</div>
+            </div>
+            <div>
+              <div class="text-slate-400 text-[11px]">Current Billing Cycle</div>
+              <div class="font-bold text-white mt-0.5">Monthly (Cycle #21)</div>
+            </div>
+            <div>
+              <div class="text-slate-400 text-[11px]">Next Billing Date</div>
+              <div class="font-bold text-white mt-0.5">October 15, 2026</div>
+            </div>
+            <div>
+              <div class="text-slate-400 text-[11px]">Subscription Status</div>
+              <div class="font-bold text-emerald-400 mt-0.5 flex items-center gap-1">
+                <i class="fa-solid fa-circle-check"></i> Active (In Good Standing)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subscription Management Actions -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          
+          <!-- Change Plan Tier -->
+          <div class="p-6 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3 flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="w-10 h-10 rounded-2xl bg-[#C9A96E]/15 text-[#C9A96E] flex items-center justify-center text-base">
+                <i class="fa-solid fa-arrow-up-right-dots"></i>
+              </span>
+              <h3 class="font-bold text-sm text-slate-900 dark:text-white">Change Plan Tier</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Upgrade or adjust your toy count (Discovery $29, Wonder Builder $45, Atelier $59).</p>
+            </div>
+            <a href="plans.html" class="block w-full py-2.5 text-center rounded-xl bg-[#C9A96E] text-[#172033] font-bold text-xs uppercase tracking-wider hover:bg-[#b99455] transition-colors">
+              Compare &amp; Change Plan
+            </a>
+          </div>
+
+          <!-- Pause Subscription -->
+          <div class="p-6 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3 flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="w-10 h-10 rounded-2xl bg-amber-500/15 text-amber-500 flex items-center justify-center text-base">
+                <i class="fa-solid fa-pause"></i>
+              </span>
+              <h3 class="font-bold text-sm text-slate-900 dark:text-white">Pause Subscription</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Traveling or taking a vacation? Pause for 1 to 3 months with zero fees.</p>
+            </div>
+            <button 
+              type="button" 
+              onclick="document.getElementById('pauseModal').classList.remove('hidden');"
+              class="w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs uppercase tracking-wider transition-colors"
+            >
+              Pause Subscription
+            </button>
+          </div>
+
+          <!-- Cancel Subscription -->
+          <div class="p-6 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3 flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="w-10 h-10 rounded-2xl bg-rose-500/15 text-rose-500 flex items-center justify-center text-base">
+                <i class="fa-solid fa-ban"></i>
+              </span>
+              <h3 class="font-bold text-sm text-slate-900 dark:text-white">Cancel Subscription</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Cancel anytime before next billing date. Keep all accrued activity kits!</p>
+            </div>
+            <button 
+              type="button" 
+              onclick="if(confirm('Are you sure you want to cancel your PlayLoop subscription? You will miss out on the upcoming October milestone box!')) { alert('Cancellation request submitted. You will retain access until Oct 14.'); }"
+              class="w-full py-2.5 rounded-xl bg-rose-50 dark:bg-rose-950/20 hover:bg-rose-100 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-bold text-xs uppercase tracking-wider transition-colors"
+            >
+              Cancel Membership
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ====================================================
+           VIEW 4: MY RENTAL TOYS
+           ==================================================== -->
+      <div id="rentalToysView" class="view-panel space-y-6">
+        <div class="flex items-start sm:items-center justify-between gap-4 flex-wrap pb-2">
+          <div>
+            <h1 class="font-brand text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              My Rental Toys
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              Detailed inventory of currently rented toys, conditions, and return options.
+            </p>
+          </div>
+          <div class="text-xs font-bold text-slate-500">
+            Currently Rented: <strong class="text-[#C9A96E]">6 of 6 Allowed</strong>
+          </div>
+        </div>
+
+        <!-- Currently Rented Toys Grid (6 Items with Dedicated Gemini Images) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          
+          <!-- Toy 1 -->
+          <div class="p-5 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3 flex flex-col justify-between">
+            <div class="space-y-3">
+              <img src="images/index_toy_discs.jpg" alt="Interlocking Beechwood Discs" class="w-full h-40 object-cover rounded-2xl" loading="lazy" />
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-extrabold uppercase text-[#C9A96E]">Sensory &bull; Infant</span>
+                <span class="text-[10px] font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full">Heirloom Grade</span>
+              </div>
+              <h3 class="font-bold text-sm text-slate-900 dark:text-white">Interlocking Beechwood Discs</h3>
+              <div class="text-[11px] text-slate-500 space-y-1">
+                <div>Rental Start: <strong>Sept 14, 2026</strong></div>
+                <div>Return Due: <strong>Oct 14, 2026</strong></div>
+                <div>Status: <span class="text-emerald-500 font-semibold">Active in Playroom</span></div>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+              <button type="button" onclick="this.classList.toggle('bg-amber-500'); this.classList.toggle('text-white'); alert('Marked for return in upcoming courier box!');" class="flex-1 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-[11px] font-bold transition-all">
+                Mark for Return
+              </button>
+              <button type="button" onclick="alert('Member buy price: $14.00 (Retail $26.00). Keep forever permanently!');" class="px-3 py-1.5 rounded-xl bg-[#C9A96E]/15 text-[#C9A96E] hover:bg-[#C9A96E] hover:text-[#172033] text-[11px] font-bold transition-all">
+                Buy ($14)
+              </button>
+            </div>
+          </div>
+
+          <!-- Toy 2 -->
+          <div class="p-5 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3 flex flex-col justify-between">
+            <div class="space-y-3">
+              <img src="images/index_toy_stepping_stones.jpg" alt="Curved Stepping Stones" class="w-full h-40 object-cover rounded-2xl" loading="lazy" />
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-extrabold uppercase text-emerald-500">Gross Motor &bull; Toddler</span>
+                <span class="text-[10px] font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full">Heirloom Grade</span>
+              </div>
+              <h3 class="font-bold text-sm text-slate-900 dark:text-white">Curved Birch Stepping Stones</h3>
+              <div class="text-[11px] text-slate-500 space-y-1">
+                <div>Rental Start: <strong>Sept 14, 2026</strong></div>
+                <div>Return Due: <strong>Oct 14, 2026</strong></div>
+                <div>Status: <span class="text-emerald-500 font-semibold">Active in Playroom</span></div>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+              <button type="button" onclick="this.classList.toggle('bg-amber-500'); this.classList.toggle('text-white'); alert('Marked for return in upcoming courier box!');" class="flex-1 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-[11px] font-bold transition-all">
+                Mark for Return
+              </button>
+              <button type="button" onclick="alert('Member buy price: $38.00 (Retail $68.00). Keep forever permanently!');" class="px-3 py-1.5 rounded-xl bg-[#C9A96E]/15 text-[#C9A96E] hover:bg-[#C9A96E] hover:text-[#172033] text-[11px] font-bold transition-all">
+                Buy ($38)
+              </button>
+            </div>
+          </div>
+
+          <!-- Toy 3 -->
+          <div class="p-5 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3 flex flex-col justify-between">
+            <div class="space-y-3">
+              <img src="images/index_toy_arches.jpg" alt="Waldorf Rainbow Arches" class="w-full h-40 object-cover rounded-2xl" loading="lazy" />
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-extrabold uppercase text-blue-500">Spatial &bull; Preschool</span>
+                <span class="text-[10px] font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full">Heirloom Grade</span>
+              </div>
+              <h3 class="font-bold text-sm text-slate-900 dark:text-white">Waldorf Rainbow Arches</h3>
+              <div class="text-[11px] text-slate-500 space-y-1">
+                <div>Rental Start: <strong>Sept 14, 2026</strong></div>
+                <div>Return Due: <strong>Oct 14, 2026</strong></div>
+                <div>Status: <span class="text-emerald-500 font-semibold">Active in Playroom</span></div>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+              <button type="button" onclick="this.classList.toggle('bg-amber-500'); this.classList.toggle('text-white'); alert('Marked for return in upcoming courier box!');" class="flex-1 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-[11px] font-bold transition-all">
+                Mark for Return
+              </button>
+              <button type="button" onclick="alert('Member buy price: $32.00 (Retail $55.00). Keep forever permanently!');" class="px-3 py-1.5 rounded-xl bg-[#C9A96E]/15 text-[#C9A96E] hover:bg-[#C9A96E] hover:text-[#172033] text-[11px] font-bold transition-all">
+                Buy ($32)
+              </button>
+            </div>
+          </div>
+
+          <!-- Toy 4 -->
+          <div class="p-5 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3 flex flex-col justify-between">
+            <div class="space-y-3">
+              <img src="images/index_toy_gears.jpg" alt="Kinetic Wooden Gears" class="w-full h-40 object-cover rounded-2xl" loading="lazy" />
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-extrabold uppercase text-teal-500">STEM &bull; Preschool</span>
+                <span class="text-[10px] font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full">Heirloom Grade</span>
+              </div>
+              <h3 class="font-bold text-sm text-slate-900 dark:text-white">Interlocking Kinetic Gears</h3>
+              <div class="text-[11px] text-slate-500 space-y-1">
+                <div>Rental Start: <strong>Sept 14, 2026</strong></div>
+                <div>Return Due: <strong>Oct 14, 2026</strong></div>
+                <div>Status: <span class="text-emerald-500 font-semibold">Active in Playroom</span></div>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+              <button type="button" onclick="this.classList.toggle('bg-amber-500'); this.classList.toggle('text-white'); alert('Marked for return in upcoming courier box!');" class="flex-1 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-[11px] font-bold transition-all">
+                Mark for Return
+              </button>
+              <button type="button" onclick="alert('Member buy price: $24.00 (Retail $42.00). Keep forever permanently!');" class="px-3 py-1.5 rounded-xl bg-[#C9A96E]/15 text-[#C9A96E] hover:bg-[#C9A96E] hover:text-[#172033] text-[11px] font-bold transition-all">
+                Buy ($24)
+              </button>
+            </div>
+          </div>
+
+          <!-- Toy 5 -->
+          <div class="p-5 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3 flex flex-col justify-between">
+            <div class="space-y-3">
+              <img src="images/index_toy_ball_drop.jpg" alt="Wooden Ball Drop Box" class="w-full h-40 object-cover rounded-2xl" loading="lazy" />
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-extrabold uppercase text-purple-500">Object Permanence &bull; Infant</span>
+                <span class="text-[10px] font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full">Heirloom Grade</span>
+              </div>
+              <h3 class="font-bold text-sm text-slate-900 dark:text-white">Wooden Ball Drop Box</h3>
+              <div class="text-[11px] text-slate-500 space-y-1">
+                <div>Rental Start: <strong>Sept 14, 2026</strong></div>
+                <div>Return Due: <strong>Oct 14, 2026</strong></div>
+                <div>Status: <span class="text-emerald-500 font-semibold">Active in Playroom</span></div>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+              <button type="button" onclick="this.classList.toggle('bg-amber-500'); this.classList.toggle('text-white'); alert('Marked for return in upcoming courier box!');" class="flex-1 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-[11px] font-bold transition-all">
+                Mark for Return
+              </button>
+              <button type="button" onclick="alert('Member buy price: $19.00 (Retail $34.00). Keep forever permanently!');" class="px-3 py-1.5 rounded-xl bg-[#C9A96E]/15 text-[#C9A96E] hover:bg-[#C9A96E] hover:text-[#172033] text-[11px] font-bold transition-all">
+                Buy ($19)
+              </button>
+            </div>
+          </div>
+
+          <!-- Toy 6 -->
+          <div class="p-5 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3 flex flex-col justify-between">
+            <div class="space-y-3">
+              <img src="images/index_toy_marble_run.jpg" alt="Modular Gravity Marble Run" class="w-full h-40 object-cover rounded-2xl" loading="lazy" />
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-extrabold uppercase text-indigo-500">STEM Mechanics &bull; Explorer</span>
+                <span class="text-[10px] font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full">Heirloom Grade</span>
+              </div>
+              <h3 class="font-bold text-sm text-slate-900 dark:text-white">Modular Gravity Marble Run</h3>
+              <div class="text-[11px] text-slate-500 space-y-1">
+                <div>Rental Start: <strong>Sept 14, 2026</strong></div>
+                <div>Return Due: <strong>Oct 14, 2026</strong></div>
+                <div>Status: <span class="text-emerald-500 font-semibold">Active in Playroom</span></div>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+              <button type="button" onclick="this.classList.toggle('bg-amber-500'); this.classList.toggle('text-white'); alert('Marked for return in upcoming courier box!');" class="flex-1 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-[11px] font-bold transition-all">
+                Mark for Return
+              </button>
+              <button type="button" onclick="alert('Member buy price: $45.00 (Retail $85.00). Keep forever permanently!');" class="px-3 py-1.5 rounded-xl bg-[#C9A96E]/15 text-[#C9A96E] hover:bg-[#C9A96E] hover:text-[#172033] text-[11px] font-bold transition-all">
+                Buy ($45)
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- ====================================================
+           VIEW 5: TOY ROTATION
+           ==================================================== -->
+      <div id="toyRotationView" class="view-panel space-y-6">
+        <div class="flex items-start sm:items-center justify-between gap-4 flex-wrap pb-2">
+          <div>
+            <h1 class="font-brand text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              Toy Rotation
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              Curate your upcoming October rotation box and customize pediatric milestone suggestions.
+            </p>
+          </div>
+          <span class="px-3.5 py-1.5 rounded-full bg-[#C9A96E]/15 border border-[#C9A96E]/30 text-[#C9A96E] text-xs font-black uppercase">
+            Rotation Schedule: Oct 14
+          </span>
+        </div>
+
+        <!-- 30-Day Rotation Progress Card -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <div>
+              <h3 class="font-brand font-bold text-base text-slate-900 dark:text-white">Current Rotation Cycle #21</h3>
+              <p class="text-xs text-slate-500">Day 18 of 30 &bull; 12 days until scheduled courier doorstep exchange</p>
+            </div>
+            <span class="text-xs font-black text-emerald-500">60% Completed</span>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="w-full h-3 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+            <div class="h-full bg-gradient-to-r from-[#C9A96E] to-emerald-500 rounded-full w-3/5 transition-all"></div>
+          </div>
+
+          <div class="flex items-center justify-between text-[11px] text-slate-400 pt-1">
+            <span>Started Sept 14</span>
+            <span class="font-bold text-[#C9A96E]">Today (Day 18)</span>
+            <span>Courier Swap: Oct 14</span>
+          </div>
+        </div>
+
+        <!-- Suggested Toys & Selection Catalog for Next Rotation -->
+        <div class="p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-5">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <div>
+              <h3 class="font-brand font-bold text-base text-slate-900 dark:text-white">Select Next Toys & Rotation Preferences</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Pediatric algorithm suggestions calibrated to Leo (2y) and Maya (4y).</p>
+            </div>
+            <div class="text-xs text-slate-600 dark:text-slate-300">
+              Selected: <strong id="rotationSelectedCount" class="text-[#C9A96E]">3 of 6 Chosen</strong>
+            </div>
+          </div>
+
+          <!-- Toy Checkboxes Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            
+            <label class="p-4 rounded-2xl border-2 border-[#C9A96E] bg-[#C9A96E]/5 dark:bg-[#C9A96E]/10 cursor-pointer flex items-start gap-3 transition-all">
+              <input type="checkbox" checked class="mt-1 accent-[#C9A96E] rotation-checkbox" />
+              <div class="space-y-1 min-w-0">
+                <div class="font-bold text-xs text-slate-900 dark:text-white">Precision Weight Scale</div>
+                <div class="text-[10px] text-[#C9A96E] font-semibold">Montessori Math &bull; 3–5y</div>
+                <p class="text-[11px] text-slate-500">Double-pan balance scale with wooden weights.</p>
+              </div>
+            </label>
+
+            <label class="p-4 rounded-2xl border-2 border-[#C9A96E] bg-[#C9A96E]/5 dark:bg-[#C9A96E]/10 cursor-pointer flex items-start gap-3 transition-all">
+              <input type="checkbox" checked class="mt-1 accent-[#C9A96E] rotation-checkbox" />
+              <div class="space-y-1 min-w-0">
+                <div class="font-bold text-xs text-slate-900 dark:text-white">Geometric Shape Cylinder Box</div>
+                <div class="text-[10px] text-[#C9A96E] font-semibold">Fine Dexterity &bull; 1–3y</div>
+                <p class="text-[11px] text-slate-500">Teaches rotational problem-solving.</p>
+              </div>
+            </label>
+
+            <label class="p-4 rounded-2xl border-2 border-[#C9A96E] bg-[#C9A96E]/5 dark:bg-[#C9A96E]/10 cursor-pointer flex items-start gap-3 transition-all">
+              <input type="checkbox" checked class="mt-1 accent-[#C9A96E] rotation-checkbox" />
+              <div class="space-y-1 min-w-0">
+                <div class="font-bold text-xs text-slate-900 dark:text-white">3D Mechanical Logic Maze</div>
+                <div class="text-[10px] text-[#C9A96E] font-semibold">Kinetic Logic &bull; 4–6y</div>
+                <p class="text-[11px] text-slate-500">Dual-axis labyrinth puzzle in walnut.</p>
+              </div>
+            </label>
+
+            <label class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#172033] hover:border-[#C9A96E] cursor-pointer flex items-start gap-3 transition-all">
+              <input type="checkbox" class="mt-1 accent-[#C9A96E] rotation-checkbox" />
+              <div class="space-y-1 min-w-0">
+                <div class="font-bold text-xs text-slate-900 dark:text-white">Artisan Pull-Along Wooden Elk</div>
+                <div class="text-[10px] text-slate-500 font-semibold">Gross Motor &bull; 1–3y</div>
+                <p class="text-[11px] text-slate-500">Kinetic rolling creature with articulated joints.</p>
+              </div>
+            </label>
+
+            <label class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#172033] hover:border-[#C9A96E] cursor-pointer flex items-start gap-3 transition-all">
+              <input type="checkbox" class="mt-1 accent-[#C9A96E] rotation-checkbox" />
+              <div class="space-y-1 min-w-0">
+                <div class="font-bold text-xs text-slate-900 dark:text-white">Geodesic Dome Construction Rods</div>
+                <div class="text-[10px] text-slate-500 font-semibold">Engineering &bull; 4–6y</div>
+                <p class="text-[11px] text-slate-500">Interlocking dowels for building fortresses.</p>
+              </div>
+            </label>
+
+            <label class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#172033] hover:border-[#C9A96E] cursor-pointer flex items-start gap-3 transition-all">
+              <input type="checkbox" class="mt-1 accent-[#C9A96E] rotation-checkbox" />
+              <div class="space-y-1 min-w-0">
+                <div class="font-bold text-xs text-slate-900 dark:text-white">Sensory Sound Sorting Cylinders</div>
+                <div class="text-[10px] text-slate-500 font-semibold">Acoustics &bull; 2–4y</div>
+                <p class="text-[11px] text-slate-500">Calibrated wooden acoustic rattles.</p>
+              </div>
+            </label>
+
+          </div>
+
+          <!-- Rotation Preferences & Confirm Button -->
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between flex-wrap gap-4">
+            <div class="flex items-center gap-2 text-xs text-slate-500">
+              <i class="fa-solid fa-gear text-[#C9A96E]"></i>
+              <span>Preference: <strong>100% Solid FSC Certified Timber Only</strong></span>
+            </div>
+            <button 
+              type="button" 
+              onclick="alert('Success! Your October 14 Rotation Box has been saved and locked for courier packing.');"
+              class="btn-sheen px-6 py-2.5 rounded-xl bg-[#C9A96E] text-[#172033] font-bold text-xs uppercase tracking-wider shadow-md hover:bg-[#b99455] transition-all"
+            >
+              Confirm Next Rotation Box
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ====================================================
+           VIEW 6: EARLY SWAP REQUESTS
+           ==================================================== -->
+      <div id="earlySwapView" class="view-panel space-y-6">
+        <div class="flex items-start sm:items-center justify-between gap-4 flex-wrap pb-2">
+          <div>
+            <h1 class="font-brand text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              Early Swap Requests
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              Child outgrew a toy or lost interest? Swap it anytime without waiting for rotation day.
+            </p>
+          </div>
+          <span class="px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-500 text-xs font-black uppercase">
+            1 Free Early Swap Remaining
+          </span>
+        </div>
+
+        <!-- Request New Swap Interactive Card -->
+        <div class="p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-5">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <h2 class="font-brand font-bold text-lg text-slate-900 dark:text-white">Request New Swap & Select Toy to Swap</h2>
+            <span class="text-[11px] text-slate-500">White-glove doorstep exchange in 48 hours</span>
+          </div>
+
+          <form id="swapForm" class="space-y-4" onsubmit="event.preventDefault(); alert('Early Swap Request Submitted! Courier scheduled for Oct 4, 10am.');">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              
+              <!-- Select Toy to Swap -->
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300">Select Currently Rented Toy to Return</label>
+                <select class="w-full px-3 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:ring-2 focus:ring-[#C9A96E]">
+                  <option value="discs">Interlocking Beechwood Discs (Infant)</option>
+                  <option value="stones">Curved Birch Stepping Stones (Toddler)</option>
+                  <option value="arches">Waldorf Rainbow Arches (Preschool)</option>
+                  <option value="gears">Interlocking Kinetic Gears (Preschool)</option>
+                  <option value="balldrop">Wooden Ball Drop Box (Infant)</option>
+                  <option value="marblerun">Modular Gravity Marble Run (Explorer)</option>
+                </select>
+              </div>
+
+              <!-- Reason for Swap -->
+              <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300">Reason for Early Swap</label>
+                <select class="w-full px-3 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white focus:ring-2 focus:ring-[#C9A96E]">
+                  <option value="mastered">Child mastered milestone / ready for next challenge</option>
+                  <option value="interest">Child lost interest in this item</option>
+                  <option value="duplicate">We received a similar toy as a gift</option>
+                  <option value="oops">Accidental wear / missing small component (Oops! Guarantee)</option>
+                </select>
+              </div>
+
+            </div>
+
+            <!-- Available Replacement Toys Picker -->
+            <div class="space-y-2 pt-2">
+              <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300">Available Replacement Toys & Select Replacement</label>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <label class="p-3 rounded-2xl border-2 border-[#C9A96E] bg-[#C9A96E]/5 dark:bg-[#C9A96E]/10 cursor-pointer flex items-center gap-3">
+                  <input type="radio" name="replacementToy" checked class="accent-[#C9A96E]" />
+                  <div class="text-xs">
+                    <strong class="block text-slate-900 dark:text-white">Precision Weight Scale</strong>
+                    <span class="text-[10px] text-slate-500">Montessori Oak &bull; In Stock</span>
+                  </div>
+                </label>
+
+                <label class="p-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-[#C9A96E] cursor-pointer flex items-center gap-3">
+                  <input type="radio" name="replacementToy" class="accent-[#C9A96E]" />
+                  <div class="text-xs">
+                    <strong class="block text-slate-900 dark:text-white">Artisan Wooden Elk</strong>
+                    <span class="text-[10px] text-slate-500">Pull-Along Birch &bull; In Stock</span>
+                  </div>
+                </label>
+
+                <label class="p-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-[#C9A96E] cursor-pointer flex items-center gap-3">
+                  <input type="radio" name="replacementToy" class="accent-[#C9A96E]" />
+                  <div class="text-xs">
+                    <strong class="block text-slate-900 dark:text-white">3D Logic Labyrinth</strong>
+                    <span class="text-[10px] text-slate-500">Artisan Walnut &bull; In Stock</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="pt-3">
+              <button 
+                type="submit" 
+                class="btn-sheen px-6 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all"
+              >
+                Submit Early Swap Request
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Swap Request Status & Swap History -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+          <h3 class="font-brand font-bold text-base text-slate-900 dark:text-white">Swap Request Status &amp; Swap History</h3>
+          
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left rtl:text-right">
+              <thead class="text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-200 dark:border-slate-800">
+                <tr>
+                  <th class="py-2.5 px-3">Swap ID</th>
+                  <th class="py-2.5 px-3">Returned Toy</th>
+                  <th class="py-2.5 px-3">Replacement Toy</th>
+                  <th class="py-2.5 px-3">Request Date</th>
+                  <th class="py-2.5 px-3">Status</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800/80 text-slate-700 dark:text-slate-300">
+                <tr>
+                  <td class="py-3 px-3 font-mono font-bold text-[#C9A96E]">#SW-882</td>
+                  <td class="py-3 px-3">Sensory Bead Maze</td>
+                  <td class="py-3 px-3">Interlocking Kinetic Gears</td>
+                  <td class="py-3 px-3">Aug 22, 2026</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 text-[10px] font-bold">Completed</span></td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-mono font-bold text-[#C9A96E]">#SW-741</td>
+                  <td class="py-3 px-3">Knobbed Cylinder Set</td>
+                  <td class="py-3 px-3">Birch Stepping Stones</td>
+                  <td class="py-3 px-3">July 08, 2026</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 text-[10px] font-bold">Completed</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- ====================================================
+           VIEW 7: RETURNS
+           ==================================================== -->
+      <div id="returnsView" class="view-panel space-y-6">
+        <div class="flex items-start sm:items-center justify-between gap-4 flex-wrap pb-2">
+          <div>
+            <h1 class="font-brand text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              Returns &amp; Courier Logistics
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              Track pending returns, view packaging instructions, and check cleanroom inspection history.
+            </p>
+          </div>
+          <span class="px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 text-xs font-black uppercase">
+            100% Free Doorstep Courier
+          </span>
+        </div>
+
+        <!-- Return Instructions Card -->
+        <div class="p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+          <h2 class="font-brand font-bold text-base text-slate-900 dark:text-white">Return Instructions & Pending Returns</h2>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-[#172033] border border-slate-200/80 dark:border-slate-800 space-y-1.5">
+              <span class="w-7 h-7 rounded-lg bg-[#C9A96E]/20 text-[#C9A96E] font-bold flex items-center justify-center text-xs">1</span>
+              <h3 class="font-bold text-slate-900 dark:text-white">Pop into Green Tote</h3>
+              <p class="text-slate-500 dark:text-slate-400 leading-relaxed">Place all wooden pieces back into your breathable PlayLoop organic cotton tote.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-[#172033] border border-slate-200/80 dark:border-slate-800 space-y-1.5">
+              <span class="w-7 h-7 rounded-lg bg-[#8FA99A]/20 text-[#8FA99A] font-bold flex items-center justify-center text-xs">2</span>
+              <h3 class="font-bold text-slate-900 dark:text-white">Apply Tamper Seal</h3>
+              <p class="text-slate-500 dark:text-slate-400 leading-relaxed">Stick the peel-and-seal return sticker across the tote zipper. No printed labels needed!</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-[#172033] border border-slate-200/80 dark:border-slate-800 space-y-1.5">
+              <span class="w-7 h-7 rounded-lg bg-sky-500/20 text-sky-500 font-bold flex items-center justify-center text-xs">3</span>
+              <h3 class="font-bold text-slate-900 dark:text-white">Hand to Courier</h3>
+              <p class="text-slate-500 dark:text-slate-400 leading-relaxed">Our courier hands you your fresh box and takes the return tote simultaneously. Zero lines.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pending Returns & Pickup Status -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <h3 class="font-brand font-bold text-base text-slate-900 dark:text-white">Return Pickup Status & Upcoming Courier Window</h3>
+            <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-semibold">
+              Courier: PlayLoop Eco-Van #12
+            </span>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-800 text-xs space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-slate-500">Items Due for Return:</span>
+              <strong class="text-slate-900 dark:text-white">6 Toys Selected</strong>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-500">Courier Pickup Window:</span>
+              <strong class="text-emerald-500">Wednesday, Oct 14 &bull; 10:00 AM – 2:00 PM EST</strong>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-500">Return Location:</span>
+              <span>742 Evergreen Terrace, Suite 400, Portland, OR</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed Returns History -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+          <h3 class="font-brand font-bold text-base text-slate-900 dark:text-white">Completed Returns History</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left rtl:text-right">
+              <thead class="text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-200 dark:border-slate-800">
+                <tr>
+                  <th class="py-2.5 px-3">Return Batch</th>
+                  <th class="py-2.5 px-3">Pickup Date</th>
+                  <th class="py-2.5 px-3">Item Count</th>
+                  <th class="py-2.5 px-3">Cleanroom Scan</th>
+                  <th class="py-2.5 px-3">Condition Verdict</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800/80 text-slate-700 dark:text-slate-300">
+                <tr>
+                  <td class="py-3 px-3 font-mono font-bold text-[#C9A96E]">#RET-0914</td>
+                  <td class="py-3 px-3">Sept 14, 2026</td>
+                  <td class="py-3 px-3">6 Toys</td>
+                  <td class="py-3 px-3"><span class="text-emerald-500 font-bold"><i class="fa-solid fa-check"></i> Passed 99.997%</span></td>
+                  <td class="py-3 px-3">Heirloom Grade &bull; Zero Fees</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-mono font-bold text-[#C9A96E]">#RET-0814</td>
+                  <td class="py-3 px-3">August 14, 2026</td>
+                  <td class="py-3 px-3">6 Toys</td>
+                  <td class="py-3 px-3"><span class="text-emerald-500 font-bold"><i class="fa-solid fa-check"></i> Passed 99.997%</span></td>
+                  <td class="py-3 px-3">Heirloom Grade &bull; Zero Fees</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- ====================================================
+           VIEW 8: ACTIVITY KITS
+           ==================================================== -->
+      <div id="activityKitsView" class="view-panel space-y-6">
+        <div class="flex items-start sm:items-center justify-between gap-4 flex-wrap pb-2">
+          <div>
+            <h1 class="font-brand text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              STEAM Activity Kits
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              Consumable science, art, and nature kits included with your Atelier plan &mdash; yours to keep permanently!
+            </p>
+          </div>
+          <span class="px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-600 dark:text-teal-400 text-xs font-black uppercase">
+            Keep Forever Guarantee
+          </span>
+        </div>
+
+        <!-- Current & Upcoming Kits Showcase -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Current Kit -->
+          <div class="p-6 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-black uppercase text-teal-600 dark:text-teal-400 bg-teal-500/15 px-2.5 py-1 rounded-md">Current Active Kit</span>
+              <span class="text-xs font-bold text-emerald-500">80% Finished</span>
+            </div>
+            <img src="images/index_kit_astronaut.jpg" alt="Cyanotype Sun-Print Lab" class="w-full h-44 object-cover rounded-2xl" loading="lazy" />
+            <div>
+              <h3 class="font-brand font-bold text-base text-slate-900 dark:text-white">Cyanotype Sun-Print &amp; Solar Lab</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                Create archival photographic cyanotype blueprints using natural sunlight and pressed leaves.
+              </p>
+            </div>
+            <div class="pt-2 flex items-center justify-between">
+              <span class="text-[11px] text-slate-400">Received Sept 14, 2026</span>
+              <button type="button" onclick="alert('Downloading Activity Guidebook PDF for Cyanotype Lab...');" class="text-xs font-bold text-[#C9A96E] hover:underline">
+                <i class="fa-solid fa-file-pdf me-1"></i> Guidebook PDF
+              </button>
+            </div>
+          </div>
+
+          <!-- Upcoming Kit -->
+          <div class="p-6 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-black uppercase text-amber-500 bg-amber-500/15 px-2.5 py-1 rounded-md">Arriving in Oct 14 Box</span>
+              <span class="text-xs font-bold text-slate-400">Scheduled</span>
+            </div>
+            <img src="images/index_kit_botanist.jpg" alt="Junior Botanist Greenhouse" class="w-full h-44 object-cover rounded-2xl" loading="lazy" />
+            <div>
+              <h3 class="font-brand font-bold text-base text-slate-900 dark:text-white">Junior Botanist Mini-Greenhouse</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                Sprout edible microgreens with biodegradable peat pods, wooden greenhouse frame, and magnifying glass.
+              </p>
+            </div>
+            <div class="pt-2 flex items-center justify-between">
+              <span class="text-[11px] text-slate-400">Ships with Oct 14 Rotation</span>
+              <span class="text-xs font-bold text-teal-500">100% Free Included</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Activity Kit History -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+          <h3 class="font-brand font-bold text-base text-slate-900 dark:text-white">Previously Completed Kits (Kept Forever)</h3>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-[#172033] border border-slate-200/80 dark:border-slate-800 flex items-center gap-3">
+              <img src="images/index_kit_architecture.jpg" alt="Hydraulic Crane Builder" class="w-16 h-16 rounded-xl object-cover" loading="lazy" />
+              <div class="space-y-1 min-w-0">
+                <h4 class="font-bold text-slate-900 dark:text-white truncate">Hydraulic Robotic Crane</h4>
+                <div class="text-[11px] text-slate-500">August 2026 &bull; Status: Completed</div>
+                <button type="button" onclick="alert('Downloading Guidebook PDF...');" class="text-[11px] text-[#C9A96E] hover:underline font-semibold">Download PDF Guide</button>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-[#172033] border border-slate-200/80 dark:border-slate-800 flex items-center gap-3">
+              <img src="images/index_kit_chemistry.jpg" alt="Kitchen Chemistry Lab" class="w-16 h-16 rounded-xl object-cover" loading="lazy" />
+              <div class="space-y-1 min-w-0">
+                <h4 class="font-bold text-slate-900 dark:text-white truncate">Kitchen Chemistry &amp; Crystal Lab</h4>
+                <div class="text-[11px] text-slate-500">July 2026 &bull; Status: Completed</div>
+                <button type="button" onclick="alert('Downloading Guidebook PDF...');" class="text-[11px] text-[#C9A96E] hover:underline font-semibold">Download PDF Guide</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- ====================================================
+           VIEW 9: BILLING HISTORY
+           ==================================================== -->
+      <div id="billingHistoryView" class="view-panel space-y-6">
+        <div class="flex items-start sm:items-center justify-between gap-4 flex-wrap pb-2">
+          <div>
+            <h1 class="font-brand text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              Billing History &amp; Payments
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              Review monthly subscription charges, payment methods on file, and billing dates.
+            </p>
+          </div>
+          <span class="px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 text-xs font-black uppercase">
+            Subscription Charges & Payment Status: Active
+          </span>
+        </div>
+
+        <!-- Payment Method Card -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm flex items-center justify-between flex-wrap gap-4">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-8 rounded-lg bg-blue-600 text-white font-bold italic flex items-center justify-center text-xs shadow-sm">
+              VISA
+            </div>
+            <div>
+              <div class="font-bold text-xs text-slate-900 dark:text-white">Visa ending in 4242 (Default Payment Method)</div>
+              <div class="text-[11px] text-slate-500">Expires 08/2028 &bull; Encrypted with 256-bit SSL</div>
+            </div>
+          </div>
+          <button type="button" onclick="alert('Update payment method modal triggered');" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-[#C9A96E] hover:text-[#172033] font-bold text-xs uppercase tracking-wider transition-colors">
+            Update Card
+          </button>
+        </div>
+
+        <!-- Payment Transactions Table -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+          <h3 class="font-brand font-bold text-base text-slate-900 dark:text-white">Payment History (Recent Transactions)</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left rtl:text-right">
+              <thead class="text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-200 dark:border-slate-800">
+                <tr>
+                  <th class="py-2.5 px-3">Transaction ID</th>
+                  <th class="py-2.5 px-3">Date</th>
+                  <th class="py-2.5 px-3">Description</th>
+                  <th class="py-2.5 px-3">Amount</th>
+                  <th class="py-2.5 px-3">Status</th>
+                  <th class="py-2.5 px-3">Receipt</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800/80 text-slate-700 dark:text-slate-300">
+                <tr>
+                  <td class="py-3 px-3 font-mono font-bold text-[#C9A96E]">#TX-9014</td>
+                  <td class="py-3 px-3">Sept 15, 2026</td>
+                  <td class="py-3 px-3">Atelier Hybrid Monthly Membership</td>
+                  <td class="py-3 px-3 font-bold">$59.00</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 font-bold text-[10px]">Paid</span></td>
+                  <td class="py-3 px-3"><button type="button" onclick="alert('Viewing receipt for #TX-9014');" class="text-[#C9A96E] hover:underline font-bold">View</button></td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-mono font-bold text-[#C9A96E]">#TX-8114</td>
+                  <td class="py-3 px-3">Aug 15, 2026</td>
+                  <td class="py-3 px-3">Atelier Hybrid Monthly Membership</td>
+                  <td class="py-3 px-3 font-bold">$59.00</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 font-bold text-[10px]">Paid</span></td>
+                  <td class="py-3 px-3"><button type="button" onclick="alert('Viewing receipt for #TX-8114');" class="text-[#C9A96E] hover:underline font-bold">View</button></td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-mono font-bold text-[#C9A96E]">#TX-7214</td>
+                  <td class="py-3 px-3">July 15, 2026</td>
+                  <td class="py-3 px-3">Atelier Hybrid Monthly Membership</td>
+                  <td class="py-3 px-3 font-bold">$59.00</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 font-bold text-[10px]">Paid</span></td>
+                  <td class="py-3 px-3"><button type="button" onclick="alert('Viewing receipt for #TX-7214');" class="text-[#C9A96E] hover:underline font-bold">View</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- ====================================================
+           VIEW 10: INVOICES
+           ==================================================== -->
+      <div id="invoicesView" class="view-panel space-y-6">
+        <div class="flex items-start sm:items-center justify-between gap-4 flex-wrap pb-2">
+          <div>
+            <h1 class="font-brand text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              Invoices
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              All Invoices, View Invoice & Download Invoice and tax receipts for your family records.
+            </p>
+          </div>
+          <button 
+            type="button" 
+            onclick="alert('Downloading all invoices in a ZIP archive...');"
+            class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-[#C9A96E] hover:text-[#172033] font-bold text-xs uppercase tracking-wider transition-colors shadow-sm"
+          >
+            <i class="fa-solid fa-download me-1"></i> Download All (ZIP)
+          </button>
+        </div>
+
+        <!-- Invoices List Card -->
+        <div class="p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left rtl:text-right">
+              <thead class="text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-200 dark:border-slate-800">
+                <tr>
+                  <th class="py-2.5 px-3">Invoice Number</th>
+                  <th class="py-2.5 px-3">Billing Period</th>
+                  <th class="py-2.5 px-3">Plan Details</th>
+                  <th class="py-2.5 px-3">Amount</th>
+                  <th class="py-2.5 px-3">Status</th>
+                  <th class="py-2.5 px-3 text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800/80 text-slate-700 dark:text-slate-300">
+                
+                <!-- Invoice 1 -->
+                <tr>
+                  <td class="py-3.5 px-3 font-mono font-bold text-[#C9A96E]">INV-PL-2026-0915</td>
+                  <td class="py-3.5 px-3">Sept 15 &ndash; Oct 14, 2026</td>
+                  <td class="py-3.5 px-3">Atelier Hybrid (6 Toys + 1 Kit)</td>
+                  <td class="py-3.5 px-3 font-bold">$59.00</td>
+                  <td class="py-3.5 px-3"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 font-bold text-[10px]">Paid</span></td>
+                  <td class="py-3.5 px-3 text-end space-x-2 rtl:space-x-reverse">
+                    <button type="button" onclick="document.getElementById('invoiceModal').classList.remove('hidden');" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-[#C9A96E] hover:text-[#172033] font-bold text-[11px] transition-colors">
+                      View
+                    </button>
+                    <button type="button" onclick="alert('Downloading PDF for INV-PL-2026-0915...');" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-[11px] transition-colors">
+                      <i class="fa-solid fa-download"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Invoice 2 -->
+                <tr>
+                  <td class="py-3.5 px-3 font-mono font-bold text-[#C9A96E]">INV-PL-2026-0815</td>
+                  <td class="py-3.5 px-3">Aug 15 &ndash; Sept 14, 2026</td>
+                  <td class="py-3.5 px-3">Atelier Hybrid (6 Toys + 1 Kit)</td>
+                  <td class="py-3.5 px-3 font-bold">$59.00</td>
+                  <td class="py-3.5 px-3"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 font-bold text-[10px]">Paid</span></td>
+                  <td class="py-3.5 px-3 text-end space-x-2 rtl:space-x-reverse">
+                    <button type="button" onclick="document.getElementById('invoiceModal').classList.remove('hidden');" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-[#C9A96E] hover:text-[#172033] font-bold text-[11px] transition-colors">
+                      View
+                    </button>
+                    <button type="button" onclick="alert('Downloading PDF for INV-PL-2026-0815...');" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-[11px] transition-colors">
+                      <i class="fa-solid fa-download"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Invoice 3 -->
+                <tr>
+                  <td class="py-3.5 px-3 font-mono font-bold text-[#C9A96E]">INV-PL-2026-0715</td>
+                  <td class="py-3.5 px-3">July 15 &ndash; Aug 14, 2026</td>
+                  <td class="py-3.5 px-3">Atelier Hybrid (6 Toys + 1 Kit)</td>
+                  <td class="py-3.5 px-3 font-bold">$59.00</td>
+                  <td class="py-3.5 px-3"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 font-bold text-[10px]">Paid</span></td>
+                  <td class="py-3.5 px-3 text-end space-x-2 rtl:space-x-reverse">
+                    <button type="button" onclick="document.getElementById('invoiceModal').classList.remove('hidden');" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-[#C9A96E] hover:text-[#172033] font-bold text-[11px] transition-colors">
+                      View
+                    </button>
+                    <button type="button" onclick="alert('Downloading PDF for INV-PL-2026-0715...');" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-[11px] transition-colors">
+                      <i class="fa-solid fa-download"></i>
+                    </button>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- ====================================================
+           VIEW 11: NOTIFICATIONS
+           ==================================================== -->
+      <div id="notificationsView" class="view-panel space-y-6">
+        <div class="flex items-start sm:items-center justify-between gap-4 flex-wrap pb-2">
+          <div>
+            <h1 class="font-brand text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              Notifications &amp; Reminders
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              Real-time courier alerts, toy rotation reminders, swap updates, and billing confirmations.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button 
+              type="button" 
+              onclick="document.querySelectorAll('.unread-pill').forEach(el => el.remove()); alert('All notifications marked as read.');"
+              class="px-3.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-[#C9A96E] hover:text-[#172033] text-xs font-bold transition-colors"
+            >
+              Mark All as Read
+            </button>
+          </div>
+        </div>
+
+        <!-- Notification Cards List -->
+        <div class="space-y-3">
+          
+          <!-- 1. Rotation Reminder -->
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-[#C9A96E]/15 text-[#C9A96E] flex items-center justify-center text-sm shrink-0 mt-0.5">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </div>
+            <div class="space-y-1 flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <h3 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Upcoming Rotation Reminder: 12 Days Left</h3>
+                <span class="unread-pill px-2 py-0.5 rounded-full bg-rose-500 text-white text-[9px] font-black uppercase">Unread</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                Your October rotation box is scheduled for dispatch on Oct 14. Review your 6 chosen milestone toys before lock day!
+              </p>
+              <div class="text-[10px] text-slate-400 pt-1">2 hours ago &bull; Rotation Reminders</div>
+            </div>
+          </div>
+
+          <!-- 2. Return Reminder -->
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-[#8FA99A]/15 text-[#8FA99A] flex items-center justify-center text-sm shrink-0 mt-0.5">
+              <i class="fa-solid fa-box-open"></i>
+            </div>
+            <div class="space-y-1 flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <h3 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Return Preparation Guide</h3>
+                <span class="unread-pill px-2 py-0.5 rounded-full bg-rose-500 text-white text-[9px] font-black uppercase">Unread</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                Remember to pack your currently rented pieces into the green cotton tote. Remember our 100% Oops! policy covers accidental scuffs.
+              </p>
+              <div class="text-[10px] text-slate-400 pt-1">1 day ago &bull; Return Reminders</div>
+            </div>
+          </div>
+
+          <!-- 3. Swap Updates -->
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-sky-500/15 text-sky-500 flex items-center justify-center text-sm shrink-0 mt-0.5">
+              <i class="fa-solid fa-right-left"></i>
+            </div>
+            <div class="space-y-1 flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <h3 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Early Swap Protocol Ready</h3>
+                <span class="unread-pill px-2 py-0.5 rounded-full bg-rose-500 text-white text-[9px] font-black uppercase">Unread</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                You have 1 complimentary early swap credit available for this cycle. Use it if your child outgrows any current toy.
+              </p>
+              <div class="text-[10px] text-slate-400 pt-1">3 days ago &bull; Swap Updates</div>
+            </div>
+          </div>
+
+          <!-- 4. Payment Confirmation -->
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center text-sm shrink-0 mt-0.5">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
+            <div class="space-y-1 flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <h3 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Payment Received: $59.00</h3>
+                <span class="text-[10px] font-bold text-slate-400">Read</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                Your payment for invoice #INV-PL-2026-0915 was successfully processed via Visa •••• 4242.
+              </p>
+              <div class="text-[10px] text-slate-400 pt-1">Sept 15, 2026 &bull; Payment Confirmation</div>
+            </div>
+          </div>
+
+          <!-- 5. Subscription Renewal Notice -->
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-purple-500/15 text-purple-500 flex items-center justify-center text-sm shrink-0 mt-0.5">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div class="space-y-1 flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <h3 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Atelier Membership Auto-Renewal Scheduled</h3>
+                <span class="text-[10px] font-bold text-slate-400">Read</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                Next billing cycle scheduled for Oct 15, 2026. Zero action required on your part.
+              </p>
+              <div class="text-[10px] text-slate-400 pt-1">Sept 14, 2026 &bull; Subscription Renewal</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+
+  <!-- ========================================================
+       MODALS: ADD CHILD, VIEW INVOICE, PAUSE, LOGOUT
+       ======================================================== -->
+
+  <!-- Modal 1: Add Child Profile Modal -->
+  <div id="addChildModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="w-full max-w-lg rounded-3xl bg-white dark:bg-[#172033] border border-slate-200 dark:border-slate-800 p-6 sm:p-7 shadow-2xl space-y-4 animate-fade-in">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+        <h3 class="font-brand font-bold text-lg text-slate-900 dark:text-white">Add New Child Profile</h3>
+        <button type="button" onclick="document.getElementById('addChildModal').classList.add('hidden');" class="text-slate-400 hover:text-slate-600 dark:hover:text-white">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+      
+      <form class="space-y-4" onsubmit="event.preventDefault(); alert('New child profile added!'); document.getElementById('addChildModal').classList.add('hidden');">
+        <div class="space-y-1">
+          <label class="block text-xs font-semibold">Child Full Name</label>
+          <input type="text" placeholder="e.g. Liam Miller" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white" required />
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="space-y-1">
+            <label class="block text-xs font-semibold">Date of Birth</label>
+            <input type="date" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white" required />
+          </div>
+          <div class="space-y-1">
+            <label class="block text-xs font-semibold">Milestone Cohort</label>
+            <select class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white">
+              <option>Infant (0–12 Months)</option>
+              <option>Toddler (1–3 Years)</option>
+              <option>Preschool (3–5 Years)</option>
+              <option>Explorer (6+ Years)</option>
+            </select>
+          </div>
+        </div>
+        <div class="space-y-1">
+          <label class="block text-xs font-semibold">Primary Toy Interests</label>
+          <input type="text" placeholder="e.g. Building Blocks, Puzzles, Nature" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white" />
+        </div>
+        <div class="pt-2 flex justify-end gap-3">
+          <button type="button" onclick="document.getElementById('addChildModal').classList.add('hidden');" class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold">Cancel</button>
+          <button type="submit" class="px-5 py-2.5 rounded-xl bg-[#C9A96E] text-[#172033] font-bold text-xs uppercase tracking-wider">Save Child</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: View Invoice Modal -->
+  <div id="invoiceModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="w-full max-w-xl rounded-3xl bg-white dark:bg-[#172033] border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-2xl space-y-5 animate-fade-in">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+        <div class="flex items-center gap-2">
+          <span class="font-brand font-black text-lg text-slate-900 dark:text-white">Invoice INV-PL-2026-0915</span>
+          <span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 text-[10px] font-bold">PAID</span>
+        </div>
+        <button type="button" onclick="document.getElementById('invoiceModal').classList.add('hidden');" class="text-slate-400 hover:text-slate-600 dark:hover:text-white">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+      
+      <div class="space-y-4 text-xs">
+        <div class="flex items-start justify-between">
+          <div>
+            <strong class="block text-slate-900 dark:text-white text-sm">PlayLoop Kids Inc.</strong>
+            <span class="text-slate-500">742 Evergreen Terrace, Suite 400<br>Portland, OR 97201</span>
+          </div>
+          <div class="text-end">
+            <span class="text-slate-500 block">Billed To:</span>
+            <strong class="text-slate-900 dark:text-white">Sarah Miller</strong>
+            <span class="text-slate-500 block">sarah.miller@example.com</span>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-800 space-y-2">
+          <div class="flex items-center justify-between py-1 border-b border-slate-200 dark:border-slate-800">
+            <span>Atelier Hybrid Plan (Sept 15 &ndash; Oct 14, 2026)</span>
+            <strong class="text-slate-900 dark:text-white">$59.00</strong>
+          </div>
+          <div class="flex items-center justify-between py-1 text-slate-500">
+            <span>Hospital-Grade 254nm UV-C Sanitization Fee</span>
+            <span class="text-emerald-500 font-bold">$0.00 (Included)</span>
+          </div>
+          <div class="flex items-center justify-between py-1 text-slate-500">
+            <span>Free Contactless Doorstep Courier Delivery</span>
+            <span class="text-emerald-500 font-bold">$0.00 (Free)</span>
+          </div>
+          <div class="flex items-center justify-between pt-2 border-t border-slate-200 dark:border-slate-800 font-bold text-sm">
+            <span>Total Paid (Visa •••• 4242)</span>
+            <span class="text-[#C9A96E]">$59.00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-2 flex justify-end gap-3">
+        <button type="button" onclick="document.getElementById('invoiceModal').classList.add('hidden');" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold">Close</button>
+        <button type="button" onclick="alert('Downloading PDF for INV-PL-2026-0915...');" class="px-4 py-2 rounded-xl bg-[#C9A96E] text-[#172033] font-bold text-xs uppercase tracking-wider">Download PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Pause Subscription Modal -->
+  <div id="pauseModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="w-full max-w-md rounded-3xl bg-white dark:bg-[#172033] border border-slate-200 dark:border-slate-800 p-6 sm:p-7 shadow-2xl space-y-4 animate-fade-in">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+        <h3 class="font-brand font-bold text-lg text-slate-900 dark:text-white">Pause Subscription</h3>
+        <button type="button" onclick="document.getElementById('pauseModal').classList.add('hidden');" class="text-slate-400 hover:text-slate-600 dark:hover:text-white">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+      <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+        Select how long you'd like to pause your rotation. Your membership and toys remain reserved, and billing will resume automatically.
+      </p>
+      <div class="space-y-2 text-xs">
+        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center gap-3 cursor-pointer">
+          <input type="radio" name="pauseDuration" checked class="accent-[#C9A96E]" />
+          <span>Pause for 1 Month (Resumes Nov 15, 2026)</span>
+        </label>
+        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center gap-3 cursor-pointer">
+          <input type="radio" name="pauseDuration" class="accent-[#C9A96E]" />
+          <span>Pause for 2 Months (Resumes Dec 15, 2026)</span>
+        </label>
+        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center gap-3 cursor-pointer">
+          <input type="radio" name="pauseDuration" class="accent-[#C9A96E]" />
+          <span>Pause for 3 Months (Resumes Jan 15, 2027)</span>
+        </label>
+      </div>
+      <div class="pt-3 flex justify-end gap-3">
+        <button type="button" onclick="document.getElementById('pauseModal').classList.add('hidden');" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold">Cancel</button>
+        <button type="button" onclick="alert('Subscription paused successfully. We will see you soon!'); document.getElementById('pauseModal').classList.add('hidden');" class="px-5 py-2 rounded-xl bg-amber-500 text-white font-bold text-xs uppercase tracking-wider">Confirm Pause</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Logout Confirmation Modal -->
+  <div id="logoutModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="w-full max-w-sm rounded-3xl bg-white dark:bg-[#172033] border border-slate-200 dark:border-slate-800 p-6 text-center space-y-4 animate-fade-in">
+      <div class="w-12 h-12 rounded-full bg-rose-500/15 text-rose-500 flex items-center justify-center text-xl mx-auto">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </div>
+      <div class="space-y-1">
+        <h3 class="font-brand font-bold text-lg text-slate-900 dark:text-white">Log Out of Parent Portal?</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Are you sure you want to sign out? You will need to log back in to manage your rotations.</p>
+      </div>
+      <div class="pt-2 flex items-center justify-center gap-3">
+        <button type="button" onclick="document.getElementById('logoutModal').classList.add('hidden');" class="flex-1 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs uppercase tracking-wider">
+          Stay Signed In
+        </button>
+        <a href="login.html" class="flex-1 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs uppercase tracking-wider shadow-md text-center">
+          Log Out
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================
+       CLIENT LOGIC: SPA TAB SWITCHING, DARK MODE, RTL, MODALS
+       ======================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // --------------------------------------------------------
+      // 1. Dark Mode Toggle & Synchronization
+      // --------------------------------------------------------
+      const sidebarDarkToggle = document.getElementById('sidebarDarkToggle');
+      const mobileDarkToggle = document.getElementById('mobileDarkToggle');
+      const mobileDarkLabel = document.getElementById('mobileDarkLabel');
+
+      function updateThemeUI(isDark) {
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+          if (mobileDarkLabel) mobileDarkLabel.textContent = 'Light Mode';
+        } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+          if (mobileDarkLabel) mobileDarkLabel.textContent = 'Dark Mode';
+        }
+      }
+
+      // Initialize from localStorage or prefers-color-scheme
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialDark = savedTheme ? savedTheme === 'dark' : systemPrefersDark;
+      updateThemeUI(initialDark);
+
+      function toggleDarkMode() {
+        const isDark = document.documentElement.classList.contains('dark');
+        updateThemeUI(!isDark);
+      }
+
+      if (sidebarDarkToggle) sidebarDarkToggle.addEventListener('click', toggleDarkMode);
+      if (mobileDarkToggle) mobileDarkToggle.addEventListener('click', toggleDarkMode);
+
+      // --------------------------------------------------------
+      // 2. RTL Toggle & Synchronization
+      // --------------------------------------------------------
+      const sidebarRtlToggle = document.getElementById('sidebarRtlToggle');
+      const mobileRtlToggle = document.getElementById('mobileRtlToggle');
+      const sidebarRtlIndicator = document.getElementById('sidebarRtlIndicator');
+      const mobileRtlIndicator = document.getElementById('mobileRtlIndicator');
+      const mobileRtlLabel = document.getElementById('mobileRtlLabel');
+
+      function updateDirectionUI(isRtl) {
+        if (isRtl) {
+          document.documentElement.setAttribute('dir', 'rtl');
+          localStorage.setItem('dir', 'rtl');
+          if (sidebarRtlIndicator) sidebarRtlIndicator.classList.remove('hidden');
+          if (mobileRtlIndicator) mobileRtlIndicator.classList.remove('hidden');
+          if (mobileRtlLabel) mobileRtlLabel.textContent = 'LTR View';
+        } else {
+          document.documentElement.setAttribute('dir', 'ltr');
+          localStorage.setItem('dir', 'ltr');
+          if (sidebarRtlIndicator) sidebarRtlIndicator.classList.add('hidden');
+          if (mobileRtlIndicator) mobileRtlIndicator.classList.add('hidden');
+          if (mobileRtlLabel) mobileRtlLabel.textContent = 'RTL View';
+        }
+      }
+
+      const savedDir = localStorage.getItem('dir');
+      if (savedDir === 'rtl') {
+        updateDirectionUI(true);
+      }
+
+      function toggleRtl() {
+        const isRtl = document.documentElement.getAttribute('dir') === 'rtl';
+        updateDirectionUI(!isRtl);
+      }
+
+      if (sidebarRtlToggle) sidebarRtlToggle.addEventListener('click', toggleRtl);
+      if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRtl);
+
+      // 3. User Profile Dropdown Pill
+      const profileDropdownBtn = document.getElementById('userProfileDropdownBtn');
+      const profileDropdownMenu = document.getElementById('userProfileDropdownMenu');
+      const profileDropdownCaret = document.getElementById('profileDropdownCaret');
+
+      if (profileDropdownBtn && profileDropdownMenu) {
+        profileDropdownBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          profileDropdownMenu.classList.toggle('hidden');
+          if (profileDropdownCaret) profileDropdownCaret.classList.toggle('rotate-180');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!profileDropdownBtn.contains(e.target) && !profileDropdownMenu.contains(e.target)) {
+            profileDropdownMenu.classList.add('hidden');
+            if (profileDropdownCaret) profileDropdownCaret.classList.remove('rotate-180');
+          }
+        });
+      }
+
+      
+      // 4. Mobile & Tablet Drawer Logic (Exact match to about.html)
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+      const drawerBackdrop = document.getElementById('drawerBackdrop');
+
+      function openDrawer() {
+        if (mobileDrawer) mobileDrawer.classList.add('drawer-open');
+        if (drawerBackdrop) {
+          drawerBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+          drawerBackdrop.classList.add('opacity-100');
+        }
+        if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('overflow-hidden');
+      }
+
+      function closeDrawer() {
+        if (mobileDrawer) mobileDrawer.classList.remove('drawer-open');
+        if (drawerBackdrop) {
+          drawerBackdrop.classList.add('opacity-0', 'pointer-events-none');
+          drawerBackdrop.classList.remove('opacity-100');
+        }
+        if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('overflow-hidden');
+      }
+
+      if (hamburgerBtn) hamburgerBtn.addEventListener('click', openDrawer);
+      if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
+      if (drawerBackdrop) drawerBackdrop.addEventListener('click', closeDrawer);
+
+      // Close on Escape
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileDrawer && mobileDrawer.classList.contains('drawer-open')) {
+          closeDrawer();
+        }
+      });
+
+      // 5. Seamless SPA Tab Switching (Synced across Desktop Sidebar & Mobile Drawer)
+      const sidebarNavItems = document.querySelectorAll('.sidebar-nav-item');
+      const mobileDrawerNavItems = document.querySelectorAll('.mobile-drawer-nav-item');
+      const viewPanels = document.querySelectorAll('.view-panel');
+      const navSwitchLinks = document.querySelectorAll('.nav-switch-link');
+
+      function switchView(targetViewId) {
+        // Hide all views
+        viewPanels.forEach(panel => {
+          panel.classList.remove('active-view');
+        });
+
+        // Show target view
+        const activePanel = document.getElementById(targetViewId);
+        if (activePanel) {
+          activePanel.classList.add('active-view');
+        }
+
+        // Update active class on desktop sidebar items
+        sidebarNavItems.forEach(item => {
+          if (item.getAttribute('data-view') === targetViewId) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+
+        // Update active class on mobile drawer items
+        mobileDrawerNavItems.forEach(item => {
+          if (item.getAttribute('data-view') === targetViewId) {
+            item.classList.add('active', 'bg-brand-50', 'dark:bg-brand-950/40', 'text-brand-700', 'dark:text-brand-300', 'font-bold', 'border', 'border-brand-500/40');
+            item.classList.remove('text-slate-700', 'dark:text-slate-300');
+          } else {
+            item.classList.remove('active', 'bg-brand-50', 'dark:bg-brand-950/40', 'text-brand-700', 'dark:text-brand-300', 'font-bold', 'border', 'border-brand-500/40');
+            item.classList.add('text-slate-700', 'dark:text-slate-300');
+          }
+        });
+
+        // Close mobile drawer if open
+        closeDrawer();
+
+        // Scroll smoothly to top of content
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      sidebarNavItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const viewId = item.getAttribute('data-view');
+          if (viewId) switchView(viewId);
+        });
+      });
+
+      mobileDrawerNavItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const viewId = item.getAttribute('data-view');
+          if (viewId) switchView(viewId);
+        });
+      });
+
+      navSwitchLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const viewId = link.getAttribute('data-view');
+          if (viewId) switchView(viewId);
+          if (profileDropdownMenu) profileDropdownMenu.classList.add('hidden');
+        });
+      });
+
+
+      // 6. Logout Modal Triggers
+      const logoutButtons = document.querySelectorAll('.logout-trigger-btn');
+      const logoutModal = document.getElementById('logoutModal');
+      logoutButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (logoutModal) logoutModal.classList.remove('hidden');
+          if (profileDropdownMenu) profileDropdownMenu.classList.add('hidden');
+        });
+      });
+
+      // 7. Interactive Rotation Checkbox Counter
+      const rotationCheckboxes = document.querySelectorAll('.rotation-checkbox');
+      const rotationCountEl = document.getElementById('rotationSelectedCount');
+      if (rotationCheckboxes.length && rotationCountEl) {
+        rotationCheckboxes.forEach(box => {
+          box.addEventListener('change', () => {
+            const checkedCount = document.querySelectorAll('.rotation-checkbox:checked').length;
+            rotationCountEl.textContent = `${checkedCount} of 6 Chosen`;
+            const parentLabel = box.closest('label');
+            if (box.checked) {
+              parentLabel.classList.add('border-[#C9A96E]', 'bg-[#C9A96E]/5', 'dark:bg-[#C9A96E]/10');
+              parentLabel.classList.remove('border-slate-200', 'dark:border-slate-800', 'bg-slate-50', 'dark:bg-[#172033]');
+            } else {
+              parentLabel.classList.remove('border-[#C9A96E]', 'bg-[#C9A96E]/5', 'dark:bg-[#C9A96E]/10');
+              parentLabel.classList.add('border-slate-200', 'dark:border-slate-800', 'bg-slate-50', 'dark:bg-[#172033]');
+            }
+          });
+        });
+      }
+
+    });
+  </script>
+
+</body>
+</html>

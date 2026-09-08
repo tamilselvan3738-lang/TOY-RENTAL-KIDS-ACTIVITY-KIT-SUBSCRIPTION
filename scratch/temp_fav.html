@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body { margin: 0; background: transparent; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
+svg { width: 512px; height: 512px; }
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="favLoopGrad1" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C9A96E"/>
+      <stop offset="100%" stop-color="#D8A7A0"/>
+    </linearGradient>
+    <linearGradient id="favLoopGrad2" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8FA99A"/>
+      <stop offset="100%" stop-color="#172033"/>
+    </linearGradient>
+    <linearGradient id="favBoxGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#172033"/>
+      <stop offset="50%" stop-color="#24334f"/>
+      <stop offset="100%" stop-color="#C9A96E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Circular Base -->
+  <circle cx="50" cy="50" r="47" fill="#172033"/>
+  <circle cx="50" cy="50" r="44" fill="#FDFBF7"/>
+
+  <!-- Rental Loop Arrows -->
+  <path d="M50 12 A38 38 0 0 1 88 50" stroke="url(#favLoopGrad1)" stroke-width="7" stroke-linecap="round" stroke-dasharray="4 3"/>
+  <path d="M88 50 A38 38 0 0 1 50 88" stroke="url(#favLoopGrad2)" stroke-width="7" stroke-linecap="round"/>
+  <path d="M50 88 A38 38 0 0 1 12 50" stroke="url(#favLoopGrad1)" stroke-width="7" stroke-linecap="round" stroke-dasharray="4 3"/>
+  <path d="M12 50 A38 38 0 0 1 50 12" stroke="url(#favLoopGrad2)" stroke-width="7" stroke-linecap="round"/>
+  <polygon points="52,7 42,13 42,1" fill="#C9A96E"/>
+  <polygon points="48,93 58,87 58,99" fill="#8FA99A"/>
+
+  <!-- Center Toy / Activity Box -->
+  <rect x="32" y="32" width="36" height="36" rx="9" fill="url(#favBoxGrad)" stroke="#C9A96E" stroke-width="1.5"/>
+  
+  <!-- Geometric Shapes Inside Box -->
+  <circle cx="43" cy="43" r="4" fill="#FFEAA7"/>
+  <rect x="53" y="39" width="8" height="8" rx="2" fill="#8FA99A"/>
+  <polygon points="50,62 42,51 58,51" fill="#D8A7A0"/>
+
+  <!-- Sparkle badge in top right -->
+  <circle cx="78" cy="22" r="8" fill="#8FA99A" opacity="0.35"/>
+  <circle cx="78" cy="22" r="5" fill="#759281"/>
+  <polygon points="78,15 80.5,19.5 85,22 80.5,24.5 78,29 75.5,24.5 71,22 75.5,19.5" fill="#FFFFFF"/>
+</svg>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 - Toy Not Found • PlayLoop Kids</title>
+  <!-- Favicon: PlayLoop Kids Navbar Logo -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  
+  <!-- Google Fonts: Outfit (Heading) & Plus Jakarta Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome 6.5.1 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            brand: ['"Outfit"', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              50: '#f5f7fa',
+              100: '#eaedf3',
+              200: '#d0d7e4',
+              300: '#a6b4cc',
+              400: '#748bb0',
+              500: '#4b6691',
+              600: '#395076',
+              700: '#2d3e5c',
+              800: '#1e293f',
+              900: '#172033', // Primary Deep Navy
+              950: '#0c111c',
+            },
+            cream: {
+              50: '#fdfcfb',
+              100: '#F8F5EF', // Secondary Warm Cream
+              200: '#f1ede2',
+              300: '#e6decb',
+            },
+            brand: { // Premium Accent: Soft Gold
+              50: '#faf7f0',
+              100: '#f3ede0',
+              200: '#e8dcc4',
+              300: '#dccaa3',
+              400: '#d2b984',
+              500: '#C9A96E', // Soft Gold Core
+              600: '#b99455',
+              700: '#9a7842',
+              800: '#7d6139',
+              900: '#675031',
+            },
+            playTeal: { // Natural Accent: Muted Sage
+              400: '#a7bcb0',
+              500: '#8FA99A', // Muted Sage Core
+              600: '#759281',
+              700: '#5d7667',
+            },
+            playPurple: { // Deep Navy Accent
+              400: '#506385',
+              500: '#172033',
+              600: '#111827',
+            },
+            playYellow: { // Soft Gold Shimmer
+              400: '#dccaa3',
+              500: '#C9A96E',
+              700: '#9a7842',
+            },
+            roseAccent: { // Soft Accent: Dusty Rose
+              400: '#e1b9b3',
+              500: '#D8A7A0', // Dusty Rose Core
+              600: '#c48d85',
+              700: '#a87169',
+            }
+          },
+          boxShadow: {
+            'playful': '0 8px 25px -4px rgba(201, 169, 110, 0.35)',
+            'card-soft': '0 20px 40px -15px rgba(23, 32, 51, 0.08)',
+            'card-dark': '0 20px 40px -15px rgba(0, 0, 0, 0.6)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Viewport & Complete Scrollbar Elimination */
+    html, body {
+      max-width: 100vw;
+      scrollbar-width: none !important; /* Firefox */
+      -ms-overflow-style: none !important; /* IE and Edge */
+    }
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none !important; /* Chrome, Safari, Opera */
+      width: 0px !important;
+      height: 0px !important;
+    }
+
+    /* RTL Smooth Transitions */
+    html {
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Continuous Gentle Rotation for Logo Rental Loop (Matches about.html) */
+    @keyframes gentleSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .logo-rental-loop {
+      animation: gentleSpin 24s linear infinite;
+      transform-origin: center;
+      transition: animation-duration 0.4s ease;
+    }
+    .group:hover .logo-rental-loop {
+      animation-duration: 6s;
+    }
+
+    /* Floating Animation for 3D Activity Box inside Logo (Matches about.html) */
+    @keyframes floatKit {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-2px) rotate(3deg); }
+    }
+    .logo-activity-box {
+      animation: floatKit 3.2s ease-in-out infinite;
+    }
+
+    /* Button Shimmer Effect */
+    .btn-sheen {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-sheen::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.35) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: rotate(25deg);
+      transition: all 0.75s ease;
+    }
+    .btn-sheen:hover::after {
+      left: 120%;
+    }
+
+    /* Ambient Floating Glow */
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.25; transform: scale(1); }
+      50% { opacity: 0.55; transform: scale(1.06); }
+    }
+    .animate-pulse-glow {
+      animation: pulseGlow 8s ease-in-out infinite;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-[#F8F5EF] via-white to-[#f1ede2] dark:from-[#0c111c] dark:via-[#172033] dark:to-[#0c111c] text-slate-800 dark:text-[#F8F5EF] min-h-screen lg:h-screen overflow-y-auto lg:overflow-hidden flex flex-col justify-between items-center font-sans selection:bg-[#C9A96E]/30 selection:text-[#172033] dark:selection:text-[#F8F5EF] relative antialiased p-3 sm:p-4 lg:p-6 transition-colors duration-300">
+
+  <!-- ========================================================
+       TOP-RIGHT CONTROLS: DARK MODE & RTL BUTTONS
+       (Anchored cleanly at top-right)
+       ======================================================== -->
+  <div class="fixed top-3 end-3 sm:top-5 sm:end-5 z-50 flex items-center gap-2">
+    
+    <!-- DARK MODE TOGGLE (TOP RIGHT) -->
+    <button 
+      id="topDarkToggle" 
+      type="button" 
+      aria-label="Toggle Dark Mode"
+      title="Toggle Light / Dark Mode"
+      class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-[#C9A96E] dark:hover:text-[#C9A96E] bg-white/90 dark:bg-[#172033]/90 hover:bg-white dark:hover:bg-[#1e293f] border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-[#C9A96E] transition-all group"
+    >
+      <!-- Sun icon when dark, Moon when light -->
+      <i class="fa-solid fa-moon text-xs dark:hidden transition-transform duration-300 group-hover:rotate-45 text-slate-700"></i>
+      <i class="fa-solid fa-sun text-xs hidden dark:block text-yellow-400 transition-transform duration-300 group-hover:rotate-90"></i>
+    </button>
+
+    <!-- RIGHT TO LEFT (RTL) TOGGLE (TOP RIGHT) -->
+    <button 
+      id="topRtlToggle" 
+      type="button" 
+      aria-label="Toggle Right to Left Layout" 
+      title="Toggle Direction (LTR / RTL)"
+      class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-[#C9A96E] dark:hover:text-[#C9A96E] bg-white/90 dark:bg-[#172033]/90 hover:bg-white dark:hover:bg-[#1e293f] border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-[#C9A96E] relative transition-all group"
+    >
+      <!-- RIGHT LEFT ICON (fa-right-left) -->
+      <i class="fa-solid fa-right-left text-xs transition-transform duration-300 group-hover:scale-125 text-slate-700 dark:text-slate-300"></i>
+      <!-- Active indicator dot -->
+      <span id="topRtlIndicator" class="hidden absolute top-1 end-1 w-1.5 h-1.5 rounded-full bg-[#C9A96E]"></span>
+    </button>
+
+  </div>
+
+  <!-- Ambient Glow Elements in Background -->
+  <div class="fixed top-8 start-10 w-72 h-72 bg-[#C9A96E]/15 dark:bg-[#C9A96E]/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-glow" aria-hidden="true"></div>
+  <div class="fixed bottom-8 end-10 w-80 h-80 bg-[#8FA99A]/15 dark:bg-[#8FA99A]/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-glow" style="animation-delay: 4s;" aria-hidden="true"></div>
+
+  <!-- Spacer to center card on large screens -->
+  <div class="h-2 sm:h-4 w-full" aria-hidden="true"></div>
+
+  <!-- ========================================================
+       MAIN 404 CARD: UNIFIED SPLIT SCREEN EXPERIENCE
+       Fits cleanly within 100vh with zero scrollbars
+       ======================================================== -->
+  <main class="w-full max-w-4xl rounded-2xl sm:rounded-3xl overflow-hidden bg-white/95 dark:bg-[#172033]/95 border border-slate-200/80 dark:border-slate-800 shadow-2xl backdrop-blur-2xl grid grid-cols-1 lg:grid-cols-12 relative z-20 my-auto">
+    
+    <!-- ====================================================
+         LEFT COLUMN: VISUAL ROVER SEARCH EXPEDITION
+         ==================================================== -->
+    <div class="lg:col-span-5 relative flex flex-col justify-between p-6 sm:p-7 bg-gradient-to-b from-[#172033] to-[#0c111c] text-[#F8F5EF] overflow-hidden min-h-[220px] sm:min-h-[280px] lg:min-h-full">
+      
+      <!-- Handcrafted Rover Image Background -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="images/404_lost_toy.jpg" 
+          alt="PlayLoop Handcrafted Wooden Rover Searching for Missing Toys" 
+          class="w-full h-full object-cover opacity-35 filter blur-[0.3px] scale-105"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0c111c] via-[#172033]/80 to-[#172033]/60"></div>
+      </div>
+
+      <!-- Top Badge in Visual Column -->
+      <div class="relative z-10 space-y-1.5">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/10 border border-[#C9A96E]/30 text-[10px] font-extrabold uppercase tracking-wider text-[#C9A96E] backdrop-blur-md">
+          <i class="fa-solid fa-satellite-dish text-[9px]"></i>
+          <span>Rover Expedition #404</span>
+        </span>
+        <h3 class="font-brand text-xl sm:text-2xl font-extrabold tracking-tight text-[#F8F5EF] leading-snug">
+          Searching The <br class="hidden sm:inline" />
+          Playroom Galaxy
+        </h3>
+      </div>
+
+      <!-- Middle Fun Status Badge -->
+      <div class="relative z-10 my-3">
+        <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/10 border border-white/10 backdrop-blur-md">
+          <div class="w-7 h-7 rounded-lg bg-[#C9A96E]/20 text-[#C9A96E] flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-couch text-xs"></i>
+          </div>
+          <div>
+            <h4 class="text-[11px] font-bold text-[#F8F5EF] leading-tight">Under The Sofa?</h4>
+            <p class="text-[10px] text-slate-300 leading-tight">Scanning between cushions...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Reassurance Badge -->
+      <div class="relative z-10 pt-2 border-t border-white/10 flex items-center gap-2">
+        <i class="fa-solid fa-shield-heart text-xs text-[#8FA99A]"></i>
+        <span class="text-[10px] font-bold text-slate-300">
+          100% "Oops!" Accident Protection Guaranteed
+        </span>
+      </div>
+
+    </div>
+
+    <!-- ====================================================
+         RIGHT COLUMN: EXACT LOGO, 404 HEADLINE & ACTION BUTTONS
+         ==================================================== -->
+    <div class="lg:col-span-7 p-5 sm:p-7 lg:p-8 flex flex-col justify-between space-y-4">
+      
+      <!-- Top Exact Logo from about.html -->
+      <div>
+        <a href="index.html" class="group inline-flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#C9A96E] rounded-full p-0.5 transition-all" title="PlayLoop Kids Home">
+          
+          <!-- Unique Creative SVG Brand Logo Mark with Animations (Exact from about.html) -->
+          <div class="relative w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center">
+            
+            <!-- Outer Rotating Loop Arrows (Rental & Sustainable Cycle) with slow spin -->
+            <svg class="w-8 h-8 sm:w-9 sm:h-9 text-[#C9A96E] logo-rental-loop" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="44" class="fill-orange-50 dark:fill-orange-950/40" />
+              <path d="M50 10 A40 40 0 0 1 90 50" stroke="url(#islandLoopGrad1)" stroke-width="6" stroke-linecap="round" stroke-dasharray="3 3"/>
+              <path d="M90 50 A40 40 0 0 1 50 90" stroke="url(#islandLoopGrad2)" stroke-width="6" stroke-linecap="round"/>
+              <path d="M50 90 A40 40 0 0 1 10 50" stroke="url(#islandLoopGrad1)" stroke-width="6" stroke-linecap="round" stroke-dasharray="3 3"/>
+              <path d="M10 50 A40 40 0 0 1 50 10" stroke="url(#islandLoopGrad2)" stroke-width="6" stroke-linecap="round"/>
+              <polygon points="52,6 44,11 44,1" fill="#C9A96E"/>
+              <polygon points="48,94 56,89 56,99" fill="#8FA99A"/>
+
+              <defs>
+                <linearGradient id="islandLoopGrad1" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#C9A96E"/>
+                  <stop offset="100%" stop-color="#D8A7A0"/>
+                </linearGradient>
+                <linearGradient id="islandLoopGrad2" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#8FA99A"/>
+                  <stop offset="100%" stop-color="#172033"/>
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <!-- Central 3D Activity Box / Toy Kit Symbol with gentle float -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div class="w-4 h-4 sm:w-4.5 sm:h-4.5 bg-gradient-to-br from-[#172033] via-[#24334f] to-[#C9A96E] rounded shadow-sm flex items-center justify-center text-white logo-activity-box transform group-hover:scale-110 transition-transform duration-300">
+                <i class="fa-solid fa-shapes text-[9px] text-yellow-200"></i>
+              </div>
+            </div>
+            
+            <!-- Sparkle badge for activity kits with pulse -->
+            <span class="absolute -top-0.5 -right-0.5 flex h-2 w-2 items-center justify-center">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8FA99A] opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#8FA99A]"></span>
+            </span>
+          </div>
+
+          <!-- Brand Name & Tagline (Exact from about.html) -->
+          <div class="flex flex-col text-left rtl:text-right">
+            <div class="flex items-center gap-1">
+              <span class="font-brand text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center leading-none">
+                Play<span class="bg-gradient-to-r from-[#C9A96E] to-[#b99455] bg-clip-text text-transparent">Loop</span>
+              </span>
+              <span class="bg-[#C9A96E]/20 text-[#9a7842] dark:text-[#C9A96E] text-[8px] font-extrabold uppercase px-1.5 py-0.2 rounded-full tracking-wide leading-tight group-hover:scale-105 transition-transform">
+                KIDS
+              </span>
+            </div>
+            <span class="text-[8px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase leading-tight mt-0.5">
+              Toy Rental &amp; Activity Kits
+            </span>
+          </div>
+
+        </a>
+      </div>
+
+      <!-- 404 Headline & Subtext -->
+      <div class="space-y-2 text-start">
+        
+        <!-- Intake Alert Pill -->
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-orange-500/10 text-orange-600 dark:text-orange-400 text-[10.5px] font-extrabold uppercase tracking-wider">
+          <i class="fa-solid fa-puzzle-piece text-[9px]"></i>
+          <span>Error 404 &bull; Missing Milestone</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="font-brand text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-[#F8F5EF] tracking-tight leading-tight">
+          Oops! This Toy Rolled <br class="hidden sm:inline" />
+          Under the Sofa.
+        </h1>
+
+        <!-- Subtext -->
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+          The page or activity kit you're looking for seems to have wandered off during playtime or is currently undergoing our 5-stage hospital-grade sanitization cycle.
+        </p>
+
+        <!-- Lost Piece Reassurance Box -->
+        <div class="p-2.5 sm:p-3 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200/80 dark:border-slate-800 flex items-start gap-2 mt-2">
+          <i class="fa-solid fa-shield-heart text-xs text-[#8FA99A] mt-0.5 flex-shrink-0"></i>
+          <p class="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">
+            <strong class="text-slate-900 dark:text-[#F8F5EF]">Missing a piece in real life?</strong> Every PlayLoop membership includes our 100% "Oops!" Accident Protection Guarantee with zero penalty fees.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- 3 Navigation Action Buttons -->
+      <div class="pt-1 flex items-center gap-2.5 flex-wrap">
+        <a 
+          href="about.html" 
+          class="btn-sheen py-2.5 px-5 rounded-xl font-brand font-bold text-xs uppercase tracking-wider text-[#172033] bg-gradient-to-r from-[#C9A96E] via-[#d2b984] to-[#C9A96E] hover:from-[#d2b984] hover:to-[#b99455] shadow-md hover:shadow-lg transition-all flex items-center gap-1.5"
+        >
+          <i class="fa-solid fa-house text-xs"></i>
+          <span>Return to Homepage</span>
+        </a>
+        <a 
+          href="catalog.html" 
+          class="py-2.5 px-4 rounded-xl font-bold text-xs text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/15 transition-all flex items-center gap-1.5"
+        >
+          <i class="fa-solid fa-shapes text-xs text-[#8FA99A]"></i>
+          <span>Browse Toy Library</span>
+        </a>
+        <a 
+          href="login.html" 
+          class="py-2.5 px-4 rounded-xl font-bold text-xs text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/15 transition-all flex items-center gap-1.5"
+        >
+          <i class="fa-solid fa-arrow-right-to-bracket text-xs text-[#C9A96E]"></i>
+          <span>Parent Portal</span>
+        </a>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Micro Copyright Info (Clean, No Footer component, Compact) -->
+  <div class="pt-2 pb-1 text-center text-[10px] text-slate-400 dark:text-slate-500">
+    &copy; 2026 PlayLoop Kids Toy Rental &amp; Activity Kits Inc. All rights reserved.
+  </div>
+
+  <!-- ========================================================
+       INTERACTIVE JAVASCRIPT: DARK MODE & RTL TOGGLE
+       ======================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // --------------------------------------------------------
+      // 1. DARK MODE TOGGLE & LOCAL STORAGE SYNC
+      // --------------------------------------------------------
+      const topDarkToggle = document.getElementById('topDarkToggle');
+
+      function updateThemeUI(isDark) {
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        }
+      }
+
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialDark = savedTheme ? savedTheme === 'dark' : systemPrefersDark;
+      updateThemeUI(initialDark);
+
+      if (topDarkToggle) {
+        topDarkToggle.addEventListener('click', () => {
+          const isDark = document.documentElement.classList.contains('dark');
+          updateThemeUI(!isDark);
+        });
+      }
+
+      // --------------------------------------------------------
+      // 2. RTL (RIGHT TO LEFT) TOGGLE & LOCAL STORAGE SYNC
+      // --------------------------------------------------------
+      const topRtlToggle = document.getElementById('topRtlToggle');
+      const topRtlIndicator = document.getElementById('topRtlIndicator');
+
+      function updateDirectionUI(isRtl) {
+        if (isRtl) {
+          document.documentElement.setAttribute('dir', 'rtl');
+          localStorage.setItem('dir', 'rtl');
+          if (topRtlIndicator) topRtlIndicator.classList.remove('hidden');
+        } else {
+          document.documentElement.setAttribute('dir', 'ltr');
+          localStorage.setItem('dir', 'ltr');
+          if (topRtlIndicator) topRtlIndicator.classList.add('hidden');
+        }
+      }
+
+      const savedDir = localStorage.getItem('dir');
+      const initialRtl = savedDir === 'rtl';
+      updateDirectionUI(initialRtl);
+
+      if (topRtlToggle) {
+        topRtlToggle.addEventListener('click', () => {
+          const currentDir = document.documentElement.getAttribute('dir');
+          const isRtl = currentDir === 'rtl';
+          updateDirectionUI(!isRtl);
+        });
+      }
+
+    });
+  </script>
+
+</body>
+</html>

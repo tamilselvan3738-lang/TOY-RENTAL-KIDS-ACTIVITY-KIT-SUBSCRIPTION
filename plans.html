@@ -1,0 +1,2893 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlayLoop Kids - Toy Rental & Activity Kit Subscription</title>
+  <!-- Favicon: PlayLoop Kids Navbar Logo -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  
+  <!-- Google Fonts: Outfit (Heading) & Plus Jakarta Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome 6.5.1 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            brand: ['"Outfit"', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              50: '#f5f7fa',
+              100: '#eaedf3',
+              200: '#d0d7e4',
+              300: '#a6b4cc',
+              400: '#748bb0',
+              500: '#4b6691',
+              600: '#395076',
+              700: '#2d3e5c',
+              800: '#1e293f',
+              900: '#172033', // Primary Deep Navy
+              950: '#0c111c',
+            },
+            cream: {
+              50: '#fdfcfb',
+              100: '#F8F5EF', // Secondary Warm Cream
+              200: '#f1ede2',
+              300: '#e6decb',
+            },
+            brand: { // Premium Accent: Soft Gold
+              50: '#faf7f0',
+              100: '#f3ede0',
+              200: '#e8dcc4',
+              300: '#dccaa3',
+              400: '#d2b984',
+              500: '#C9A96E', // Soft Gold Core
+              600: '#b99455',
+              700: '#9a7842',
+              800: '#7d6139',
+              900: '#675031',
+            },
+            playTeal: { // Natural Accent: Muted Sage
+              400: '#a7bcb0',
+              500: '#8FA99A', // Muted Sage Core
+              600: '#759281',
+              700: '#5d7667',
+            },
+            playPurple: { // Deep Navy Accent
+              400: '#506385',
+              500: '#172033',
+              600: '#111827',
+            },
+            playYellow: { // Soft Gold Shimmer
+              400: '#dccaa3',
+              500: '#C9A96E',
+              600: '#b99455',
+            },
+            roseAccent: { // Soft Accent: Dusty Rose
+              400: '#e1b9b3',
+              500: '#D8A7A0', // Dusty Rose Core
+              600: '#c48d85',
+              700: '#a87169',
+            }
+          },
+          boxShadow: {
+            'playful': '0 8px 25px -4px rgba(201, 169, 110, 0.35)',
+            'nav-drop': '0 15px 35px -5px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0,0,0,0.04)',
+            'nav-drop-dark': '0 15px 35px -5px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.08)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Global Viewport & Safe Overflow Containment */
+    html, body {
+      max-width: 100vw;
+      overflow-x: clip;
+    }
+    @supports not (overflow-x: clip) {
+      html, body {
+        overflow-x: hidden;
+      }
+    }
+
+    /* Custom Scrollbar: Sleek vertical & completely removed horizontal */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 0px !important; /* Zero height completely eliminates horizontal scrollbar */
+    }
+    ::-webkit-scrollbar:horizontal {
+      display: none !important;
+      height: 0px !important;
+      width: 0px !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      background: transparent !important;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C9A96E;
+      border-radius: 9999px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #24334f;
+    }
+
+    /* RTL Transition Support */
+    html {
+      scroll-padding-top: 5.5rem;
+      scroll-behavior: smooth;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Animated Multi-color Gradient Border Line on Navbar */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animated-nav-glow {
+      background: linear-gradient(90deg, #C9A96E, #8FA99A);
+      background-size: 300% 100%;
+      animation: gradientShift 7s ease infinite;
+    }
+
+    /* Continuous Gentle Rotation for Logo Rental Loop */
+    @keyframes gentleSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .logo-rental-loop {
+      animation: gentleSpin 24s linear infinite;
+      transform-origin: center;
+      transition: animation-duration 0.4s ease;
+    }
+    .group:hover .logo-rental-loop {
+      animation-duration: 5s;
+    }
+
+    /* Floating / Bobbing Animation for 3D Activity Box inside Logo */
+    @keyframes floatKit {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-2.5px) rotate(3deg); }
+    }
+    .logo-activity-box {
+      animation: floatKit 3.2s ease-in-out infinite;
+    }
+
+    /* Floating Shapes in Background */
+    @keyframes floatSlow1 {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-16px) rotate(8deg); }
+    }
+    @keyframes floatSlow2 {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-22px) rotate(-10deg); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.75; transform: scale(1.12); }
+    }
+    .animate-float-1 {
+      animation: floatSlow1 7s ease-in-out infinite;
+    }
+    .animate-float-2 {
+      animation: floatSlow2 9.5s ease-in-out infinite;
+    }
+    .animate-pulse-glow {
+      animation: pulseGlow 6s ease-in-out infinite;
+    }
+
+    /* Modern Sliding Gradient Indicator for Nav Links */
+    .nav-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #e07a5f, #81b29a);
+      border-radius: 9999px;
+      transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1), left 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+        /* Active Link State */
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 80% !important;
+      left: 10% !important;
+    }
+    .nav-link.active {
+      color: #ea580c !important;
+      background-color: rgba(255, 237, 213, 0.75) !important;
+      font-weight: 700 !important;
+    }
+    html.dark .nav-link.active {
+      color: #fb923c !important;
+      background-color: rgba(51, 65, 85, 0.8) !important;
+    }
+    .mobile-nav-link.active {
+      color: #ea580c !important;
+      background-color: rgba(255, 237, 213, 0.75) !important;
+      font-weight: 700 !important;
+    }
+    html.dark .mobile-nav-link.active {
+      color: #fb923c !important;
+      background-color: rgba(51, 65, 85, 0.8) !important;
+    }
+    .nav-link:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Submenu animation with spring scale */
+    .dropdown-menu {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px) scale(0.96);
+      transform-origin: top center;
+      transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.22s;
+    }
+    .group:hover .dropdown-menu,
+    .group:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Button Shimmer Sheen */
+    .btn-sheen {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-sheen::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -70%;
+      width: 50%;
+      height: 200%;
+      background: linear-gradient(
+        60deg,
+        rgba(255, 255, 255, 0) 20%,
+        rgba(255, 255, 255, 0.45) 50%,
+        rgba(255, 255, 255, 0) 80%
+      );
+      transform: rotate(25deg);
+      transition: left 0.75s ease;
+    }
+    .btn-sheen:hover::after {
+      left: 140%;
+    }
+
+    /* Utility Button Hover Animations */
+    .btn-tool {
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-tool:hover {
+      transform: scale(1.08);
+    }
+    .btn-tool:active {
+      transform: scale(0.95);
+    }
+
+    /* Off-canvas drawer sliding direction aware of RTL */
+    #mobileDrawer {
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s, opacity 0.3s;
+      opacity: 0;
+    }
+    html[dir="ltr"] #mobileDrawer {
+      right: 0 !important;
+      left: auto !important;
+      transform: translateX(100%);
+      visibility: hidden;
+      pointer-events: none;
+    }
+    html[dir="rtl"] #mobileDrawer {
+      left: 0 !important;
+      right: auto !important;
+      transform: translateX(-100%);
+      visibility: hidden;
+      pointer-events: none;
+    }
+    html[dir="ltr"] #mobileDrawer.drawer-open,
+    html[dir="rtl"] #mobileDrawer.drawer-open {
+      transform: translateX(0);
+      visibility: visible;
+      pointer-events: auto;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#F8F5EF] text-slate-800 antialiased dark:bg-[#0c111c] dark:text-[#F8F5EF] font-sans relative selection:bg-brand-500 selection:text-[#172033] flex flex-col justify-between ">
+
+  <!-- ========================================================
+       BACKGROUND DESIGN: PLAYFUL AMBIENT GLOWS & FLOATING TOY SHAPES
+       ======================================================== -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10 w-full max-w-full" aria-hidden="true">
+    <!-- Ambient Light Mesh Glows -->
+    <div class="absolute top-0 start-1/4 w-96 h-96 bg-gradient-to-tr from-[#C9A96E]/20 via-[#D8A7A0]/15 to-transparent rounded-full blur-3xl animate-pulse-glow dark:from-[#C9A96E]/25 dark:via-[#172033]/40"></div>
+    <div class="absolute top-10 end-1/4 w-96 h-96 bg-gradient-to-bl from-[#8FA99A]/20 via-[#172033]/15 to-transparent rounded-full blur-3xl animate-pulse-glow dark:from-[#8FA99A]/25 dark:via-[#172033]/40" style="animation-delay: 3s;"></div>
+
+    <!-- Floating Playful Shape 1: Montessori Wooden Ring (Top Left) -->
+    <div class="absolute top-20 start-6 w-14 h-14 text-[#C9A96E]/40 dark:text-[#C9A96E]/25 animate-float-1 hidden md:block">
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="8" stroke-dasharray="6 6" class="w-full h-full">
+        <circle cx="50" cy="50" r="42"/>
+        <circle cx="50" cy="50" r="22" stroke-width="4"/>
+      </svg>
+    </div>
+
+    <!-- Floating Playful Shape 2: Happy Star Activity Sparkle (Top Right) -->
+    <div class="absolute top-24 end-12 w-12 h-12 text-[#D8A7A0]/50 dark:text-[#D8A7A0]/30 animate-float-2 hidden md:block">
+      <svg viewBox="0 0 100 100" fill="currentColor" class="w-full h-full">
+        <path d="M50 5 L62 38 L95 50 L62 62 L50 95 L38 62 L5 50 L38 38 Z"/>
+      </svg>
+    </div>
+
+    <!-- Floating Playful Shape 3: Geometric Montessori Triangle Block (Mid Left) -->
+    <div class="absolute top-80 start-16 w-10 h-10 text-[#8FA99A]/40 dark:text-[#8FA99A]/25 animate-float-2 hidden lg:block">
+      <svg viewBox="0 0 100 100" fill="currentColor" class="w-full h-full">
+        <polygon points="50,15 90,85 10,85" rx="6"/>
+      </svg>
+    </div>
+
+    <!-- Floating Playful Shape 4: Toy Building Block Cube (Mid Right) -->
+    <div class="absolute top-72 end-20 w-11 h-11 text-[#172033]/40 dark:text-[#8FA99A]/25 animate-float-1 hidden lg:block">
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="7" class="w-full h-full">
+        <rect x="15" y="15" width="70" height="70" rx="18" fill="currentColor" fill-opacity="0.12"/>
+        <circle cx="38" cy="38" r="7" fill="currentColor"/>
+        <circle cx="62" cy="62" r="7" fill="currentColor"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       PRIMARY NAVBAR: FLOATING ISLAND PILL DESIGN
+       Floating glassmorphism capsule with rounded corners & elevated shadow
+       Laptop: [LOGO Far Left] ----------- [MENU Center] ----------- [ACTIONS Right]
+       Tablet/Mobile: [LOGO Left] ------------------------- [HAMBURGER Right]
+       ======================================================== -->
+    <header class="fixed top-3 inset-x-0 z-40 w-full px-3 sm:px-5 lg:px-6 xl:px-8 pointer-events-none transition-all duration-300">
+    
+    <!-- Floating Island Capsule -->
+    <div class="pointer-events-auto max-w-[1550px] mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-2xl sm:rounded-full border border-[#C9A96E]/25 dark:border-[#C9A96E]/20 shadow-[0_10px_35px_-4px_rgba(23,32,51,0.08),0_0_0_1px_rgba(201,169,110,0.15)] dark:shadow-[0_14px_40px_-4px_rgba(0,0,0,0.65),0_0_0_1px_rgba(255,255,255,0.06)] px-3 sm:px-4 lg:ps-4 lg:pe-4 h-[60px] flex items-center justify-between relative transition-all duration-300">
+
+      <!-- Ambient subtle glow spots inside floating pill -->
+      <div class="absolute inset-0 rounded-2xl sm:rounded-full pointer-events-none overflow-hidden -z-10" aria-hidden="true">
+        <div class="absolute -top-8 start-1/4 w-48 h-16 bg-gradient-to-r from-orange-400/20 to-pink-400/10 rounded-full blur-xl animate-pulse-glow"></div>
+        <div class="absolute -top-8 end-1/3 w-48 h-16 bg-gradient-to-r from-teal-400/20 to-indigo-400/10 rounded-full blur-xl animate-pulse-glow" style="animation-delay: 3s;"></div>
+      </div>
+
+      <!-- 1. LEFT SECTION: CREATIVE LOGO (Aligned to Left) -->
+      <div class="flex-shrink-0 flex items-center ps-1 sm:ps-1.5">
+        <a href="index.html" class="group flex items-center gap-2.5 focus:outline-none focus:ring-2 focus:ring-brand-400 rounded-full p-0.5 transition-all" title="PlayLoop Kids Home">
+          
+          <!-- Unique Creative SVG Brand Logo Mark with Animations -->
+          <div class="relative w-9 h-9 flex items-center justify-center">
+            
+            <!-- Outer Rotating Loop Arrows (Rental & Sustainable Cycle) with slow spin -->
+            <svg class="w-9 h-9 text-brand-500 logo-rental-loop" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="44" class="fill-orange-50 dark:fill-orange-950/40" />
+              <path d="M50 10 A40 40 0 0 1 90 50" stroke="url(#islandLoopGrad1)" stroke-width="6" stroke-linecap="round" stroke-dasharray="3 3"/>
+              <path d="M90 50 A40 40 0 0 1 50 90" stroke="url(#islandLoopGrad2)" stroke-width="6" stroke-linecap="round"/>
+              <path d="M50 90 A40 40 0 0 1 10 50" stroke="url(#islandLoopGrad1)" stroke-width="6" stroke-linecap="round" stroke-dasharray="3 3"/>
+              <path d="M10 50 A40 40 0 0 1 50 10" stroke="url(#islandLoopGrad2)" stroke-width="6" stroke-linecap="round"/>
+              <polygon points="52,6 44,11 44,1" fill="#C9A96E"/>
+              <polygon points="48,94 56,89 56,99" fill="#8FA99A"/>
+
+              <defs>
+                <linearGradient id="islandLoopGrad1" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#C9A96E"/>
+                  <stop offset="100%" stop-color="#D8A7A0"/>
+                </linearGradient>
+                <linearGradient id="islandLoopGrad2" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#8FA99A"/>
+                  <stop offset="100%" stop-color="#172033"/>
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <!-- Central 3D Activity Box / Toy Kit Symbol with gentle float -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div class="w-5 h-5 bg-gradient-to-br from-[#172033] via-[#24334f] to-[#C9A96E] rounded-md shadow-sm flex items-center justify-center text-white logo-activity-box transform group-hover:scale-110 transition-transform duration-300">
+                <i class="fa-solid fa-shapes text-[11px] text-yellow-200"></i>
+              </div>
+            </div>
+            
+            <!-- Sparkle badge for activity kits with pulse -->
+            <span class="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5 items-center justify-center">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-playTeal-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-playTeal-500"></span>
+            </span>
+          </div>
+
+          <!-- Brand Name & Tagline -->
+          <div class="flex flex-col text-left">
+            <div class="flex items-center gap-1">
+              <span class="font-brand text-lg font-bold tracking-tight text-slate-900 dark:text-white flex items-center leading-none">
+                Play<span class="bg-gradient-to-r from-[#C9A96E] to-[#b99455] bg-clip-text text-transparent">Loop</span>
+              </span>
+              <span class="bg-brand-100 dark:bg-brand-900/60 text-brand-700 dark:text-brand-300 text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded-full tracking-wide leading-tight group-hover:scale-105 transition-transform">
+                KIDS
+              </span>
+            </div>
+            <span class="text-[8.5px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase leading-tight mt-0.5 hidden sm:inline-block">
+              Toy Rental &amp; Activity Kits
+            </span>
+          </div>
+        </a>
+      </div>
+
+      <!-- 2. CENTER SECTION: NAVBAR MENU (Laptop / Desktop View) -->
+      <nav class="hidden lg:flex items-center justify-center flex-1 px-2 xl:px-4" aria-label="Main Navigation">
+        <ul class="flex items-center gap-1 xl:gap-1.5 text-[12px] xl:text-[13px] font-semibold text-slate-700 dark:text-slate-200">
+          
+          <!-- HOME (DROPDOWN: Home 1, Home 2) - CLICK REDIRECTS TO index.html -->
+          <li class="relative group shrink-0">
+            <a id="navHomeBtn" href="index.html" class="nav-link flex items-center gap-1 px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
+              <span>Home</span>
+              <i class="fa-solid fa-chevron-down text-[8.5px] text-slate-400 group-hover:text-brand-500 group-hover:rotate-180 transition-transform duration-200"></i>
+            </a>
+            
+            <!-- Dropdown Menu with Glassmorphism & Spring Entrance -->
+            <div class="dropdown-menu absolute top-[calc(100%+10px)] start-0 w-max z-50">
+              <div class="bg-white/95 dark:bg-slate-900/95 border border-slate-200/80 dark:border-slate-800 rounded-2xl shadow-[0_16px_36px_-6px_rgba(249,115,22,0.18),0_0_1px_1px_rgba(0,0,0,0.04)] dark:shadow-[0_18px_40px_-6px_rgba(0,0,0,0.7),0_0_15px_rgba(249,115,22,0.1)] p-1.5 backdrop-blur-2xl">
+                <a id="subHome1" href="index.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-orange-50 dark:hover:bg-slate-800/80 transition-colors group/item whitespace-nowrap">
+                  <div class="w-7 h-7 rounded-lg bg-orange-100 dark:bg-orange-950/60 text-brand-500 flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
+                    <i class="fa-solid fa-cubes-stacked"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-brand-600 dark:group-hover/item:text-brand-400 whitespace-nowrap">Home 1 (Toy Rental)</div>
+                  </div>
+                </a>
+                <a id="subHome2" href="home-2.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-teal-50 dark:hover:bg-slate-800/80 transition-colors group/item mt-0.5 whitespace-nowrap">
+                  <div class="w-7 h-7 rounded-lg bg-teal-100 dark:bg-teal-950/60 text-playTeal-600 flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
+                    <i class="fa-solid fa-puzzle-piece"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-playTeal-600 dark:group-hover/item:text-playTeal-400 whitespace-nowrap">Home 2 (Activity Kits)</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <!-- ABOUT -->
+          <li class="shrink-0">
+            <a id="navAboutLink" href="about.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+              About
+            </a>
+          </li>
+
+          <!-- HOW IT WORKS -->
+          <li class="shrink-0">
+            <a id="navHowLink" href="how-it-works.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+              How It Works
+            </a>
+          </li>
+
+          <!-- CATALOG -->
+          <li class="shrink-0">
+            <a id="navCatalogLink" href="catalog.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+              Catalog
+            </a>
+          </li>
+
+          <!-- ACTIVITY KITS -->
+          <li class="shrink-0">
+            <a id="navActivityLink" href="activity.html" class="nav-link relative px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+              <span>Activity Kits</span>
+              <span class="absolute -top-0.5 -right-0.5 px-1 py-0 bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-[8px] font-bold rounded-full shadow-sm leading-tight animate-pulse">
+                Kits
+              </span>
+            </a>
+          </li>
+
+          <!-- PLANS -->
+          <li class="shrink-0">
+            <a id="navPlansLink" href="plans.html" class="nav-link active px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+              Plans
+            </a>
+          </li>
+
+          <!-- HYGIENE & SAFETY -->
+          <li class="shrink-0">
+            <a id="navHygieneLink" href="hygiene.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+              Hygiene &amp; Safety
+            </a>
+          </li>
+
+          <!-- FAQ -->
+          <li class="shrink-0">
+            <a id="navFaqLink" href="faq.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+              FAQ
+            </a>
+          </li>
+
+          <!-- CONTACT -->
+          <li class="shrink-0">
+            <a id="navContactLink" href="contact.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+              Contact
+            </a>
+          </li>
+
+          <!-- DASHBOARD (DROPDOWN: User Dashboard, Admin Dashboard) -->
+          <li class="relative group shrink-0">
+            <button id="navDashBtn" type="button" class="nav-link flex items-center gap-1 px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
+              <span>Dashboard</span>
+              <i class="fa-solid fa-chevron-down text-[8.5px] text-slate-400 group-hover:text-brand-500 group-hover:rotate-180 transition-transform duration-200"></i>
+            </button>
+            
+            <!-- Dropdown Menu with Glassmorphism & Spring Entrance -->
+            <div class="dropdown-menu absolute top-[calc(100%+10px)] end-0 w-max z-50">
+              <div class="bg-white/95 dark:bg-slate-900/95 border border-slate-200/80 dark:border-slate-800 rounded-2xl shadow-[0_16px_36px_-6px_rgba(99,102,241,0.18),0_0_1px_1px_rgba(0,0,0,0.04)] dark:shadow-[0_18px_40px_-6px_rgba(0,0,0,0.7),0_0_15px_rgba(99,102,241,0.1)] p-1.5 backdrop-blur-2xl">
+                <a id="subUserDash" href="user-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-indigo-50 dark:hover:bg-slate-800/80 transition-colors group/item whitespace-nowrap">
+                  <div class="w-7 h-7 rounded-lg bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-indigo-600 dark:group-hover/item:text-indigo-400 whitespace-nowrap">User Dashboard</div>
+                  </div>
+                </a>
+                <a id="subAdminDash" href="admin-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-purple-50 dark:hover:bg-slate-800/80 transition-colors group/item mt-0.5 whitespace-nowrap">
+                  <div class="w-7 h-7 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
+                    <i class="fa-solid fa-gauge-high"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-purple-600 dark:group-hover/item:text-purple-400 whitespace-nowrap">Admin Dashboard</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+      </nav>
+
+      <!-- 3. RIGHT SECTION: UTILITIES (Laptop View) -->
+      <div class="hidden lg:flex items-center gap-2 pe-1 sm:pe-1.5 flex-shrink-0">
+        
+        <!-- DARK MODE TOGGLE (DESKTOP) -->
+        <button 
+          id="desktopDarkToggle" 
+          type="button" 
+          aria-label="Toggle Dark Mode"
+          title="Toggle Light / Dark Mode"
+          class="btn-tool w-8 h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 group shadow-sm"
+        >
+          <i class="fa-solid fa-moon text-xs dark:hidden transition-transform duration-300 group-hover:rotate-45"></i>
+          <i class="fa-solid fa-sun text-xs hidden dark:block text-yellow-400 transition-transform duration-300 group-hover:rotate-90"></i>
+        </button>
+
+        <!-- RIGHT TO LEFT (RTL) TOGGLE (DESKTOP) -->
+        <button 
+          id="desktopRtlToggle" 
+          type="button" 
+          aria-label="Toggle Right to Left Layout" 
+          title="Toggle Direction (LTR / RTL)"
+          class="btn-tool w-8 h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 relative group shadow-sm"
+        >
+          <i class="fa-solid fa-right-left text-xs transition-transform duration-300 group-hover:scale-125 text-slate-700 dark:text-slate-300"></i>
+          <span id="desktopRtlIndicator" class="hidden absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+        </button>
+
+        <!-- LOGIN BUTTON (DESKTOP) WITH SHIMMER & GLOW -->
+        <a 
+          href="login.html" 
+          class="btn-sheen relative inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full font-bold text-[11.5px] tracking-wide uppercase text-white bg-gradient-to-r from-brand-500 via-brand-600 to-orange-600 hover:from-brand-600 hover:to-orange-700 shadow-sm hover:shadow-[0_4px_16px_rgba(249,115,22,0.45)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-1 dark:focus:ring-offset-slate-900"
+        >
+          <i class="fa-solid fa-arrow-right-to-bracket text-[10.5px]"></i>
+          <span>Login</span>
+        </a>
+
+      </div>
+
+      <!-- 4. MOBILE & TABLET HAMBURGER BUTTON (Right side) -->
+      <div class="flex items-center gap-2 lg:hidden pe-1 sm:pe-1.5">
+        <button 
+          id="hamburgerBtn" 
+          type="button" 
+          aria-label="Open Mobile Menu" 
+          aria-controls="mobileDrawer"
+          aria-expanded="false"
+          class="btn-tool w-9 h-9 rounded-full flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 bg-slate-100/90 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/60 focus:outline-none focus:ring-2 focus:ring-brand-500 shadow-sm"
+        >
+          <i class="fa-solid fa-bars text-base"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================
+       MOBILE & TABLET SLIDE-OUT HAMBURGER MENU DRAWER
+       Contains:
+       - Full Navigation Links
+       - Home Dropdown (Accordion)
+       - Dashboard Dropdown (Accordion)
+       - Dark Mode Toggle
+       - RTL Icon Toggle (with Right-Left Icon)
+       - Login CTA Button
+       ======================================================== -->
+  
+    <!-- Drawer Backdrop Overlay -->
+  <div 
+    id="drawerBackdrop" 
+    class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Drawer Container -->
+  <aside 
+    id="mobileDrawer" 
+    class="fixed top-0 bottom-0 end-0 w-full sm:w-96 max-w-[85vw] bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl z-50 shadow-2xl flex flex-col justify-between border-s border-slate-200 dark:border-slate-800 transition-transform duration-300"
+    aria-label="Mobile Navigation"
+  >
+    <!-- Drawer Header -->
+    <div class="p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+      <a href="index.html" class="flex items-center gap-2.5 group focus:outline-none" title="PlayLoop Kids Home">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-pink-500 flex items-center justify-center text-white shadow-sm logo-activity-box group-hover:scale-105 transition-transform">
+          <i class="fa-solid fa-shapes text-xs text-yellow-200"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-brand text-lg font-bold tracking-tight text-slate-900 dark:text-white">
+            Play<span class="text-brand-500">Loop</span>
+          </span>
+          <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider -mt-1">
+            Menu Navigation
+          </span>
+        </div>
+      </a>
+
+      <!-- Close Drawer Button -->
+      <button 
+        id="closeDrawerBtn" 
+        type="button" 
+        aria-label="Close Menu"
+        class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 transition-all focus:outline-none"
+      >
+        <i class="fa-solid fa-xmark text-base"></i>
+      </button>
+    </div>
+
+    <!-- Drawer Navigation Links (Scrollable) -->
+    <div class="flex-1 overflow-y-auto px-5 py-4 space-y-1 text-sm font-semibold text-slate-700 dark:text-slate-200">
+      
+      <!-- 1. HOME ACCORDION - CLICK REDIRECTS TO index.html, ARROW EXPANDS SUBMENU -->
+      <div class="border-b border-slate-100 dark:border-slate-800/60 pb-1">
+        <div class="flex items-center justify-between py-1 px-2.5 rounded-xl hover:bg-orange-50/80 dark:hover:bg-slate-800/80 transition-colors">
+          <a id="mNavHomeLink" href="index.html" class="mobile-nav-link flex items-center gap-2.5 flex-1 py-1 text-start rounded-lg">
+            <span class="w-6 h-6 rounded-lg bg-orange-100 dark:bg-orange-950/60 text-brand-500 flex items-center justify-center text-xs">
+              <i class="fa-solid fa-house"></i>
+            </span>
+            <span class="text-xs font-semibold">Home</span>
+          </a>
+          <button 
+            id="mobileHomeToggle" 
+            type="button" 
+            aria-label="Toggle Home Submenu"
+            class="p-1.5 text-slate-400 hover:text-brand-500 focus:outline-none"
+          >
+            <i id="mobileHomeArrow" class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+          </button>
+        </div>
+
+        <!-- Home Sub-items -->
+        <div id="mobileHomeMenu" class=" hidden ps-9 pe-2 py-1 space-y-1">
+          <a id="mSubHome1" href="index.html" class="mobile-nav-link flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <i class="fa-solid fa-circle-dot text-[7px] text-brand-500"></i>
+            <span>Home 1 (Toy Rental)</span>
+          </a>
+          <a id="mSubHome2" href="home-2.html" class="mobile-nav-link flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <i class="fa-solid fa-circle-dot text-[7px] text-playTeal-500"></i>
+            <span>Home 2 (Activity Kits)</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. ABOUT -->
+      <a id="mNavAboutLink" href="about.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
+        <span class="w-6 h-6 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-circle-info"></i>
+        </span>
+        <span>About</span>
+      </a>
+
+      <!-- 3. HOW IT WORKS -->
+      <a id="mNavHowLink" href="how-it-works.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
+        <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-arrows-spin"></i>
+        </span>
+        <span>How It Works</span>
+      </a>
+
+      <!-- 4. CATALOG -->
+      <a id="mNavCatalogLink" href="catalog.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
+        <span class="w-6 h-6 rounded-lg bg-blue-100 dark:bg-blue-950/60 text-blue-600 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-shapes"></i>
+        </span>
+        <span>Catalog</span>
+      </a>
+
+      <!-- 5. ACTIVITY KITS -->
+      <a id="mNavActivityLink" href="activity.html" class="mobile-nav-link flex items-center justify-between py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
+        <div class="flex items-center gap-2.5">
+          <span class="w-6 h-6 rounded-lg bg-teal-100 dark:bg-teal-950/60 text-teal-600 flex items-center justify-center text-xs">
+            <i class="fa-solid fa-box-open"></i>
+          </span>
+          <span>Activity Kits</span>
+        </div>
+        <span class="px-1.5 py-0.2 bg-teal-500 text-white text-[9px] font-bold rounded-full animate-pulse">
+          Featured
+        </span>
+      </a>
+
+      <!-- 6. PLANS -->
+      <a id="mNavPlansLink" href="plans.html" class="mobile-nav-link active flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
+        <span class="w-6 h-6 rounded-lg bg-amber-100 dark:bg-amber-950/60 text-amber-600 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-tags"></i>
+        </span>
+        <span>Plans</span>
+      </a>
+
+      <!-- 7. HYGIENE & SAFETY -->
+      <a id="mNavHygieneLink" href="hygiene.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
+        <span class="w-6 h-6 rounded-lg bg-rose-100 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-shield-heart"></i>
+        </span>
+        <span>Hygiene &amp; Safety</span>
+      </a>
+
+      <!-- 8. FAQ -->
+      <a id="mNavFaqLink" href="faq.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
+        <span class="w-6 h-6 rounded-lg bg-cyan-100 dark:bg-cyan-950/60 text-cyan-600 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-circle-question"></i>
+        </span>
+        <span>FAQ</span>
+      </a>
+
+      <!-- 9. CONTACT -->
+      <a id="mNavContactLink" href="contact.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
+        <span class="w-6 h-6 rounded-lg bg-violet-100 dark:bg-violet-950/60 text-violet-600 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-envelope"></i>
+        </span>
+        <span>Contact</span>
+      </a>
+
+      <!-- 10. DASHBOARD ACCORDION -->
+      <div class="border-t border-slate-100 dark:border-slate-800/60 pt-1">
+        <button 
+          id="mobileDashboardToggle" 
+          type="button" 
+          class="w-full flex items-center justify-between py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors focus:outline-none text-start"
+        >
+          <span class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-xs">
+              <i class="fa-solid fa-gauge-high"></i>
+            </span>
+            <span class="text-xs">Dashboard</span>
+          </span>
+          <i id="mobileDashboardArrow" class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform duration-200"></i>
+        </button>
+
+        <!-- Dashboard Sub-items -->
+        <div id="mobileDashboardMenu" class="hidden ps-9 pe-2 py-1 space-y-1">
+          <a id="mSubUserDash" href="user-dashboard.html" class="mobile-nav-link flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <i class="fa-solid fa-user-circle text-xs text-indigo-500"></i>
+            <span>User Dashboard</span>
+          </a>
+          <a id="mSubAdminDash" href="admin-dashboard.html" class="mobile-nav-link flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <i class="fa-solid fa-shield-halved text-xs text-purple-500"></i>
+            <span>Admin Dashboard</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Drawer Footer: DARK MODE + RTL ICON + LOGIN CTA -->
+    <div class="p-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/70 space-y-3 backdrop-blur-md">
+      
+      <!-- Utility Row: Dark Mode & RTL Toggles inside Hamburger Menu -->
+      <div class="grid grid-cols-2 gap-2.5">
+        
+        <!-- DARK MODE TOGGLE (MOBILE INSIDE HAMBURGER) -->
+        <button 
+          id="mobileDarkToggle" 
+          type="button" 
+          class="btn-tool flex items-center justify-center gap-2 py-2 px-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-brand-500 text-xs font-bold shadow-sm focus:outline-none"
+        >
+          <span class="relative flex items-center justify-center">
+            <i class="fa-solid fa-moon text-slate-600 dark:hidden text-xs"></i>
+            <i class="fa-solid fa-sun text-yellow-400 hidden dark:block text-xs"></i>
+          </span>
+          <span id="mobileDarkLabel" class="text-[11px]">Dark Mode</span>
+        </button>
+
+        <!-- RIGHT TO LEFT TOGGLE WITH RIGHT-LEFT ICON (MOBILE INSIDE HAMBURGER) -->
+        <button 
+          id="mobileRtlToggle" 
+          type="button" 
+          class="btn-tool flex items-center justify-center gap-2 py-2 px-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-brand-500 text-xs font-bold shadow-sm focus:outline-none relative group"
+        >
+          <i class="fa-solid fa-right-left text-brand-500 text-[11px]"></i>
+          <span id="mobileRtlLabel" class="text-[11px]">RTL View</span>
+          <span id="mobileRtlIndicator" class="hidden w-1.5 h-1.5 rounded-full bg-brand-500 absolute top-1.5 right-1.5"></span>
+        </button>
+
+      </div>
+
+      <!-- LOGIN BUTTON CTA INSIDE HAMBURGER -->
+      <a 
+        href="login.html" 
+        class="btn-sheen mobile-nav-link w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg font-bold text-xs uppercase tracking-wider text-white bg-gradient-to-r from-brand-500 via-brand-600 to-orange-600 hover:from-brand-600 hover:to-orange-700 shadow-playful active:scale-95 transition-all text-center"
+      >
+        <i class="fa-solid fa-arrow-right-to-bracket text-xs"></i>
+        <span>Login to Account</span>
+      </a>
+
+    </div>
+  </aside>
+
+  <!-- ========================================================
+       MAIN CONTENT: PLAYLOOP SUBSCRIPTION TIERS & ROTATION ARCHITECTURE
+       7 COMPREHENSIVE SECTIONS COVERING:
+       1. Monthly Toy Rotation & Cadence Engine (Hero)
+       2. The 4 Signature Membership Tiers & Pricing
+       3. Forensic Plan Comparison Matrix
+       4. Early Swap Eligibility & Rotation Freedom Protocol
+       5. Comprehensive Subscription Benefits (The Circular Advantage)
+       6. Intelligent Family Plan Matcher & Cost Calculator
+       7. Zero-Risk Wonder Pledge & Membership Enrollment Hub
+       ======================================================== -->
+  <main id="plansContent" class="flex-1 w-full relative z-10 space-y-24 sm:space-y-32 pt-24 sm:pt-28 pb-24 max-w-[1550px] mx-auto px-4 sm:px-6 lg:px-8 overflow-x-clip">
+
+    <!-- ========================================================
+         SECTION 1: THE CADENCE ENGINE & MONTHLY TOY ROTATION HUB
+         Features: Rotation Rhythm Explorer, 4-Stage Trajectory & Hero Showcase
+         ======================================================== -->
+    <section id="planRotationHero" class="relative pt-2 sm:pt-6 scroll-mt-24">
+      
+      <!-- Ambient Glow Spot -->
+      <div class="absolute -top-12 start-1/2 -translate-x-1/2 w-full max-w-4xl h-80 bg-gradient-to-b from-[#C9A96E]/15 via-[#8FA99A]/10 to-transparent blur-3xl pointer-events-none -z-10" aria-hidden="true"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        
+        <!-- Left Column: Value Proposition & Interactive Cadence Engine (7 cols) -->
+        <div class="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-start">
+          
+          <!-- Category Intake Badge -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#172033]/5 dark:bg-white/10 border border-[#C9A96E]/30 text-slate-800 dark:text-[#F8F5EF] text-xs font-extrabold uppercase tracking-wider backdrop-blur-md shadow-sm mx-auto lg:mx-0">
+            <span class="rounded-full bg-[#C9A96E] text-[#172033]" style="width: 20px !important; height: 20px !important; min-width: 20px !important; max-width: 20px !important; min-height: 20px !important; max-height: 20px !important; flex: 0 0 20px !important; flex-shrink: 0 !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; box-sizing: border-box !important;">
+              <i class="fa-solid fa-arrows-spin text-[10px]"></i>
+            </span>
+            <span>Rotation Architecture • Circular Toy Access • Zero Home Clutter</span>
+          </div>
+
+          <!-- Headline -->
+          <div class="space-y-3 sm:space-y-4">
+            <h1 class="font-brand text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-[#F8F5EF] leading-[1.12]">
+              The Rotation Architecture. <br class="hidden sm:inline" />
+              <span class="bg-gradient-to-r from-[#C9A96E] via-[#8FA99A] to-[#D8A7A0] bg-clip-text text-transparent">
+                Heirloom Play Calibrated To Your Rhythm.
+              </span>
+            </h1>
+            <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              Never buy a plastic toy destined for the landfill again. PlayLoop delivers pediatrician-curated European beechwood playsets directly to your doorstep on a continuous, joyful rotation rhythm. Keep the wonder fresh, swap anytime, and reclaim 45 cubic feet of playroom clutter.
+            </p>
+          </div>
+
+          <!-- Rotation Cadence Quick Selector -->
+          <div class="p-4 sm:p-5 rounded-3xl bg-white/90 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/30 shadow-xl backdrop-blur-xl space-y-4 max-w-2xl mx-auto lg:mx-0 text-start">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-[#C9A96E] flex items-center gap-1.5">
+                <i class="fa-solid fa-gauge-simple-high"></i>
+                <span>Choose Your Preferred Rotation Cadence:</span>
+              </span>
+              <span class="text-[11px] font-bold text-slate-400" id="cadenceNotice">All plans include free 2-way delivery</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" id="rotationCadencePills">
+              <button type="button" class="cadence-pill p-3 rounded-2xl border text-xs font-bold transition-all text-start border-[#C9A96E] bg-[#C9A96E]/10 text-slate-900 dark:text-[#F8F5EF]" data-cadence="monthly">
+                <div class="flex items-center gap-1.5 mb-1 text-[#C9A96E]">
+                  <i class="fa-solid fa-calendar-days text-xs"></i>
+                  <span class="font-extrabold">Monthly Orbit</span>
+                </div>
+                <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Every 30 Days</span>
+                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-extrabold mt-0.5 block">Recommended</span>
+              </button>
+
+              <button type="button" class="cadence-pill p-3 rounded-2xl border text-xs font-bold transition-all text-start border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#0c111c] text-slate-700 dark:text-slate-300 hover:border-[#C9A96E]" data-cadence="bimonthly">
+                <div class="flex items-center gap-1.5 mb-1 text-[#8FA99A]">
+                  <i class="fa-solid fa-hourglass-half text-xs"></i>
+                  <span class="font-extrabold">Deep Immersion</span>
+                </div>
+                <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Every 60 Days</span>
+                <span class="text-[10px] text-slate-400 font-bold mt-0.5 block">Toddler Favorites</span>
+              </button>
+
+              <button type="button" class="cadence-pill p-3 rounded-2xl border text-xs font-bold transition-all text-start border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#0c111c] text-slate-700 dark:text-slate-300 hover:border-[#C9A96E]" data-cadence="express">
+                <div class="flex items-center gap-1.5 mb-1 text-[#D8A7A0]">
+                  <i class="fa-solid fa-bolt text-xs"></i>
+                  <span class="font-extrabold">Express Sprints</span>
+                </div>
+                <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Every 14–21 Days</span>
+                <span class="text-[10px] text-purple-500 font-bold mt-0.5 block">High-Energy Minds</span>
+              </button>
+            </div>
+
+            <!-- Dynamic Trajectory Description -->
+            <div class="p-3 rounded-2xl bg-slate-50 dark:bg-[#0c111c]/60 border border-slate-200/60 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 flex items-center gap-3">
+              <span class="w-7 h-7 rounded-xl bg-[#8FA99A]/20 text-[#8FA99A] flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-recycle text-xs"></i>
+              </span>
+              <p id="cadenceExplanation" class="text-[11px] leading-relaxed">
+                <strong class="text-slate-900 dark:text-[#F8F5EF]">Monthly Orbit:</strong> Your curated tote arrives on the 1st of every month. Your child enjoys 30 days of deep cognitive play before you exchange for a brand-new milestone collection with zero overlap gaps.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Hero Value Metric Pillars -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 max-w-2xl mx-auto lg:mx-0">
+            <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/80 dark:bg-[#172033]/80 border border-slate-200/80 dark:border-slate-800 backdrop-blur-sm shadow-sm text-start">
+              <span class="rounded-xl bg-[#8FA99A]/20 text-[#8FA99A] flex items-center justify-center flex-shrink-0" style="width: 34px; height: 34px;">
+                <i class="fa-solid fa-boxes-packing text-sm"></i>
+              </span>
+              <div>
+                <span class="text-xs font-bold text-slate-900 dark:text-[#F8F5EF] block">60+ Toys / Year</span>
+                <span class="text-[10px] text-slate-500 dark:text-slate-400">Priced from $1/day</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/80 dark:bg-[#172033]/80 border border-slate-200/80 dark:border-slate-800 backdrop-blur-sm shadow-sm text-start">
+              <span class="rounded-xl bg-[#C9A96E]/20 text-[#C9A96E] flex items-center justify-center flex-shrink-0" style="width: 34px; height: 34px;">
+                <i class="fa-solid fa-clock-rotate-left text-sm"></i>
+              </span>
+              <div>
+                <span class="text-xs font-bold text-slate-900 dark:text-[#F8F5EF] block">Early Swap Privileges</span>
+                <span class="text-[10px] text-slate-500 dark:text-slate-400">Never stuck with bored toys</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/80 dark:bg-[#172033]/80 border border-slate-200/80 dark:border-slate-800 backdrop-blur-sm shadow-sm text-start">
+              <span class="rounded-xl bg-[#D8A7A0]/20 text-[#D8A7A0] flex items-center justify-center flex-shrink-0" style="width: 34px; height: 34px;">
+                <i class="fa-solid fa-shield-heart text-sm"></i>
+              </span>
+              <div>
+                <span class="text-xs font-bold text-slate-900 dark:text-[#F8F5EF] block">Free "Oops!" Waiver</span>
+                <span class="text-[10px] text-slate-500 dark:text-slate-400">Zero wear & tear fees</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Hero Visual Card (5 cols) -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-white/40 dark:border-[#C9A96E]/30 group">
+              <img 
+                src="images/plan_hero_rotation.jpg" 
+                alt="PlayLoop Family Monthly Toy Rotation Unboxing Moment" 
+                class="w-full h-80 sm:h-[430px] object-cover group-hover:scale-105 transition-transform duration-700" 
+                loading="eager"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#172033]/90 via-[#172033]/30 to-transparent"></div>
+
+              <!-- Floating Pill: Rotation Status -->
+              <div class="absolute top-4 start-4 px-3.5 py-2 rounded-2xl bg-[#172033]/90 backdrop-blur-md text-white border border-white/20 shadow-lg flex items-center gap-2.5">
+                <span class="rounded-full bg-emerald-500 text-white flex items-center justify-center flex-shrink-0" style="width: 18px; height: 18px;">
+                  <i class="fa-solid fa-check text-[10px]"></i>
+                </span>
+                <span class="text-xs font-extrabold tracking-wide">Monthly Doorstep Swap Active</span>
+              </div>
+
+              <!-- Floating Pill: Certified Hardwood -->
+              <div class="absolute top-4 end-4 px-3 py-1.5 rounded-xl bg-amber-500/90 backdrop-blur-md text-slate-900 text-[11px] font-extrabold tracking-wider uppercase flex items-center gap-1.5 shadow-md">
+                <i class="fa-solid fa-tree"></i>
+                <span>100% FSC Beechwood</span>
+              </div>
+
+              <!-- Bottom Content Overlay -->
+              <div class="absolute bottom-4 inset-x-4 p-4 rounded-2xl bg-white/95 dark:bg-[#172033]/95 backdrop-blur-md border border-slate-200/80 dark:border-[#C9A96E]/20 space-y-2">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="font-extrabold text-[#C9A96E] uppercase tracking-wider">The Circular Loop</span>
+                  <span class="text-slate-500 dark:text-slate-400 font-bold"><i class="fa-solid fa-house-circle-check me-1 text-[#8FA99A]"></i> Doorstep Delivery</span>
+                </div>
+                <h3 class="font-brand font-bold text-base sm:text-lg text-slate-900 dark:text-[#F8F5EF]">
+                  Zero Overlap Days. Zero Empty Playrooms.
+                </h3>
+                <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2">
+                  Your new tote arrives before you return the old one. Your child never experiences a gap day without developmental stimulation.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================
+         SECTION 2: THE 4 CORE MEMBERSHIP TIERS & PLAN PRICING
+         Features: Billing Cadence Toggle (Save 20%), Basic, Standard, Premium & Hybrid
+         ======================================================== -->
+    <section id="planTiers" class="relative space-y-12 scroll-mt-24">
+      
+      <!-- Section Header with Animated Billing Toggle -->
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C9A96E]/15 text-[#8a6e38] dark:text-[#C9A96E] text-xs font-extrabold uppercase tracking-wider">
+          <i class="fa-solid fa-tags text-xs"></i>
+          <span>Transparent Membership Tiers</span>
+        </div>
+        <h2 class="font-brand text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-[#F8F5EF] tracking-tight">
+          Pick The Perfect Play Frequency
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          All plans include complimentary carbon-neutral two-way shipping, 5-stage sanitization, and full "Oops!" accident protection. Cancel or pause anytime in one tap.
+        </p>
+
+        <!-- Billing Cadence Toggle Switch -->
+        <div class="pt-4 flex items-center justify-center gap-4">
+          <span class="text-xs font-extrabold text-slate-700 dark:text-slate-200" id="labelMonthlyBilling">Monthly Billing</span>
+          <button 
+            type="button" 
+            id="billingToggleBtn" 
+            class="w-16 h-9 rounded-full bg-slate-200 dark:bg-slate-700 p-1 relative transition-colors duration-300 focus:outline-none"
+            aria-pressed="false"
+            aria-label="Toggle between monthly and annual billing"
+          >
+            <span id="billingToggleKnob" class="block w-7 h-7 rounded-full bg-[#C9A96E] shadow-md transform transition-transform duration-300 translate-x-0"></span>
+          </button>
+          <div class="flex items-center gap-1.5">
+            <span class="text-xs font-extrabold text-slate-500 dark:text-slate-400" id="labelAnnualBilling">Annual Billing</span>
+            <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-extrabold uppercase tracking-wide">
+              Save 20%
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 4 Membership Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch">
+        
+        <!-- ==============================================
+             TIER 1: BASIC PLAN ("THE DISCOVERY SCOUT")
+             ============================================== -->
+        <div class="plan-card rounded-3xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-slate-800 p-6 shadow-premium-card flex flex-col justify-between space-y-6 hover:border-[#C9A96E]/50 hover:-translate-y-1.5 transition-all duration-300 group h-full">
+          <div class="space-y-5">
+            
+            <!-- Tier Badge & Image Header -->
+            <div class="relative h-44 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800">
+              <img src="images/plan_tier_basic.jpg" alt="Basic Plan - Discovery Scout Heirloom Wooden Sensory Color Blocks" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="eager" />
+              <span class="absolute top-3 start-3 px-3 py-1 rounded-full bg-[#172033]/85 text-[#8FA99A] text-xs font-extrabold backdrop-blur-md">
+                Essential Play
+              </span>
+              <span class="absolute bottom-3 end-3 px-2.5 py-1 rounded-lg bg-white/90 dark:bg-black/80 text-[#172033] dark:text-[#F8F5EF] text-[11px] font-bold shadow">
+                Age 0–3 Years
+              </span>
+            </div>
+
+            <!-- Tier Identity -->
+            <div>
+              <div class="flex items-center justify-between text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">
+                <span>Basic Plan</span>
+                <span class="text-[#8FA99A]"><i class="fa-solid fa-cube me-1"></i> 3 Heirloom Toys</span>
+              </div>
+              <h3 class="font-brand font-bold text-2xl text-slate-900 dark:text-[#F8F5EF]">Discovery Scout</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                Curated for infants and minimalists. Delivers 3 essential sensory and motor milestone wooden toys every month.
+              </p>
+            </div>
+
+            <!-- Price Display -->
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex items-baseline gap-1">
+                <span class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-[#F8F5EF] plan-price" data-monthly="29" data-annual="23">$29</span>
+                <span class="text-xs font-bold text-slate-400 plan-period">/ month</span>
+              </div>
+              <span class="text-[10px] text-slate-400 block mt-0.5 plan-billing-note">Billed monthly • Cancel anytime</span>
+            </div>
+
+            <!-- Quantitative Spec Matrix -->
+            <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-[#0c111c]/60 border border-slate-200/60 dark:border-slate-800 space-y-2 text-xs">
+              <div class="flex items-center justify-between">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">Included Toys:</span>
+                <span class="font-extrabold text-slate-900 dark:text-[#F8F5EF]">3 Items / Box</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">Rotation Cadence:</span>
+                <span class="font-extrabold text-slate-900 dark:text-[#F8F5EF]">Every 30 Days</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">Early Swap:</span>
+                <span class="font-extrabold text-[#8FA99A]">Standard (30d)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">Box Retail Value:</span>
+                <span class="font-extrabold text-[#C9A96E]">~$180 Worth</span>
+              </div>
+            </div>
+
+            <!-- Feature Bullet List -->
+            <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-emerald-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <span>Hospital-grade 5-stage sanitization</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-emerald-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <span>Free 2-way doorstep shipping tote</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-emerald-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <span>Standard "Oops!" loss protection</span>
+              </li>
+              <li class="flex items-start gap-2 text-slate-400 dark:text-slate-600">
+                <i class="fa-solid fa-xmark text-slate-300 dark:text-slate-700 text-xs mt-0.5 flex-shrink-0"></i>
+                <span>Mid-cycle early swap eligibility</span>
+              </li>
+            </ul>
+
+          </div>
+
+          <!-- CTA Button -->
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <a href="#checkout" class="w-full py-3 px-4 rounded-2xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-[#F8F5EF] hover:bg-[#C9A96E] hover:text-[#172033] transition-all flex items-center justify-center gap-2 shadow-sm">
+              <span>Choose Discovery Scout</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- ==============================================
+             TIER 2: STANDARD PLAN ("THE DEVELOPMENTAL JOURNEY")
+             *MOST POPULAR FEATURED CARD*
+             ============================================== -->
+        <div class="plan-card rounded-3xl bg-white/95 dark:bg-[#172033]/90 border-2 border-[#C9A96E] p-6 shadow-2xl flex flex-col justify-between space-y-6 hover:-translate-y-2 transition-all duration-300 group relative h-full">
+          
+          <!-- Most Popular Ribbon -->
+          <div class="absolute -top-3.5 start-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#C9A96E] via-amber-500 to-[#b99455] text-[#172033] text-[11px] font-extrabold uppercase tracking-wider shadow-md whitespace-nowrap">
+            ★ Most Popular Choice
+          </div>
+
+          <div class="space-y-5 pt-1">
+            
+            <!-- Tier Badge & Image Header -->
+            <div class="relative h-44 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800">
+              <img src="images/plan_tier_standard.jpg" alt="Standard Plan - Developmental Voyager Interlocking Wooden Kinetic Gears" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="eager" />
+              <span class="absolute top-3 start-3 px-3 py-1 rounded-full bg-[#172033]/85 text-[#C9A96E] text-xs font-extrabold backdrop-blur-md">
+                Cognitive Growth
+              </span>
+              <span class="absolute bottom-3 end-3 px-2.5 py-1 rounded-lg bg-white/90 dark:bg-black/80 text-[#172033] dark:text-[#F8F5EF] text-[11px] font-bold shadow">
+                Age 1–6 Years
+              </span>
+            </div>
+
+            <!-- Tier Identity -->
+            <div>
+              <div class="flex items-center justify-between text-xs font-bold text-[#C9A96E] uppercase tracking-wider mb-1">
+                <span>Standard Plan</span>
+                <span class="text-amber-500 font-extrabold"><i class="fa-solid fa-cubes me-1"></i> 5 Milestone Toys</span>
+              </div>
+              <h3 class="font-brand font-bold text-2xl text-slate-900 dark:text-[#F8F5EF]">Developmental Journey</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                The gold standard for curious minds. 5 pediatric-vetted heirloom pieces calibrated to your child’s next developmental milestone.
+              </p>
+            </div>
+
+            <!-- Price Display -->
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex items-baseline gap-1">
+                <span class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-[#F8F5EF] plan-price" data-monthly="49" data-annual="39">$49</span>
+                <span class="text-xs font-bold text-slate-400 plan-period">/ month</span>
+              </div>
+              <span class="text-[10px] text-[#C9A96E] font-bold block mt-0.5 plan-billing-note">Billed monthly • Includes Early Swap</span>
+            </div>
+
+            <!-- Quantitative Spec Matrix -->
+            <div class="p-3.5 rounded-2xl bg-[#C9A96E]/10 border border-[#C9A96E]/30 space-y-2 text-xs">
+              <div class="flex items-center justify-between">
+                <span class="text-slate-600 dark:text-slate-300 font-medium">Included Toys:</span>
+                <span class="font-extrabold text-slate-900 dark:text-[#F8F5EF]">5 Items / Box</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-600 dark:text-slate-300 font-medium">Rotation Cadence:</span>
+                <span class="font-extrabold text-slate-900 dark:text-[#F8F5EF]">Every 30 Days</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-600 dark:text-slate-300 font-medium">Early Swap:</span>
+                <span class="font-extrabold text-emerald-600 dark:text-emerald-400">1 Free Swap / Mo</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-600 dark:text-slate-300 font-medium">Box Retail Value:</span>
+                <span class="font-extrabold text-[#C9A96E]">~$340 Worth</span>
+              </div>
+            </div>
+
+            <!-- Feature Bullet List -->
+            <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-circle-check text-emerald-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <span class="font-semibold text-slate-900 dark:text-white">1 Free early swap after 14 days</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-circle-check text-emerald-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <span>Printed Pediatric Milestone Guidebook</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-circle-check text-emerald-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <span>Full "Oops!" waiver: 100% loss/spill protection</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-circle-check text-emerald-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <span>20% Member Borrow-to-Buy discount</span>
+              </li>
+            </ul>
+
+          </div>
+
+          <!-- CTA Button -->
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <a href="#checkout" class="w-full py-3.5 px-4 rounded-2xl text-xs font-extrabold uppercase tracking-wider bg-gradient-to-r from-[#C9A96E] via-amber-500 to-[#b99455] text-[#172033] hover:brightness-110 shadow-lg hover:shadow-[#C9A96E]/30 transition-all flex items-center justify-center gap-2">
+              <span>Join Developmental Journey</span>
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- ==============================================
+             TIER 3: PREMIUM PLAN ("THE MASTER BUILDER STUDIO")
+             ============================================== -->
+        <div class="plan-card rounded-3xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-slate-800 p-6 shadow-premium-card flex flex-col justify-between space-y-6 hover:border-[#C9A96E]/50 hover:-translate-y-1.5 transition-all duration-300 group h-full">
+          <div class="space-y-5">
+            
+            <!-- Tier Badge & Image Header -->
+            <div class="relative h-44 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800">
+              <img src="images/plan_tier_premium.jpg" alt="Premium Plan - Master Builder Guild Architectural Castle and Engineering Sets" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="eager" />
+              <span class="absolute top-3 start-3 px-3 py-1 rounded-full bg-[#172033]/85 text-purple-400 text-xs font-extrabold backdrop-blur-md">
+                Architect & Gross Motor
+              </span>
+              <span class="absolute bottom-3 end-3 px-2.5 py-1 rounded-lg bg-white/90 dark:bg-black/80 text-[#172033] dark:text-[#F8F5EF] text-[11px] font-bold shadow">
+                Age 2–10 Years
+              </span>
+            </div>
+
+            <!-- Tier Identity -->
+            <div>
+              <div class="flex items-center justify-between text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">
+                <span>Premium Plan</span>
+                <span class="text-purple-500 font-extrabold"><i class="fa-solid fa-layer-group me-1"></i> 8 Toys + Large Sets</span>
+              </div>
+              <h3 class="font-brand font-bold text-2xl text-slate-900 dark:text-[#F8F5EF]">Master Builder</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                For active siblings and expansive playrooms. 8 heirloom toys plus access to oversize gross motor playsets (balance beams & wobble boards).
+              </p>
+            </div>
+
+            <!-- Price Display -->
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex items-baseline gap-1">
+                <span class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-[#F8F5EF] plan-price" data-monthly="79" data-annual="63">$79</span>
+                <span class="text-xs font-bold text-slate-400 plan-period">/ month</span>
+              </div>
+              <span class="text-[10px] text-slate-400 block mt-0.5 plan-billing-note">Billed monthly • Unlimited Swaps</span>
+            </div>
+
+            <!-- Quantitative Spec Matrix -->
+            <div class="p-3.5 rounded-2xl bg-purple-500/10 border border-purple-500/20 space-y-2 text-xs">
+              <div class="flex items-center justify-between">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">Included Toys:</span>
+                <span class="font-extrabold text-slate-900 dark:text-[#F8F5EF]">8 Items + Motor Set</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">Rotation Cadence:</span>
+                <span class="font-extrabold text-slate-900 dark:text-[#F8F5EF]">On Demand (Bi-Weekly)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">Early Swap:</span>
+                <span class="font-extrabold text-purple-600 dark:text-purple-400">Unlimited Free Swaps</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">Box Retail Value:</span>
+                <span class="font-extrabold text-[#C9A96E]">~$620 Worth</span>
+              </div>
+            </div>
+
+            <!-- Feature Bullet List -->
+            <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-purple-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <span>Unlimited early swaps whenever ready</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-purple-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <span>Sibling multi-age split box option</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-purple-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <span>Oversize toy vault: Wobble boards & Pikler arches</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-purple-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <span>Dedicated Family Play Concierge (WhatsApp)</span>
+              </li>
+            </ul>
+
+          </div>
+
+          <!-- CTA Button -->
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <a href="#checkout" class="w-full py-3 px-4 rounded-2xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-[#F8F5EF] hover:bg-[#C9A96E] hover:text-[#172033] transition-all flex items-center justify-center gap-2 shadow-sm">
+              <span>Choose Master Builder</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- ==============================================
+             TIER 4: TOY + ACTIVITY KIT PLAN ("THE ATELIER HYBRID")
+             *ALL-IN-ONE COMPLETE PLAY & CRAFT*
+             ============================================== -->
+        <div class="plan-card rounded-3xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#8FA99A]/40 p-6 shadow-premium-card flex flex-col justify-between space-y-6 hover:border-[#8FA99A] hover:-translate-y-1.5 transition-all duration-300 group h-full">
+          <div class="space-y-5">
+            
+            <!-- Tier Badge & Image Header -->
+            <div class="relative h-44 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800">
+              <img src="images/plan_tier_hybrid.jpg" alt="Toy plus Activity Kit Plan - Atelier Hybrid Box" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="eager" />
+              <span class="absolute top-3 start-3 px-3 py-1 rounded-full bg-[#172033]/85 text-[#8FA99A] text-xs font-extrabold backdrop-blur-md">
+                Toys + Activity Kits
+              </span>
+              <span class="absolute bottom-3 end-3 px-2.5 py-1 rounded-lg bg-white/90 dark:bg-black/80 text-[#172033] dark:text-[#F8F5EF] text-[11px] font-bold shadow">
+                Age 3–10 Years
+              </span>
+            </div>
+
+            <!-- Tier Identity -->
+            <div>
+              <div class="flex items-center justify-between text-xs font-bold text-[#8FA99A] uppercase tracking-wider mb-1">
+                <span>Toy + Activity Kit</span>
+                <span class="text-teal-600 font-extrabold"><i class="fa-solid fa-paintbrush me-1"></i> 4 Toys + 2 Art Kits</span>
+              </div>
+              <h3 class="font-brand font-bold text-2xl text-slate-900 dark:text-[#F8F5EF]">Atelier Hybrid</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                The ultimate hands-on subscription. 4 rotating heirloom toys + 2 pre-measured STEM or Art Activity Kits yours to keep forever!
+              </p>
+            </div>
+
+            <!-- Price Display -->
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex items-baseline gap-1">
+                <span class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-[#F8F5EF] plan-price" data-monthly="89" data-annual="71">$89</span>
+                <span class="text-xs font-bold text-slate-400 plan-period">/ month</span>
+              </div>
+              <span class="text-[10px] text-teal-600 font-bold block mt-0.5 plan-billing-note">Billed monthly • Keep the projects!</span>
+            </div>
+
+            <!-- Quantitative Spec Matrix -->
+            <div class="p-3.5 rounded-2xl bg-[#8FA99A]/10 border border-[#8FA99A]/30 space-y-2 text-xs">
+              <div class="flex items-center justify-between">
+                <span class="text-slate-600 dark:text-slate-300 font-medium">Included Toys:</span>
+                <span class="font-extrabold text-slate-900 dark:text-[#F8F5EF]">4 Toys + 2 Kits</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-600 dark:text-slate-300 font-medium">Rotation Cadence:</span>
+                <span class="font-extrabold text-slate-900 dark:text-[#F8F5EF]">Monthly Hybrid</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-600 dark:text-slate-300 font-medium">Keep vs Return:</span>
+                <span class="font-extrabold text-[#8FA99A]">Keep Finished Art!</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-600 dark:text-slate-300 font-medium">Total Box Value:</span>
+                <span class="font-extrabold text-[#C9A96E]">~$540 Worth</span>
+              </div>
+            </div>
+
+            <!-- Feature Bullet List -->
+            <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-circle-check text-teal-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <span class="font-semibold text-slate-900 dark:text-white">Keep all finished artwork, tapestries & crystals</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-circle-check text-teal-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <span>Pre-measured 100% non-toxic eco supplies</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-circle-check text-teal-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <span>Illustrated comic recipe guides & video QR codes</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-circle-check text-teal-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <span>Return durable tools only in prepaid satchel</span>
+              </li>
+            </ul>
+
+          </div>
+
+          <!-- CTA Button -->
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <a href="#checkout" class="w-full py-3 px-4 rounded-2xl text-xs font-bold bg-[#8FA99A] text-white hover:brightness-110 transition-all flex items-center justify-center gap-2 shadow-sm">
+              <span>Choose Atelier Hybrid</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================
+         SECTION 3: FORENSIC PLAN COMPARISON MATRIX
+         Features: Interactive Table with Filterable Detail Groups
+         ======================================================== -->
+    <section id="planComparison" class="relative space-y-8 scroll-mt-24">
+      
+      <!-- Section Header & Filter Pills -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200/80 dark:border-slate-800 pb-6">
+        <div class="space-y-2 max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#172033]/5 dark:bg-white/10 text-slate-800 dark:text-[#F8F5EF] text-xs font-extrabold uppercase tracking-wider">
+            <i class="fa-solid fa-table-cells text-[#C9A96E]"></i>
+            <span>Side-by-Side Evaluation</span>
+          </div>
+          <h2 class="font-brand text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-[#F8F5EF] tracking-tight">
+            Plan Comparison &amp; Specifications
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Compare included toy counts, early swap flexibility, and circular benefits across all four membership plans.
+          </p>
+        </div>
+
+        <!-- Filter category toggles for matrix -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none text-xs" id="matrixFilterTabs">
+          <button type="button" class="matrix-tab-btn px-3.5 py-2 rounded-xl font-bold transition-all bg-[#172033] text-[#F8F5EF] dark:bg-[#C9A96E] dark:text-[#172033]" data-group="all">
+            All Features
+          </button>
+          <button type="button" class="matrix-tab-btn px-3.5 py-2 rounded-xl font-bold transition-all bg-slate-100 dark:bg-[#0c111c] text-slate-600 dark:text-slate-300 hover:border-[#C9A96E] border border-transparent" data-group="logistics">
+            Inventory &amp; Swaps
+          </button>
+          <button type="button" class="matrix-tab-btn px-3.5 py-2 rounded-xl font-bold transition-all bg-slate-100 dark:bg-[#0c111c] text-slate-600 dark:text-slate-300 hover:border-[#C9A96E] border border-transparent" data-group="safety">
+            Protection &amp; Perks
+          </button>
+        </div>
+      </div>
+
+      <!-- Responsive Comparison Table -->
+      <div class="rounded-3xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 overflow-hidden shadow-2xl backdrop-blur-xl">
+        <div class="overflow-x-auto">
+          <table class="w-full text-start text-xs border-collapse">
+            
+            <!-- Table Header -->
+            <thead>
+              <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50/90 dark:bg-[#0c111c]/80 text-slate-900 dark:text-[#F8F5EF]">
+                <th class="p-4 sm:p-5 text-start font-brand font-bold text-sm w-1/3 min-w-[200px]">
+                  Feature &amp; Policy
+                </th>
+                <th class="p-4 sm:p-5 text-center font-brand font-bold text-sm min-w-[140px]">
+                  <div>Discovery Scout</div>
+                  <div class="text-[11px] font-extrabold text-[#8FA99A] mt-0.5">$29/mo</div>
+                </th>
+                <th class="p-4 sm:p-5 text-center font-brand font-bold text-sm min-w-[150px] bg-[#C9A96E]/10 border-x border-[#C9A96E]/30">
+                  <div class="text-[#C9A96E]">Developmental</div>
+                  <div class="text-[11px] font-extrabold text-amber-500 mt-0.5">$49/mo ★</div>
+                </th>
+                <th class="p-4 sm:p-5 text-center font-brand font-bold text-sm min-w-[140px]">
+                  <div>Master Builder</div>
+                  <div class="text-[11px] font-extrabold text-purple-500 mt-0.5">$79/mo</div>
+                </th>
+                <th class="p-4 sm:p-5 text-center font-brand font-bold text-sm min-w-[150px]">
+                  <div>Atelier Hybrid</div>
+                  <div class="text-[11px] font-extrabold text-teal-500 mt-0.5">$89/mo</div>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium">
+              
+              <!-- GROUP 1: INVENTORY & LOGISTICS -->
+              <tr class="matrix-row bg-slate-100/60 dark:bg-slate-800/40 text-slate-800 dark:text-slate-200 font-bold" data-group="logistics">
+                <td colspan="5" class="px-5 py-2.5 uppercase tracking-wider text-[10px] text-slate-500 dark:text-slate-400">
+                  <i class="fa-solid fa-boxes-stacked me-1.5 text-[#C9A96E]"></i> Included Toy Quantity &amp; Rotation Rhythm
+                </td>
+              </tr>
+              <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="logistics">
+                <td class="p-4 sm:p-5 font-bold text-slate-900 dark:text-[#F8F5EF]">
+                  Included Toy Quantity
+                  <span class="block text-[11px] text-slate-400 font-normal mt-0.5">Number of curated developmental toys per tote</span>
+                </td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-slate-800 dark:text-slate-200">3 Heirloom Toys</td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-slate-900 dark:text-white bg-[#C9A96E]/5 border-x border-[#C9A96E]/20">5 Milestone Toys</td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-slate-800 dark:text-slate-200">8 Heirloom Toys</td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-teal-600 dark:text-teal-400">4 Toys + 2 Art Kits</td>
+              </tr>
+              <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="logistics">
+                <td class="p-4 sm:p-5 font-bold text-slate-900 dark:text-[#F8F5EF]">
+                  Rotation Frequency
+                  <span class="block text-[11px] text-slate-400 font-normal mt-0.5">Standard doorstep delivery &amp; exchange cycle</span>
+                </td>
+                <td class="p-4 sm:p-5 text-center text-slate-700 dark:text-slate-300">Every 30 Days</td>
+                <td class="p-4 sm:p-5 text-center font-bold text-slate-900 dark:text-white bg-[#C9A96E]/5 border-x border-[#C9A96E]/20">Every 30 Days (Flexible)</td>
+                <td class="p-4 sm:p-5 text-center font-bold text-purple-600 dark:text-purple-400">Bi-Weekly on Demand</td>
+                <td class="p-4 sm:p-5 text-center text-slate-700 dark:text-slate-300">Monthly Hybrid Cycle</td>
+              </tr>
+              <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="logistics">
+                <td class="p-4 sm:p-5 font-bold text-slate-900 dark:text-[#F8F5EF]">
+                  Average Retail Value in Box
+                  <span class="block text-[11px] text-slate-400 font-normal mt-0.5">Value of heirloom pieces if purchased at retail</span>
+                </td>
+                <td class="p-4 sm:p-5 text-center text-slate-600 dark:text-slate-400">~$180</td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-[#C9A96E] bg-[#C9A96E]/5 border-x border-[#C9A96E]/20">~$340</td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-purple-500">~$620</td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-teal-500">~$540</td>
+              </tr>
+              <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="logistics">
+                <td class="p-4 sm:p-5 font-bold text-slate-900 dark:text-[#F8F5EF]">
+                  Doorstep Reusable Tote &amp; 2-Way Shipping
+                  <span class="block text-[11px] text-slate-400 font-normal mt-0.5">Zero cardboard boxes, carbon-neutral carrier</span>
+                </td>
+                <td class="p-4 sm:p-5 text-center text-emerald-500"><i class="fa-solid fa-check"></i> Included</td>
+                <td class="p-4 sm:p-5 text-center text-emerald-500 bg-[#C9A96E]/5 border-x border-[#C9A96E]/20"><i class="fa-solid fa-check"></i> Included</td>
+                <td class="p-4 sm:p-5 text-center text-emerald-500"><i class="fa-solid fa-check"></i> Priority Routing</td>
+                <td class="p-4 sm:p-5 text-center text-emerald-500"><i class="fa-solid fa-check"></i> Included</td>
+              </tr>
+
+              <!-- GROUP 2: EARLY SWAP & FLEXIBILITY -->
+              <tr class="matrix-row bg-slate-100/60 dark:bg-slate-800/40 text-slate-800 dark:text-slate-200 font-bold" data-group="logistics">
+                <td colspan="5" class="px-5 py-2.5 uppercase tracking-wider text-[10px] text-slate-500 dark:text-slate-400">
+                  <i class="fa-solid fa-arrows-rotate me-1.5 text-[#8FA99A]"></i> Early Swap Eligibility &amp; Flexibility
+                </td>
+              </tr>
+              <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="logistics">
+                <td class="p-4 sm:p-5 font-bold text-slate-900 dark:text-[#F8F5EF]">
+                  Early Swap Eligibility Window
+                  <span class="block text-[11px] text-slate-400 font-normal mt-0.5">How soon you can request a fresh collection</span>
+                </td>
+                <td class="p-4 sm:p-5 text-center text-slate-500 dark:text-slate-400">Standard 30 Days</td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-emerald-600 dark:text-emerald-400 bg-[#C9A96E]/5 border-x border-[#C9A96E]/20">14 Days (1 Free/Mo)</td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-purple-600 dark:text-purple-400">Unlimited on Demand</td>
+                <td class="p-4 sm:p-5 text-center font-bold text-slate-900 dark:text-white">14 Days (1 Free/Mo)</td>
+              </tr>
+              <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="logistics">
+                <td class="p-4 sm:p-5 font-bold text-slate-900 dark:text-[#F8F5EF]">
+                  7-Day "Boredom Guarantee" Swap
+                  <span class="block text-[11px] text-slate-400 font-normal mt-0.5">If child doesn't engage, immediate replacement</span>
+                </td>
+                <td class="p-4 sm:p-5 text-center text-slate-400">$10 courier fee</td>
+                <td class="p-4 sm:p-5 text-center text-emerald-500 font-bold bg-[#C9A96E]/5 border-x border-[#C9A96E]/20"><i class="fa-solid fa-check"></i> Free Guarantee</td>
+                <td class="p-4 sm:p-5 text-center text-emerald-500 font-bold"><i class="fa-solid fa-check"></i> Free Guarantee</td>
+                <td class="p-4 sm:p-5 text-center text-emerald-500 font-bold"><i class="fa-solid fa-check"></i> Free Guarantee</td>
+              </tr>
+              <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="logistics">
+                <td class="p-4 sm:p-5 font-bold text-slate-900 dark:text-[#F8F5EF]">
+                  Vacation Pause / Hold Window
+                  <span class="block text-[11px] text-slate-400 font-normal mt-0.5">Pause payments when traveling with 1 click</span>
+                </td>
+                <td class="p-4 sm:p-5 text-center text-slate-700 dark:text-slate-300">Up to 30 Days</td>
+                <td class="p-4 sm:p-5 text-center font-bold text-slate-900 dark:text-white bg-[#C9A96E]/5 border-x border-[#C9A96E]/20">Up to 60 Days</td>
+                <td class="p-4 sm:p-5 text-center font-bold text-purple-600 dark:text-purple-400">Up to 90 Days</td>
+                <td class="p-4 sm:p-5 text-center font-bold text-teal-600 dark:text-teal-400">Up to 90 Days</td>
+              </tr>
+              <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="logistics">
+                <td class="p-4 sm:p-5 font-bold text-slate-900 dark:text-[#F8F5EF]">
+                  Borrow-to-Buy Member Discount
+                  <span class="block text-[11px] text-slate-400 font-normal mt-0.5">Keep emotional favorites at exclusive below-retail pricing</span>
+                </td>
+                <td class="p-4 sm:p-5 text-center text-slate-700 dark:text-slate-300">15% Off Retail</td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-[#C9A96E] bg-[#C9A96E]/5 border-x border-[#C9A96E]/20">25% Off Retail</td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-purple-500">35% Off Retail</td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-teal-500">30% Off Retail</td>
+              </tr>
+
+              <!-- GROUP 3: PROTECTION & SUBSCRIPTION BENEFITS -->
+              <tr class="matrix-row bg-slate-100/60 dark:bg-slate-800/40 text-slate-800 dark:text-slate-200 font-bold" data-group="safety">
+                <td colspan="5" class="px-5 py-2.5 uppercase tracking-wider text-[10px] text-slate-500 dark:text-slate-400">
+                  <i class="fa-solid fa-shield-heart me-1.5 text-rose-500"></i> Protection &amp; Pedagogical Benefits
+                </td>
+              </tr>
+              <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="safety">
+                <td class="p-4 sm:p-5 font-bold text-slate-900 dark:text-[#F8F5EF]">
+                  100% "Oops!" Accident &amp; Wear Waiver
+                  <span class="block text-[11px] text-slate-400 font-normal mt-0.5">Lost marble, chipped wood or spilled paint is completely free</span>
+                </td>
+                <td class="p-4 sm:p-5 text-center text-emerald-500 font-bold"><i class="fa-solid fa-check"></i> Covered</td>
+                <td class="p-4 sm:p-5 text-center text-emerald-500 font-bold bg-[#C9A96E]/5 border-x border-[#C9A96E]/20"><i class="fa-solid fa-check"></i> Covered</td>
+                <td class="p-4 sm:p-5 text-center text-emerald-500 font-bold"><i class="fa-solid fa-check"></i> Covered</td>
+                <td class="p-4 sm:p-5 text-center text-emerald-500 font-bold"><i class="fa-solid fa-check"></i> Covered</td>
+              </tr>
+              <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="safety">
+                <td class="p-4 sm:p-5 font-bold text-slate-900 dark:text-[#F8F5EF]">
+                  Pediatric Milestone Development Guide
+                  <span class="block text-[11px] text-slate-400 font-normal mt-0.5">Occupational therapist prompts for parent-led play</span>
+                </td>
+                <td class="p-4 sm:p-5 text-center text-slate-500 dark:text-slate-400">Digital PDF</td>
+                <td class="p-4 sm:p-5 text-center font-bold text-slate-900 dark:text-white bg-[#C9A96E]/5 border-x border-[#C9A96E]/20">Printed Color Guide</td>
+                <td class="p-4 sm:p-5 text-center font-bold text-slate-900 dark:text-white">Printed + Video Links</td>
+                <td class="p-4 sm:p-5 text-center font-bold text-teal-600 dark:text-teal-400">Full Comic Recipe Books</td>
+              </tr>
+              <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="safety">
+                <td class="p-4 sm:p-5 font-bold text-slate-900 dark:text-[#F8F5EF]">
+                  Consumable Project Kits (Yours to Keep Forever)
+                  <span class="block text-[11px] text-slate-400 font-normal mt-0.5">Pre-measured organic art, science &amp; craft projects</span>
+                </td>
+                <td class="p-4 sm:p-5 text-center text-slate-400">&mdash;</td>
+                <td class="p-4 sm:p-5 text-center text-slate-400 bg-[#C9A96E]/5 border-x border-[#C9A96E]/20">Optional Add-On ($18)</td>
+                <td class="p-4 sm:p-5 text-center text-slate-400">Optional Add-On ($15)</td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-teal-500">2 Complete Kits / Mo</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================
+         SECTION 4: EARLY SWAP ELIGIBILITY & ROTATION FREEDOM PROTOCOL
+         Features: The 3 Flexibility Rules & Doorstep Hand-off Demonstration
+         ======================================================== -->
+    <section id="earlySwapProtocol" class="relative rounded-3xl p-6 sm:p-10 lg:p-12 bg-slate-50/70 dark:bg-[#0c111c]/60 border border-slate-200/80 dark:border-slate-800/80 space-y-10 scroll-mt-24">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8FA99A]/15 text-[#8FA99A] text-xs font-extrabold uppercase tracking-wider">
+          <i class="fa-solid fa-arrows-split-up-and-left text-xs"></i>
+          <span>Swap Flexibility Concierge</span>
+        </div>
+        <h2 class="font-brand text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-[#F8F5EF] tracking-tight">
+          Early Swap Eligibility: Never Stuck With Bored Toys
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          Every child's learning pace is unique. Our Early Swap Protocol ensures you never pay for toys your child has already mastered.
+        </p>
+      </div>
+
+      <!-- 2-Column Split: Rules & Interactive Visual Demonstration -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left: 3 Core Swap Freedom Rules (7 cols) -->
+        <div class="lg:col-span-7 space-y-4">
+          
+          <!-- Rule 1: The 7-Day Boredom Guarantee -->
+          <div class="p-5 rounded-2xl bg-white/90 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/25 shadow-sm space-y-2">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-xl bg-[#C9A96E]/20 text-[#C9A96E] font-extrabold text-xs flex items-center justify-center flex-shrink-0">
+                1
+              </span>
+              <h3 class="font-brand font-bold text-base text-slate-900 dark:text-[#F8F5EF]">
+                The 7-Day "Boredom Guarantee"
+              </h3>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed ps-11">
+              If your child opens a box and doesn't connect with a toy within the first 7 days, trigger an instant replacement in your member dashboard. We dispatch an alternative curated collection immediately with zero penalty fees.
+            </p>
+          </div>
+
+          <!-- Rule 2: 14-Day Growth Sprints -->
+          <div class="p-5 rounded-2xl bg-white/90 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/25 shadow-sm space-y-2">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-xl bg-[#8FA99A]/20 text-[#8FA99A] font-extrabold text-xs flex items-center justify-center flex-shrink-0">
+                2
+              </span>
+              <h3 class="font-brand font-bold text-base text-slate-900 dark:text-[#F8F5EF]">
+                Mid-Cycle Accelerated Rotation (14 Days)
+              </h3>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed ps-11">
+              Standard, Premium, and Hybrid plan members unlock free early rotation eligibility after just 14 days of receipt. Perfect for fast learners and developmental milestones leaps.
+            </p>
+          </div>
+
+          <!-- Rule 3: Zero-Gap Doorstep Exchange -->
+          <div class="p-5 rounded-2xl bg-white/90 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/25 shadow-sm space-y-2">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-xl bg-[#D8A7A0]/20 text-[#D8A7A0] font-extrabold text-xs flex items-center justify-center flex-shrink-0">
+                3
+              </span>
+              <h3 class="font-brand font-bold text-base text-slate-900 dark:text-[#F8F5EF]">
+                Zero-Gap Doorstep Delivery Satchel
+              </h3>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed ps-11">
+              You never have a day without toys! The new tote arrives at your doorstep first. Unpack the fresh heirloom toys, place the previous collection in the prepaid canvas tote, and hand it back to the courier at your door.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Right: Early Swap Visual Showcase Card (5 cols) -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-white/40 dark:border-[#C9A96E]/30 group">
+              <img 
+                src="images/plan_swap_concierge.jpg" 
+                alt="PlayLoop Early Swap Doorstep Hand-off Concierge" 
+                class="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500" 
+                loading="eager"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#172033]/90 via-[#172033]/30 to-transparent"></div>
+              
+              <!-- Swap Status Card Overlay -->
+              <div class="absolute bottom-4 inset-x-4 p-4 rounded-2xl bg-white/95 dark:bg-[#172033]/95 backdrop-blur-md border border-slate-200/80 dark:border-[#C9A96E]/20 space-y-2">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                    <i class="fa-solid fa-circle-check"></i> Eligible for Early Swap
+                  </span>
+                  <span class="text-slate-400 font-bold">Day 16 of 30</span>
+                </div>
+                <h4 class="font-brand font-bold text-sm sm:text-base text-slate-900 dark:text-[#F8F5EF]">
+                  1-Tap Doorstep Exchange Triggered
+                </h4>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                  New collection scheduled for Tuesday delivery. Zero extra shipping fees.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================
+         SECTION 5: THE CIRCULAR ADVANTAGE: SUBSCRIPTION BENEFITS
+         Features: 6-Card Bento Grid highlighting Hospital Sanitization,
+                   "Oops!" Waiver, Clutter Elimination & Cost Savings
+         ======================================================== -->
+    <section id="subscriptionBenefits" class="relative space-y-10 scroll-mt-24">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C9A96E]/15 text-[#8a6e38] dark:text-[#C9A96E] text-xs font-extrabold uppercase tracking-wider">
+          <i class="fa-solid fa-crown text-xs"></i>
+          <span>Member Privileges</span>
+        </div>
+        <h2 class="font-brand text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-[#F8F5EF] tracking-tight">
+          Comprehensive Subscription Benefits
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          Everything included in your PlayLoop membership to make family life calmer, greener, and filled with wonder.
+        </p>
+      </div>
+
+      <!-- 6-Card Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Benefit 1: Hospital-Grade Hygiene -->
+        <div class="p-6 rounded-3xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 shadow-premium-card space-y-4 hover:border-[#C9A96E]/60 transition-all group flex flex-col justify-between h-full">
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-2xl bg-[#8FA99A]/20 text-[#8FA99A] flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-hand-sparkles"></i>
+            </div>
+            <h3 class="font-brand font-bold text-lg text-slate-900 dark:text-[#F8F5EF]">
+              Hospital-Grade 5-Stage Hygiene
+            </h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Every toy undergoes ultrasonic high-frequency cleaning, organic plant enzyme sanitization, UV-C sterilizer chambers, and vacuum sealing before being certified clean.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-bold text-[#8FA99A] flex items-center gap-1.5">
+            <i class="fa-solid fa-microscope text-xs"></i>
+            <span>99.99% Pathogen &amp; Toxin Free</span>
+          </div>
+        </div>
+
+        <!-- Benefit 2: Free "Oops!" Waiver -->
+        <div class="p-6 rounded-3xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 shadow-premium-card space-y-4 hover:border-[#C9A96E]/60 transition-all group flex flex-col justify-between h-full">
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-2xl bg-[#C9A96E]/20 text-[#C9A96E] flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-shield-heart"></i>
+            </div>
+            <h3 class="font-brand font-bold text-lg text-slate-900 dark:text-[#F8F5EF]">
+              100% "Oops!" Accident Protection
+            </h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Children play vigorously! Lost a puzzle peg under the sofa? Wooden block dinged during a castle tumble? You are never charged penalty or replacement fees. Ever.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-bold text-[#C9A96E] flex items-center gap-1.5">
+            <i class="fa-solid fa-heart text-xs"></i>
+            <span>Zero-Stress Parenting Guarantee</span>
+          </div>
+        </div>
+
+        <!-- Benefit 3: Reclaim 45 cu. ft. of Home Clutter -->
+        <div class="p-6 rounded-3xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 shadow-premium-card space-y-4 hover:border-[#C9A96E]/60 transition-all group flex flex-col justify-between h-full">
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-2xl bg-[#D8A7A0]/20 text-[#D8A7A0] flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-house-chimney-window"></i>
+            </div>
+            <h3 class="font-brand font-bold text-lg text-slate-900 dark:text-[#F8F5EF]">
+              Reclaim 45 cu. ft. of Clutter
+            </h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              End the overflowing plastic toy bins. Experience the peaceful Scandinavian aesthetic of having just 3 to 8 beautifully crafted pieces active at any time.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-bold text-[#D8A7A0] flex items-center gap-1.5">
+            <i class="fa-solid fa-spa text-xs"></i>
+            <span>Calm Living Room Environment</span>
+          </div>
+        </div>
+
+        <!-- Benefit 4: Pediatric Milestone Playbook -->
+        <div class="p-6 rounded-3xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 shadow-premium-card space-y-4 hover:border-[#C9A96E]/60 transition-all group flex flex-col justify-between h-full">
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-500 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-book-open-reader"></i>
+            </div>
+            <h3 class="font-brand font-bold text-lg text-slate-900 dark:text-[#F8F5EF]">
+              Pediatric Milestone Guidance
+            </h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Written by occupational therapists, each box includes illustrated milestone guides with 15+ developmental activities and critical inquiry prompts for parents.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-bold text-amber-500 flex items-center gap-1.5">
+            <i class="fa-solid fa-graduation-cap text-xs"></i>
+            <span>Montessori &amp; Waldorf Aligned</span>
+          </div>
+        </div>
+
+        <!-- Benefit 5: Carbon-Neutral Doorstep Swaps -->
+        <div class="p-6 rounded-3xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 shadow-premium-card space-y-4 hover:border-[#C9A96E]/60 transition-all group flex flex-col justify-between h-full">
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-500 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-leaf"></i>
+            </div>
+            <h3 class="font-brand font-bold text-lg text-slate-900 dark:text-[#F8F5EF]">
+              100% Carbon-Neutral Shipping
+            </h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Delivered in washable organic cotton canvas satchels. Zero single-use plastic wrap, zero tape waste, and 100% electric delivery fleet routing.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-bold text-emerald-500 flex items-center gap-1.5">
+            <i class="fa-solid fa-earth-americas text-xs"></i>
+            <span>Closed-Loop Sustainable Transport</span>
+          </div>
+        </div>
+
+        <!-- Benefit 6: Borrow-to-Buy Discount -->
+        <div class="p-6 rounded-3xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 shadow-premium-card space-y-4 hover:border-[#C9A96E]/60 transition-all group flex flex-col justify-between h-full">
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-500 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-gift"></i>
+            </div>
+            <h3 class="font-brand font-bold text-lg text-slate-900 dark:text-[#F8F5EF]">
+              "Borrow-to-Buy" Love It Privilege
+            </h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              If your child creates an unforgettable emotional bond with an heirloom toy, keep it forever with member discounts up to 35% off retail price.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-bold text-purple-500 flex items-center gap-1.5">
+            <i class="fa-solid fa-tag text-xs"></i>
+            <span>Up to 35% Off Retail Price</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Visual Showcase Grid: Sustainable Circular Flow & Hospital-Grade Hygiene (Gemini Generated Assets) -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-6">
+        
+        <!-- Showcase 1: The Circular Toy Box Experience -->
+        <div class="rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 bg-white/95 dark:bg-[#172033]/90 shadow-xl group transition-all hover:border-[#C9A96E]/50">
+          <div class="relative h-64 sm:h-72 overflow-hidden">
+            <img 
+              src="images/plan_benefits_circular.jpg" 
+              alt="PlayLoop Curated Eco-Friendly Subscription Box Unboxing with Heirloom Wooden Toys" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#172033]/90 via-[#172033]/25 to-transparent"></div>
+            <div class="absolute bottom-4 start-4 end-4 text-white">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C9A96E]/90 text-[#172033] text-[11px] font-black uppercase tracking-wider mb-2 shadow-sm">
+                <i class="fa-solid fa-arrows-spin text-[10px]"></i>
+                Zero Plastic Footprint
+              </span>
+              <h4 class="font-brand font-extrabold text-lg sm:text-xl text-[#F8F5EF] leading-snug">
+                The Circular Unboxing Experience
+              </h4>
+            </div>
+          </div>
+          <div class="p-5 sm:p-6 space-y-2">
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Every month, your children unbox certified European beechwood arches, mechanical gears, shape sorters, and pediatric guidebooks packed cleanly inside reusable canvas satchels.
+            </p>
+          </div>
+        </div>
+
+        <!-- Showcase 2: Certified UV-C Sterilization Chamber -->
+        <div class="rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 bg-white/95 dark:bg-[#172033]/90 shadow-xl group transition-all hover:border-[#8FA99A]/50">
+          <div class="relative h-64 sm:h-72 overflow-hidden">
+            <img 
+              src="images/plan_hygiene_safety.jpg" 
+              alt="Safety First Labs Hospital-Grade UV-C Sterilization and Inspection Facility" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#172033]/90 via-[#172033]/25 to-transparent"></div>
+            <div class="absolute bottom-4 start-4 end-4 text-white">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#8FA99A]/90 text-[#172033] text-[11px] font-black uppercase tracking-wider mb-2 shadow-sm">
+                <i class="fa-solid fa-shield-virus text-[10px]"></i>
+                Certified Safety First Labs
+              </span>
+              <h4 class="font-brand font-extrabold text-lg sm:text-xl text-[#F8F5EF] leading-snug">
+                Hospital-Grade 5-Stage Sterilization Lab
+              </h4>
+            </div>
+          </div>
+          <div class="p-5 sm:p-6 space-y-2">
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Every single toy piece passes through high-intensity 254nm ultraviolet sterilization chambers, organic botanical conditioning, and optical micrometer wear checks before being sealed in airtight security pouches.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================
+         SECTION 6: INTELLIGENT FAMILY PLAN MATCHER & COST CALCULATOR
+         Features: Interactive Sliders, Live Annual Savings Calculator
+         ======================================================== -->
+    <section id="planCalculator" class="relative rounded-3xl pt-14 pb-8 px-4 sm:p-10 lg:p-12 bg-white/95 dark:bg-[#172033]/90 border-2 border-[#C9A96E]/40 shadow-2xl space-y-8 scroll-mt-28">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8FA99A]/15 text-[#8FA99A] text-xs font-extrabold uppercase tracking-wider">
+          <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
+          <span>Interactive Match Engine</span>
+        </div>
+        <h2 class="font-brand text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-[#F8F5EF] tracking-tight">
+          Find Your Family's Optimal Plan Match
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          Adjust your household variables below. Our algorithm calculates your exact heirloom toy exposure and net yearly family financial savings.
+        </p>
+      </div>
+
+      <!-- Calculator Controls & Result Card -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start lg:items-center pt-2">
+        
+        <!-- Controls Column (7 cols) -->
+        <div class="lg:col-span-7 space-y-6">
+          
+          <!-- Input 1: Number of Children -->
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between gap-2">
+              <label for="calcChildCount" class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                1. How many children in your household?
+              </label>
+              <span class="text-xs font-extrabold text-[#C9A96E] shrink-0 whitespace-nowrap px-2.5 py-0.5 rounded-full bg-[#C9A96E]/10 border border-[#C9A96E]/30" id="calcChildLabel">1 Child</span>
+            </div>
+            <div class="grid grid-cols-3 gap-2 sm:gap-3" id="calcChildButtons">
+              <button type="button" class="calc-child-btn py-2 px-1.5 rounded-xl border text-xs font-bold transition-all flex flex-col items-center justify-center min-h-[58px] text-center bg-[#C9A96E] text-[#172033] border-[#C9A96E]" data-val="1">
+                <span class="text-sm sm:text-base font-black leading-none mb-1">1</span>
+                <span class="text-[10px] sm:text-[11px] font-semibold opacity-90 leading-tight">Child</span>
+              </button>
+              <button type="button" class="calc-child-btn py-2 px-1.5 rounded-xl border text-xs font-bold transition-all flex flex-col items-center justify-center min-h-[58px] text-center bg-slate-100 dark:bg-[#0c111c] text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-[#C9A96E]" data-val="2">
+                <span class="text-sm sm:text-base font-black leading-none mb-1">2</span>
+                <span class="text-[10px] sm:text-[11px] font-semibold opacity-90 leading-tight">Siblings</span>
+              </button>
+              <button type="button" class="calc-child-btn py-2 px-1.5 rounded-xl border text-xs font-bold transition-all flex flex-col items-center justify-center min-h-[58px] text-center bg-slate-100 dark:bg-[#0c111c] text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-[#C9A96E]" data-val="3">
+                <span class="text-sm sm:text-base font-black leading-none mb-1">3+</span>
+                <span class="text-[10px] sm:text-[11px] font-semibold opacity-90 leading-tight">Family</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Input 2: Primary Age Group -->
+          <div class="space-y-2">
+            <label class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
+              2. Primary Developmental Age Band:
+            </label>
+            <select id="calcAgeSelect" class="w-full px-3.5 py-3 rounded-xl bg-slate-100 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none focus:border-[#C9A96E] transition-all">
+              <option value="infant">Infancy (0-2 Yrs) &mdash; Sensory &amp; Balance</option>
+              <option value="toddler" selected>Early Explorers (2-5 Yrs) &mdash; Fine Motor &amp; Play</option>
+              <option value="elementary">Elementary Makers (6-9+ Yrs) &mdash; STEM Logic</option>
+            </select>
+          </div>
+
+          <!-- Input 3: Play Focus Preference -->
+          <div class="space-y-2">
+            <label class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
+              3. Family Play Preference:
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="calcPreferenceButtons">
+              <button type="button" class="calc-pref-btn p-3 sm:p-3.5 rounded-xl border text-xs font-bold transition-all flex items-center gap-3 text-start border-[#C9A96E] bg-[#C9A96E]/10 text-slate-900 dark:text-[#F8F5EF]" data-pref="toys">
+                <div class="w-9 h-9 rounded-xl bg-[#C9A96E]/20 text-[#C9A96E] flex items-center justify-center shrink-0 text-sm">
+                  <i class="fa-solid fa-cubes"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <span class="block font-bold text-xs text-slate-900 dark:text-[#F8F5EF]">Pure Heirloom Toys Only</span>
+                  <span class="text-[10px] text-slate-500 dark:text-slate-400 block font-normal leading-tight mt-0.5">100% durable circular wooden pieces</span>
+                </div>
+              </button>
+
+              <button type="button" class="calc-pref-btn p-3 sm:p-3.5 rounded-xl border text-xs font-bold transition-all flex items-center gap-3 text-start border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-[#0c111c] text-slate-700 dark:text-slate-300 hover:border-[#C9A96E]" data-pref="hybrid">
+                <div class="w-9 h-9 rounded-xl bg-[#8FA99A]/20 text-[#8FA99A] flex items-center justify-center shrink-0 text-sm">
+                  <i class="fa-solid fa-paintbrush"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <span class="block font-bold text-xs text-slate-900 dark:text-[#F8F5EF]">Toys + Hands-On Activity Kits</span>
+                  <span class="text-[10px] text-slate-500 dark:text-slate-400 block font-normal leading-tight mt-0.5">Rental toys + art/science to keep</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Result Recommendation Card (5 cols) -->
+        <div class="lg:col-span-5 relative">
+          <div class="p-5 sm:p-7 rounded-3xl bg-gradient-to-br from-[#172033] to-[#0c111c] text-white border border-[#C9A96E]/40 shadow-2xl space-y-5">
+            
+            <div class="flex items-center justify-between gap-2 border-b border-white/10 pb-4">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-[#C9A96E]">Your Recommended Match:</span>
+              <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-extrabold shrink-0 whitespace-nowrap" id="calcMatchBadge">
+                Standard Plan
+              </span>
+            </div>
+
+            <!-- Dynamic Match Title & Plan Cost -->
+            <div>
+              <h3 class="font-brand font-bold text-xl sm:text-2xl text-white" id="calcPlanTitle">Developmental Journey</h3>
+              <div class="flex items-baseline gap-1.5 mt-1">
+                <span class="text-3xl sm:text-4xl font-extrabold text-[#C9A96E]" id="calcPlanPrice">$49</span>
+                <span class="text-xs text-slate-400">/ month</span>
+              </div>
+            </div>
+
+            <!-- Quantitative Output Metrics -->
+            <div class="space-y-2.5 text-xs">
+              <div class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10">
+                <span class="text-slate-300 text-[11px] sm:text-xs">Annual Toys Experienced:</span>
+                <span class="font-extrabold text-white text-[11px] sm:text-xs shrink-0 whitespace-nowrap" id="calcToysPerYear">60 Heirloom Toys</span>
+              </div>
+              <div class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10">
+                <span class="text-slate-300 text-[11px] sm:text-xs">Retail Value if Purchased:</span>
+                <span class="font-extrabold text-slate-300 line-through text-[11px] sm:text-xs shrink-0 whitespace-nowrap" id="calcRetailValue">$4,080 / yr</span>
+              </div>
+              <div class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300">
+                <span class="font-bold text-[11px] sm:text-xs">Your Annual Family Savings:</span>
+                <span class="font-extrabold text-sm sm:text-base text-emerald-400 shrink-0 whitespace-nowrap" id="calcAnnualSavings">Save $3,492 / yr</span>
+              </div>
+            </div>
+
+            <button type="button" id="calcSelectMatchBtn" class="w-full py-3.5 px-4 rounded-2xl font-brand font-extrabold text-xs uppercase tracking-wider bg-[#C9A96E] text-[#172033] hover:bg-[#d8b87d] transition-all shadow-lg flex items-center justify-center gap-2">
+              <span>Select Recommended Plan</span>
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================
+         SECTION 7: ZERO-RISK WONDER PLEDGE & ENROLLMENT CTA HUB
+         Features: 30-Day Money-Back Guarantee, Instant Enrollment Actions
+         ======================================================== -->
+    <section id="planEnrollmentCta" class="relative scroll-mt-24">
+      
+      <div class="rounded-3xl bg-gradient-to-br from-[#172033] via-[#1b263b] to-[#0c111c] text-[#F8F5EF] p-8 sm:p-14 shadow-2xl relative overflow-hidden space-y-8">
+        
+        <!-- Accent Glow -->
+        <div class="absolute -end-20 -bottom-20 w-96 h-96 bg-[#C9A96E]/20 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+        <div class="max-w-3xl space-y-4 relative z-10">
+          <span class="px-3.5 py-1.5 rounded-full bg-[#C9A96E]/20 text-[#C9A96E] text-xs font-extrabold uppercase tracking-wider inline-block">
+            The 30-Day Happiness Promise
+          </span>
+          <h2 class="font-brand text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+            Try Your First Rotation Risk-Free.<br />
+            Cancel In 1-Tap Anytime.
+          </h2>
+          <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+            If your child doesn't fall head over heels in love with their first PlayLoop rotation within 30 days, we will refund 100% of your membership fee. Zero security deposits, zero long-term commitments, and zero awkward cancellation calls.
+          </p>
+        </div>
+
+        <!-- 4 Guarantee Seals -->
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 pt-2 relative z-10">
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-1">
+            <i class="fa-solid fa-hand-holding-dollar text-emerald-400 text-lg"></i>
+            <h4 class="font-brand font-bold text-sm text-white">30-Day Money Back</h4>
+            <p class="text-[11px] text-slate-300">100% full refund on your first rotation if unsatisfied.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-1">
+            <i class="fa-solid fa-lock-open text-[#C9A96E] text-lg"></i>
+            <h4 class="font-brand font-bold text-sm text-white">No Lock-In Contracts</h4>
+            <p class="text-[11px] text-slate-300">Pause, switch tiers, or cancel anytime with 1 click.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-1">
+            <i class="fa-solid fa-van-shuttle text-[#8FA99A] text-lg"></i>
+            <h4 class="font-brand font-bold text-sm text-white">Free Doorstep Courier</h4>
+            <p class="text-[11px] text-slate-300">Prepaid two-way satchels included in every shipment.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-1">
+            <i class="fa-solid fa-certificate text-purple-400 text-lg"></i>
+            <h4 class="font-brand font-bold text-sm text-white">Zero Deposit Required</h4>
+            <p class="text-[11px] text-slate-300">No security holds or hidden fees on your card.</p>
+          </div>
+        </div>
+
+        <!-- Action Row -->
+        <div class="pt-4 flex items-center gap-4 flex-wrap relative z-10">
+          <a href="#planTiers" class="py-3.5 px-8 rounded-2xl font-brand font-extrabold text-sm bg-[#C9A96E] text-[#172033] hover:bg-[#d8b87d] transition-all shadow-lg hover:shadow-[#C9A96E]/30 flex items-center gap-2">
+            <span>Choose Your Plan Above</span>
+            <i class="fa-solid fa-arrow-up text-xs"></i>
+          </a>
+          <a href="#planComparison" class="py-3.5 px-6 rounded-2xl font-bold text-xs bg-white/10 hover:bg-white/20 text-white transition-colors border border-white/20">
+            Review Comparison Table &rarr;
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       PAGE SCRIPT: INTERACTIVE PLANS & ROTATION ENGINE
+       ======================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. BILLING CADENCE TOGGLE (Monthly vs Annual)
+      const billingToggleBtn = document.getElementById('billingToggleBtn');
+      const billingToggleKnob = document.getElementById('billingToggleKnob');
+      const labelMonthlyBilling = document.getElementById('labelMonthlyBilling');
+      const labelAnnualBilling = document.getElementById('labelAnnualBilling');
+      const planPrices = document.querySelectorAll('.plan-price');
+      const planBillingNotes = document.querySelectorAll('.plan-billing-note');
+      let isAnnual = false;
+
+      if (billingToggleBtn) {
+        billingToggleBtn.addEventListener('click', () => {
+          isAnnual = !isAnnual;
+          billingToggleBtn.setAttribute('aria-pressed', isAnnual.toString());
+
+          if (isAnnual) {
+            billingToggleKnob.classList.remove('translate-x-0');
+            billingToggleKnob.classList.add('translate-x-7');
+            billingToggleBtn.classList.add('bg-emerald-600');
+            labelAnnualBilling.classList.add('text-emerald-500', 'font-black');
+            labelMonthlyBilling.classList.remove('font-extrabold');
+            labelMonthlyBilling.classList.add('font-normal', 'text-slate-400');
+
+            planPrices.forEach(el => {
+              el.textContent = '$' + el.getAttribute('data-annual');
+            });
+            planBillingNotes.forEach(el => {
+              el.textContent = 'Billed annually • 2 Months Free Included';
+            });
+          } else {
+            billingToggleKnob.classList.remove('translate-x-7');
+            billingToggleKnob.classList.add('translate-x-0');
+            billingToggleBtn.classList.remove('bg-emerald-600');
+            labelAnnualBilling.classList.remove('text-emerald-500', 'font-black');
+            labelMonthlyBilling.classList.add('font-extrabold');
+            labelMonthlyBilling.classList.remove('font-normal', 'text-slate-400');
+
+            planPrices.forEach(el => {
+              el.textContent = '$' + el.getAttribute('data-monthly');
+            });
+            planBillingNotes.forEach(el => {
+              el.textContent = 'Billed monthly • Cancel anytime';
+            });
+          }
+        });
+      }
+
+      // 2. CADENCE PILLS EXPLORER
+      const cadencePills = document.querySelectorAll('.cadence-pill');
+      const cadenceExplanation = document.getElementById('cadenceExplanation');
+      const cadenceNotice = document.getElementById('cadenceNotice');
+
+      const CADENCE_DATA = {
+        monthly: {
+          title: 'Monthly Orbit',
+          desc: '<strong class="text-slate-900 dark:text-[#F8F5EF]">Monthly Orbit:</strong> Your curated tote arrives on the 1st of every month. Your child enjoys 30 days of deep cognitive play before you exchange for a brand-new milestone collection with zero overlap gaps.',
+          notice: 'Standard 30-day rhythm across all tiers'
+        },
+        bimonthly: {
+          title: 'Deep Immersion',
+          desc: '<strong class="text-slate-900 dark:text-[#F8F5EF]">Deep Immersion (60 Days):</strong> Recommended for young toddlers mastering complex sensory and spatial puzzles. Enjoy an extended 60-day window per collection with a 10% loyalty credit on future renewals.',
+          notice: 'Extended 60-day pace for toddlers'
+        },
+        express: {
+          title: 'Express Sprints',
+          desc: '<strong class="text-slate-900 dark:text-[#F8F5EF]">Express Sprints (14–21 Days):</strong> High-stimulation pacing for fast learners. Available on Standard, Premium, and Hybrid tiers with early swap priority dispatch.',
+          notice: 'Fast-paced rotations for inquisitive kids'
+        }
+      };
+
+      cadencePills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          cadencePills.forEach(p => {
+            p.classList.remove('border-[#C9A96E]', 'bg-[#C9A96E]/10');
+            p.classList.add('border-slate-200', 'dark:border-slate-700', 'bg-slate-50', 'dark:bg-[#0c111c]');
+          });
+          pill.classList.add('border-[#C9A96E]', 'bg-[#C9A96E]/10');
+          pill.classList.remove('border-slate-200', 'dark:border-slate-700', 'bg-slate-50', 'dark:bg-[#0c111c]');
+
+          const key = pill.getAttribute('data-cadence');
+          if (CADENCE_DATA[key]) {
+            cadenceExplanation.innerHTML = CADENCE_DATA[key].desc;
+            cadenceNotice.textContent = CADENCE_DATA[key].notice;
+          }
+        });
+      });
+
+      // 3. COMPARISON MATRIX GROUP FILTER
+      const matrixTabs = document.querySelectorAll('.matrix-tab-btn');
+      const matrixRows = document.querySelectorAll('.matrix-row');
+
+      matrixTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          matrixTabs.forEach(t => {
+            t.classList.remove('bg-[#172033]', 'text-[#F8F5EF]', 'dark:bg-[#C9A96E]', 'dark:text-[#172033]');
+            t.classList.add('bg-slate-100', 'dark:bg-[#0c111c]', 'text-slate-600', 'dark:text-slate-300');
+          });
+          tab.classList.add('bg-[#172033]', 'text-[#F8F5EF]', 'dark:bg-[#C9A96E]', 'dark:text-[#172033]');
+          tab.classList.remove('bg-slate-100', 'dark:bg-[#0c111c]', 'text-slate-600', 'dark:text-slate-300');
+
+          const group = tab.getAttribute('data-group');
+          matrixRows.forEach(row => {
+            if (group === 'all' || row.getAttribute('data-group') === group) {
+              row.style.display = '';
+            } else {
+              row.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // 4. PLAN MATCHER CALCULATOR
+      const childBtns = document.querySelectorAll('.calc-child-btn');
+      const prefBtns = document.querySelectorAll('.calc-pref-btn');
+      const ageSelect = document.getElementById('calcAgeSelect');
+      const calcChildLabel = document.getElementById('calcChildLabel');
+      const calcMatchBadge = document.getElementById('calcMatchBadge');
+      const calcPlanTitle = document.getElementById('calcPlanTitle');
+      const calcPlanPrice = document.getElementById('calcPlanPrice');
+      const calcToysPerYear = document.getElementById('calcToysPerYear');
+      const calcRetailValue = document.getElementById('calcRetailValue');
+      const calcAnnualSavings = document.getElementById('calcAnnualSavings');
+      const calcSelectMatchBtn = document.getElementById('calcSelectMatchBtn');
+
+      let currentChildCount = 1;
+      let currentPreference = 'toys';
+
+      function updateCalculator() {
+        let planTitle = 'Developmental Journey';
+        let planBadge = 'Standard Plan';
+        let monthlyPrice = 49;
+        let toysPerYear = 60;
+        let retailVal = 4080;
+
+        if (currentPreference === 'hybrid') {
+          planTitle = 'Atelier Hybrid';
+          planBadge = 'Toy + Activity Kit';
+          monthlyPrice = 89;
+          toysPerYear = 72;
+          retailVal = 6480;
+        } else if (currentChildCount >= 2) {
+          planTitle = 'Master Builder Studio';
+          planBadge = 'Premium Plan';
+          monthlyPrice = 79;
+          toysPerYear = 96;
+          retailVal = 7440;
+        } else if (ageSelect.value === 'infant') {
+          planTitle = 'Discovery Scout';
+          planBadge = 'Basic Plan';
+          monthlyPrice = 29;
+          toysPerYear = 36;
+          retailVal = 2160;
+        }
+
+        const annualCost = monthlyPrice * 12;
+        const netSavings = retailVal - annualCost;
+
+        calcChildLabel.textContent = currentChildCount === 1 ? '1 Child' : (currentChildCount + ' Children');
+        calcMatchBadge.textContent = planBadge;
+        calcPlanTitle.textContent = planTitle;
+        calcPlanPrice.textContent = '$' + monthlyPrice;
+        calcToysPerYear.textContent = toysPerYear + ' Heirloom Pieces & Kits';
+        calcRetailValue.textContent = '$' + retailVal.toLocaleString() + ' / yr';
+        calcAnnualSavings.textContent = 'Save $' + netSavings.toLocaleString() + ' / yr';
+      }
+
+      childBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          childBtns.forEach(b => {
+            b.classList.remove('bg-[#C9A96E]', 'text-[#172033]', 'border-[#C9A96E]');
+            b.classList.add('bg-slate-100', 'dark:bg-[#0c111c]', 'text-slate-700', 'dark:text-slate-300', 'border-slate-200', 'dark:border-slate-700');
+          });
+          btn.classList.add('bg-[#C9A96E]', 'text-[#172033]', 'border-[#C9A96E]');
+          btn.classList.remove('bg-slate-100', 'dark:bg-[#0c111c]', 'text-slate-700', 'dark:text-slate-300', 'border-slate-200', 'dark:border-slate-700');
+
+          currentChildCount = parseInt(btn.getAttribute('data-val')) || 1;
+          updateCalculator();
+        });
+      });
+
+      prefBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          prefBtns.forEach(b => {
+            b.classList.remove('border-[#C9A96E]', 'bg-[#C9A96E]/10');
+            b.classList.add('border-slate-200', 'dark:border-slate-700', 'bg-slate-100', 'dark:bg-[#0c111c]');
+          });
+          btn.classList.add('border-[#C9A96E]', 'bg-[#C9A96E]/10');
+          btn.classList.remove('border-slate-200', 'dark:border-slate-700', 'bg-slate-100', 'dark:bg-[#0c111c]');
+
+          currentPreference = btn.getAttribute('data-pref');
+          updateCalculator();
+        });
+      });
+
+      if (ageSelect) {
+        ageSelect.addEventListener('change', updateCalculator);
+      }
+
+      if (calcSelectMatchBtn) {
+        calcSelectMatchBtn.addEventListener('click', () => {
+          const tiersSection = document.getElementById('planTiers');
+          if (tiersSection) {
+            tiersSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+
+      updateCalculator();
+    });
+  </script>
+
+
+  <!-- ========================================================
+       FOOTER COMPONENT (Based on PlayLoop Navbar & Brand Identity)
+       ======================================================== -->
+  <footer class="relative bg-white dark:bg-slate-900 border-t border-slate-200/70 dark:border-slate-800/80 transition-colors duration-300 overflow-hidden">
+    
+    <!-- Top Animated Gradient Accent Bar (Matches Navbar Border) -->
+    <div class="h-[2px] w-full animated-nav-glow opacity-90"></div>
+
+    <!-- Ambient Subtle Background Glow Orbs for Footer -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden -z-10" aria-hidden="true">
+      <div class="absolute -bottom-20 start-10 w-96 h-96 bg-gradient-to-tr from-orange-400/10 via-pink-400/10 to-transparent rounded-full blur-3xl animate-pulse-glow"></div>
+      <div class="absolute -bottom-20 end-10 w-96 h-96 bg-gradient-to-tl from-teal-400/10 via-purple-400/10 to-transparent rounded-full blur-3xl animate-pulse-glow" style="animation-delay: 3.5s;"></div>
+    </div>
+
+    <!-- Main Footer Content Container -->
+    <div class="w-full max-w-[1550px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-16 pb-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 xl:gap-12">
+
+        <!-- ====================================================
+             COLUMN 1: BRAND, ABOUT & TRUST BADGES (Wide Column)
+             ==================================================== -->
+        <div class="lg:col-span-2 space-y-5">
+          <!-- Logo Mark Matching Navbar -->
+          <a href="index.html" class="group inline-flex items-center gap-2.5 focus:outline-none">
+            <div class="relative w-10 h-10 flex items-center justify-center">
+              <!-- Outer Rotating Loop Arrows -->
+              <svg class="w-10 h-10 text-brand-500 logo-rental-loop" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="44" class="fill-orange-50 dark:fill-orange-950/40" />
+                <path d="M50 10 A40 40 0 0 1 90 50" stroke="url(#footerLoopGrad1)" stroke-width="6" stroke-linecap="round" stroke-dasharray="3 3"/>
+                <path d="M90 50 A40 40 0 0 1 50 90" stroke="url(#footerLoopGrad2)" stroke-width="6" stroke-linecap="round"/>
+                <path d="M50 90 A40 40 0 0 1 10 50" stroke="url(#footerLoopGrad1)" stroke-width="6" stroke-linecap="round" stroke-dasharray="3 3"/>
+                <path d="M10 50 A40 40 0 0 1 50 10" stroke="url(#footerLoopGrad2)" stroke-width="6" stroke-linecap="round"/>
+                <polygon points="52,6 44,11 44,1" fill="#C9A96E"/>
+                <polygon points="48,94 56,89 56,99" fill="#8FA99A"/>
+                <defs>
+                  <linearGradient id="footerLoopGrad1" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#C9A96E"/>
+                    <stop offset="100%" stop-color="#D8A7A0"/>
+                  </linearGradient>
+                  <linearGradient id="footerLoopGrad2" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#8FA99A"/>
+                    <stop offset="100%" stop-color="#172033"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+
+              <!-- Central 3D Activity Box -->
+              <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div class="w-6 h-6 bg-gradient-to-br from-[#172033] via-[#24334f] to-[#C9A96E] rounded-md shadow-sm flex items-center justify-center text-white logo-activity-box">
+                  <i class="fa-solid fa-shapes text-xs text-yellow-200"></i>
+                </div>
+              </div>
+
+              <!-- Sparkle badge -->
+              <span class="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5 items-center justify-center">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-playTeal-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-playTeal-500"></span>
+              </span>
+            </div>
+
+            <!-- Brand Name & Tagline -->
+            <div class="flex flex-col text-left">
+              <div class="flex items-center gap-1.5">
+                <span class="font-brand text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center leading-none">
+                  Play<span class="bg-gradient-to-r from-[#C9A96E] to-[#b99455] bg-clip-text text-transparent">Loop</span>
+                </span>
+                <span class="bg-brand-100 dark:bg-brand-900/60 text-brand-700 dark:text-brand-300 text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded tracking-wide leading-tight">
+                  KIDS
+                </span>
+              </div>
+              <span class="text-[9px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase leading-tight mt-0.5">
+                Toy Rental &amp; Kids Activity Kit Subscription
+              </span>
+            </div>
+          </a>
+
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed max-w-sm">
+            PlayLoop Kids is the premier circular toy rental and curated activity kit subscription. Fuel curiosity, rotate age-appropriate Montessori playsets, and save money while keeping landfill waste to zero.
+          </p>
+
+          <!-- Trust Badges Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 max-w-sm">
+            <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
+              <div class="w-7 h-7 rounded-lg bg-rose-100 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center text-xs flex-shrink-0">
+                <i class="fa-solid fa-shield-heart"></i>
+              </div>
+              <div class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 leading-tight">
+                UV Sterilized &amp; Child Safe
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
+              <div class="w-7 h-7 rounded-lg bg-teal-100 dark:bg-teal-950/60 text-playTeal-600 flex items-center justify-center text-xs flex-shrink-0">
+                <i class="fa-solid fa-arrows-spin"></i>
+              </div>
+              <div class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 leading-tight">
+                Unlimited Monthly Swaps
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Media Channel Icons -->
+          <div class="pt-2">
+            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-3">Follow The Fun</div>
+            <div class="flex items-center gap-2">
+              <a href="#instagram" aria-label="Instagram" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-pink-50 dark:hover:bg-pink-950/60 text-slate-600 dark:text-slate-300 hover:text-pink-500 flex items-center justify-center text-xs transition-colors shadow-sm">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a href="#youtube" aria-label="YouTube" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-red-50 dark:hover:bg-red-950/60 text-slate-600 dark:text-slate-300 hover:text-red-500 flex items-center justify-center text-xs transition-colors shadow-sm">
+                <i class="fa-brands fa-youtube"></i>
+              </a>
+              <a href="#facebook" aria-label="Facebook" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-950/60 text-slate-600 dark:text-slate-300 hover:text-blue-500 flex items-center justify-center text-xs transition-colors shadow-sm">
+                <i class="fa-brands fa-facebook-f"></i>
+              </a>
+              <a href="#pinterest" aria-label="Pinterest" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-rose-950/60 text-slate-600 dark:text-slate-300 hover:text-rose-500 flex items-center justify-center text-xs transition-colors shadow-sm">
+                <i class="fa-brands fa-pinterest-p"></i>
+              </a>
+              <a href="#tiktok" aria-label="TikTok" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white flex items-center justify-center text-xs transition-colors shadow-sm">
+                <i class="fa-brands fa-tiktok"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================
+             COLUMN 2: EXPLORE & NAVBAR QUICK LINKS
+             ==================================================== -->
+        <div class="space-y-4">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+            <span>Explore PlayLoop</span>
+          </h3>
+          <ul class="space-y-2.5 text-xs font-medium text-slate-600 dark:text-slate-400">
+            <li>
+              <a href="index.html" class="hover:text-brand-500 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-angle-right text-[9px] text-slate-400"></i>
+                <span>Home (Toy Rental &amp; STEM)</span>
+              </a>
+            </li>
+            <li>
+              <a href="index.html" class="hover:text-brand-500 transition-colors ps-3 text-[11.5px] text-slate-500 flex items-center gap-1">
+                <span>&bull; Home 1 (Toy Rental)</span>
+              </a>
+            </li>
+            <li>
+              <a href="home-2.html" class="hover:text-brand-500 transition-colors ps-3 text-[11.5px] text-slate-500 flex items-center gap-1">
+                <span>&bull; Home 2 (Activity Kits)</span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html" class="hover:text-brand-500 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-angle-right text-[9px] text-slate-400"></i>
+                <span>About Us</span>
+              </a>
+            </li>
+            <li>
+              <a href="how-it-works.html" class="hover:text-brand-500 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-angle-right text-[9px] text-slate-400"></i>
+                <span>How It Works</span>
+              </a>
+            </li>
+            <li>
+              <a href="catalog.html" class="hover:text-brand-500 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-angle-right text-[9px] text-slate-400"></i>
+                <span>Toy Catalog</span>
+              </a>
+            </li>
+            <li>
+              <a href="activity.html" class="hover:text-brand-500 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-angle-right text-[9px] text-slate-400"></i>
+                <span>Activity &amp; STEM Kits</span>
+              </a>
+            </li>
+            <li>
+              <a href="plans.html" class="hover:text-brand-500 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-angle-right text-[9px] text-slate-400"></i>
+                <span>Subscription Plans</span>
+              </a>
+            </li>
+            <li>
+              <a href="hygiene.html" class="hover:text-brand-500 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-angle-right text-[9px] text-slate-400"></i>
+                <span>Hygiene &amp; Safety</span>
+              </a>
+            </li>
+            <li>
+              <a href="faq.html" class="hover:text-brand-500 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-angle-right text-[9px] text-slate-400"></i>
+                <span>FAQs</span>
+              </a>
+            </li>
+            <li>
+              <a href="contact.html" class="hover:text-brand-500 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-angle-right text-[9px] text-slate-400"></i>
+                <span>Contact Us</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ====================================================
+             COLUMN 3: SUBSCRIPTION BOXES & ACTIVITY KITS
+             ==================================================== -->
+        <div class="space-y-4">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-playTeal-500"></span>
+            <span>Kits &amp; Rentals</span>
+          </h3>
+          <ul class="space-y-2.5 text-xs font-medium text-slate-600 dark:text-slate-400">
+            <li>
+              <a href="catalog.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-cubes-stacked text-[10px] text-brand-500"></i>
+                <span>Montessori Wooden Toys</span>
+              </a>
+            </li>
+            <li>
+              <a href="activity.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-flask text-[10px] text-playTeal-500"></i>
+                <span>STEM &amp; Science Discovery</span>
+              </a>
+            </li>
+            <li>
+              <a href="activity.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-palette text-[10px] text-pink-500"></i>
+                <span>Arts &amp; Creative Craft Kits</span>
+              </a>
+            </li>
+            <li>
+              <a href="catalog.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-puzzle-piece text-[10px] text-amber-500"></i>
+                <span>Sensory Toddler Boxes (0-3y)</span>
+              </a>
+            </li>
+            <li>
+              <a href="activity.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-robot text-[10px] text-indigo-500"></i>
+                <span>Robotics &amp; Coding Kits (6-12y)</span>
+              </a>
+            </li>
+            <li>
+              <a href="catalog.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-chess text-[10px] text-purple-500"></i>
+                <span>Family Board Games</span>
+              </a>
+            </li>
+            <li>
+              <a href="plans.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-gift text-[10px] text-rose-500"></i>
+                <span>Gift a Subscription Box</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ====================================================
+             COLUMN 4: DASHBOARDS & NEWSLETTER SIGNUP
+             ==================================================== -->
+        <div class="space-y-4">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-playPurple-500"></span>
+            <span>Portals &amp; Newsletter</span>
+          </h3>
+
+          <!-- Dashboard Links from Navbar -->
+          <div class="space-y-1.5 pb-2">
+            <a href="user-dashboard.html" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 hover:border-brand-500/50 transition-colors group">
+              <div class="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-user"></i>
+              </div>
+              <div class="text-[11.5px] font-semibold text-slate-700 dark:text-slate-200">
+                User Dashboard
+              </div>
+            </a>
+
+            <a href="admin-dashboard.html" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 hover:border-purple-500/50 transition-colors group">
+              <div class="w-6 h-6 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-gauge-high"></i>
+              </div>
+              <div class="text-[11.5px] font-semibold text-slate-700 dark:text-slate-200">
+                Admin Dashboard
+              </div>
+            </a>
+          </div>
+
+          <!-- Kid-friendly Newsletter Box -->
+          <div class="p-3.5 rounded-2xl bg-gradient-to-br from-orange-50 via-pink-50 to-teal-50 dark:from-slate-800/80 dark:via-slate-800/60 dark:to-slate-800/80 border border-orange-200/60 dark:border-slate-700/60 space-y-2.5">
+            <div class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+              <span>Join PlayLoop Family! 🎈</span>
+            </div>
+            <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-tight">
+              Get free printable activity guides and $10 off your first toy kit rental.
+            </p>
+            <form onsubmit="event.preventDefault(); alert('Thank you for subscribing to PlayLoop Kids!');" class="space-y-2">
+              <input 
+                type="email" 
+                placeholder="parent@email.com" 
+                required 
+                class="w-full px-3 py-1.5 rounded-xl text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500"
+              />
+              <button 
+                type="submit" 
+                class="btn-sheen w-full py-1.5 px-3 rounded-xl font-bold text-[11.5px] tracking-wide text-white bg-gradient-to-r from-[#C9A96E] to-[#b99455] hover:from-brand-600 hover:to-orange-700 shadow-sm transition-all flex items-center justify-center gap-1.5"
+              >
+                <i class="fa-solid fa-paper-plane text-[10px]"></i>
+                <span>Subscribe</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       JAVASCRIPT: RESPONSIVE BEHAVIOR, DARK MODE & RTL LOGIC
+       ======================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // --------------------------------------------------------
+      // 1. Mobile Drawer Elements & Toggle Logic
+      // --------------------------------------------------------
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+      const drawerBackdrop = document.getElementById('drawerBackdrop');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+      function openDrawer() {
+        mobileDrawer.classList.add('drawer-open');
+        drawerBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+        drawerBackdrop.classList.add('opacity-100');
+        hamburgerBtn.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('overflow-hidden');
+      }
+
+      function closeDrawer() {
+        mobileDrawer.classList.remove('drawer-open');
+        drawerBackdrop.classList.add('opacity-0', 'pointer-events-none');
+        drawerBackdrop.classList.remove('opacity-100');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('overflow-hidden');
+      }
+
+      hamburgerBtn.addEventListener('click', openDrawer);
+      closeDrawerBtn.addEventListener('click', closeDrawer);
+      drawerBackdrop.addEventListener('click', closeDrawer);
+
+      // Close drawer when clicking any link
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          closeDrawer();
+        });
+      });
+
+      // Close on ESC key
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileDrawer.classList.contains('drawer-open')) {
+          closeDrawer();
+        }
+      });
+
+      // --------------------------------------------------------
+      // 2. Mobile Accordions (Home & Dashboard)
+      // --------------------------------------------------------
+      const mobileHomeToggle = document.getElementById('mobileHomeToggle');
+      const mobileHomeMenu = document.getElementById('mobileHomeMenu');
+      const mobileHomeArrow = document.getElementById('mobileHomeArrow');
+
+      mobileHomeToggle.addEventListener('click', () => {
+        const isHidden = mobileHomeMenu.classList.toggle('hidden');
+        mobileHomeArrow.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
+      });
+
+      const mobileDashboardToggle = document.getElementById('mobileDashboardToggle');
+      const mobileDashboardMenu = document.getElementById('mobileDashboardMenu');
+      const mobileDashboardArrow = document.getElementById('mobileDashboardArrow');
+
+      mobileDashboardToggle.addEventListener('click', () => {
+        const isHidden = mobileDashboardMenu.classList.toggle('hidden');
+        mobileDashboardArrow.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
+      });
+
+      // --------------------------------------------------------
+      // 3. Dark Mode Toggle & Synchronization
+      // --------------------------------------------------------
+      const desktopDarkToggle = document.getElementById('desktopDarkToggle');
+      const mobileDarkToggle = document.getElementById('mobileDarkToggle');
+      const mobileDarkLabel = document.getElementById('mobileDarkLabel');
+
+      function updateThemeUI(isDark) {
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+          if (mobileDarkLabel) mobileDarkLabel.textContent = 'Light Mode';
+        } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+          if (mobileDarkLabel) mobileDarkLabel.textContent = 'Dark Mode';
+        }
+      }
+
+      // Initialize from localStorage or prefers-color-scheme
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialDark = savedTheme ? savedTheme === 'dark' : systemPrefersDark;
+      updateThemeUI(initialDark);
+
+      function toggleDarkMode() {
+        const isDark = document.documentElement.classList.contains('dark');
+        updateThemeUI(!isDark);
+      }
+
+      desktopDarkToggle.addEventListener('click', toggleDarkMode);
+      mobileDarkToggle.addEventListener('click', toggleDarkMode);
+
+      // --------------------------------------------------------
+      // 4. RTL (Right to Left) Toggle & Synchronization
+      // --------------------------------------------------------
+      const desktopRtlToggle = document.getElementById('desktopRtlToggle');
+      const mobileRtlToggle = document.getElementById('mobileRtlToggle');
+      const desktopRtlIndicator = document.getElementById('desktopRtlIndicator');
+      const mobileRtlIndicator = document.getElementById('mobileRtlIndicator');
+      const mobileRtlLabel = document.getElementById('mobileRtlLabel');
+
+      function updateDirectionUI(isRtl) {
+        if (isRtl) {
+          document.documentElement.setAttribute('dir', 'rtl');
+          localStorage.setItem('dir', 'rtl');
+          desktopRtlIndicator.classList.remove('hidden');
+          mobileRtlIndicator.classList.remove('hidden');
+          if (mobileRtlLabel) mobileRtlLabel.textContent = 'LTR View';
+        } else {
+          document.documentElement.setAttribute('dir', 'ltr');
+          localStorage.setItem('dir', 'ltr');
+          desktopRtlIndicator.classList.add('hidden');
+          mobileRtlIndicator.classList.add('hidden');
+          if (mobileRtlLabel) mobileRtlLabel.textContent = 'RTL View';
+        }
+      }
+
+      // Initialize from localStorage
+      const savedDir = localStorage.getItem('dir');
+      const initialRtl = savedDir === 'rtl';
+      updateDirectionUI(initialRtl);
+
+      function toggleRtl() {
+        const currentDir = document.documentElement.getAttribute('dir');
+        const isRtl = currentDir === 'rtl';
+        updateDirectionUI(!isRtl);
+      }
+
+      desktopRtlToggle.addEventListener('click', toggleRtl);
+      mobileRtlToggle.addEventListener('click', toggleRtl);
+      // --------------------------------------------------------
+      // 5. Smart Floating Navbar Auto-Hide on Scroll (Mobile / Desktop)
+      // Prevents floating navbar from obscuring content & forms during scrolling
+      // --------------------------------------------------------
+      const siteHeader = document.querySelector('header');
+      if (siteHeader) {
+        let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+        let lastToggleY = lastScrollY;
+        let ticking = false;
+        const SCROLL_THRESHOLD = 15;
+
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+              const isDrawerOpen = mobileDrawer && mobileDrawer.classList.contains('drawer-open');
+
+              if (isDrawerOpen || currentScrollY <= 60) {
+                siteHeader.style.transform = 'translateY(0)';
+                lastToggleY = currentScrollY;
+              } else {
+                const delta = currentScrollY - lastToggleY;
+                if (delta > SCROLL_THRESHOLD && currentScrollY > 80) {
+                  // Scrolled down by at least 15px: hide
+                  siteHeader.style.transform = 'translateY(-140%)';
+                  lastToggleY = currentScrollY;
+                } else if (delta < -SCROLL_THRESHOLD) {
+                  // Scrolled up by at least 15px: reveal
+                  siteHeader.style.transform = 'translateY(0)';
+                  lastToggleY = currentScrollY;
+                }
+              }
+              lastScrollY = Math.max(0, currentScrollY);
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+      }
+
+    });
+  </script>
+</body>
+</html>
