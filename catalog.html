@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PlayLoop Kids - Toy Rental & Activity Kit Subscription</title>
-  <!-- Favicon: PlayLoop Kids Navbar Logo -->
+  <title>Toy Library & Catalog &bull; PlayLoop Kids</title>
+  
+  <!-- Favicon: PlayLoop Kids Unified Brand Icons -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="alternate icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   
-  <!-- Google Fonts: Outfit (Heading) & Plus Jakarta Sans (Body) -->
+  <!-- Google Fonts: Outfit (Brand Headings) & Plus Jakarta Sans (Clean Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -34,20 +36,21 @@
               50: '#f5f7fa',
               100: '#eaedf3',
               200: '#d0d7e4',
-              300: '#a6b4cc',
-              400: '#748bb0',
-              500: '#4b6691',
-              600: '#395076',
-              700: '#2d3e5c',
-              800: '#1e293f',
-              900: '#172033', // Primary Deep Navy
-              950: '#0c111c',
+              300: '#a7b5cc',
+              400: '#758cae',
+              500: '#4f6892',
+              600: '#3c5075',
+              700: '#2f3e5c',
+              800: '#232d43',
+              900: '#172033', // Deep Navy Core
+              950: '#0e1320',
             },
             cream: {
-              50: '#fdfcfb',
-              100: '#F8F5EF', // Secondary Warm Cream
-              200: '#f1ede2',
-              300: '#e6decb',
+              50: '#fdfbf7',
+              100: '#F8F5EF', // Warm Cream Core
+              200: '#f1ebd8',
+              300: '#e7ddbd',
+              400: '#d9c897',
             },
             brand: { // Premium Accent: Soft Gold
               50: '#faf7f0',
@@ -109,7 +112,7 @@
     /* Custom Scrollbar: Sleek vertical & completely removed horizontal */
     ::-webkit-scrollbar {
       width: 6px;
-      height: 0px !important; /* Zero height completely eliminates horizontal scrollbar */
+      height: 0px !important;
     }
     ::-webkit-scrollbar:horizontal {
       display: none !important;
@@ -130,8 +133,10 @@
       background: #24334f;
     }
 
-    /* RTL Transition Support */
+    /* Smooth Scrolling */
     html {
+      scroll-padding-top: 5.5rem;
+      scroll-behavior: smooth;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
@@ -208,33 +213,32 @@
       left: 50%;
       width: 0;
       height: 2px;
-      background: linear-gradient(90deg, #e07a5f, #81b29a);
+      background: linear-gradient(90deg, #C9A96E, #8FA99A);
       border-radius: 9999px;
       transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1), left 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
-        /* Active Link State */
     .nav-link:hover::after,
     .nav-link.active::after {
       width: 80% !important;
       left: 10% !important;
     }
     .nav-link.active {
-      color: #ea580c !important;
-      background-color: rgba(255, 237, 213, 0.75) !important;
+      color: #C9A96E !important;
+      background-color: rgba(201, 169, 110, 0.12) !important;
       font-weight: 700 !important;
     }
     html.dark .nav-link.active {
-      color: #fb923c !important;
-      background-color: rgba(51, 65, 85, 0.8) !important;
+      color: #C9A96E !important;
+      background-color: rgba(23, 32, 51, 0.9) !important;
     }
     .mobile-nav-link.active {
-      color: #ea580c !important;
-      background-color: rgba(255, 237, 213, 0.75) !important;
+      color: #C9A96E !important;
+      background-color: rgba(201, 169, 110, 0.12) !important;
       font-weight: 700 !important;
     }
     html.dark .mobile-nav-link.active {
-      color: #fb923c !important;
-      background-color: rgba(51, 65, 85, 0.8) !important;
+      color: #C9A96E !important;
+      background-color: rgba(23, 32, 51, 0.9) !important;
     }
     .nav-link:hover {
       transform: translateY(-1px);
@@ -319,6 +323,24 @@
       pointer-events: auto;
       opacity: 1;
     }
+
+    /* Dashboard Sidebar & View Transition Helpers */
+    .sidebar-nav-item.active {
+      background: rgba(201, 169, 110, 0.15) !important;
+      color: #C9A96E !important;
+      font-weight: 700;
+    }
+    .dark .sidebar-nav-item.active {
+      background: rgba(201, 169, 110, 0.2) !important;
+      color: #C9A96E !important;
+    }
+    @keyframes fadeInView {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .view-panel:not(.hidden) {
+      animation: fadeInView 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
   </style>
 </head>
 <body class="min-h-screen bg-[#F8F5EF] text-slate-800 antialiased dark:bg-[#0c111c] dark:text-[#F8F5EF] font-sans relative selection:bg-brand-500 selection:text-[#172033] flex flex-col justify-between ">
@@ -369,10 +391,10 @@
        Laptop: [LOGO Far Left] ----------- [MENU Center] ----------- [ACTIONS Right]
        Tablet/Mobile: [LOGO Left] ------------------------- [HAMBURGER Right]
        ======================================================== -->
-    <header class="fixed top-3 inset-x-0 z-40 w-full px-3 sm:px-5 lg:px-6 xl:px-8 pointer-events-none transition-all duration-300">
+    <header class="fixed top-3 inset-x-0 z-40 w-full px-3 sm:px-5 lg:px-3 xl:px-8 pointer-events-none transition-all duration-300">
     
     <!-- Floating Island Capsule -->
-    <div class="pointer-events-auto max-w-[1550px] mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-2xl sm:rounded-full border border-[#C9A96E]/25 dark:border-[#C9A96E]/20 shadow-[0_10px_35px_-4px_rgba(23,32,51,0.08),0_0_0_1px_rgba(201,169,110,0.15)] dark:shadow-[0_14px_40px_-4px_rgba(0,0,0,0.65),0_0_0_1px_rgba(255,255,255,0.06)] px-3 sm:px-4 lg:ps-4 lg:pe-4 h-[60px] flex items-center justify-between relative transition-all duration-300">
+    <div class="pointer-events-auto max-w-[1550px] mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-2xl sm:rounded-full border border-[#C9A96E]/25 dark:border-[#C9A96E]/20 shadow-[0_10px_35px_-4px_rgba(23,32,51,0.08),0_0_0_1px_rgba(201,169,110,0.15)] dark:shadow-[0_14px_40px_-4px_rgba(0,0,0,0.65),0_0_0_1px_rgba(255,255,255,0.06)] px-3 sm:px-4 lg:ps-3 lg:pe-3 xl:ps-5 xl:pe-5 h-[60px] flex items-center justify-between relative transition-all duration-300">
 
       <!-- Ambient subtle glow spots inside floating pill -->
       <div class="absolute inset-0 rounded-2xl sm:rounded-full pointer-events-none overflow-hidden -z-10" aria-hidden="true">
@@ -433,7 +455,7 @@
                 KIDS
               </span>
             </div>
-            <span class="text-[8.5px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase leading-tight mt-0.5 hidden sm:inline-block">
+            <span class="text-[8.5px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase leading-tight mt-0.5 hidden xl:inline-block">
               Toy Rental &amp; Activity Kits
             </span>
           </div>
@@ -441,12 +463,12 @@
       </div>
 
       <!-- 2. CENTER SECTION: NAVBAR MENU (Laptop / Desktop View) -->
-      <nav class="hidden lg:flex items-center justify-center flex-1 px-2 xl:px-4" aria-label="Main Navigation">
-        <ul class="flex items-center gap-1 xl:gap-1.5 text-[12px] xl:text-[13px] font-semibold text-slate-700 dark:text-slate-200">
+      <nav class="hidden lg:flex items-center justify-center flex-1 px-1 xl:px-3 2xl:px-4" aria-label="Main Navigation">
+        <ul class="flex items-center gap-0.5 xl:gap-1 2xl:gap-1.5 text-[11px] xl:text-[12px] 2xl:text-[13px] font-semibold text-slate-700 dark:text-slate-200">
           
           <!-- HOME (DROPDOWN: Home 1, Home 2) - CLICK REDIRECTS TO index.html -->
           <li class="relative group shrink-0">
-            <a id="navHomeBtn" href="index.html" class="nav-link flex items-center gap-1 px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
+            <a id="navHomeBtn" href="index.html" class="nav-link flex items-center gap-1 px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
               <span>Home</span>
               <i class="fa-solid fa-chevron-down text-[8.5px] text-slate-400 group-hover:text-brand-500 group-hover:rotate-180 transition-transform duration-200"></i>
             </a>
@@ -476,28 +498,28 @@
 
           <!-- ABOUT -->
           <li class="shrink-0">
-            <a id="navAboutLink" href="about.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navAboutLink" href="about.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               About
             </a>
           </li>
 
           <!-- HOW IT WORKS -->
           <li class="shrink-0">
-            <a id="navHowLink" href="how-it-works.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navHowLink" href="how-it-works.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               How It Works
             </a>
           </li>
 
           <!-- CATALOG -->
           <li class="shrink-0">
-            <a id="navCatalogLink" href="catalog.html" class="nav-link active px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navCatalogLink" href="catalog.html" class="nav-link active px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               Catalog
             </a>
           </li>
 
           <!-- ACTIVITY KITS -->
           <li class="shrink-0">
-            <a id="navActivityLink" href="activity.html" class="nav-link relative px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navActivityLink" href="activity.html" class="nav-link relative px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               <span>Activity Kits</span>
               <span class="absolute -top-0.5 -right-0.5 px-1 py-0 bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-[8px] font-bold rounded-full shadow-sm leading-tight animate-pulse">
                 Kits
@@ -507,35 +529,35 @@
 
           <!-- PLANS -->
           <li class="shrink-0">
-            <a id="navPlansLink" href="plans.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navPlansLink" href="plans.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               Plans
             </a>
           </li>
 
           <!-- HYGIENE & SAFETY -->
           <li class="shrink-0">
-            <a id="navHygieneLink" href="hygiene.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navHygieneLink" href="hygiene.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               Hygiene &amp; Safety
             </a>
           </li>
 
           <!-- FAQ -->
           <li class="shrink-0">
-            <a id="navFaqLink" href="faq.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navFaqLink" href="faq.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               FAQ
             </a>
           </li>
 
           <!-- CONTACT -->
           <li class="shrink-0">
-            <a id="navContactLink" href="contact.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navContactLink" href="contact.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               Contact
             </a>
           </li>
 
           <!-- DASHBOARD (DROPDOWN: User Dashboard, Admin Dashboard) -->
           <li class="relative group shrink-0">
-            <button id="navDashBtn" type="button" class="nav-link flex items-center gap-1 px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
+            <button id="navDashBtn" type="button" class="nav-link flex items-center gap-1 px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
               <span>Dashboard</span>
               <i class="fa-solid fa-chevron-down text-[8.5px] text-slate-400 group-hover:text-brand-500 group-hover:rotate-180 transition-transform duration-200"></i>
             </button>
@@ -543,20 +565,20 @@
             <!-- Dropdown Menu with Glassmorphism & Spring Entrance -->
             <div class="dropdown-menu absolute top-[calc(100%+10px)] end-0 w-max z-50">
               <div class="bg-white/95 dark:bg-slate-900/95 border border-slate-200/80 dark:border-slate-800 rounded-2xl shadow-[0_16px_36px_-6px_rgba(99,102,241,0.18),0_0_1px_1px_rgba(0,0,0,0.04)] dark:shadow-[0_18px_40px_-6px_rgba(0,0,0,0.7),0_0_15px_rgba(99,102,241,0.1)] p-1.5 backdrop-blur-2xl">
-                <a id="subUserDash" href="user-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-indigo-50 dark:hover:bg-slate-800/80 transition-colors group/item whitespace-nowrap">
-                  <div class="w-7 h-7 rounded-lg bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
+                <a id="subUserDash" href="user-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-slate-800/80 transition-colors group/item whitespace-nowrap">
+                  <div class="w-7 h-7 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#172033] dark:text-[#C9A96E] flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
                     <i class="fa-solid fa-user"></i>
                   </div>
                   <div>
-                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-indigo-600 dark:group-hover/item:text-indigo-400 whitespace-nowrap">User Dashboard</div>
+                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-[#172033] dark:text-[#C9A96E] dark:group-hover/item:text-[#8FA99A] whitespace-nowrap">User Dashboard</div>
                   </div>
                 </a>
-                <a id="subAdminDash" href="admin-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-purple-50 dark:hover:bg-slate-800/80 transition-colors group/item mt-0.5 whitespace-nowrap">
-                  <div class="w-7 h-7 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
+                <a id="subAdminDash" href="admin-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-slate-800/80 transition-colors group/item mt-0.5 whitespace-nowrap">
+                  <div class="w-7 h-7 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
                     <i class="fa-solid fa-gauge-high"></i>
                   </div>
                   <div>
-                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-purple-600 dark:group-hover/item:text-purple-400 whitespace-nowrap">Admin Dashboard</div>
+                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-[#C9A96E] dark:group-hover/item:text-[#C9A96E] whitespace-nowrap">Admin Dashboard</div>
                   </div>
                 </a>
               </div>
@@ -567,7 +589,7 @@
       </nav>
 
       <!-- 3. RIGHT SECTION: UTILITIES (Laptop View) -->
-      <div class="hidden lg:flex items-center gap-2 pe-1 sm:pe-1.5 flex-shrink-0">
+      <div class="hidden lg:flex items-center gap-1 xl:gap-1.5 2xl:gap-2 pe-1 sm:pe-1.5 flex-shrink-0">
         
         <!-- DARK MODE TOGGLE (DESKTOP) -->
         <button 
@@ -575,7 +597,7 @@
           type="button" 
           aria-label="Toggle Dark Mode"
           title="Toggle Light / Dark Mode"
-          class="btn-tool w-8 h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 group shadow-sm"
+          class="btn-tool w-7 h-7 xl:w-8 xl:h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 group shadow-sm"
         >
           <i class="fa-solid fa-moon text-xs dark:hidden transition-transform duration-300 group-hover:rotate-45"></i>
           <i class="fa-solid fa-sun text-xs hidden dark:block text-yellow-400 transition-transform duration-300 group-hover:rotate-90"></i>
@@ -587,7 +609,7 @@
           type="button" 
           aria-label="Toggle Right to Left Layout" 
           title="Toggle Direction (LTR / RTL)"
-          class="btn-tool w-8 h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 relative group shadow-sm"
+          class="btn-tool w-7 h-7 xl:w-8 xl:h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 relative group shadow-sm"
         >
           <i class="fa-solid fa-right-left text-xs transition-transform duration-300 group-hover:scale-125 text-slate-700 dark:text-slate-300"></i>
           <span id="desktopRtlIndicator" class="hidden absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-brand-500"></span>
@@ -596,7 +618,7 @@
         <!-- LOGIN BUTTON (DESKTOP) WITH SHIMMER & GLOW -->
         <a 
           href="login.html" 
-          class="btn-sheen relative inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full font-bold text-[11.5px] tracking-wide uppercase text-white bg-gradient-to-r from-brand-500 via-brand-600 to-orange-600 hover:from-brand-600 hover:to-orange-700 shadow-sm hover:shadow-[0_4px_16px_rgba(249,115,22,0.45)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-1 dark:focus:ring-offset-slate-900"
+          class="btn-sheen relative inline-flex items-center justify-center gap-1 xl:gap-1.5 px-2.5 py-1 xl:px-3.5 xl:py-1.5 rounded-full font-bold text-[10.5px] xl:text-[11.5px] tracking-wide uppercase text-white bg-gradient-to-r from-brand-500 via-brand-600 to-orange-600 hover:from-brand-600 hover:to-orange-700 shadow-sm hover:shadow-[0_4px_16px_rgba(249,115,22,0.45)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-1 dark:focus:ring-offset-slate-900"
         >
           <i class="fa-solid fa-arrow-right-to-bracket text-[10.5px]"></i>
           <span>Login</span>
@@ -717,7 +739,7 @@
 
       <!-- 3. HOW IT WORKS -->
       <a id="mNavHowLink" href="how-it-works.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
-        <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 flex items-center justify-center text-xs">
+        <span class="w-6 h-6 rounded-lg bg-[#8FA99A]/15 dark:bg-[#172033] text-[#5d7667] dark:text-[#8FA99A] flex items-center justify-center text-xs">
           <i class="fa-solid fa-arrows-spin"></i>
         </span>
         <span>How It Works</span>
@@ -754,7 +776,7 @@
 
       <!-- 7. HYGIENE & SAFETY -->
       <a id="mNavHygieneLink" href="hygiene.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
-        <span class="w-6 h-6 rounded-lg bg-rose-100 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center text-xs">
+        <span class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs">
           <i class="fa-solid fa-shield-heart"></i>
         </span>
         <span>Hygiene &amp; Safety</span>
@@ -762,7 +784,7 @@
 
       <!-- 8. FAQ -->
       <a id="mNavFaqLink" href="faq.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
-        <span class="w-6 h-6 rounded-lg bg-cyan-100 dark:bg-cyan-950/60 text-cyan-600 flex items-center justify-center text-xs">
+        <span class="w-6 h-6 rounded-lg bg-[#8FA99A]/15 dark:bg-[#172033] text-[#5d7667] dark:text-[#8FA99A] flex items-center justify-center text-xs">
           <i class="fa-solid fa-circle-question"></i>
         </span>
         <span>FAQ</span>
@@ -770,7 +792,7 @@
 
       <!-- 9. CONTACT -->
       <a id="mNavContactLink" href="contact.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
-        <span class="w-6 h-6 rounded-lg bg-violet-100 dark:bg-violet-950/60 text-violet-600 flex items-center justify-center text-xs">
+        <span class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs">
           <i class="fa-solid fa-envelope"></i>
         </span>
         <span>Contact</span>
@@ -784,7 +806,7 @@
           class="w-full flex items-center justify-between py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors focus:outline-none text-start"
         >
           <span class="flex items-center gap-2.5">
-            <span class="w-6 h-6 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-xs">
+            <span class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs">
               <i class="fa-solid fa-gauge-high"></i>
             </span>
             <span class="text-xs">Dashboard</span>
@@ -795,11 +817,11 @@
         <!-- Dashboard Sub-items -->
         <div id="mobileDashboardMenu" class="hidden ps-9 pe-2 py-1 space-y-1">
           <a id="mSubUserDash" href="user-dashboard.html" class="mobile-nav-link flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-            <i class="fa-solid fa-user-circle text-xs text-indigo-500"></i>
+            <i class="fa-solid fa-user-circle text-xs text-[#C9A96E]"></i>
             <span>User Dashboard</span>
           </a>
           <a id="mSubAdminDash" href="admin-dashboard.html" class="mobile-nav-link flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-            <i class="fa-solid fa-shield-halved text-xs text-purple-500"></i>
+            <i class="fa-solid fa-shield-halved text-xs text-[#C9A96E]"></i>
             <span>Admin Dashboard</span>
           </a>
         </div>
@@ -966,7 +988,7 @@
         <!-- 3 Reassurances Bar -->
         <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 pt-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
           <div class="flex items-center gap-2">
-            <i class="fa-solid fa-shield-virus text-emerald-500 text-sm"></i>
+            <i class="fa-solid fa-shield-virus text-[#8FA99A] text-sm"></i>
             <span>254nm Medical UV-C Sanitized</span>
           </div>
           <div class="flex items-center gap-2">
@@ -1048,7 +1070,7 @@
                   <h3 class="font-brand text-xl sm:text-2xl font-bold text-slate-900 dark:text-[#F8F5EF]">New Arrivals</h3>
                 </div>
               </div>
-              <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-xs font-extrabold uppercase tracking-wider">
+              <span class="px-3 py-1 rounded-full bg-[#8FA99A]/15 text-[#5d7667] dark:text-[#8FA99A] dark:text-[#8FA99A] text-xs font-extrabold uppercase tracking-wider">
                 Just Stocked
               </span>
             </div>
@@ -1057,7 +1079,7 @@
             <div class="rounded-2xl bg-slate-50 dark:bg-[#0c111c]/60 border border-slate-200/70 dark:border-[#C9A96E]/15 overflow-hidden group">
               <a href="#toyDetailsModal" class="block relative h-56 sm:h-64 overflow-hidden open-details-btn" data-toy-id="toy-castle" title="Inspect Nordic Beechwood Castle Towers">
                 <img 
-                  src="images/cat_building_castle.jpg" 
+                  src="images/cat_spotlight_castle.jpg" 
                   alt="Nordic Beechwood Castle Towers" 
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                   loading="eager"
@@ -1092,10 +1114,10 @@
             <div class="space-y-3">
               <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50/70 dark:bg-[#0c111c]/40 border border-slate-200/50 dark:border-slate-800">
                 <div class="flex items-center gap-3">
-                  <img src="images/cat_new_rover.jpg" alt="Kinetic Exploration Rover" class="w-12 h-12 rounded-lg object-cover border border-slate-200 dark:border-slate-700 flex-shrink-0" />
+                  <img src="images/cat_spotlight_rover.jpg" alt="Kinetic Exploration Rover" class="w-12 h-12 rounded-lg object-cover border border-slate-200 dark:border-slate-700 flex-shrink-0" />
                   <div>
                     <h5 class="text-xs font-bold text-slate-800 dark:text-slate-200">Kinetic Exploration Rover</h5>
-                    <span class="text-[10px] text-slate-400">3–6y • STEM Mechanical Ratio Kit</span>
+                    <span class="text-[10px] text-slate-400">3–6y &bull; STEM Mechanical Ratio Kit</span>
                   </div>
                 </div>
                 <button type="button" class="open-details-btn text-xs font-bold text-[#C9A96E] hover:underline" data-toy-id="toy-gears">Inspect &rarr;</button>
@@ -1103,10 +1125,10 @@
 
               <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50/70 dark:bg-[#0c111c]/40 border border-slate-200/50 dark:border-slate-800">
                 <div class="flex items-center gap-3">
-                  <img src="images/cat_toddler_shapes.jpg" alt="Sensory Shape Sorting Cylinders" class="w-12 h-12 rounded-lg object-cover border border-slate-200 dark:border-slate-700 flex-shrink-0" />
+                  <img src="images/cat_spotlight_shapes.jpg" alt="Sensory Shape Sorting Cylinders" class="w-12 h-12 rounded-lg object-cover border border-slate-200 dark:border-slate-700 flex-shrink-0" />
                   <div>
                     <h5 class="text-xs font-bold text-slate-800 dark:text-slate-200">Shape Sorting Cylinders</h5>
-                    <span class="text-[10px] text-slate-400">1–3y • Montessori Wooden Lockbox</span>
+                    <span class="text-[10px] text-slate-400">1–3y &bull; Montessori Wooden Lockbox</span>
                   </div>
                 </div>
                 <button type="button" class="open-details-btn text-xs font-bold text-[#C9A96E] hover:underline" data-toy-id="toy-shapes">Inspect &rarr;</button>
@@ -1138,7 +1160,7 @@
             <div class="rounded-2xl bg-slate-50 dark:bg-[#0c111c]/60 border border-slate-200/70 dark:border-[#C9A96E]/15 overflow-hidden group">
               <a href="#toyDetailsModal" class="block relative h-56 sm:h-64 overflow-hidden open-details-btn" data-toy-id="toy-rainbow" title="Inspect 10-Piece Earthtone Rainbow Arches">
                 <img 
-                  src="images/cat_popular_rainbow.jpg" 
+                  src="images/cat_spotlight_rainbow.jpg" 
                   alt="10-Piece Earthtone Rainbow Arches" 
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                   loading="eager"
@@ -1173,10 +1195,10 @@
             <div class="space-y-3">
               <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50/70 dark:bg-[#0c111c]/40 border border-slate-200/50 dark:border-slate-800">
                 <div class="flex items-center gap-3">
-                  <img src="images/cat_knobbed_cylinders.jpg" alt="Montessori Knobbed Cylinders" class="w-12 h-12 rounded-lg object-cover border border-slate-200 dark:border-slate-700 flex-shrink-0" />
+                  <img src="images/cat_spotlight_knobs.jpg" alt="Montessori Knobbed Cylinders" class="w-12 h-12 rounded-lg object-cover border border-slate-200 dark:border-slate-700 flex-shrink-0" />
                   <div>
                     <h5 class="text-xs font-bold text-slate-800 dark:text-slate-200">Montessori Knobbed Cylinders</h5>
-                    <span class="text-[10px] text-slate-400">18m+ • 4.9★ Tactile Dimension Set</span>
+                    <span class="text-[10px] text-slate-400">18m+ &bull; 4.9★ Tactile Dimension Set</span>
                   </div>
                 </div>
                 <button type="button" class="open-details-btn text-xs font-bold text-[#C9A96E] hover:underline" data-toy-id="toy-prisms">Inspect &rarr;</button>
@@ -1184,10 +1206,10 @@
 
               <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50/70 dark:bg-[#0c111c]/40 border border-slate-200/50 dark:border-slate-800">
                 <div class="flex items-center gap-3">
-                  <img src="images/cat_balance_stones.jpg" alt="Artisan Balancing Stones" class="w-12 h-12 rounded-lg object-cover border border-slate-200 dark:border-slate-700 flex-shrink-0" />
+                  <img src="images/cat_spotlight_stones.jpg" alt="Artisan Balancing Stones" class="w-12 h-12 rounded-lg object-cover border border-slate-200 dark:border-slate-700 flex-shrink-0" />
                   <div>
                     <h5 class="text-xs font-bold text-slate-800 dark:text-slate-200">Artisan Balancing Stones</h5>
-                    <span class="text-[10px] text-slate-400">2–6y • 4.85★ Tactile Organic Rocks</span>
+                    <span class="text-[10px] text-slate-400">2–6y &bull; 4.85★ Tactile Organic Rocks</span>
                   </div>
                 </div>
                 <button type="button" class="open-details-btn text-xs font-bold text-[#C9A96E] hover:underline" data-toy-id="toy-stones">Inspect &rarr;</button>
@@ -1277,7 +1299,7 @@
               <span id="ageExplorerBadge" class="px-3 py-1 rounded-full bg-[#172033] text-[#F8F5EF] dark:bg-[#C9A96E] dark:text-[#172033] text-xs font-extrabold uppercase tracking-wider">
                 Bracket: 0 – 12 Months
               </span>
-              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+              <span class="text-xs font-bold text-[#5d7667] dark:text-[#8FA99A] dark:text-[#8FA99A] flex items-center gap-1">
                 <i class="fa-solid fa-circle-check text-xs"></i> OT &amp; Pediatrician Approved
               </span>
             </div>
@@ -1299,7 +1321,7 @@
 
           <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col items-center gap-3">
             <div class="w-full rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-md h-40">
-              <img id="ageExplorerImg" src="images/cat_infant_rattle.jpg" alt="Selected milestone apparatus" class="w-full h-full object-cover" />
+              <img id="ageExplorerImg" src="images/cat_milestone_explorer.jpg" alt="Selected milestone apparatus" class="w-full h-full object-cover" />
             </div>
             <button type="button" id="filterByAgeBtn" class="w-full py-2.5 px-4 rounded-xl bg-[#172033] text-[#F8F5EF] dark:bg-[#C9A96E] dark:text-[#172033] text-xs font-bold hover:brightness-110 flex items-center justify-center gap-2 transition-all">
               <i class="fa-solid fa-filter text-xs"></i>
@@ -1352,7 +1374,7 @@
         <div class="atelier-card rounded-2xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 p-5 shadow-premium-card flex flex-col justify-between space-y-4 hover:border-[#C9A96E]/60 hover:-translate-y-1 transition-all group cursor-pointer" data-category="educational">
           <div class="space-y-3">
             <div class="h-40 rounded-xl overflow-hidden relative border border-slate-100 dark:border-slate-800">
-              <img src="images/cat_educational_abacus.jpg" alt="Montessori Wooden Abacus" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="eager" />
+              <img src="images/cat_category_educational.jpg" alt="Montessori Educational Toys Atelier" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="eager" />
               <span class="rounded-xl bg-[#172033]/80 backdrop-blur-md text-[#C9A96E] absolute top-2.5 start-2.5" style="width: 32px !important; height: 32px !important; min-width: 32px !important; max-width: 32px !important; min-height: 32px !important; max-height: 32px !important; flex: 0 0 32px !important; flex-shrink: 0 !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; box-sizing: border-box !important;">
                 <i class="fa-solid fa-graduation-cap text-xs"></i>
               </span>
@@ -1372,7 +1394,7 @@
         <div class="atelier-card rounded-2xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 p-5 shadow-premium-card flex flex-col justify-between space-y-4 hover:border-[#C9A96E]/60 hover:-translate-y-1 transition-all group cursor-pointer" data-category="pretend">
           <div class="space-y-3">
             <div class="h-40 rounded-xl overflow-hidden relative border border-slate-100 dark:border-slate-800">
-              <img src="images/cat_pretend_market_stand.jpg" alt="Artisan Wooden Market & Roleplay Kit" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="eager" />
+              <img src="images/cat_category_pretend.jpg" alt="Artisan Pretend Play Market Atelier" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="eager" />
               <span class="rounded-xl bg-[#172033]/80 backdrop-blur-md text-[#D8A7A0] absolute top-2.5 start-2.5" style="width: 32px !important; height: 32px !important; min-width: 32px !important; max-width: 32px !important; min-height: 32px !important; max-height: 32px !important; flex: 0 0 32px !important; flex-shrink: 0 !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; box-sizing: border-box !important;">
                 <i class="fa-solid fa-masks-theater text-xs"></i>
               </span>
@@ -1392,7 +1414,7 @@
         <div class="atelier-card rounded-2xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 p-5 shadow-premium-card flex flex-col justify-between space-y-4 hover:border-[#C9A96E]/60 hover:-translate-y-1 transition-all group cursor-pointer" data-category="building">
           <div class="space-y-3">
             <div class="h-40 rounded-xl overflow-hidden relative border border-slate-100 dark:border-slate-800">
-              <img src="images/cat_building_blocks.jpg" alt="Wooden Construction & Castle Blocks" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="eager" />
+              <img src="images/cat_category_building.jpg" alt="Building and Architectural Blocks Atelier" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="eager" />
               <span class="rounded-xl bg-[#172033]/80 backdrop-blur-md text-[#8FA99A] absolute top-2.5 start-2.5" style="width: 32px !important; height: 32px !important; min-width: 32px !important; max-width: 32px !important; min-height: 32px !important; max-height: 32px !important; flex: 0 0 32px !important; flex-shrink: 0 !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; box-sizing: border-box !important;">
                 <i class="fa-solid fa-cubes-stacked text-xs"></i>
               </span>
@@ -1412,7 +1434,7 @@
         <div class="atelier-card rounded-2xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 p-5 shadow-premium-card flex flex-col justify-between space-y-4 hover:border-[#C9A96E]/60 hover:-translate-y-1 transition-all group cursor-pointer" data-category="stem">
           <div class="space-y-3">
             <div class="h-40 rounded-xl overflow-hidden relative border border-slate-100 dark:border-slate-800">
-              <img src="images/cat_new_rover.jpg" alt="Kinetic Planetary Exploration Rover" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="eager" />
+              <img src="images/cat_category_stem.jpg" alt="STEM Science and Engineering Atelier" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="eager" />
               <span class="rounded-xl bg-[#172033]/80 backdrop-blur-md text-[#C9A96E] absolute top-2.5 start-2.5" style="width: 32px !important; height: 32px !important; min-width: 32px !important; max-width: 32px !important; min-height: 32px !important; max-height: 32px !important; flex: 0 0 32px !important; flex-shrink: 0 !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; box-sizing: border-box !important;">
                 <i class="fa-solid fa-atom text-xs"></i>
               </span>
@@ -1432,7 +1454,7 @@
         <div class="atelier-card rounded-2xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 p-5 shadow-premium-card flex flex-col justify-between space-y-4 hover:border-[#C9A96E]/60 hover:-translate-y-1 transition-all group cursor-pointer" data-category="creative">
           <div class="space-y-3">
             <div class="h-40 rounded-xl overflow-hidden relative border border-slate-100 dark:border-slate-800">
-              <img src="images/cat_creative_crayons.jpg" alt="Organic Beeswax Art Materials" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="eager" />
+              <img src="images/cat_category_creative.jpg" alt="Creative Arts and Eco Crayons Atelier" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="eager" />
               <span class="rounded-xl bg-[#172033]/80 backdrop-blur-md text-[#D8A7A0] absolute top-2.5 start-2.5" style="width: 32px !important; height: 32px !important; min-width: 32px !important; max-width: 32px !important; min-height: 32px !important; max-height: 32px !important; flex: 0 0 32px !important; flex-shrink: 0 !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; box-sizing: border-box !important;">
                 <i class="fa-solid fa-palette text-xs"></i>
               </span>
@@ -1452,7 +1474,7 @@
         <div class="atelier-card rounded-2xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 p-5 shadow-premium-card flex flex-col justify-between space-y-4 hover:border-[#C9A96E]/60 hover:-translate-y-1 transition-all group cursor-pointer" data-category="puzzles">
           <div class="space-y-3">
             <div class="h-40 rounded-xl overflow-hidden relative border border-slate-100 dark:border-slate-800">
-              <img src="images/cat_toddler_shapes.jpg" alt="Montessori Geometric Shape Lockbox" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="eager" />
+              <img src="images/cat_category_puzzles.jpg" alt="Developmental Puzzles and Logic Atelier" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="eager" />
               <span class="rounded-xl bg-[#172033]/80 backdrop-blur-md text-[#8FA99A] absolute top-2.5 start-2.5" style="width: 32px !important; height: 32px !important; min-width: 32px !important; max-width: 32px !important; min-height: 32px !important; max-height: 32px !important; flex: 0 0 32px !important; flex-shrink: 0 !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; box-sizing: border-box !important;">
                 <i class="fa-solid fa-puzzle-piece text-xs"></i>
               </span>
@@ -1472,7 +1494,7 @@
         <div class="atelier-card rounded-2xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 p-5 shadow-premium-card flex flex-col justify-between space-y-4 hover:border-[#C9A96E]/60 hover:-translate-y-1 transition-all group cursor-pointer" data-category="outdoor">
           <div class="space-y-3">
             <div class="h-40 rounded-xl overflow-hidden relative border border-slate-100 dark:border-slate-800">
-              <img src="images/cat_balance_pillars.jpg" alt="Active Balance Stepping Columns" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="eager" />
+              <img src="images/cat_category_outdoor.jpg" alt="Active Outdoor Balance and Nature Play Atelier" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="eager" />
               <span class="rounded-xl bg-[#172033]/80 backdrop-blur-md text-[#C9A96E] absolute top-2.5 start-2.5" style="width: 32px !important; height: 32px !important; min-width: 32px !important; max-width: 32px !important; min-height: 32px !important; max-height: 32px !important; flex: 0 0 32px !important; flex-shrink: 0 !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; box-sizing: border-box !important;">
                 <i class="fa-solid fa-sun text-xs"></i>
               </span>
@@ -1492,7 +1514,7 @@
         <div class="atelier-card rounded-2xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 p-5 shadow-premium-card flex flex-col justify-between space-y-4 hover:border-[#C9A96E]/60 hover:-translate-y-1 transition-all group cursor-pointer" data-category="sensory">
           <div class="space-y-3">
             <div class="h-40 rounded-xl overflow-hidden relative border border-slate-100 dark:border-slate-800">
-              <img src="images/cat_knobbed_cylinders.jpg" alt="Montessori Knobbed Sensory Cylinders" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="eager" />
+              <img src="images/cat_category_sensory.jpg" alt="Montessori Sensory Tactile Atelier" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="eager" />
               <span class="rounded-xl bg-[#172033]/80 backdrop-blur-md text-[#8FA99A] absolute top-2.5 start-2.5" style="width: 32px !important; height: 32px !important; min-width: 32px !important; max-width: 32px !important; min-height: 32px !important; max-height: 32px !important; flex: 0 0 32px !important; flex-shrink: 0 !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; box-sizing: border-box !important;">
                 <i class="fa-solid fa-hands text-xs"></i>
               </span>
@@ -1551,7 +1573,7 @@
             <button 
               type="button" 
               id="resetFiltersBtn" 
-              class="py-2 px-3 rounded-xl bg-slate-100 dark:bg-[#0c111c] hover:bg-rose-100 dark:hover:bg-rose-950/40 text-slate-600 dark:text-slate-300 hover:text-rose-600 text-xs font-bold transition-colors flex items-center gap-1.5 flex-shrink-0"
+              class="py-2 px-3 rounded-xl bg-slate-100 dark:bg-[#0c111c] hover:bg-[#C9A96E]/15 dark:hover:bg-[#172033] text-slate-600 dark:text-slate-300 hover:text-[#C9A96E] text-xs font-bold transition-colors flex items-center gap-1.5 flex-shrink-0"
             >
               <i class="fa-solid fa-arrow-rotate-left text-[10px]"></i>
               <span>Reset</span>
@@ -1895,7 +1917,7 @@
              data-id="toy-outdoor" data-category="outdoor" data-age="5-7y" data-popular="false" data-new="false" data-age-num="5">
           <div class="space-y-3">
             <a href="#toyDetailsModal" class="block h-44 rounded-xl overflow-hidden relative group/img open-details-btn" data-toy-id="toy-outdoor" title="View Toy Details">
-              <img src="images/cat_balance_pillars.jpg" alt="Active Balance Stepping Columns" class="w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-500" loading="eager" />
+              <img src="images/cat_balance_pillars.jpg" alt="Active Outdoor Balance and Nature Play Atelier" class="w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-500" loading="eager" />
               <span class="absolute top-2 start-2 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-[#172033]/85 text-[#C9A96E] backdrop-blur-md">5 – 7 Years</span>
               <span class="absolute bottom-2 end-2 text-[10px] font-bold px-2 py-0.5 rounded bg-white/90 dark:bg-black/80 text-[#172033] dark:text-[#F8F5EF] opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center gap-1">
                 <i class="fa-solid fa-magnifying-glass text-[9px]"></i> Specs
@@ -2001,7 +2023,7 @@
             <div class="rounded-2xl overflow-hidden shadow-xl border border-slate-200/80 dark:border-[#C9A96E]/20 relative group">
               <img 
                 id="studioActiveImage" 
-                src="images/cat_new_rover.jpg" 
+                src="images/cat_studio_rover_schematic.jpg" 
                 alt="Kinetic Planetary Exploration Rover Technical Inspection" 
                 class="w-full h-80 sm:h-96 object-cover" 
                 loading="eager"
@@ -2021,7 +2043,7 @@
 
               <!-- Sanitization Stamp Floating Badge -->
               <div class="absolute bottom-3 start-3 px-3 py-1.5 rounded-xl bg-[#172033]/90 backdrop-blur-md text-white text-xs font-bold flex items-center gap-2 border border-white/20">
-                <i class="fa-solid fa-certificate text-emerald-400"></i>
+                <i class="fa-solid fa-certificate text-[#8FA99A]"></i>
                 <span>Certified Non-Toxic EN-71 &amp; ASTM F963</span>
               </div>
             </div>
@@ -2041,7 +2063,7 @@
             <div class="space-y-2">
               <div class="flex items-center gap-2 text-xs font-extrabold text-[#C9A96E] uppercase tracking-wider">
                 <span id="studioAgeRange">Target Age: 3 – 5 Years</span>
-                <span>•</span>
+                <span>&bull;</span>
                 <span id="studioCategoryTag">STEM &amp; Physical Mechanics</span>
               </div>
               <h3 id="studioToyTitle" class="font-brand text-2xl sm:text-3xl font-bold text-slate-900 dark:text-[#F8F5EF]">
@@ -2091,7 +2113,7 @@
               <!-- Spec 4: Sanitization Protocol -->
               <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-[#0c111c]/60 border border-slate-200/60 dark:border-[#C9A96E]/15 space-y-1.5">
                 <strong class="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
-                  <i class="fa-solid fa-pump-medical text-emerald-500"></i>
+                  <i class="fa-solid fa-pump-medical text-[#8FA99A]"></i>
                   <span>5-Stage Hygiene</span>
                 </strong>
                 <p class="text-slate-500 dark:text-slate-400 text-[11px] leading-relaxed">
@@ -2169,7 +2191,7 @@
         <!-- 3 Pillars Footer Info -->
         <div class="pt-6 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-semibold text-slate-500 dark:text-slate-400 border-t border-slate-200/60 dark:border-white/10">
           <div class="flex items-center gap-2">
-            <i class="fa-solid fa-shield-halved text-emerald-500 text-sm"></i>
+            <i class="fa-solid fa-shield-halved text-[#8FA99A] text-sm"></i>
             <span>100% "Oops!" Free Loss Waiver</span>
           </div>
           <div class="flex items-center gap-2">
@@ -2177,7 +2199,7 @@
             <span>Free Doorstep Delivery &amp; Returns</span>
           </div>
           <div class="flex items-center gap-2">
-            <i class="fa-solid fa-leaf text-emerald-500 text-sm"></i>
+            <i class="fa-solid fa-leaf text-[#8FA99A] text-sm"></i>
             <span>100% Plastic-Free Packaging</span>
           </div>
         </div>
@@ -2215,7 +2237,7 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
         <div class="h-64 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-md">
-          <img id="modalToyImg" src="images/cat_new_rover.jpg" alt="Kinetic Planetary Exploration Rover Preview" class="w-full h-full object-cover" />
+          <img id="modalToyImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Toy Preview" class="w-full h-full object-cover" />
         </div>
         <div class="space-y-2.5">
           <span id="modalToyBadge" class="text-[10px] font-extrabold px-3 py-1 rounded-full bg-[#C9A96E]/20 text-[#8a6e38] dark:text-[#C9A96E] uppercase tracking-wider inline-block">STEM &amp; Science</span>
@@ -2224,7 +2246,7 @@
           <p id="modalToyDesc" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             Handcrafted wooden rover with treaded gear wheels and steering axles. Teaches momentum, rotational physics, and mechanical exploration. Certified non-toxic European Beechwood.
           </p>
-          <div class="pt-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
+          <div class="pt-2 text-xs font-semibold text-[#5d7667] dark:text-[#8FA99A] dark:text-[#8FA99A] flex items-center gap-1.5">
             <i class="fa-solid fa-certificate"></i>
             <span>Sanitized &amp; Tested against EN-71 Standards</span>
           </div>
@@ -2239,7 +2261,7 @@
         </div>
         <div class="p-3 rounded-xl bg-slate-50 dark:bg-[#0c111c]/60">
           <span class="text-slate-400 text-[10px] uppercase tracking-wider block">Loss Waiver</span>
-          <strong class="font-bold text-emerald-500">$0 Replacement Fee</strong>
+          <strong class="font-bold text-[#8FA99A]">$0 Replacement Fee</strong>
         </div>
       </div>
 
@@ -3044,7 +3066,7 @@
           <!-- Trust Badges Grid -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 max-w-sm">
             <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
-              <div class="w-7 h-7 rounded-lg bg-rose-100 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center text-xs flex-shrink-0">
+              <div class="w-7 h-7 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs flex-shrink-0">
                 <i class="fa-solid fa-shield-heart"></i>
               </div>
               <div class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 leading-tight">
@@ -3066,7 +3088,7 @@
           <div class="pt-2">
             <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-3">Follow The Fun</div>
             <div class="flex items-center gap-2">
-              <a href="#instagram" aria-label="Instagram" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-pink-50 dark:hover:bg-pink-950/60 text-slate-600 dark:text-slate-300 hover:text-pink-500 flex items-center justify-center text-xs transition-colors shadow-sm">
+              <a href="#instagram" aria-label="Instagram" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-[#172033] text-slate-600 dark:text-slate-300 hover:text-[#C9A96E] flex items-center justify-center text-xs transition-colors shadow-sm">
                 <i class="fa-brands fa-instagram"></i>
               </a>
               <a href="#youtube" aria-label="YouTube" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-red-50 dark:hover:bg-red-950/60 text-slate-600 dark:text-slate-300 hover:text-red-500 flex items-center justify-center text-xs transition-colors shadow-sm">
@@ -3075,7 +3097,7 @@
               <a href="#facebook" aria-label="Facebook" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-950/60 text-slate-600 dark:text-slate-300 hover:text-blue-500 flex items-center justify-center text-xs transition-colors shadow-sm">
                 <i class="fa-brands fa-facebook-f"></i>
               </a>
-              <a href="#pinterest" aria-label="Pinterest" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-rose-950/60 text-slate-600 dark:text-slate-300 hover:text-rose-500 flex items-center justify-center text-xs transition-colors shadow-sm">
+              <a href="#pinterest" aria-label="Pinterest" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-[#172033] text-slate-600 dark:text-slate-300 hover:text-[#C9A96E] flex items-center justify-center text-xs transition-colors shadow-sm">
                 <i class="fa-brands fa-pinterest-p"></i>
               </a>
               <a href="#tiktok" aria-label="TikTok" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white flex items-center justify-center text-xs transition-colors shadow-sm">
@@ -3184,7 +3206,7 @@
             </li>
             <li>
               <a href="activity.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
-                <i class="fa-solid fa-palette text-[10px] text-pink-500"></i>
+                <i class="fa-solid fa-palette text-[10px] text-[#C9A96E]"></i>
                 <span>Arts &amp; Creative Craft Kits</span>
               </a>
             </li>
@@ -3196,19 +3218,19 @@
             </li>
             <li>
               <a href="activity.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
-                <i class="fa-solid fa-robot text-[10px] text-indigo-500"></i>
+                <i class="fa-solid fa-robot text-[10px] text-[#C9A96E]"></i>
                 <span>Robotics &amp; Coding Kits (6-12y)</span>
               </a>
             </li>
             <li>
               <a href="catalog.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
-                <i class="fa-solid fa-chess text-[10px] text-purple-500"></i>
+                <i class="fa-solid fa-chess text-[10px] text-[#C9A96E]"></i>
                 <span>Family Board Games</span>
               </a>
             </li>
             <li>
               <a href="plans.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
-                <i class="fa-solid fa-gift text-[10px] text-rose-500"></i>
+                <i class="fa-solid fa-gift text-[10px] text-[#C9A96E]"></i>
                 <span>Gift a Subscription Box</span>
               </a>
             </li>
@@ -3227,7 +3249,7 @@
           <!-- Dashboard Links from Navbar -->
           <div class="space-y-1.5 pb-2">
             <a href="user-dashboard.html" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 hover:border-brand-500/50 transition-colors group">
-              <div class="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
+              <div class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#172033] dark:text-[#C9A96E] flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-user"></i>
               </div>
               <div class="text-[11.5px] font-semibold text-slate-700 dark:text-slate-200">
@@ -3235,8 +3257,8 @@
               </div>
             </a>
 
-            <a href="admin-dashboard.html" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 hover:border-purple-500/50 transition-colors group">
-              <div class="w-6 h-6 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
+            <a href="admin-dashboard.html" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 hover:border-[#C9A96E]/40/50 transition-colors group">
+              <div class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-gauge-high"></i>
               </div>
               <div class="text-[11.5px] font-semibold text-slate-700 dark:text-slate-200">
@@ -3489,12 +3511,12 @@
           document.getElementById('navDashBtn')?.classList.add('active');
           document.getElementById('mobileDashboardToggle')?.classList.add('active');
           if (isUserDash) {
-            document.getElementById('subUserDash')?.classList.add('active', 'bg-indigo-100/90', 'dark:bg-slate-800', 'text-indigo-600', 'dark:text-indigo-400', 'font-bold');
-            document.getElementById('mSubUserDash')?.classList.add('active', 'font-bold', 'text-indigo-600', 'dark:text-indigo-400');
+            document.getElementById('subUserDash')?.classList.add('active', 'bg-[#C9A96E]/15/90', 'dark:bg-slate-800', 'text-[#172033] dark:text-[#C9A96E]', 'dark:text-[#8FA99A]', 'font-bold');
+            document.getElementById('mSubUserDash')?.classList.add('active', 'font-bold', 'text-[#172033] dark:text-[#C9A96E]', 'dark:text-[#8FA99A]');
           }
           if (isAdminDash) {
-            document.getElementById('subAdminDash')?.classList.add('active', 'bg-purple-100/90', 'dark:bg-slate-800', 'text-purple-600', 'dark:text-purple-400', 'font-bold');
-            document.getElementById('mSubAdminDash')?.classList.add('active', 'font-bold', 'text-purple-600', 'dark:text-purple-400');
+            document.getElementById('subAdminDash')?.classList.add('active', 'bg-[#C9A96E]/15/90', 'dark:bg-slate-800', 'text-[#C9A96E]', 'dark:text-[#C9A96E]', 'font-bold');
+            document.getElementById('mSubAdminDash')?.classList.add('active', 'font-bold', 'text-[#C9A96E]', 'dark:text-[#C9A96E]');
           }
         }
       }

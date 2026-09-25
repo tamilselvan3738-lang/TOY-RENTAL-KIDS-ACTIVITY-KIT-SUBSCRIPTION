@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Console &amp; Operations Dashboard • PlayLoop Kids</title>
-  <!-- Favicon: PlayLoop Kids Navbar Logo -->
+  <title>Admin Console & Operations Dashboard &bull; PlayLoop Kids</title>
+  
+  <!-- Favicon: PlayLoop Kids Unified Brand Icons -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="alternate icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-
-  <!-- Google Fonts: Outfit (Heading) & Plus Jakarta Sans (Body) -->
+  
+  <!-- Google Fonts: Outfit (Brand Headings) & Plus Jakarta Sans (Clean Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
   <!-- Font Awesome 6.5.1 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
@@ -34,39 +36,61 @@
               50: '#f5f7fa',
               100: '#eaedf3',
               200: '#d0d7e4',
-              300: '#a6b4cc',
-              400: '#748bb0',
-              500: '#4b6691',
-              600: '#395076',
-              700: '#2d3e5c',
-              800: '#1e293f',
-              900: '#172033',
-              950: '#0c111c',
+              300: '#a7b5cc',
+              400: '#758cae',
+              500: '#4f6892',
+              600: '#3c5075',
+              700: '#2f3e5c',
+              800: '#232d43',
+              900: '#172033', // Deep Navy Core
+              950: '#0e1320',
             },
             cream: {
-              50: '#fdfcfb',
-              100: '#F8F5EF',
-              200: '#f1ede2',
-              300: '#e6decb',
+              50: '#fdfbf7',
+              100: '#F8F5EF', // Warm Cream Core
+              200: '#f1ebd8',
+              300: '#e7ddbd',
+              400: '#d9c897',
             },
-            brand: {
+            brand: { // Premium Accent: Soft Gold
               50: '#faf7f0',
               100: '#f3ede0',
               200: '#e8dcc4',
               300: '#dccaa3',
               400: '#d2b984',
-              500: '#C9A96E',
+              500: '#C9A96E', // Soft Gold Core
               600: '#b99455',
               700: '#9a7842',
               800: '#7d6139',
               900: '#675031',
             },
-            playTeal: {
+            playTeal: { // Natural Accent: Muted Sage
               400: '#a7bcb0',
-              500: '#8FA99A',
+              500: '#8FA99A', // Muted Sage Core
               600: '#759281',
               700: '#5d7667',
+            },
+            playPurple: { // Deep Navy Accent
+              400: '#506385',
+              500: '#172033',
+              600: '#111827',
+            },
+            playYellow: { // Soft Gold Shimmer
+              400: '#dccaa3',
+              500: '#C9A96E',
+              600: '#b99455',
+            },
+            roseAccent: { // Soft Accent: Dusty Rose
+              400: '#e1b9b3',
+              500: '#D8A7A0', // Dusty Rose Core
+              600: '#c48d85',
+              700: '#a87169',
             }
+          },
+          boxShadow: {
+            'playful': '0 8px 25px -4px rgba(201, 169, 110, 0.35)',
+            'nav-drop': '0 15px 35px -5px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0,0,0,0.04)',
+            'nav-drop-dark': '0 15px 35px -5px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.08)',
           }
         }
       }
@@ -74,7 +98,61 @@
   </script>
 
   <style>
-    /* Continuous Gentle Rotation for Logo Loop */
+    /* Global Viewport & Safe Overflow Containment */
+    html, body {
+      max-width: 100vw;
+      overflow-x: clip;
+    }
+    @supports not (overflow-x: clip) {
+      html, body {
+        overflow-x: hidden;
+      }
+    }
+
+    /* Custom Scrollbar: Sleek vertical & completely removed horizontal */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 0px !important;
+    }
+    ::-webkit-scrollbar:horizontal {
+      display: none !important;
+      height: 0px !important;
+      width: 0px !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      background: transparent !important;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C9A96E;
+      border-radius: 9999px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #24334f;
+    }
+
+    /* Smooth Scrolling */
+    html {
+      scroll-padding-top: 5.5rem;
+      scroll-behavior: smooth;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Animated Multi-color Gradient Border Line on Navbar */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animated-nav-glow {
+      background: linear-gradient(90deg, #C9A96E, #8FA99A);
+      background-size: 300% 100%;
+      animation: gradientShift 7s ease infinite;
+    }
+
+    /* Continuous Gentle Rotation for Logo Rental Loop */
     @keyframes gentleSpin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
@@ -88,7 +166,7 @@
       animation-duration: 5s;
     }
 
-    /* Floating Animation for 3D Activity Box */
+    /* Floating / Bobbing Animation for 3D Activity Box inside Logo */
     @keyframes floatKit {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-2.5px) rotate(3deg); }
@@ -97,108 +175,171 @@
       animation: floatKit 3.2s ease-in-out infinite;
     }
 
-    /* Active Sidebar Navigation Item Styling */
+    /* Floating Shapes in Background */
+    @keyframes floatSlow1 {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-16px) rotate(8deg); }
+    }
+    @keyframes floatSlow2 {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-22px) rotate(-10deg); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.75; transform: scale(1.12); }
+    }
+    .animate-float-1 {
+      animation: floatSlow1 7s ease-in-out infinite;
+    }
+    .animate-float-2 {
+      animation: floatSlow2 9.5s ease-in-out infinite;
+    }
+    .animate-pulse-glow {
+      animation: pulseGlow 6s ease-in-out infinite;
+    }
+
+    /* Modern Sliding Gradient Indicator for Nav Links */
+    .nav-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #C9A96E, #8FA99A);
+      border-radius: 9999px;
+      transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1), left 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 80% !important;
+      left: 10% !important;
+    }
+    .nav-link.active {
+      color: #C9A96E !important;
+      background-color: rgba(201, 169, 110, 0.12) !important;
+      font-weight: 700 !important;
+    }
+    html.dark .nav-link.active {
+      color: #C9A96E !important;
+      background-color: rgba(23, 32, 51, 0.9) !important;
+    }
+    .mobile-nav-link.active {
+      color: #C9A96E !important;
+      background-color: rgba(201, 169, 110, 0.12) !important;
+      font-weight: 700 !important;
+    }
+    html.dark .mobile-nav-link.active {
+      color: #C9A96E !important;
+      background-color: rgba(23, 32, 51, 0.9) !important;
+    }
+    .nav-link:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Submenu animation with spring scale */
+    .dropdown-menu {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px) scale(0.96);
+      transform-origin: top center;
+      transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.22s;
+    }
+    .group:hover .dropdown-menu,
+    .group:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Button Shimmer Sheen */
+    .btn-sheen {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-sheen::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -70%;
+      width: 50%;
+      height: 200%;
+      background: linear-gradient(
+        60deg,
+        rgba(255, 255, 255, 0) 20%,
+        rgba(255, 255, 255, 0.45) 50%,
+        rgba(255, 255, 255, 0) 80%
+      );
+      transform: rotate(25deg);
+      transition: left 0.75s ease;
+    }
+    .btn-sheen:hover::after {
+      left: 140%;
+    }
+
+    /* Utility Button Hover Animations */
+    .btn-tool {
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-tool:hover {
+      transform: scale(1.08);
+    }
+    .btn-tool:active {
+      transform: scale(0.95);
+    }
+
+    /* Off-canvas drawer sliding direction aware of RTL */
+    #mobileDrawer {
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s, opacity 0.3s;
+      opacity: 0;
+    }
+    html[dir="ltr"] #mobileDrawer {
+      right: 0 !important;
+      left: auto !important;
+      transform: translateX(100%);
+      visibility: hidden;
+      pointer-events: none;
+    }
+    html[dir="rtl"] #mobileDrawer {
+      left: 0 !important;
+      right: auto !important;
+      transform: translateX(-100%);
+      visibility: hidden;
+      pointer-events: none;
+    }
+    html[dir="ltr"] #mobileDrawer.drawer-open,
+    html[dir="rtl"] #mobileDrawer.drawer-open {
+      transform: translateX(0);
+      visibility: visible;
+      pointer-events: auto;
+      opacity: 1;
+    }
+
+    /* Dashboard Sidebar & View Transition Helpers */
     .sidebar-nav-item.active {
-      background-color: rgba(201, 169, 110, 0.12);
-      color: #C9A96E;
-      border-inline-start: 3px solid #C9A96E;
+      background: rgba(201, 169, 110, 0.15) !important;
+      color: #C9A96E !important;
       font-weight: 700;
     }
     .dark .sidebar-nav-item.active {
-      background-color: rgba(201, 169, 110, 0.18);
-      color: #f3ede0;
-      border-inline-start: 3px solid #C9A96E;
+      background: rgba(201, 169, 110, 0.2) !important;
+      color: #C9A96E !important;
     }
-
-    /* Dynamic View Panels Animation */
     @keyframes fadeInView {
-      from { opacity: 0; transform: translateY(8px); }
+      from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .view-panel.active-view {
-      display: block;
-      animation: fadeInView 0.25s ease-out forwards;
-    }
-    .view-panel {
-      display: none;
-    }
-
-    /* Guaranteed Dark Mode Body Styling */
-    html.dark body {
-      background-color: #0c111c !important;
-      color: #F8F5EF !important;
-    }
-
-    /* Custom Slim Scrollbars */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(150, 150, 150, 0.25);
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(150, 150, 150, 0.45);
-    }
-
-    /* Mobile Drawer Slide Animation */
-    #mobileDrawer {
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
-    }
-    [dir="ltr"] #mobileDrawer {
-      transform: translateX(100%);
-      right: 0;
-      left: auto;
-    }
-    [dir="rtl"] #mobileDrawer {
-      transform: translateX(-100%);
-      left: 0;
-      right: auto;
-    }
-    #mobileDrawer.drawer-open {
-      transform: translateX(0) !important;
-      visibility: visible;
-    }
-
-    /* Bulletproof Stationary Desktop Admin Sidebar (top: 102px, stationary on scroll) */
-    @media (min-width: 1024px) {
-      #adminSidebar {
-        position: fixed !important;
-        top: 102px !important;
-        width: 18rem !important; /* w-72 */
-        max-height: calc(100vh - 7.5rem) !important;
-        z-index: 30 !important;
-        overflow-y: auto !important;
-        scrollbar-width: thin !important;
-        scrollbar-color: #C9A96E transparent !important;
-      }
-      #adminSidebar::-webkit-scrollbar {
-        width: 4px !important;
-      }
-      #adminSidebar::-webkit-scrollbar-track {
-        background: transparent !important;
-      }
-      #adminSidebar::-webkit-scrollbar-thumb {
-        background: rgba(201, 169, 110, 0.4) !important;
-        border-radius: 9999px !important;
-      }
-    }
-
-    .custom-scroll {
-      scrollbar-width: thin;
-      scrollbar-color: rgba(150, 150, 150, 0.3) transparent;
-    }
-    .custom-scroll::-webkit-scrollbar {
-      height: 5px;
-      width: 5px;
-    }
-    .custom-scroll::-webkit-scrollbar-thumb {
-      background: rgba(150, 150, 150, 0.3);
-      border-radius: 9999px;
+    .view-panel:not(.hidden) {
+      animation: fadeInView 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
   </style>
 </head>
@@ -323,7 +464,7 @@
             <div class="px-4 py-2 border-b border-slate-100 dark:border-slate-800/80">
               <div class="font-bold text-slate-900 dark:text-white">Alex Danvers (Super Admin)</div>
               <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">ops.lead@playloopkids.com</div>
-              <div class="mt-1.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-500 text-[10px] font-black uppercase">
+              <div class="mt-1.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#C9A96E]/10 text-[#C9A96E] text-[10px] font-black uppercase">
                 <i class="fa-solid fa-shield-halved text-[9px]"></i> Super Admin
               </div>
             </div>
@@ -332,17 +473,17 @@
               <i class="fa-solid fa-gauge text-[#C9A96E] w-4"></i> Overview Metrics
             </a>
             <a href="#reportsMgmtView" onclick="switchAdminView('reportsMgmtView')" class="flex items-center gap-2 px-4 py-2.5 hover:bg-slate-50 dark:hover:bg-slate-800/60 text-slate-700 dark:text-slate-200 transition-colors">
-              <i class="fa-solid fa-chart-pie text-emerald-500 w-4"></i> Executive Reports
+              <i class="fa-solid fa-chart-pie text-[#8FA99A] w-4"></i> Executive Reports
             </a>
             <a href="#notificationsMgmtView" onclick="switchAdminView('notificationsMgmtView')" class="flex items-center gap-2 px-4 py-2.5 hover:bg-slate-50 dark:hover:bg-slate-800/60 text-slate-700 dark:text-slate-200 transition-colors">
               <i class="fa-solid fa-bell text-sky-400 w-4"></i> Notifications
-              <span class="ms-auto px-1.5 py-0.2 rounded-full bg-rose-500 text-white text-[9px] font-black">6</span>
+              <span class="ms-auto px-1.5 py-0.2 rounded-full bg-[#C9A96E] text-white text-[9px] font-black">6</span>
             </a>
 
             <div class="pt-1 border-t border-slate-100 dark:border-slate-800/80">
               <a 
                 href="login.html" 
-                class="admin-logout-trigger w-full flex items-center gap-2 px-4 py-2.5 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/30 text-left rtl:text-right font-bold transition-colors"
+                class="admin-logout-trigger w-full flex items-center gap-2 px-4 py-2.5 text-[#C9A96E] hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-[#172033] text-left rtl:text-right font-bold transition-colors"
               >
                 <i class="fa-solid fa-arrow-right-from-bracket w-4"></i> Sign Out
               </a>
@@ -393,7 +534,7 @@
           <span>Toy Management</span>
         </button>
         <button type="button" class="mobile-nav-item w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-start text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60" data-view="kitMgmtView">
-          <i class="fa-solid fa-box-open w-4 text-emerald-500"></i>
+          <i class="fa-solid fa-box-open w-4 text-[#8FA99A]"></i>
           <span>Activity Kit Mgmt</span>
         </button>
         <button type="button" class="mobile-nav-item w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-start text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60" data-view="planMgmtView">
@@ -401,7 +542,7 @@
           <span>Subscription Plans</span>
         </button>
         <button type="button" class="mobile-nav-item w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-start text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60" data-view="rentalMgmtView">
-          <i class="fa-solid fa-hand-holding-heart w-4 text-indigo-500"></i>
+          <i class="fa-solid fa-hand-holding-heart w-4 text-[#C9A96E]"></i>
           <span>Rental Management</span>
         </button>
         <button type="button" class="mobile-nav-item w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-start text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60" data-view="rotationMgmtView">
@@ -413,11 +554,11 @@
           <span>Swap Requests</span>
         </button>
         <button type="button" class="mobile-nav-item w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-start text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60" data-view="returnMgmtView">
-          <i class="fa-solid fa-dolly w-4 text-purple-500"></i>
+          <i class="fa-solid fa-dolly w-4 text-[#C9A96E]"></i>
           <span>Return Management</span>
         </button>
         <button type="button" class="mobile-nav-item w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-start text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60" data-view="hygieneMgmtView">
-          <i class="fa-solid fa-pump-medical w-4 text-emerald-500"></i>
+          <i class="fa-solid fa-pump-medical w-4 text-[#8FA99A]"></i>
           <span>Hygiene &amp; Cleaning</span>
         </button>
         <button type="button" class="mobile-nav-item w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-start text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60" data-view="billingMgmtView">
@@ -437,7 +578,7 @@
           <span>FAQ Management</span>
         </button>
         <button type="button" class="mobile-nav-item w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-start text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60" data-view="reportsMgmtView">
-          <i class="fa-solid fa-chart-pie w-4 text-rose-500"></i>
+          <i class="fa-solid fa-chart-pie w-4 text-[#C9A96E]"></i>
           <span>Reports &amp; Analytics</span>
         </button>
       </nav>
@@ -466,7 +607,7 @@
         </button>
       </div>
 
-      <a href="login.html" class="admin-logout-trigger w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-rose-500/10 text-rose-500 font-bold text-xs hover:bg-rose-500 hover:text-white transition-all">
+      <a href="login.html" class="admin-logout-trigger w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#C9A96E]/10 text-[#C9A96E] font-bold text-xs hover:bg-[#C9A96E] hover:text-white transition-all">
         <i class="fa-solid fa-arrow-right-from-bracket"></i>
         <span>Sign Out of Console</span>
       </a>
@@ -545,9 +686,9 @@
 
           <!-- 4. Activity Kit Management -->
           <button type="button" class="sidebar-nav-item w-full flex items-center gap-2 px-3 py-1.5 rounded-xl text-start text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all" data-view="kitMgmtView">
-            <i class="fa-solid fa-box-open w-4 text-center text-emerald-500"></i>
+            <i class="fa-solid fa-box-open w-4 text-center text-[#8FA99A]"></i>
             <span class="flex-1">Activity Kit Mgmt</span>
-            <span class="text-[9px] font-bold text-emerald-500 bg-emerald-500/10 px-1.5 py-0.5 rounded-md">8 Kits</span>
+            <span class="text-[9px] font-bold text-[#8FA99A] bg-[#8FA99A]/10 px-1.5 py-0.5 rounded-md">8 Kits</span>
           </button>
 
           <!-- 5. Subscription Plan Management -->
@@ -558,9 +699,9 @@
 
           <!-- 6. Rental Management -->
           <button type="button" class="sidebar-nav-item w-full flex items-center gap-2 px-3 py-1.5 rounded-xl text-start text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all" data-view="rentalMgmtView">
-            <i class="fa-solid fa-hand-holding-heart w-4 text-center text-indigo-500"></i>
+            <i class="fa-solid fa-hand-holding-heart w-4 text-center text-[#C9A96E]"></i>
             <span class="flex-1">Rental Management</span>
-            <span class="text-[9px] font-bold text-indigo-500 bg-indigo-500/10 px-1.5 py-0.2 rounded-full">2.6k</span>
+            <span class="text-[9px] font-bold text-[#C9A96E] bg-[#172033]/10 px-1.5 py-0.2 rounded-full">2.6k</span>
           </button>
 
           <!-- 7. Toy Rotation Management -->
@@ -578,16 +719,16 @@
 
           <!-- 9. Return Management -->
           <button type="button" class="sidebar-nav-item w-full flex items-center gap-2 px-3 py-1.5 rounded-xl text-start text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all" data-view="returnMgmtView">
-            <i class="fa-solid fa-dolly w-4 text-center text-purple-500"></i>
+            <i class="fa-solid fa-dolly w-4 text-center text-[#C9A96E]"></i>
             <span class="flex-1">Return Management</span>
-            <span class="text-[9px] font-bold text-purple-500 bg-purple-500/10 px-1.5 py-0.2 rounded-full">48 Due</span>
+            <span class="text-[9px] font-bold text-[#C9A96E] bg-[#C9A96E]/10 px-1.5 py-0.2 rounded-full">48 Due</span>
           </button>
 
           <!-- 10. Hygiene & Inspection -->
           <button type="button" class="sidebar-nav-item w-full flex items-center gap-2 px-3 py-1.5 rounded-xl text-start text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all" data-view="hygieneMgmtView">
-            <i class="fa-solid fa-pump-medical w-4 text-center text-emerald-500"></i>
+            <i class="fa-solid fa-pump-medical w-4 text-center text-[#8FA99A]"></i>
             <span class="flex-1">Hygiene &amp; Cleaning</span>
-            <span class="text-[9px] font-bold text-emerald-500 bg-emerald-500/10 px-1.5 py-0.2 rounded-full">62</span>
+            <span class="text-[9px] font-bold text-[#8FA99A] bg-[#8FA99A]/10 px-1.5 py-0.2 rounded-full">62</span>
           </button>
 
           <!-- 11. Billing Management -->
@@ -606,7 +747,7 @@
           <button type="button" class="sidebar-nav-item w-full flex items-center gap-2 px-3 py-1.5 rounded-xl text-start text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all" data-view="notificationsMgmtView">
             <i class="fa-solid fa-bell w-4 text-center text-amber-500"></i>
             <span class="flex-1">Notifications Mgmt</span>
-            <span class="px-1.5 py-0.2 rounded-full bg-rose-500 text-white text-[9px] font-black">6</span>
+            <span class="px-1.5 py-0.2 rounded-full bg-[#C9A96E] text-white text-[9px] font-black">6</span>
           </button>
 
           <!-- 14. FAQ Management -->
@@ -617,7 +758,7 @@
 
           <!-- 15. Reports -->
           <button type="button" class="sidebar-nav-item w-full flex items-center gap-2 px-3 py-1.5 rounded-xl text-start text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all" data-view="reportsMgmtView">
-            <i class="fa-solid fa-chart-pie w-4 text-center text-rose-500"></i>
+            <i class="fa-solid fa-chart-pie w-4 text-center text-[#C9A96E]"></i>
             <span class="flex-1">Reports &amp; Analytics</span>
           </button>
 
@@ -625,7 +766,7 @@
           <div class="pt-1.5 mt-1 border-t border-slate-200/80 dark:border-slate-800">
             <a 
               href="login.html" 
-              class="admin-logout-trigger w-full flex items-center gap-2 px-3 py-1.5 rounded-xl text-start text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/30 font-bold transition-all"
+              class="admin-logout-trigger w-full flex items-center gap-2 px-3 py-1.5 rounded-xl text-start text-[#C9A96E] hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-[#172033] font-bold transition-all"
             >
               <i class="fa-solid fa-arrow-right-from-bracket w-4 text-center"></i>
               <span class="flex-1">Sign Out</span>
@@ -679,7 +820,7 @@
               <span class="w-6 h-6 rounded-lg bg-sky-500/15 text-sky-500 flex items-center justify-center text-[10px]"><i class="fa-solid fa-users"></i></span>
             </div>
             <div class="font-brand font-black text-xl sm:text-2xl text-slate-900 dark:text-white">1,248</div>
-            <div class="text-[10px] text-emerald-500 font-bold flex items-center gap-1">
+            <div class="text-[10px] text-[#8FA99A] font-bold flex items-center gap-1">
               <i class="fa-solid fa-arrow-trend-up"></i> +12% this mo
             </div>
           </div>
@@ -688,10 +829,10 @@
           <div class="p-4 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-2">
             <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
               <span class="font-medium truncate">Active Subscribers</span>
-              <span class="w-6 h-6 rounded-lg bg-emerald-500/15 text-emerald-500 flex items-center justify-center text-[10px]"><i class="fa-solid fa-circle-check"></i></span>
+              <span class="w-6 h-6 rounded-lg bg-[#8FA99A]/15 text-[#8FA99A] flex items-center justify-center text-[10px]"><i class="fa-solid fa-circle-check"></i></span>
             </div>
             <div class="font-brand font-black text-xl sm:text-2xl text-slate-900 dark:text-white">892</div>
-            <div class="text-[10px] text-emerald-500 font-bold flex items-center gap-1">
+            <div class="text-[10px] text-[#8FA99A] font-bold flex items-center gap-1">
               <i class="fa-solid fa-bolt"></i> 71.4% retention
             </div>
           </div>
@@ -734,10 +875,10 @@
           <div class="p-4 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-2">
             <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
               <span class="font-medium truncate">Under Cleaning</span>
-              <span class="w-6 h-6 rounded-lg bg-purple-500/15 text-purple-500 flex items-center justify-center text-[10px]"><i class="fa-solid fa-pump-medical"></i></span>
+              <span class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 text-[#C9A96E] flex items-center justify-center text-[10px]"><i class="fa-solid fa-pump-medical"></i></span>
             </div>
-            <div class="font-brand font-black text-xl sm:text-2xl text-purple-400">62</div>
-            <div class="text-[10px] text-purple-500 font-bold">254nm UV-C Queue</div>
+            <div class="font-brand font-black text-xl sm:text-2xl text-[#C9A96E]">62</div>
+            <div class="text-[10px] text-[#C9A96E] font-bold">254nm UV-C Queue</div>
           </div>
 
           <!-- 7. Subscription Revenue -->
@@ -747,7 +888,7 @@
               <span class="w-6 h-6 rounded-lg bg-[#C9A96E]/20 text-[#C9A96E] flex items-center justify-center text-[10px]"><i class="fa-solid fa-dollar-sign"></i></span>
             </div>
             <div class="font-brand font-black text-xl sm:text-2xl text-white">$52,628</div>
-            <div class="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
+            <div class="text-[10px] text-[#8FA99A] font-bold flex items-center gap-1">
               <i class="fa-solid fa-arrow-trend-up"></i> +$4,120 mo
             </div>
           </div>
@@ -802,19 +943,19 @@
                   <tr>
                     <td class="py-3">
                       <div class="font-bold text-slate-900 dark:text-white">Sarah Miller</div>
-                      <div class="text-[10px] text-slate-400">Liam (Toddler • 2.5y)</div>
+                      <div class="text-[10px] text-slate-400">Liam (Toddler &bull; 2.5y)</div>
                     </td>
                     <td class="py-3 font-medium">Curved Balance Stones</td>
                     <td class="py-3 text-slate-400">Interlocking Discs</td>
                     <td class="py-3"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-500">Pending Review</span></td>
                     <td class="py-3 text-end">
-                      <button onclick="approveSwapPrompt('Sarah Miller', 'Curved Balance Stones')" class="px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-500 font-bold hover:bg-emerald-500 hover:text-white transition-all">Approve</button>
+                      <button onclick="approveSwapPrompt('Sarah Miller', 'Curved Balance Stones')" class="px-2.5 py-1 rounded-lg bg-[#8FA99A]/15 text-[#8FA99A] font-bold hover:bg-[#8FA99A] hover:text-white transition-all">Approve</button>
                     </td>
                   </tr>
                   <tr>
                     <td class="py-3">
                       <div class="font-bold text-slate-900 dark:text-white">Marcus Vance</div>
-                      <div class="text-[10px] text-slate-400">Maya (Preschool • 4y)</div>
+                      <div class="text-[10px] text-slate-400">Maya (Preschool &bull; 4y)</div>
                     </td>
                     <td class="py-3 font-medium">Wooden Marble Run Track</td>
                     <td class="py-3 text-slate-400">Sensory Tactile Pods</td>
@@ -826,11 +967,11 @@
                   <tr>
                     <td class="py-3">
                       <div class="font-bold text-slate-900 dark:text-white">Elena Rostova</div>
-                      <div class="text-[10px] text-slate-400">Noah (Infant • 9m)</div>
+                      <div class="text-[10px] text-slate-400">Noah (Infant &bull; 9m)</div>
                     </td>
                     <td class="py-3 font-medium">Montessori Object Permanence Box</td>
                     <td class="py-3 text-slate-400">Organic Rattle Ball</td>
-                    <td class="py-3"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">Completed</span></td>
+                    <td class="py-3"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#8FA99A]/10 text-[#8FA99A]">Completed</span></td>
                     <td class="py-3 text-end">
                       <span class="text-[10px] text-slate-400">In Home</span>
                     </td>
@@ -844,9 +985,9 @@
           <div class="p-5 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
             <div class="flex items-center justify-between">
               <h3 class="font-brand font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
-                <i class="fa-solid fa-shield-virus text-emerald-500"></i> Hygiene Lab Status
+                <i class="fa-solid fa-shield-virus text-[#8FA99A]"></i> Hygiene Lab Status
               </h3>
-              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+              <span class="w-2 h-2 rounded-full bg-[#8FA99A] animate-ping"></span>
             </div>
 
             <p class="text-xs text-slate-500 dark:text-slate-400">
@@ -857,17 +998,17 @@
               <div>
                 <div class="flex justify-between mb-1">
                   <span class="font-semibold text-slate-700 dark:text-slate-300">Chamber A (Wood &amp; Beech)</span>
-                  <span class="font-bold text-emerald-500">Active • 94% Cycle</span>
+                  <span class="font-bold text-[#8FA99A]">Active &bull; 94% Cycle</span>
                 </div>
                 <div class="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
-                  <div class="h-full bg-emerald-500 rounded-full w-[94%]"></div>
+                  <div class="h-full bg-[#8FA99A] rounded-full w-[94%]"></div>
                 </div>
               </div>
 
               <div>
                 <div class="flex justify-between mb-1">
                   <span class="font-semibold text-slate-700 dark:text-slate-300">Chamber B (Steam &amp; Polish)</span>
-                  <span class="font-bold text-[#C9A96E]">Active • 62% Cycle</span>
+                  <span class="font-bold text-[#C9A96E]">Active &bull; 62% Cycle</span>
                 </div>
                 <div class="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
                   <div class="h-full bg-[#C9A96E] rounded-full w-[62%]"></div>
@@ -942,49 +1083,49 @@
                 <tr>
                   <td class="py-3.5">
                     <div class="font-bold text-slate-900 dark:text-white">Sarah Miller</div>
-                    <div class="text-[10px] text-slate-400">sarah.miller@example.com • Portland, OR</div>
+                    <div class="text-[10px] text-slate-400">sarah.miller@example.com &bull; Portland, OR</div>
                   </td>
                   <td class="py-3.5"><span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#C9A96E]/15 text-[#C9A96E]">Atelier Hybrid ($59/mo)</span></td>
-                  <td class="py-3.5 font-medium">Liam (2.5y • Toddler Milestone)</td>
+                  <td class="py-3.5 font-medium">Liam (2.5y &bull; Toddler Milestone)</td>
                   <td class="py-3.5 font-bold">6 Toys In Home</td>
-                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-500">Active Subscribers</span></td>
+                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#8FA99A]/15 text-[#8FA99A]">Active Subscribers</span></td>
                   <td class="py-3.5 text-slate-400">Oct 15, 2026</td>
                   <td class="py-3.5 text-end space-x-1.5">
                     <button onclick="viewParentDetails('Sarah Miller', 'sarah.miller@example.com', 'Liam', '2.5y', 'Atelier Hybrid ($59/mo)', 'Active')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-sky-500 font-bold" title="Parent Details"><i class="fa-solid fa-eye me-1"></i> Details</button>
                     <button onclick="viewParentHistory('Sarah Miller')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-[#C9A96E] font-bold" title="Subscription History"><i class="fa-solid fa-clock-rotate-left me-1"></i> History</button>
-                    <button onclick="deleteParentPrompt('Sarah Miller')" class="p-1.5 rounded-lg text-slate-400 hover:text-rose-500 bg-slate-100 dark:bg-slate-800" title="Delete Parent"><i class="fa-solid fa-trash"></i></button>
+                    <button onclick="deleteParentPrompt('Sarah Miller')" class="p-1.5 rounded-lg text-slate-400 hover:text-[#C9A96E] bg-slate-100 dark:bg-slate-800" title="Delete Parent"><i class="fa-solid fa-trash"></i></button>
                   </td>
                 </tr>
                 <tr>
                   <td class="py-3.5">
                     <div class="font-bold text-slate-900 dark:text-white">Marcus Vance</div>
-                    <div class="text-[10px] text-slate-400">marcus.v@example.com • Beaverton, OR</div>
+                    <div class="text-[10px] text-slate-400">marcus.v@example.com &bull; Beaverton, OR</div>
                   </td>
-                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-purple-500/15 text-purple-400">Curator Pro ($89/mo)</span></td>
-                  <td class="py-3.5 font-medium">Maya (4y • Preschool), Ethan (1y)</td>
+                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#C9A96E]/15 text-[#C9A96E]">Curator Pro ($89/mo)</span></td>
+                  <td class="py-3.5 font-medium">Maya (4y &bull; Preschool), Ethan (1y)</td>
                   <td class="py-3.5 font-bold">8 Toys In Home</td>
-                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-500">Active Subscribers</span></td>
+                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#8FA99A]/15 text-[#8FA99A]">Active Subscribers</span></td>
                   <td class="py-3.5 text-slate-400">Oct 22, 2026</td>
                   <td class="py-3.5 text-end space-x-1.5">
                     <button onclick="viewParentDetails('Marcus Vance', 'marcus.v@example.com', 'Maya & Ethan', '4y & 1y', 'Curator Pro ($89/mo)', 'Active')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-sky-500 font-bold"><i class="fa-solid fa-eye me-1"></i> Details</button>
                     <button onclick="viewParentHistory('Marcus Vance')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-[#C9A96E] font-bold"><i class="fa-solid fa-clock-rotate-left me-1"></i> History</button>
-                    <button onclick="deleteParentPrompt('Marcus Vance')" class="p-1.5 rounded-lg text-slate-400 hover:text-rose-500 bg-slate-100 dark:bg-slate-800" title="Delete Parent"><i class="fa-solid fa-trash"></i></button>
+                    <button onclick="deleteParentPrompt('Marcus Vance')" class="p-1.5 rounded-lg text-slate-400 hover:text-[#C9A96E] bg-slate-100 dark:bg-slate-800" title="Delete Parent"><i class="fa-solid fa-trash"></i></button>
                   </td>
                 </tr>
                 <tr>
                   <td class="py-3.5">
                     <div class="font-bold text-slate-900 dark:text-white">Jessica Chen</div>
-                    <div class="text-[10px] text-slate-400">jessica.c@example.com • Lake Oswego, OR</div>
+                    <div class="text-[10px] text-slate-400">jessica.c@example.com &bull; Lake Oswego, OR</div>
                   </td>
                   <td class="py-3.5"><span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-sky-500/15 text-sky-400">Explorer Starter ($39/mo)</span></td>
-                  <td class="py-3.5 font-medium">Oliver (10m • Infant Milestone)</td>
+                  <td class="py-3.5 font-medium">Oliver (10m &bull; Infant Milestone)</td>
                   <td class="py-3.5 font-bold">4 Toys In Home</td>
                   <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/15 text-amber-500">Paused Subscribers</span></td>
                   <td class="py-3.5 text-slate-400">Nov 01, 2026</td>
                   <td class="py-3.5 text-end space-x-1.5">
                     <button onclick="viewParentDetails('Jessica Chen', 'jessica.c@example.com', 'Oliver', '10m', 'Explorer Starter ($39/mo)', 'Paused (1 Mo)')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-sky-500 font-bold"><i class="fa-solid fa-eye me-1"></i> Details</button>
                     <button onclick="viewParentHistory('Jessica Chen')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-[#C9A96E] font-bold"><i class="fa-solid fa-clock-rotate-left me-1"></i> History</button>
-                    <button onclick="deleteParentPrompt('Jessica Chen')" class="p-1.5 rounded-lg text-slate-400 hover:text-rose-500 bg-slate-100 dark:bg-slate-800" title="Delete Parent"><i class="fa-solid fa-trash"></i></button>
+                    <button onclick="deleteParentPrompt('Jessica Chen')" class="p-1.5 rounded-lg text-slate-400 hover:text-[#C9A96E] bg-slate-100 dark:bg-slate-800" title="Delete Parent"><i class="fa-solid fa-trash"></i></button>
                   </td>
                 </tr>
               </tbody>
@@ -1051,14 +1192,14 @@
           <!-- Toy Card 1 -->
           <div class="rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm space-y-3">
             <div class="relative h-40 rounded-xl bg-slate-100 dark:bg-slate-800 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=500&auto=format&fit=crop&q=80" alt="Curved Balance Stones" class="w-full h-full object-cover" />
-              <span class="absolute top-2 start-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-500 text-white shadow-sm">Toy Rental Availability: 42 in Stock</span>
+              <img src="images/admin_inventory_stones.jpg" alt="Curved Balance Stones" class="w-full h-full object-cover" />
+              <span class="absolute top-2 start-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#8FA99A] text-white shadow-sm">Toy Rental Availability: 42 in Stock</span>
               <span class="absolute bottom-2 end-2 px-2 py-0.5 rounded-md text-[10px] font-black uppercase bg-black/60 backdrop-blur-sm text-white">Gross Motor</span>
             </div>
             <div>
               <div class="flex items-center justify-between">
                 <span class="text-[10px] font-bold text-[#C9A96E] uppercase">Age 1–3 Years</span>
-                <span class="text-[10px] text-emerald-500 font-bold"><i class="fa-solid fa-star text-yellow-400"></i> Toy Condition Status: Pristine A+</span>
+                <span class="text-[10px] text-[#8FA99A] font-bold"><i class="fa-solid fa-star text-yellow-400"></i> Toy Condition Status: Pristine A+</span>
               </div>
               <h3 class="font-bold text-sm text-slate-900 dark:text-white mt-1">Curved Balance Stepping Stones</h3>
               <p class="text-[11px] text-slate-400">Natural beechwood with anti-skid eco-felt.</p>
@@ -1067,7 +1208,7 @@
               <span class="font-bold text-slate-700 dark:text-slate-300">Total: 180 Units</span>
               <div class="flex gap-1.5">
                 <button onclick="editToyPrompt('Curved Balance Stepping Stones', 'Outdoor & Active Play', '1–3 Years', 180, 'Pristine A+')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-sky-500 font-bold" title="Edit Toy"><i class="fa-solid fa-pen me-1"></i> Edit Toy</button>
-                <button onclick="deleteToyPrompt('Curved Balance Stepping Stones')" class="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-rose-500" title="Delete Toy"><i class="fa-solid fa-trash"></i></button>
+                <button onclick="deleteToyPrompt('Curved Balance Stepping Stones')" class="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-[#C9A96E]" title="Delete Toy"><i class="fa-solid fa-trash"></i></button>
               </div>
             </div>
           </div>
@@ -1075,14 +1216,14 @@
           <!-- Toy Card 2 -->
           <div class="rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm space-y-3">
             <div class="relative h-40 rounded-xl bg-slate-100 dark:bg-slate-800 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=500&auto=format&fit=crop&q=80" alt="Waldorf Building Arches" class="w-full h-full object-cover" />
+              <img src="images/admin_inventory_arches.jpg" alt="Waldorf Building Arches" class="w-full h-full object-cover" />
               <span class="absolute top-2 start-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-sky-500 text-white shadow-sm">Toy Rental Availability: 118 Rented</span>
               <span class="absolute bottom-2 end-2 px-2 py-0.5 rounded-md text-[10px] font-black uppercase bg-black/60 backdrop-blur-sm text-white">Spatial &amp; STEM</span>
             </div>
             <div>
               <div class="flex items-center justify-between">
                 <span class="text-[10px] font-bold text-[#C9A96E] uppercase">Age 3–5 Years</span>
-                <span class="text-[10px] text-emerald-500 font-bold"><i class="fa-solid fa-star text-yellow-400"></i> Toy Condition Status: Heirloom Grade</span>
+                <span class="text-[10px] text-[#8FA99A] font-bold"><i class="fa-solid fa-star text-yellow-400"></i> Toy Condition Status: Heirloom Grade</span>
               </div>
               <h3 class="font-bold text-sm text-slate-900 dark:text-white mt-1">Waldorf Architectural Arches</h3>
               <p class="text-[11px] text-slate-400">Non-toxic water-based dip finish.</p>
@@ -1091,7 +1232,7 @@
               <span class="font-bold text-slate-700 dark:text-slate-300">Total: 150 Units</span>
               <div class="flex gap-1.5">
                 <button onclick="editToyPrompt('Waldorf Architectural Arches', 'Building & Construction', '3–5 Years', 150, 'Heirloom Grade')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-sky-500 font-bold" title="Edit Toy"><i class="fa-solid fa-pen me-1"></i> Edit Toy</button>
-                <button onclick="deleteToyPrompt('Waldorf Architectural Arches')" class="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-rose-500" title="Delete Toy"><i class="fa-solid fa-trash"></i></button>
+                <button onclick="deleteToyPrompt('Waldorf Architectural Arches')" class="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-[#C9A96E]" title="Delete Toy"><i class="fa-solid fa-trash"></i></button>
               </div>
             </div>
           </div>
@@ -1099,14 +1240,14 @@
           <!-- Toy Card 3 -->
           <div class="rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm space-y-3">
             <div class="relative h-40 rounded-xl bg-slate-100 dark:bg-slate-800 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=500&auto=format&fit=crop&q=80" alt="Montessori Interlocking Discs" class="w-full h-full object-cover" />
-              <span class="absolute top-2 start-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-purple-500 text-white shadow-sm">Toy Rental Availability: Under Cleaning</span>
+              <img src="images/admin_inventory_discs.jpg" alt="Montessori Interlocking Discs" class="w-full h-full object-cover" />
+              <span class="absolute top-2 start-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#C9A96E] text-white shadow-sm">Toy Rental Availability: Under Cleaning</span>
               <span class="absolute bottom-2 end-2 px-2 py-0.5 rounded-md text-[10px] font-black uppercase bg-black/60 backdrop-blur-sm text-white">Sensory</span>
             </div>
             <div>
               <div class="flex items-center justify-between">
                 <span class="text-[10px] font-bold text-[#C9A96E] uppercase">Age 0–1 Year</span>
-                <span class="text-[10px] text-purple-400 font-bold"><i class="fa-solid fa-sparkles"></i> Toy Condition Status: Cleaning</span>
+                <span class="text-[10px] text-[#C9A96E] font-bold"><i class="fa-solid fa-sparkles"></i> Toy Condition Status: Cleaning</span>
               </div>
               <h3 class="font-bold text-sm text-slate-900 dark:text-white mt-1">Interlocking Beechwood Discs</h3>
               <p class="text-[11px] text-slate-400">Hand-eye transfer for infant grip.</p>
@@ -1115,7 +1256,7 @@
               <span class="font-bold text-slate-700 dark:text-slate-300">Total: 90 Units</span>
               <div class="flex gap-1.5">
                 <button onclick="editToyPrompt('Interlocking Beechwood Discs', 'Sensory & Baby Toys', '0–1 Year', 90, 'Pristine A+')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-sky-500 font-bold" title="Edit Toy"><i class="fa-solid fa-pen me-1"></i> Edit Toy</button>
-                <button onclick="deleteToyPrompt('Interlocking Beechwood Discs')" class="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-rose-500" title="Delete Toy"><i class="fa-solid fa-trash"></i></button>
+                <button onclick="deleteToyPrompt('Interlocking Beechwood Discs')" class="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-[#C9A96E]" title="Delete Toy"><i class="fa-solid fa-trash"></i></button>
               </div>
             </div>
           </div>
@@ -1123,14 +1264,14 @@
           <!-- Toy Card 4 -->
           <div class="rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm space-y-3">
             <div class="relative h-40 rounded-xl bg-slate-100 dark:bg-slate-800 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=500&auto=format&fit=crop&q=80" alt="Marble Run" class="w-full h-full object-cover" />
-              <span class="absolute top-2 start-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-500 text-white shadow-sm">Toy Rental Availability: 28 in Stock</span>
+              <img src="images/admin_inventory_marblerun.jpg" alt="Marble Run" class="w-full h-full object-cover" />
+              <span class="absolute top-2 start-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#8FA99A] text-white shadow-sm">Toy Rental Availability: 28 in Stock</span>
               <span class="absolute bottom-2 end-2 px-2 py-0.5 rounded-md text-[10px] font-black uppercase bg-black/60 backdrop-blur-sm text-white">STEM Toys</span>
             </div>
             <div>
               <div class="flex items-center justify-between">
                 <span class="text-[10px] font-bold text-[#C9A96E] uppercase">Age 5–8 Years</span>
-                <span class="text-[10px] text-emerald-500 font-bold"><i class="fa-solid fa-star text-yellow-400"></i> Toy Condition Status: Good</span>
+                <span class="text-[10px] text-[#8FA99A] font-bold"><i class="fa-solid fa-star text-yellow-400"></i> Toy Condition Status: Good</span>
               </div>
               <h3 class="font-bold text-sm text-slate-900 dark:text-white mt-1">Wooden Gravity Marble Track</h3>
               <p class="text-[11px] text-slate-400">Kinetic momentum physics builder.</p>
@@ -1139,7 +1280,7 @@
               <span class="font-bold text-slate-700 dark:text-slate-300">Total: 75 Units</span>
               <div class="flex gap-1.5">
                 <button onclick="editToyPrompt('Wooden Gravity Marble Track', 'STEM Toys', '5–8 Years', 75, 'Good')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-sky-500 font-bold" title="Edit Toy"><i class="fa-solid fa-pen me-1"></i> Edit Toy</button>
-                <button onclick="deleteToyPrompt('Wooden Gravity Marble Track')" class="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-rose-500" title="Delete Toy"><i class="fa-solid fa-trash"></i></button>
+                <button onclick="deleteToyPrompt('Wooden Gravity Marble Track')" class="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-[#C9A96E]" title="Delete Toy"><i class="fa-solid fa-trash"></i></button>
               </div>
             </div>
           </div>
@@ -1160,7 +1301,7 @@
             <h1 class="font-brand font-black text-2xl sm:text-3xl text-slate-900 dark:text-white tracking-tight">Activity Kit Management</h1>
             <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Consumable keep-forever STEAM craft kits, seasonal releases, recipe guides, and inventory availability.</p>
           </div>
-          <button type="button" onclick="document.getElementById('addKitModal').classList.remove('hidden')" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider shadow-sm flex items-center gap-2">
+          <button type="button" onclick="document.getElementById('addKitModal').classList.remove('hidden')" class="px-4 py-2 rounded-xl bg-[#8FA99A] hover:bg-[#5d7667] text-white font-bold text-xs uppercase tracking-wider shadow-sm flex items-center gap-2">
             <i class="fa-solid fa-plus"></i> Add Activity Kit
           </button>
         </div>
@@ -1169,12 +1310,12 @@
         <div class="space-y-2">
           <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Kit Categories:</div>
           <div class="flex items-center gap-2 overflow-x-auto pb-2 custom-scroll text-xs font-bold">
-            <button class="px-3.5 py-1.5 rounded-xl bg-emerald-500 text-white shadow-sm">View Activity Kits (All 8)</button>
-            <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-emerald-500">STEM Experiments</button>
-            <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-emerald-500">Art &amp; Craft Kits</button>
-            <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-emerald-500">Sensory Play Kits</button>
-            <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-emerald-500">Montessori Learning</button>
-            <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-emerald-500">Coding &amp; Logic Games</button>
+            <button class="px-3.5 py-1.5 rounded-xl bg-[#8FA99A] text-white shadow-sm">View Activity Kits (All 8)</button>
+            <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-[#8FA99A]/40">STEM Experiments</button>
+            <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-[#8FA99A]/40">Art &amp; Craft Kits</button>
+            <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-[#8FA99A]/40">Sensory Play Kits</button>
+            <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-[#8FA99A]/40">Montessori Learning</button>
+            <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-[#8FA99A]/40">Coding &amp; Logic Games</button>
             <button class="px-3.5 py-1.5 rounded-xl bg-amber-500/10 text-amber-500 border border-amber-500/30">Seasonal &amp; Festival Kits</button>
           </div>
         </div>
@@ -1183,7 +1324,7 @@
           <!-- Kit 1 -->
           <div class="p-5 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3">
             <div class="flex items-start justify-between">
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase bg-emerald-500/15 text-emerald-500">STEM Experiments • Keep Forever</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase bg-[#8FA99A]/15 text-[#8FA99A]">STEM Experiments &bull; Keep Forever</span>
               <span class="text-xs font-bold text-slate-400">Recommended Age: 4–7 Years</span>
             </div>
             <h3 class="font-brand font-bold text-lg text-slate-900 dark:text-white">Cyanotype Botanical Sun-Print Lab</h3>
@@ -1194,7 +1335,7 @@
               </p>
             </div>
             <div class="p-3 rounded-xl bg-slate-50 dark:bg-[#0c111c] text-xs space-y-1">
-              <div class="flex justify-between"><span>Activity Kit Availability:</span><strong class="text-emerald-500">340 Ready Kits in Stock</strong></div>
+              <div class="flex justify-between"><span>Activity Kit Availability:</span><strong class="text-[#8FA99A]">340 Ready Kits in Stock</strong></div>
               <div class="flex justify-between"><span>Seasonal &amp; Festival Kits:</span><strong class="text-sky-400">Autumn Harvest Edition</strong></div>
             </div>
             <div class="pt-2 flex justify-between items-center text-xs">
@@ -1203,7 +1344,7 @@
               </button>
               <div class="flex gap-2">
                 <button onclick="alert('Editing Cyanotype Lab metadata')" class="px-3 py-1.5 rounded-lg bg-[#C9A96E]/15 text-[#C9A96E] font-bold"><i class="fa-solid fa-pen"></i> Edit</button>
-                <button onclick="alert('Delete Activity Kit')" class="px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-500 font-bold"><i class="fa-solid fa-trash"></i></button>
+                <button onclick="alert('Delete Activity Kit')" class="px-3 py-1.5 rounded-lg bg-[#C9A96E]/10 text-[#C9A96E] font-bold"><i class="fa-solid fa-trash"></i></button>
               </div>
             </div>
           </div>
@@ -1211,7 +1352,7 @@
           <!-- Kit 2 -->
           <div class="p-5 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3">
             <div class="flex items-start justify-between">
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase bg-purple-500/15 text-purple-400">Art &amp; Craft Kits</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase bg-[#C9A96E]/15 text-[#C9A96E]">Art &amp; Craft Kits</span>
               <span class="text-xs font-bold text-slate-400">Recommended Age: 2–5 Years</span>
             </div>
             <h3 class="font-brand font-bold text-lg text-slate-900 dark:text-white">Non-Toxic Mineral Pottery &amp; Stamp Kit</h3>
@@ -1222,8 +1363,8 @@
               </p>
             </div>
             <div class="p-3 rounded-xl bg-slate-50 dark:bg-[#0c111c] text-xs space-y-1">
-              <div class="flex justify-between"><span>Activity Kit Availability:</span><strong class="text-emerald-500">210 Ready Kits in Stock</strong></div>
-              <div class="flex justify-between"><span>Seasonal &amp; Festival Kits:</span><strong class="text-purple-400">All-Season Core</strong></div>
+              <div class="flex justify-between"><span>Activity Kit Availability:</span><strong class="text-[#8FA99A]">210 Ready Kits in Stock</strong></div>
+              <div class="flex justify-between"><span>Seasonal &amp; Festival Kits:</span><strong class="text-[#C9A96E]">All-Season Core</strong></div>
             </div>
             <div class="pt-2 flex justify-between items-center text-xs">
               <button onclick="alert('Downloading Instruction Guides (PDF / Link) for Pottery Kit...')" class="text-sky-500 hover:underline font-bold flex items-center gap-1.5">
@@ -1231,7 +1372,7 @@
               </button>
               <div class="flex gap-2">
                 <button onclick="alert('Editing Pottery Kit metadata')" class="px-3 py-1.5 rounded-lg bg-[#C9A96E]/15 text-[#C9A96E] font-bold"><i class="fa-solid fa-pen"></i> Edit</button>
-                <button onclick="alert('Delete Activity Kit')" class="px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-500 font-bold"><i class="fa-solid fa-trash"></i></button>
+                <button onclick="alert('Delete Activity Kit')" class="px-3 py-1.5 rounded-lg bg-[#C9A96E]/10 text-[#C9A96E] font-bold"><i class="fa-solid fa-trash"></i></button>
               </div>
             </div>
           </div>
@@ -1250,7 +1391,7 @@
               </p>
             </div>
             <div class="p-3 rounded-xl bg-slate-50 dark:bg-[#0c111c] text-xs space-y-1">
-              <div class="flex justify-between"><span>Activity Kit Availability:</span><strong class="text-emerald-500">185 Ready Kits in Stock</strong></div>
+              <div class="flex justify-between"><span>Activity Kit Availability:</span><strong class="text-[#8FA99A]">185 Ready Kits in Stock</strong></div>
               <div class="flex justify-between"><span>Seasonal &amp; Festival Kits:</span><strong class="text-sky-400">STEM Back-to-School</strong></div>
             </div>
             <div class="pt-2 flex justify-between items-center text-xs">
@@ -1259,7 +1400,7 @@
               </button>
               <div class="flex gap-2">
                 <button onclick="alert('Editing Logic Board metadata')" class="px-3 py-1.5 rounded-lg bg-[#C9A96E]/15 text-[#C9A96E] font-bold"><i class="fa-solid fa-pen"></i> Edit</button>
-                <button onclick="alert('Delete Activity Kit')" class="px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-500 font-bold"><i class="fa-solid fa-trash"></i></button>
+                <button onclick="alert('Delete Activity Kit')" class="px-3 py-1.5 rounded-lg bg-[#C9A96E]/10 text-[#C9A96E] font-bold"><i class="fa-solid fa-trash"></i></button>
               </div>
             </div>
           </div>
@@ -1292,8 +1433,8 @@
           <!-- Tier 1 -->
           <div class="p-6 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
             <div class="flex justify-between items-center">
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-500/10 text-sky-500">Tier 1 • Starter</span>
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">Plan Status: Active</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-500/10 text-sky-500">Tier 1 &bull; Starter</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#8FA99A]/10 text-[#8FA99A]">Plan Status: Active</span>
             </div>
             <h3 class="font-brand font-bold text-xl text-slate-900 dark:text-white">Explorer Starter</h3>
             <div class="flex items-baseline gap-1">
@@ -1308,18 +1449,18 @@
             </div>
             <div class="pt-2 flex gap-2">
               <button onclick="editPlanPrompt('Explorer Starter')" class="flex-1 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold hover:border-[#C9A96E]">Edit Plan</button>
-              <button onclick="alert('Explorer Starter is a core tier and cannot be deleted.')" class="px-3 py-2 rounded-xl text-rose-500 bg-rose-500/10 font-bold text-xs" title="Delete Plan"><i class="fa-solid fa-trash"></i></button>
+              <button onclick="alert('Explorer Starter is a core tier and cannot be deleted.')" class="px-3 py-2 rounded-xl text-[#C9A96E] bg-[#C9A96E]/10 font-bold text-xs" title="Delete Plan"><i class="fa-solid fa-trash"></i></button>
             </div>
           </div>
 
           <!-- Tier 2 (Featured) -->
           <div class="p-6 rounded-3xl bg-white dark:bg-[#131b2e] border-2 border-[#C9A96E] shadow-xl space-y-4 relative">
             <div class="absolute -top-3 start-6 px-3 py-0.5 rounded-full text-[10px] font-black uppercase bg-[#C9A96E] text-[#172033]">
-              Most Popular • 72% of Base
+              Most Popular &bull; 72% of Base
             </div>
             <div class="flex justify-between items-center pt-1">
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#C9A96E]/20 text-[#C9A96E]">Tier 2 • Atelier</span>
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">Plan Status: Active</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#C9A96E]/20 text-[#C9A96E]">Tier 2 &bull; Atelier</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#8FA99A]/10 text-[#8FA99A]">Plan Status: Active</span>
             </div>
             <h3 class="font-brand font-bold text-xl text-slate-900 dark:text-white">Atelier Hybrid</h3>
             <div class="flex items-baseline gap-1">
@@ -1329,20 +1470,20 @@
             <div class="p-3 rounded-xl bg-slate-50 dark:bg-[#0c111c] text-xs space-y-2">
               <div class="flex justify-between"><span>Toy Quantity:</span><strong class="text-slate-900 dark:text-white">6 Toys per Month</strong></div>
               <div class="flex justify-between"><span>Toy Rotation Frequency:</span><strong class="text-[#C9A96E]">Every 30 Days (Monthly)</strong></div>
-              <div class="flex justify-between"><span>Activity Kit Inclusion:</span><strong class="text-emerald-500">1 Free Kit to Keep Forever</strong></div>
+              <div class="flex justify-between"><span>Activity Kit Inclusion:</span><strong class="text-[#8FA99A]">1 Free Kit to Keep Forever</strong></div>
               <div class="flex justify-between"><span>Early Swap Rules:</span><strong class="text-slate-700 dark:text-slate-300">1 Free Swap per Month</strong></div>
             </div>
             <div class="pt-2 flex gap-2">
               <button onclick="editPlanPrompt('Atelier Hybrid')" class="flex-1 py-2 rounded-xl bg-[#C9A96E] text-slate-950 font-bold text-xs uppercase tracking-wider">Edit Plan</button>
-              <button onclick="alert('Atelier Hybrid cannot be deleted.')" class="px-3 py-2 rounded-xl text-rose-500 bg-rose-500/10 font-bold text-xs"><i class="fa-solid fa-trash"></i></button>
+              <button onclick="alert('Atelier Hybrid cannot be deleted.')" class="px-3 py-2 rounded-xl text-[#C9A96E] bg-[#C9A96E]/10 font-bold text-xs"><i class="fa-solid fa-trash"></i></button>
             </div>
           </div>
 
           <!-- Tier 3 -->
           <div class="p-6 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
             <div class="flex justify-between items-center">
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/10 text-purple-400">Tier 3 • Premium</span>
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">Plan Status: Active</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#C9A96E]/10 text-[#C9A96E]">Tier 3 &bull; Premium</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#8FA99A]/10 text-[#8FA99A]">Plan Status: Active</span>
             </div>
             <h3 class="font-brand font-bold text-xl text-slate-900 dark:text-white">Master Curator</h3>
             <div class="flex items-baseline gap-1">
@@ -1351,13 +1492,13 @@
             </div>
             <div class="p-3 rounded-xl bg-slate-50 dark:bg-[#0c111c] text-xs space-y-2">
               <div class="flex justify-between"><span>Toy Quantity:</span><strong class="text-slate-900 dark:text-white">8 Toys per Month</strong></div>
-              <div class="flex justify-between"><span>Toy Rotation Frequency:</span><strong class="text-purple-400">Bi-Weekly or Monthly Flex</strong></div>
-              <div class="flex justify-between"><span>Activity Kit Inclusion:</span><strong class="text-emerald-500">2 Free Kits to Keep Forever</strong></div>
+              <div class="flex justify-between"><span>Toy Rotation Frequency:</span><strong class="text-[#C9A96E]">Bi-Weekly or Monthly Flex</strong></div>
+              <div class="flex justify-between"><span>Activity Kit Inclusion:</span><strong class="text-[#8FA99A]">2 Free Kits to Keep Forever</strong></div>
               <div class="flex justify-between"><span>Early Swap Rules:</span><strong class="text-slate-700 dark:text-slate-300">Unlimited Priority Swaps</strong></div>
             </div>
             <div class="pt-2 flex gap-2">
               <button onclick="editPlanPrompt('Master Curator')" class="flex-1 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold hover:border-[#C9A96E]">Edit Plan</button>
-              <button onclick="alert('Master Curator cannot be deleted.')" class="px-3 py-2 rounded-xl text-rose-500 bg-rose-500/10 font-bold text-xs"><i class="fa-solid fa-trash"></i></button>
+              <button onclick="alert('Master Curator cannot be deleted.')" class="px-3 py-2 rounded-xl text-[#C9A96E] bg-[#C9A96E]/10 font-bold text-xs"><i class="fa-solid fa-trash"></i></button>
             </div>
           </div>
         </div>
@@ -1376,24 +1517,24 @@
             <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Live rental inventory assignments, return due dates, and damage isolation telemetry.</p>
           </div>
           <button type="button" onclick="exportData('rentals')" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 shadow-sm hover:border-[#C9A96E]">
-            <i class="fa-solid fa-file-export me-1.5 text-indigo-500"></i> Export Rental History
+            <i class="fa-solid fa-file-export me-1.5 text-[#C9A96E]"></i> Export Rental History
           </button>
         </div>
 
         <!-- Filter Sub-Tabs for all Rental States -->
         <div class="flex items-center gap-2 overflow-x-auto pb-2 custom-scroll text-xs font-bold border-b border-slate-200 dark:border-slate-800">
-          <button class="px-3.5 py-1.5 rounded-xl bg-indigo-500 text-white shadow-sm">Active Rentals (2,676)</button>
-          <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-indigo-500">New Rental Requests (14)</button>
-          <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-indigo-500">Return Due List (48)</button>
-          <button class="px-3.5 py-1.5 rounded-xl bg-rose-500/15 text-rose-500 border border-rose-500/30">Overdue Rentals (4 Overdue)</button>
-          <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-indigo-500">Returned Toys (18 Today)</button>
+          <button class="px-3.5 py-1.5 rounded-xl bg-[#172033] text-white shadow-sm">Active Rentals (2,676)</button>
+          <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-[#172033]/40 dark:border-[#C9A96E]/40">New Rental Requests (14)</button>
+          <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-[#172033]/40 dark:border-[#C9A96E]/40">Return Due List (48)</button>
+          <button class="px-3.5 py-1.5 rounded-xl bg-[#C9A96E]/15 text-[#C9A96E] border border-[#C9A96E]/40/30">Overdue Rentals (4 Overdue)</button>
+          <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-[#172033]/40 dark:border-[#C9A96E]/40">Returned Toys (18 Today)</button>
           <button class="px-3.5 py-1.5 rounded-xl bg-amber-500/15 text-amber-500 border border-amber-500/30">Damaged Toys (2 Isolated)</button>
-          <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-indigo-500">Rental History Log</button>
+          <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-[#172033]/40 dark:border-[#C9A96E]/40">Rental History Log</button>
         </div>
 
         <div class="p-5 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
           <div class="flex items-center justify-between gap-4 flex-wrap">
-            <input type="text" placeholder="Search rental barcode, serial # or parent name..." class="px-4 py-2 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-800 text-xs w-72 focus:outline-none focus:border-indigo-500" />
+            <input type="text" placeholder="Search rental barcode, serial # or parent name..." class="px-4 py-2 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-800 text-xs w-72 focus:outline-none focus:border-[#172033]/40 dark:border-[#C9A96E]/40" />
             <span class="text-xs text-slate-400">Showing Active Rentals (3 of 2,676 active)</span>
           </div>
 
@@ -1414,36 +1555,36 @@
                 <tr>
                   <td class="py-3.5 font-mono text-[#C9A96E] font-bold">PL-TOY-0941</td>
                   <td class="py-3.5 font-bold">Curved Balance Stepping Stones</td>
-                  <td class="py-3.5 font-medium">Sarah Miller (Liam • 2.5y)</td>
+                  <td class="py-3.5 font-medium">Sarah Miller (Liam &bull; 2.5y)</td>
                   <td class="py-3.5 text-slate-400">Sept 15, 2026</td>
                   <td class="py-3.5 font-bold text-slate-900 dark:text-white">Oct 14, 2026 (Due in 6 Days)</td>
-                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">Pristine A+</span></td>
+                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#8FA99A]/10 text-[#8FA99A]">Pristine A+</span></td>
                   <td class="py-3.5 text-end space-x-1.5">
-                    <button onclick="alert('Toy Assignment: Reassigning PL-TOY-0941')" class="px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-500 font-bold hover:bg-indigo-500 hover:text-white">Toy Assignment</button>
+                    <button onclick="alert('Toy Assignment: Reassigning PL-TOY-0941')" class="px-2.5 py-1 rounded-lg bg-[#172033]/10 text-[#C9A96E] font-bold hover:bg-[#172033] hover:text-white">Toy Assignment</button>
                     <button onclick="alert('Viewing comprehensive Rental History for PL-TOY-0941')" class="px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 font-bold text-slate-500" title="Rental History"><i class="fa-solid fa-clock-rotate-left"></i></button>
                   </td>
                 </tr>
                 <tr>
                   <td class="py-3.5 font-mono text-[#C9A96E] font-bold">PL-TOY-1188</td>
                   <td class="py-3.5 font-bold">Waldorf Architectural Arches</td>
-                  <td class="py-3.5 font-medium">Marcus Vance (Maya • 4y)</td>
+                  <td class="py-3.5 font-medium">Marcus Vance (Maya &bull; 4y)</td>
                   <td class="py-3.5 text-slate-400">Sept 22, 2026</td>
                   <td class="py-3.5 font-bold text-slate-900 dark:text-white">Oct 21, 2026</td>
-                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">Pristine A+</span></td>
+                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#8FA99A]/10 text-[#8FA99A]">Pristine A+</span></td>
                   <td class="py-3.5 text-end space-x-1.5">
-                    <button onclick="alert('Toy Assignment')" class="px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-500 font-bold hover:bg-indigo-500 hover:text-white">Toy Assignment</button>
+                    <button onclick="alert('Toy Assignment')" class="px-2.5 py-1 rounded-lg bg-[#172033]/10 text-[#C9A96E] font-bold hover:bg-[#172033] hover:text-white">Toy Assignment</button>
                     <button onclick="alert('Rental History')" class="px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 font-bold text-slate-500"><i class="fa-solid fa-clock-rotate-left"></i></button>
                   </td>
                 </tr>
                 <tr>
                   <td class="py-3.5 font-mono text-[#C9A96E] font-bold">PL-TOY-0422</td>
                   <td class="py-3.5 font-bold">Sensory Peg Board Matrix</td>
-                  <td class="py-3.5 font-medium">David Klein (Zoe • 3y)</td>
+                  <td class="py-3.5 font-medium">David Klein (Zoe &bull; 3y)</td>
                   <td class="py-3.5 text-slate-400">Aug 28, 2026</td>
-                  <td class="py-3.5 font-black text-rose-500">Sept 27 (Overdue Rentals!)</td>
-                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-500">Damaged Toys / Missing Peg</span></td>
+                  <td class="py-3.5 font-black text-[#C9A96E]">Sept 27 (Overdue Rentals!)</td>
+                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#C9A96E]/10 text-[#C9A96E]">Damaged Toys / Missing Peg</span></td>
                   <td class="py-3.5 text-end space-x-1.5">
-                    <button onclick="alert('Sending return reminder alert to David Klein')" class="px-2.5 py-1 rounded-lg bg-rose-500 text-white font-bold">Send Return Alert</button>
+                    <button onclick="alert('Sending return reminder alert to David Klein')" class="px-2.5 py-1 rounded-lg bg-[#C9A96E] text-white font-bold">Send Return Alert</button>
                     <button onclick="alert('Isolating PL-TOY-0422 under Damaged Toys quarantine queue')" class="px-2 py-1 rounded-lg bg-amber-500/15 text-amber-500 font-bold" title="Damaged Toys Isolation"><i class="fa-solid fa-triangle-exclamation"></i></button>
                   </td>
                 </tr>
@@ -1491,7 +1632,7 @@
                 <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-teal-500/10 text-teal-500">Upcoming Rotations</span>
               </div>
               <div class="text-xs text-slate-500 dark:text-slate-400">
-                Child: <strong>Liam (2.5y)</strong> • Milestone: <em>Montessori Fine Motor &amp; Balance</em>
+                Child: <strong>Liam (2.5y)</strong> &bull; Milestone: <em>Montessori Fine Motor &amp; Balance</em>
               </div>
               <div class="p-3 rounded-xl bg-slate-50 dark:bg-[#0c111c] text-xs space-y-1">
                 <div class="font-semibold text-slate-700 dark:text-slate-300">Assign Toys to Rotation:</div>
@@ -1512,7 +1653,7 @@
                 <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-500">Pending Rotations</span>
               </div>
               <div class="text-xs text-slate-500 dark:text-slate-400">
-                Child: <strong>Maya (4y) &amp; Ethan (1y)</strong> • Dual Child Curator Plan
+                Child: <strong>Maya (4y) &amp; Ethan (1y)</strong> &bull; Dual Child Curator Plan
               </div>
               <div class="p-3 rounded-xl bg-slate-50 dark:bg-[#0c111c] text-xs space-y-1">
                 <div class="font-semibold text-slate-700 dark:text-slate-300">Parent Rotation Preferences:</div>
@@ -1551,7 +1692,7 @@
           <button class="px-3.5 py-1.5 rounded-xl bg-sky-500 text-white shadow-sm">New Swap Requests (14)</button>
           <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-sky-500">Swap Request Details</button>
           <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-sky-500">Swap Pickup Schedule</button>
-          <button class="px-3.5 py-1.5 rounded-xl bg-emerald-500/15 text-emerald-500 border border-emerald-500/30">Swap Completion Log</button>
+          <button class="px-3.5 py-1.5 rounded-xl bg-[#8FA99A]/15 text-[#8FA99A] border border-[#8FA99A]/40/30">Swap Completion Log</button>
           <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-sky-500">Swap History (284)</button>
         </div>
 
@@ -1574,7 +1715,7 @@
                   <td class="py-3.5 font-mono text-[#C9A96E] font-bold">#SWP-8012</td>
                   <td class="py-3.5">
                     <div class="font-bold text-slate-900 dark:text-white">Sarah Miller</div>
-                    <div class="text-[10px] text-slate-400">Liam (2.5y) • Atelier Plan Credit</div>
+                    <div class="text-[10px] text-slate-400">Liam (2.5y) &bull; Atelier Plan Credit</div>
                   </td>
                   <td class="py-3.5 font-medium">Interlocking Beechwood Discs</td>
                   <td class="py-3.5 font-bold text-sky-400">Curved Balance Stepping Stones</td>
@@ -1584,15 +1725,15 @@
                   <td class="py-3.5 text-slate-400 font-semibold">Oct 14, 10am - 2pm</td>
                   <td class="py-3.5 text-end space-x-1.5">
                     <button onclick="alert('Assign Replacement Toy PL-TOY-0941 assigned to Sarah Miller')" class="px-2 py-1 rounded-lg bg-[#C9A96E]/15 text-[#C9A96E] font-bold" title="Assign Replacement Toy">Assign Replacement Toy</button>
-                    <button onclick="approveSwapPrompt('Sarah Miller', 'Curved Balance Stones')" class="px-2.5 py-1 rounded-lg bg-emerald-500 text-white font-bold">Approve Swap</button>
-                    <button onclick="alert('Swap request rejected with explanatory note')" class="px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-rose-500 font-bold">Reject Swap</button>
+                    <button onclick="approveSwapPrompt('Sarah Miller', 'Curved Balance Stones')" class="px-2.5 py-1 rounded-lg bg-[#8FA99A] text-white font-bold">Approve Swap</button>
+                    <button onclick="alert('Swap request rejected with explanatory note')" class="px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-[#C9A96E] font-bold">Reject Swap</button>
                   </td>
                 </tr>
                 <tr>
                   <td class="py-3.5 font-mono text-[#C9A96E] font-bold">#SWP-8011</td>
                   <td class="py-3.5">
                     <div class="font-bold text-slate-900 dark:text-white">Thomas Wright</div>
-                    <div class="text-[10px] text-slate-400">Lucas (1.5y) • Standard Early Swap</div>
+                    <div class="text-[10px] text-slate-400">Lucas (1.5y) &bull; Standard Early Swap</div>
                   </td>
                   <td class="py-3.5 font-medium">Rainbow Musical Xylophone</td>
                   <td class="py-3.5 font-bold text-sky-400">Sensory Ocean Water Mat</td>
@@ -1602,8 +1743,8 @@
                   <td class="py-3.5 text-slate-400 font-semibold">Oct 15, 12pm - 4pm</td>
                   <td class="py-3.5 text-end space-x-1.5">
                     <button onclick="alert('Assign Replacement Toy PL-TOY-0312 assigned')" class="px-2 py-1 rounded-lg bg-[#C9A96E]/15 text-[#C9A96E] font-bold">Assign Replacement Toy</button>
-                    <button onclick="approveSwapPrompt('Thomas Wright', 'Sensory Ocean Water Mat')" class="px-2.5 py-1 rounded-lg bg-emerald-500 text-white font-bold">Approve Swap</button>
-                    <button onclick="alert('Swap rejected')" class="px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-rose-500 font-bold">Reject Swap</button>
+                    <button onclick="approveSwapPrompt('Thomas Wright', 'Sensory Ocean Water Mat')" class="px-2.5 py-1 rounded-lg bg-[#8FA99A] text-white font-bold">Approve Swap</button>
+                    <button onclick="alert('Swap rejected')" class="px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-[#C9A96E] font-bold">Reject Swap</button>
                   </td>
                 </tr>
               </tbody>
@@ -1625,7 +1766,7 @@
             <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Courier pickup tracking, scanned toy intake receipts, damage reports, and missing component logs.</p>
           </div>
           <div class="flex items-center gap-2">
-            <button type="button" onclick="alert('Barcode scanner hardware ready for return scan')" class="px-4 py-2 rounded-xl bg-purple-500 hover:bg-purple-600 text-white font-bold text-xs uppercase tracking-wider shadow-sm flex items-center gap-2">
+            <button type="button" onclick="alert('Barcode scanner hardware ready for return scan')" class="px-4 py-2 rounded-xl bg-[#C9A96E] hover:bg-[#C9A96E] text-white font-bold text-xs uppercase tracking-wider shadow-sm flex items-center gap-2">
               <i class="fa-solid fa-barcode"></i> Scan Received Toys
             </button>
           </div>
@@ -1633,14 +1774,14 @@
 
         <!-- Sub-Tabs for Return Management -->
         <div class="flex items-center gap-2 overflow-x-auto pb-2 custom-scroll text-xs font-bold border-b border-slate-200 dark:border-slate-800">
-          <button class="px-3.5 py-1.5 rounded-xl bg-purple-500 text-white shadow-sm">Expected Returns (48)</button>
-          <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-purple-500">Today's Returns (18 Arriving)</button>
-          <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-purple-500">Return Pickup Requests (Courier)</button>
-          <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-purple-500">Received Toys (Warehouse Intake)</button>
-          <button class="px-3.5 py-1.5 rounded-xl bg-emerald-500/15 text-emerald-500 border border-emerald-500/30">Return Inspection (Audit)</button>
+          <button class="px-3.5 py-1.5 rounded-xl bg-[#C9A96E] text-white shadow-sm">Expected Returns (48)</button>
+          <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-[#C9A96E]/40">Today's Returns (18 Arriving)</button>
+          <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-[#C9A96E]/40">Return Pickup Requests (Courier)</button>
+          <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-[#C9A96E]/40">Received Toys (Warehouse Intake)</button>
+          <button class="px-3.5 py-1.5 rounded-xl bg-[#8FA99A]/15 text-[#8FA99A] border border-[#8FA99A]/40/30">Return Inspection (Audit)</button>
           <button class="px-3.5 py-1.5 rounded-xl bg-amber-500/15 text-amber-500 border border-amber-500/30">Damaged Returns</button>
-          <button class="px-3.5 py-1.5 rounded-xl bg-rose-500/15 text-rose-500 border border-rose-500/30">Missing Items Log</button>
-          <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-purple-500">Return History (1,840)</button>
+          <button class="px-3.5 py-1.5 rounded-xl bg-[#C9A96E]/15 text-[#C9A96E] border border-[#C9A96E]/40/30">Missing Items Log</button>
+          <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-[#C9A96E]/40">Return History (1,840)</button>
         </div>
 
         <div class="p-5 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
@@ -1663,20 +1804,20 @@
               </thead>
               <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60">
                 <tr>
-                  <td class="py-3.5 font-mono text-purple-400 font-bold">RET-90412</td>
+                  <td class="py-3.5 font-mono text-[#C9A96E] font-bold">RET-90412</td>
                   <td class="py-3.5 font-bold text-slate-900 dark:text-white">Emily Thorne</td>
                   <td class="py-3.5 font-medium">Stacking Peg Pyramids (12 Pcs)</td>
-                  <td class="py-3.5"><span class="text-emerald-500 font-bold"><i class="fa-solid fa-check me-1"></i> Return Inspection Passed (12/12 Complete)</span></td>
-                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/10 text-purple-400">Queued for Non-Toxic Sanitization</span></td>
+                  <td class="py-3.5"><span class="text-[#8FA99A] font-bold"><i class="fa-solid fa-check me-1"></i> Return Inspection Passed (12/12 Complete)</span></td>
+                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#C9A96E]/10 text-[#C9A96E]">Queued for Non-Toxic Sanitization</span></td>
                   <td class="py-3.5 text-end">
-                    <button onclick="alert('Return Certified. Sent to UV-C sterilization.')" class="px-3 py-1 rounded-lg bg-emerald-500/15 text-emerald-500 font-bold hover:bg-emerald-500 hover:text-white">Certify Inspection</button>
+                    <button onclick="alert('Return Certified. Sent to UV-C sterilization.')" class="px-3 py-1 rounded-lg bg-[#8FA99A]/15 text-[#8FA99A] font-bold hover:bg-[#8FA99A] hover:text-white">Certify Inspection</button>
                   </td>
                 </tr>
                 <tr>
-                  <td class="py-3.5 font-mono text-purple-400 font-bold">RET-90411</td>
+                  <td class="py-3.5 font-mono text-[#C9A96E] font-bold">RET-90411</td>
                   <td class="py-3.5 font-bold text-slate-900 dark:text-white">Danielle Cruz</td>
                   <td class="py-3.5 font-medium">Magnetic Wooden Train Set (8 Pcs)</td>
-                  <td class="py-3.5"><span class="text-rose-500 font-bold"><i class="fa-solid fa-triangle-exclamation me-1"></i> Missing Items: 1 Red Caboose Missing</span></td>
+                  <td class="py-3.5"><span class="text-[#C9A96E] font-bold"><i class="fa-solid fa-triangle-exclamation me-1"></i> Missing Items: 1 Red Caboose Missing</span></td>
                   <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-500">Damaged Returns / Missing Parts Bay</span></td>
                   <td class="py-3.5 text-end space-x-1.5">
                     <button onclick="alert('Missing items replacement part request sent to warehouse')" class="px-2.5 py-1 rounded-lg bg-[#C9A96E]/20 text-[#C9A96E] font-bold">Order Missing Piece</button>
@@ -1708,9 +1849,9 @@
           </div>
           <div class="flex items-center gap-2">
             <button type="button" onclick="alert('Viewing Hygiene History Log (14,200 Audits)')" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 shadow-sm hover:border-[#C9A96E]">
-              <i class="fa-solid fa-clock-rotate-left me-1.5 text-emerald-500"></i> Hygiene History
+              <i class="fa-solid fa-clock-rotate-left me-1.5 text-[#8FA99A]"></i> Hygiene History
             </button>
-            <button type="button" onclick="alert('Log New Sanitization Batch')" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider shadow-sm flex items-center gap-2">
+            <button type="button" onclick="alert('Log New Sanitization Batch')" class="px-4 py-2 rounded-xl bg-[#8FA99A] hover:bg-[#5d7667] text-white font-bold text-xs uppercase tracking-wider shadow-sm flex items-center gap-2">
               <i class="fa-solid fa-plus"></i> New Sanitization Batch
             </button>
           </div>
@@ -1720,7 +1861,7 @@
         <div class="space-y-2">
           <div class="flex justify-between items-center">
             <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">5-Stage Cleaning Status Pipeline:</span>
-            <span class="text-xs font-bold text-emerald-500">Ready for Rent Status: 1,174 Toys Certified</span>
+            <span class="text-xs font-bold text-[#8FA99A]">Ready for Rent Status: 1,174 Toys Certified</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
             
@@ -1752,21 +1893,21 @@
             </div>
 
             <!-- Stage 4 -->
-            <div class="p-4 rounded-2xl bg-white dark:bg-[#131b2e] border-2 border-emerald-500 text-center space-y-1">
-              <div class="text-[10px] font-bold text-emerald-500 uppercase">Stage 4</div>
-              <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-500 flex items-center justify-center mx-auto text-xs"><i class="fa-solid fa-sun"></i></div>
+            <div class="p-4 rounded-2xl bg-white dark:bg-[#131b2e] border-2 border-[#8FA99A]/40 text-center space-y-1">
+              <div class="text-[10px] font-bold text-[#8FA99A] uppercase">Stage 4</div>
+              <div class="w-8 h-8 rounded-full bg-[#8FA99A]/20 text-[#8FA99A] flex items-center justify-center mx-auto text-xs"><i class="fa-solid fa-sun"></i></div>
               <div class="font-bold text-xs">UV-C Sterilization</div>
-              <div class="text-lg font-black font-brand text-emerald-500">24 Sterilizing</div>
-              <div class="text-[10px] text-emerald-500">254nm Hospital Chamber</div>
+              <div class="text-lg font-black font-brand text-[#8FA99A]">24 Sterilizing</div>
+              <div class="text-[10px] text-[#8FA99A]">254nm Hospital Chamber</div>
             </div>
 
             <!-- Stage 5 -->
             <div class="p-4 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-center space-y-1">
               <div class="text-[10px] font-bold text-slate-400 uppercase">Stage 5</div>
-              <div class="w-8 h-8 rounded-full bg-purple-500/15 text-purple-400 flex items-center justify-center mx-auto text-xs"><i class="fa-solid fa-box-tissue"></i></div>
+              <div class="w-8 h-8 rounded-full bg-[#C9A96E]/15 text-[#C9A96E] flex items-center justify-center mx-auto text-xs"><i class="fa-solid fa-box-tissue"></i></div>
               <div class="font-bold text-xs">Vacuum Sealed Packaging</div>
-              <div class="text-lg font-black font-brand text-purple-400">1,174 Ready</div>
-              <div class="text-[10px] text-purple-400">Tamper-Evident Seal</div>
+              <div class="text-lg font-black font-brand text-[#C9A96E]">1,174 Ready</div>
+              <div class="text-[10px] text-[#C9A96E]">Tamper-Evident Seal</div>
             </div>
 
           </div>
@@ -1779,7 +1920,7 @@
           <div class="lg:col-span-2 p-5 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
             <div class="flex justify-between items-center">
               <h3 class="font-brand font-bold text-base text-slate-900 dark:text-white">Sanitization Records &amp; Bio-Readiness Lab Logs</h3>
-              <span class="text-xs text-emerald-500 font-bold">100% Pass Rate</span>
+              <span class="text-xs text-[#8FA99A] font-bold">100% Pass Rate</span>
             </div>
 
             <div class="overflow-x-auto custom-scroll">
@@ -1796,20 +1937,20 @@
                 </thead>
                 <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60">
                   <tr>
-                    <td class="py-3 font-mono text-emerald-500 font-bold">BATCH-2026-1009-A</td>
+                    <td class="py-3 font-mono text-[#8FA99A] font-bold">BATCH-2026-1009-A</td>
                     <td class="py-3 font-medium">32 Curved Balance Stones, 18 Discs</td>
                     <td class="py-3 text-slate-400">15 mins @ 254nm (99.99%)</td>
                     <td class="py-3 font-bold">J. Martinez (Senior Tech)</td>
-                    <td class="py-3"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">0.00 CFU (Sterile)</span></td>
-                    <td class="py-3 text-end"><button onclick="alert('Viewing Lab Sterilization Certificate for BATCH-2026-1009-A')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold hover:text-emerald-500">View PDF</button></td>
+                    <td class="py-3"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#8FA99A]/10 text-[#8FA99A]">0.00 CFU (Sterile)</span></td>
+                    <td class="py-3 text-end"><button onclick="alert('Viewing Lab Sterilization Certificate for BATCH-2026-1009-A')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold hover:text-[#8FA99A]">View PDF</button></td>
                   </tr>
                   <tr>
-                    <td class="py-3 font-mono text-emerald-500 font-bold">BATCH-2026-1008-B</td>
+                    <td class="py-3 font-mono text-[#8FA99A] font-bold">BATCH-2026-1008-B</td>
                     <td class="py-3 font-medium">24 Waldorf Arches, 12 Marble Runs</td>
                     <td class="py-3 text-slate-400">18 mins @ 254nm + Botanical Seal</td>
                     <td class="py-3 font-bold">E. Wright (QC Lead)</td>
-                    <td class="py-3"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">0.00 CFU (Sterile)</span></td>
-                    <td class="py-3 text-end"><button onclick="alert('Viewing Lab Certificate')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold hover:text-emerald-500">View PDF</button></td>
+                    <td class="py-3"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#8FA99A]/10 text-[#8FA99A]">0.00 CFU (Sterile)</span></td>
+                    <td class="py-3 text-end"><button onclick="alert('Viewing Lab Certificate')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold hover:text-[#8FA99A]">View PDF</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -1825,14 +1966,14 @@
               <div class="p-3 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-100 dark:border-slate-800 space-y-1">
                 <div class="flex justify-between font-bold text-slate-900 dark:text-white">
                   <span>Structural Integrity &amp; Splinter Check</span>
-                  <span class="text-emerald-500"><i class="fa-solid fa-check"></i> Passed</span>
+                  <span class="text-[#8FA99A]"><i class="fa-solid fa-check"></i> Passed</span>
                 </div>
                 <p class="text-[11px] text-slate-400">Laser micrometer scan for edge smoothness &gt; 3mm radius.</p>
               </div>
               <div class="p-3 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-100 dark:border-slate-800 space-y-1">
                 <div class="flex justify-between font-bold text-slate-900 dark:text-white">
                   <span>Choke Hazard Tube (CPSC 16 CFR 1501)</span>
-                  <span class="text-emerald-500"><i class="fa-solid fa-check"></i> Passed</span>
+                  <span class="text-[#8FA99A]"><i class="fa-solid fa-check"></i> Passed</span>
                 </div>
                 <p class="text-[11px] text-slate-400">All infant toys calibrated larger than standard choke cylinder.</p>
               </div>
@@ -1841,8 +1982,8 @@
             <!-- Damaged Toys Isolation Section -->
             <div class="pt-2 border-t border-slate-100 dark:border-slate-800 space-y-2">
               <div class="flex justify-between items-center text-xs">
-                <span class="font-bold text-rose-500 flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation"></i> Damaged Toys Isolation:</span>
-                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-500">2 Quarantined</span>
+                <span class="font-bold text-[#C9A96E] flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation"></i> Damaged Toys Isolation:</span>
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#C9A96E]/10 text-[#C9A96E]">2 Quarantined</span>
               </div>
               <p class="text-[11px] text-slate-400">1 Sensory Board (missing peg) and 1 Wood Arch (micro-fissure) quarantined on maintenance bench.</p>
             </div>
@@ -1902,7 +2043,7 @@
                   <td class="py-3.5 text-slate-400">Atelier Hybrid (Monthly Cycle)</td>
                   <td class="py-3.5 text-slate-400">Sept 15, 2026</td>
                   <td class="py-3.5 font-black text-slate-900 dark:text-white">$59.00</td>
-                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">PAID</span></td>
+                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#8FA99A]/10 text-[#8FA99A]">PAID</span></td>
                   <td class="py-3.5 text-end space-x-1.5">
                     <button onclick="alert('Viewing Invoice INV-PL-2026-0915: Sarah Miller - $59.00 PAID')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-[#C9A96E]">View Invoice</button>
                     <button onclick="alert('Downloading Invoice PDF INV-PL-2026-0915...')" class="px-2.5 py-1 rounded-lg bg-[#C9A96E]/15 text-[#C9A96E] text-xs font-bold hover:bg-[#C9A96E] hover:text-slate-950" title="Download Invoice"><i class="fa-solid fa-download me-1"></i> Download Invoice</button>
@@ -1914,7 +2055,7 @@
                   <td class="py-3.5 text-slate-400">Curator Pro Tier (Monthly)</td>
                   <td class="py-3.5 text-slate-400">Sept 22, 2026</td>
                   <td class="py-3.5 font-black text-slate-900 dark:text-white">$89.00</td>
-                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">PAID</span></td>
+                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#8FA99A]/10 text-[#8FA99A]">PAID</span></td>
                   <td class="py-3.5 text-end space-x-1.5">
                     <button onclick="alert('Viewing Invoice INV-PL-2026-0922')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-[#C9A96E]">View Invoice</button>
                     <button onclick="alert('Downloading PDF for Marcus Vance...')" class="px-2.5 py-1 rounded-lg bg-[#C9A96E]/15 text-[#C9A96E] text-xs font-bold hover:bg-[#C9A96E] hover:text-slate-950"><i class="fa-solid fa-download me-1"></i> Download Invoice</button>
@@ -1938,7 +2079,7 @@
             <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Stripe payment gateway logs, success rates, failed card retries, and refund processing.</p>
           </div>
           <div class="flex items-center gap-2">
-            <button type="button" onclick="alert('Issue Refund dialog opened')" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold hover:text-rose-500">
+            <button type="button" onclick="alert('Issue Refund dialog opened')" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold hover:text-[#C9A96E]">
               <i class="fa-solid fa-arrow-rotate-left me-1"></i> Issue Refund
             </button>
           </div>
@@ -1949,11 +2090,11 @@
           <div class="p-4 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800">
             <span class="text-xs text-slate-400">All Payments (Volume)</span>
             <div class="text-xl font-black text-slate-900 dark:text-white mt-1">$52,628</div>
-            <div class="text-[10px] text-emerald-500 font-bold mt-1">+8.4% vs August</div>
+            <div class="text-[10px] text-[#8FA99A] font-bold mt-1">+8.4% vs August</div>
           </div>
           <div class="p-4 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800">
             <span class="text-xs text-slate-400">Successful Payments</span>
-            <div class="text-xl font-black text-emerald-500 mt-1">892 (99.2%)</div>
+            <div class="text-xl font-black text-[#8FA99A] mt-1">892 (99.2%)</div>
             <div class="text-[10px] text-slate-400 mt-1">Auto-renewed</div>
           </div>
           <div class="p-4 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800">
@@ -1963,8 +2104,8 @@
           </div>
           <div class="p-4 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800">
             <span class="text-xs text-slate-400">Failed Payments / Retries</span>
-            <div class="text-xl font-black text-rose-500 mt-1">2 ($118)</div>
-            <div class="text-[10px] text-rose-500 font-bold mt-1">Grace period active</div>
+            <div class="text-xl font-black text-[#C9A96E] mt-1">2 ($118)</div>
+            <div class="text-[10px] text-[#C9A96E] font-bold mt-1">Grace period active</div>
           </div>
         </div>
 
@@ -1973,7 +2114,7 @@
           <button class="px-3.5 py-1.5 rounded-xl bg-blue-500 text-white shadow-sm">All Payments (900)</button>
           <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-blue-500">Successful Payments (892)</button>
           <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-blue-500">Pending Payments (6)</button>
-          <button class="px-3.5 py-1.5 rounded-xl bg-rose-500/15 text-rose-500 border border-rose-500/30">Failed Payments (2 Retrying)</button>
+          <button class="px-3.5 py-1.5 rounded-xl bg-[#C9A96E]/15 text-[#C9A96E] border border-[#C9A96E]/40/30">Failed Payments (2 Retrying)</button>
           <button class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-blue-500">Refunds Processed (1)</button>
           <button class="px-3.5 py-1.5 rounded-xl bg-[#C9A96E]/15 text-[#C9A96E] border border-[#C9A96E]/30">Subscription Revenue Reports</button>
         </div>
@@ -1996,27 +2137,27 @@
                 <tr>
                   <td class="py-3.5 font-mono text-blue-400 font-bold">ch_3N8k2v0A</td>
                   <td class="py-3.5 font-bold text-slate-900 dark:text-white">Sarah Miller</td>
-                  <td class="py-3.5 text-slate-400"><i class="fa-brands fa-cc-visa me-1 text-sky-400"></i> Visa •••• 4242</td>
+                  <td class="py-3.5 text-slate-400"><i class="fa-brands fa-cc-visa me-1 text-sky-400"></i> Visa &bull;&bull;&bull;&bull; 4242</td>
                   <td class="py-3.5 font-black text-slate-900 dark:text-white">$59.00</td>
-                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">Successful Payments</span></td>
+                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#8FA99A]/10 text-[#8FA99A]">Successful Payments</span></td>
                   <td class="py-3.5 text-end"><button onclick="alert('Viewing Stripe charge receipt for ch_3N8k2v0A')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 font-bold text-slate-500">Receipt</button></td>
                 </tr>
                 <tr>
                   <td class="py-3.5 font-mono text-blue-400 font-bold">ch_3N8x7b9Z</td>
                   <td class="py-3.5 font-bold text-slate-900 dark:text-white">Marcus Vance</td>
-                  <td class="py-3.5 text-slate-400"><i class="fa-brands fa-cc-mastercard me-1 text-amber-500"></i> MC •••• 8821</td>
+                  <td class="py-3.5 text-slate-400"><i class="fa-brands fa-cc-mastercard me-1 text-amber-500"></i> MC &bull;&bull;&bull;&bull; 8821</td>
                   <td class="py-3.5 font-black text-slate-900 dark:text-white">$89.00</td>
-                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">Successful Payments</span></td>
+                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#8FA99A]/10 text-[#8FA99A]">Successful Payments</span></td>
                   <td class="py-3.5 text-end"><button onclick="alert('Viewing receipt')" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 font-bold text-slate-500">Receipt</button></td>
                 </tr>
                 <tr>
-                  <td class="py-3.5 font-mono text-rose-500 font-bold">ch_3N8m1w4Q</td>
+                  <td class="py-3.5 font-mono text-[#C9A96E] font-bold">ch_3N8m1w4Q</td>
                   <td class="py-3.5 font-bold text-slate-900 dark:text-white">Chloe Henderson</td>
-                  <td class="py-3.5 text-slate-400"><i class="fa-brands fa-cc-visa me-1 text-sky-400"></i> Visa •••• 1049</td>
-                  <td class="py-3.5 font-black text-rose-500">$59.00</td>
-                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-500">Failed Payments (Card Expired)</span></td>
+                  <td class="py-3.5 text-slate-400"><i class="fa-brands fa-cc-visa me-1 text-sky-400"></i> Visa &bull;&bull;&bull;&bull; 1049</td>
+                  <td class="py-3.5 font-black text-[#C9A96E]">$59.00</td>
+                  <td class="py-3.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#C9A96E]/10 text-[#C9A96E]">Failed Payments (Card Expired)</span></td>
                   <td class="py-3.5 text-end space-x-1">
-                    <button onclick="alert('Re-attempting charge on file...')" class="px-2.5 py-1 rounded-lg bg-rose-500 text-white font-bold">Retry Charge</button>
+                    <button onclick="alert('Re-attempting charge on file...')" class="px-2.5 py-1 rounded-lg bg-[#C9A96E] text-white font-bold">Retry Charge</button>
                   </td>
                 </tr>
               </tbody>
@@ -2050,11 +2191,11 @@
             
             <!-- Rule 1 -->
             <div class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-start gap-3">
-              <div class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-500 flex items-center justify-center text-sm shrink-0"><i class="fa-solid fa-rotate"></i></div>
+              <div class="w-8 h-8 rounded-lg bg-[#8FA99A]/15 text-[#8FA99A] flex items-center justify-center text-sm shrink-0"><i class="fa-solid fa-rotate"></i></div>
               <div class="flex-1">
                 <div class="flex justify-between">
                   <strong class="font-bold text-slate-900 dark:text-white">Rotation Alerts</strong>
-                  <span class="text-emerald-500 font-bold">Enabled</span>
+                  <span class="text-[#8FA99A] font-bold">Enabled</span>
                 </div>
                 <p class="text-slate-400 mt-0.5">Alerts parent 3 days before rotation locks so they can curate upcoming milestone toys.</p>
               </div>
@@ -2062,11 +2203,11 @@
 
             <!-- Rule 2 -->
             <div class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-start gap-3">
-              <div class="w-8 h-8 rounded-lg bg-purple-500/15 text-purple-400 flex items-center justify-center text-sm shrink-0"><i class="fa-solid fa-clock-rotate-left"></i></div>
+              <div class="w-8 h-8 rounded-lg bg-[#C9A96E]/15 text-[#C9A96E] flex items-center justify-center text-sm shrink-0"><i class="fa-solid fa-clock-rotate-left"></i></div>
               <div class="flex-1">
                 <div class="flex justify-between">
                   <strong class="font-bold text-slate-900 dark:text-white">Return Reminders</strong>
-                  <span class="text-emerald-500 font-bold">Enabled</span>
+                  <span class="text-[#8FA99A] font-bold">Enabled</span>
                 </div>
                 <p class="text-slate-400 mt-0.5">Sends automated SMS &amp; email 48h and morning of courier pickup to bag active toys.</p>
               </div>
@@ -2078,7 +2219,7 @@
               <div class="flex-1">
                 <div class="flex justify-between">
                   <strong class="font-bold text-slate-900 dark:text-white">Swap Request Alerts</strong>
-                  <span class="text-emerald-500 font-bold">Enabled</span>
+                  <span class="text-[#8FA99A] font-bold">Enabled</span>
                 </div>
                 <p class="text-slate-400 mt-0.5">Notifies parent instantly when developmental swap is approved and queued for dispatch.</p>
               </div>
@@ -2090,7 +2231,7 @@
               <div class="flex-1">
                 <div class="flex justify-between">
                   <strong class="font-bold text-slate-900 dark:text-white">Subscription Renewal Reminders</strong>
-                  <span class="text-emerald-500 font-bold">Enabled</span>
+                  <span class="text-[#8FA99A] font-bold">Enabled</span>
                 </div>
                 <p class="text-slate-400 mt-0.5">Automated invoice pre-notification sent 5 days prior to monthly subscription billing.</p>
               </div>
@@ -2098,11 +2239,11 @@
 
             <!-- Rule 5 -->
             <div class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-start gap-3">
-              <div class="w-8 h-8 rounded-lg bg-rose-500/15 text-rose-500 flex items-center justify-center text-sm shrink-0"><i class="fa-solid fa-triangle-exclamation"></i></div>
+              <div class="w-8 h-8 rounded-lg bg-[#C9A96E]/15 text-[#C9A96E] flex items-center justify-center text-sm shrink-0"><i class="fa-solid fa-triangle-exclamation"></i></div>
               <div class="flex-1">
                 <div class="flex justify-between">
                   <strong class="font-bold text-slate-900 dark:text-white">Payment Alerts</strong>
-                  <span class="text-rose-500 font-bold">High Priority</span>
+                  <span class="text-[#C9A96E] font-bold">High Priority</span>
                 </div>
                 <p class="text-slate-400 mt-0.5">Instant retry notification and card update link sent upon any failed transaction.</p>
               </div>
@@ -2138,7 +2279,7 @@
               <span class="px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-amber-500/10 text-amber-500">Hygiene &amp; Safety</span>
               <div class="flex gap-2 text-xs">
                 <button onclick="alert('Edit FAQ dialog opened for Hygiene question')" class="text-sky-400 font-bold hover:underline">Edit FAQ</button>
-                <button onclick="alert('Delete FAQ confirmed')" class="text-rose-500 font-bold hover:underline">Delete FAQ</button>
+                <button onclick="alert('Delete FAQ confirmed')" class="text-[#C9A96E] font-bold hover:underline">Delete FAQ</button>
               </div>
             </div>
             <h4 class="font-bold text-sm text-slate-900 dark:text-white">How do you sanitize toys between home rentals?</h4>
@@ -2152,7 +2293,7 @@
               <span class="px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-[#C9A96E]/10 text-[#C9A96E]">Rotations &amp; Delivery</span>
               <div class="flex gap-2 text-xs">
                 <button onclick="alert('Edit FAQ dialog opened')" class="text-sky-400 font-bold hover:underline">Edit FAQ</button>
-                <button onclick="alert('Delete FAQ')" class="text-rose-500 font-bold hover:underline">Delete FAQ</button>
+                <button onclick="alert('Delete FAQ')" class="text-[#C9A96E] font-bold hover:underline">Delete FAQ</button>
               </div>
             </div>
             <h4 class="font-bold text-sm text-slate-900 dark:text-white">What happens if a toy component or piece goes missing?</h4>
@@ -2213,11 +2354,11 @@
               <div class="p-4 rounded-2xl bg-slate-50 dark:bg-[#0c111c] space-y-1">
                 <span class="text-xs text-slate-400">Total Play Hours Generated</span>
                 <div class="text-2xl font-black text-slate-900 dark:text-white">142,800 Hrs</div>
-                <div class="text-[10px] text-emerald-500 font-bold">+18% over last quarter</div>
+                <div class="text-[10px] text-[#8FA99A] font-bold">+18% over last quarter</div>
               </div>
               <div class="p-4 rounded-2xl bg-slate-50 dark:bg-[#0c111c] space-y-1">
                 <span class="text-xs text-slate-400">Landfill Plastic Diverted</span>
-                <div class="text-2xl font-black text-emerald-500">8,420 Kgs</div>
+                <div class="text-2xl font-black text-[#8FA99A]">8,420 Kgs</div>
                 <div class="text-[10px] text-slate-400">Circular heirloom rotation model</div>
               </div>
               <div class="p-4 rounded-2xl bg-slate-50 dark:bg-[#0c111c] space-y-1">
@@ -2315,11 +2456,11 @@
       <div class="space-y-3">
         <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-[#0c111c] space-y-1.5">
           <div class="font-bold text-slate-900 dark:text-white flex items-center gap-1.5"><i class="fa-solid fa-baby text-[#C9A96E]"></i> Child Profiles &amp; Milestones:</div>
-          <div id="parentModalChild" class="text-slate-600 dark:text-slate-300">Liam (2.5 Years • Toddler Sensory &amp; Gross Motor Development)</div>
+          <div id="parentModalChild" class="text-slate-600 dark:text-slate-300">Liam (2.5 Years &bull; Toddler Sensory &amp; Gross Motor Development)</div>
         </div>
         <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-[#0c111c] space-y-1.5">
-          <div class="font-bold text-slate-900 dark:text-white flex items-center gap-1.5"><i class="fa-solid fa-crown text-emerald-500"></i> Subscription History &amp; Tier:</div>
-          <div id="parentModalPlan" class="text-slate-600 dark:text-slate-300">Atelier Hybrid ($59/mo) • Active since Jan 2026 • 8 Rotations completed with 0 damaged items.</div>
+          <div class="font-bold text-slate-900 dark:text-white flex items-center gap-1.5"><i class="fa-solid fa-crown text-[#8FA99A]"></i> Subscription History &amp; Tier:</div>
+          <div id="parentModalPlan" class="text-slate-600 dark:text-slate-300">Atelier Hybrid ($59/mo) &bull; Active since Jan 2026 &bull; 8 Rotations completed with 0 damaged items.</div>
         </div>
         <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-[#0c111c] space-y-1.5">
           <div class="font-bold text-slate-900 dark:text-white flex items-center gap-1.5"><i class="fa-solid fa-shapes text-sky-400"></i> Active Toys Currently In Home:</div>
@@ -2467,7 +2608,7 @@
         </div>
         <div class="pt-3 flex justify-end gap-2">
           <button type="button" onclick="document.getElementById('addKitModal').classList.add('hidden')" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold">Cancel</button>
-          <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider">Create Kit</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-[#8FA99A] text-white font-bold text-xs uppercase tracking-wider">Create Kit</button>
         </div>
       </form>
     </div>
@@ -2636,7 +2777,7 @@
   <!-- Modal 10: Logout Confirmation Modal -->
   <div id="logoutModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
     <div class="w-full max-w-sm rounded-3xl bg-white dark:bg-[#172033] border border-slate-200 dark:border-slate-800 p-6 text-center space-y-4 animate-fade-in">
-      <div class="w-12 h-12 rounded-full bg-rose-500/15 text-rose-500 flex items-center justify-center text-xl mx-auto">
+      <div class="w-12 h-12 rounded-full bg-[#C9A96E]/15 text-[#C9A96E] flex items-center justify-center text-xl mx-auto">
         <i class="fa-solid fa-arrow-right-from-bracket"></i>
       </div>
       <div class="space-y-1">
@@ -2647,7 +2788,7 @@
         <button type="button" onclick="document.getElementById('logoutModal').classList.add('hidden')" class="flex-1 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs uppercase tracking-wider">
           Stay Signed In
         </button>
-        <a href="login.html" class="flex-1 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs uppercase tracking-wider shadow-md text-center">
+        <a href="login.html" class="flex-1 py-2.5 rounded-xl bg-[#C9A96E] hover:bg-[#b99455] text-white font-bold text-xs uppercase tracking-wider shadow-md text-center">
           Sign Out
         </a>
       </div>
@@ -2813,9 +2954,9 @@
       // 6. Interactive Parent Details Modal
       window.viewParentDetails = function(name, email, child, age, plan, status) {
         document.getElementById('parentModalTitle').textContent = `${name} — Parent Details`;
-        document.getElementById('parentModalEmail').textContent = `${email} • Member Status: ${status}`;
-        document.getElementById('parentModalChild').textContent = `${child} (${age}) • Milestone: Fine Motor & Sensory Montessori`;
-        document.getElementById('parentModalPlan').textContent = `${plan} • Member Status: ${status} • Subscription History active.`;
+        document.getElementById('parentModalEmail').textContent = `${email} &bull; Member Status: ${status}`;
+        document.getElementById('parentModalChild').textContent = `${child} (${age}) &bull; Milestone: Fine Motor & Sensory Montessori`;
+        document.getElementById('parentModalPlan').textContent = `${plan} &bull; Member Status: ${status} &bull; Subscription History active.`;
         document.getElementById('parentDetailsModal').classList.remove('hidden');
       };
 

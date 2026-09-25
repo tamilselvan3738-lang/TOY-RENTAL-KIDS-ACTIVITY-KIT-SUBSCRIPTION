@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PlayLoop Kids - Toy Rental & Activity Kit Subscription</title>
-  <!-- Favicon: PlayLoop Kids Navbar Logo -->
+  <title>PlayLoop Kids &bull; Curated Toy & Activity Kit Atelier</title>
+  
+  <!-- Favicon: PlayLoop Kids Unified Brand Icons -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="alternate icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   
-  <!-- Google Fonts: Outfit (Heading) & Plus Jakarta Sans (Body) -->
+  <!-- Google Fonts: Outfit (Brand Headings) & Plus Jakarta Sans (Clean Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -34,20 +36,21 @@
               50: '#f5f7fa',
               100: '#eaedf3',
               200: '#d0d7e4',
-              300: '#a6b4cc',
-              400: '#748bb0',
-              500: '#4b6691',
-              600: '#395076',
-              700: '#2d3e5c',
-              800: '#1e293f',
-              900: '#172033', // Primary Deep Navy
-              950: '#0c111c',
+              300: '#a7b5cc',
+              400: '#758cae',
+              500: '#4f6892',
+              600: '#3c5075',
+              700: '#2f3e5c',
+              800: '#232d43',
+              900: '#172033', // Deep Navy Core
+              950: '#0e1320',
             },
             cream: {
-              50: '#fdfcfb',
-              100: '#F8F5EF', // Secondary Warm Cream
-              200: '#f1ede2',
-              300: '#e6decb',
+              50: '#fdfbf7',
+              100: '#F8F5EF', // Warm Cream Core
+              200: '#f1ebd8',
+              300: '#e7ddbd',
+              400: '#d9c897',
             },
             brand: { // Premium Accent: Soft Gold
               50: '#faf7f0',
@@ -109,7 +112,7 @@
     /* Custom Scrollbar: Sleek vertical & completely removed horizontal */
     ::-webkit-scrollbar {
       width: 6px;
-      height: 0px !important; /* Zero height completely eliminates horizontal scrollbar */
+      height: 0px !important;
     }
     ::-webkit-scrollbar:horizontal {
       display: none !important;
@@ -130,8 +133,10 @@
       background: #24334f;
     }
 
-    /* RTL Transition Support */
+    /* Smooth Scrolling */
     html {
+      scroll-padding-top: 5.5rem;
+      scroll-behavior: smooth;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
@@ -208,33 +213,32 @@
       left: 50%;
       width: 0;
       height: 2px;
-      background: linear-gradient(90deg, #e07a5f, #81b29a);
+      background: linear-gradient(90deg, #C9A96E, #8FA99A);
       border-radius: 9999px;
       transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1), left 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
-        /* Active Link State */
     .nav-link:hover::after,
     .nav-link.active::after {
       width: 80% !important;
       left: 10% !important;
     }
     .nav-link.active {
-      color: #ea580c !important;
-      background-color: rgba(255, 237, 213, 0.75) !important;
+      color: #C9A96E !important;
+      background-color: rgba(201, 169, 110, 0.12) !important;
       font-weight: 700 !important;
     }
     html.dark .nav-link.active {
-      color: #fb923c !important;
-      background-color: rgba(51, 65, 85, 0.8) !important;
+      color: #C9A96E !important;
+      background-color: rgba(23, 32, 51, 0.9) !important;
     }
     .mobile-nav-link.active {
-      color: #ea580c !important;
-      background-color: rgba(255, 237, 213, 0.75) !important;
+      color: #C9A96E !important;
+      background-color: rgba(201, 169, 110, 0.12) !important;
       font-weight: 700 !important;
     }
     html.dark .mobile-nav-link.active {
-      color: #fb923c !important;
-      background-color: rgba(51, 65, 85, 0.8) !important;
+      color: #C9A96E !important;
+      background-color: rgba(23, 32, 51, 0.9) !important;
     }
     .nav-link:hover {
       transform: translateY(-1px);
@@ -319,6 +323,24 @@
       pointer-events: auto;
       opacity: 1;
     }
+
+    /* Dashboard Sidebar & View Transition Helpers */
+    .sidebar-nav-item.active {
+      background: rgba(201, 169, 110, 0.15) !important;
+      color: #C9A96E !important;
+      font-weight: 700;
+    }
+    .dark .sidebar-nav-item.active {
+      background: rgba(201, 169, 110, 0.2) !important;
+      color: #C9A96E !important;
+    }
+    @keyframes fadeInView {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .view-panel:not(.hidden) {
+      animation: fadeInView 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
   </style>
 </head>
 <body class="min-h-screen bg-[#F8F5EF] text-slate-800 antialiased dark:bg-[#0c111c] dark:text-[#F8F5EF] font-sans relative selection:bg-brand-500 selection:text-[#172033] flex flex-col justify-between ">
@@ -369,10 +391,10 @@
        Laptop: [LOGO Far Left] ----------- [MENU Center] ----------- [ACTIONS Right]
        Tablet/Mobile: [LOGO Left] ------------------------- [HAMBURGER Right]
        ======================================================== -->
-    <header class="fixed top-3 inset-x-0 z-40 w-full px-3 sm:px-5 lg:px-6 xl:px-8 pointer-events-none transition-all duration-300">
+    <header class="fixed top-3 inset-x-0 z-40 w-full px-3 sm:px-5 lg:px-3 xl:px-8 pointer-events-none transition-all duration-300">
     
     <!-- Floating Island Capsule -->
-    <div class="pointer-events-auto max-w-[1550px] mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-2xl sm:rounded-full border border-[#C9A96E]/25 dark:border-[#C9A96E]/20 shadow-[0_10px_35px_-4px_rgba(23,32,51,0.08),0_0_0_1px_rgba(201,169,110,0.15)] dark:shadow-[0_14px_40px_-4px_rgba(0,0,0,0.65),0_0_0_1px_rgba(255,255,255,0.06)] px-3 sm:px-4 lg:ps-4 lg:pe-4 h-[60px] flex items-center justify-between relative transition-all duration-300">
+    <div class="pointer-events-auto max-w-[1550px] mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-2xl sm:rounded-full border border-[#C9A96E]/25 dark:border-[#C9A96E]/20 shadow-[0_10px_35px_-4px_rgba(23,32,51,0.08),0_0_0_1px_rgba(201,169,110,0.15)] dark:shadow-[0_14px_40px_-4px_rgba(0,0,0,0.65),0_0_0_1px_rgba(255,255,255,0.06)] px-3 sm:px-4 lg:ps-3 lg:pe-3 xl:ps-5 xl:pe-5 h-[60px] flex items-center justify-between relative transition-all duration-300">
 
       <!-- Ambient subtle glow spots inside floating pill -->
       <div class="absolute inset-0 rounded-2xl sm:rounded-full pointer-events-none overflow-hidden -z-10" aria-hidden="true">
@@ -433,7 +455,7 @@
                 KIDS
               </span>
             </div>
-            <span class="text-[8.5px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase leading-tight mt-0.5 hidden sm:inline-block">
+            <span class="text-[8.5px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase leading-tight mt-0.5 hidden xl:inline-block">
               Toy Rental &amp; Activity Kits
             </span>
           </div>
@@ -441,12 +463,12 @@
       </div>
 
       <!-- 2. CENTER SECTION: NAVBAR MENU (Laptop / Desktop View) -->
-      <nav class="hidden lg:flex items-center justify-center flex-1 px-2 xl:px-4" aria-label="Main Navigation">
-        <ul class="flex items-center gap-1 xl:gap-1.5 text-[12px] xl:text-[13px] font-semibold text-slate-700 dark:text-slate-200">
+      <nav class="hidden lg:flex items-center justify-center flex-1 px-1 xl:px-3 2xl:px-4" aria-label="Main Navigation">
+        <ul class="flex items-center gap-0.5 xl:gap-1 2xl:gap-1.5 text-[11px] xl:text-[12px] 2xl:text-[13px] font-semibold text-slate-700 dark:text-slate-200">
           
           <!-- HOME (DROPDOWN: Home 1, Home 2) - CLICK REDIRECTS TO index.html -->
           <li class="relative group shrink-0">
-            <a id="navHomeBtn" href="index.html" class="nav-link active flex items-center gap-1 px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
+            <a id="navHomeBtn" href="index.html" class="nav-link active flex items-center gap-1 px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
               <span>Home</span>
               <i class="fa-solid fa-chevron-down text-[8.5px] text-slate-400 group-hover:text-brand-500 group-hover:rotate-180 transition-transform duration-200"></i>
             </a>
@@ -476,28 +498,28 @@
 
           <!-- ABOUT -->
           <li class="shrink-0">
-            <a id="navAboutLink" href="about.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navAboutLink" href="about.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               About
             </a>
           </li>
 
           <!-- HOW IT WORKS -->
           <li class="shrink-0">
-            <a id="navHowLink" href="how-it-works.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navHowLink" href="how-it-works.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               How It Works
             </a>
           </li>
 
           <!-- CATALOG -->
           <li class="shrink-0">
-            <a id="navCatalogLink" href="catalog.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navCatalogLink" href="catalog.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               Catalog
             </a>
           </li>
 
           <!-- ACTIVITY KITS -->
           <li class="shrink-0">
-            <a id="navActivityLink" href="activity.html" class="nav-link relative px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navActivityLink" href="activity.html" class="nav-link relative px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               <span>Activity Kits</span>
               <span class="absolute -top-0.5 -right-0.5 px-1 py-0 bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-[8px] font-bold rounded-full shadow-sm leading-tight animate-pulse">
                 Kits
@@ -507,35 +529,35 @@
 
           <!-- PLANS -->
           <li class="shrink-0">
-            <a id="navPlansLink" href="plans.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navPlansLink" href="plans.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               Plans
             </a>
           </li>
 
           <!-- HYGIENE & SAFETY -->
           <li class="shrink-0">
-            <a id="navHygieneLink" href="hygiene.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navHygieneLink" href="hygiene.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               Hygiene &amp; Safety
             </a>
           </li>
 
           <!-- FAQ -->
           <li class="shrink-0">
-            <a id="navFaqLink" href="faq.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navFaqLink" href="faq.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               FAQ
             </a>
           </li>
 
           <!-- CONTACT -->
           <li class="shrink-0">
-            <a id="navContactLink" href="contact.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navContactLink" href="contact.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               Contact
             </a>
           </li>
 
           <!-- DASHBOARD (DROPDOWN: User Dashboard, Admin Dashboard) -->
           <li class="relative group shrink-0">
-            <button id="navDashBtn" type="button" class="nav-link flex items-center gap-1 px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
+            <button id="navDashBtn" type="button" class="nav-link flex items-center gap-1 px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
               <span>Dashboard</span>
               <i class="fa-solid fa-chevron-down text-[8.5px] text-slate-400 group-hover:text-brand-500 group-hover:rotate-180 transition-transform duration-200"></i>
             </button>
@@ -543,20 +565,20 @@
             <!-- Dropdown Menu with Glassmorphism & Spring Entrance -->
             <div class="dropdown-menu absolute top-[calc(100%+10px)] end-0 w-max z-50">
               <div class="bg-white/95 dark:bg-slate-900/95 border border-slate-200/80 dark:border-slate-800 rounded-2xl shadow-[0_16px_36px_-6px_rgba(99,102,241,0.18),0_0_1px_1px_rgba(0,0,0,0.04)] dark:shadow-[0_18px_40px_-6px_rgba(0,0,0,0.7),0_0_15px_rgba(99,102,241,0.1)] p-1.5 backdrop-blur-2xl">
-                <a id="subUserDash" href="user-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-indigo-50 dark:hover:bg-slate-800/80 transition-colors group/item whitespace-nowrap">
-                  <div class="w-7 h-7 rounded-lg bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
+                <a id="subUserDash" href="user-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-slate-800/80 transition-colors group/item whitespace-nowrap">
+                  <div class="w-7 h-7 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#172033] dark:text-[#C9A96E] flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
                     <i class="fa-solid fa-user"></i>
                   </div>
                   <div>
-                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-indigo-600 dark:group-hover/item:text-indigo-400 whitespace-nowrap">User Dashboard</div>
+                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-[#172033] dark:text-[#C9A96E] dark:group-hover/item:text-[#8FA99A] whitespace-nowrap">User Dashboard</div>
                   </div>
                 </a>
-                <a id="subAdminDash" href="admin-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-purple-50 dark:hover:bg-slate-800/80 transition-colors group/item mt-0.5 whitespace-nowrap">
-                  <div class="w-7 h-7 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
+                <a id="subAdminDash" href="admin-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-slate-800/80 transition-colors group/item mt-0.5 whitespace-nowrap">
+                  <div class="w-7 h-7 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
                     <i class="fa-solid fa-gauge-high"></i>
                   </div>
                   <div>
-                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-purple-600 dark:group-hover/item:text-purple-400 whitespace-nowrap">Admin Dashboard</div>
+                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-[#C9A96E] dark:group-hover/item:text-[#C9A96E] whitespace-nowrap">Admin Dashboard</div>
                   </div>
                 </a>
               </div>
@@ -567,7 +589,7 @@
       </nav>
 
       <!-- 3. RIGHT SECTION: UTILITIES (Laptop View) -->
-      <div class="hidden lg:flex items-center gap-2 pe-1 sm:pe-1.5 flex-shrink-0">
+      <div class="hidden lg:flex items-center gap-1 xl:gap-1.5 2xl:gap-2 pe-1 sm:pe-1.5 flex-shrink-0">
         
         <!-- DARK MODE TOGGLE (DESKTOP) -->
         <button 
@@ -575,7 +597,7 @@
           type="button" 
           aria-label="Toggle Dark Mode"
           title="Toggle Light / Dark Mode"
-          class="btn-tool w-8 h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 group shadow-sm"
+          class="btn-tool w-7 h-7 xl:w-8 xl:h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 group shadow-sm"
         >
           <i class="fa-solid fa-moon text-xs dark:hidden transition-transform duration-300 group-hover:rotate-45"></i>
           <i class="fa-solid fa-sun text-xs hidden dark:block text-yellow-400 transition-transform duration-300 group-hover:rotate-90"></i>
@@ -587,7 +609,7 @@
           type="button" 
           aria-label="Toggle Right to Left Layout" 
           title="Toggle Direction (LTR / RTL)"
-          class="btn-tool w-8 h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 relative group shadow-sm"
+          class="btn-tool w-7 h-7 xl:w-8 xl:h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 relative group shadow-sm"
         >
           <i class="fa-solid fa-right-left text-xs transition-transform duration-300 group-hover:scale-125 text-slate-700 dark:text-slate-300"></i>
           <span id="desktopRtlIndicator" class="hidden absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-brand-500"></span>
@@ -596,7 +618,7 @@
         <!-- LOGIN BUTTON (DESKTOP) WITH SHIMMER & GLOW -->
         <a 
           href="login.html" 
-          class="btn-sheen relative inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full font-bold text-[11.5px] tracking-wide uppercase text-white bg-gradient-to-r from-brand-500 via-brand-600 to-orange-600 hover:from-brand-600 hover:to-orange-700 shadow-sm hover:shadow-[0_4px_16px_rgba(249,115,22,0.45)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-1 dark:focus:ring-offset-slate-900"
+          class="btn-sheen relative inline-flex items-center justify-center gap-1 xl:gap-1.5 px-2.5 py-1 xl:px-3.5 xl:py-1.5 rounded-full font-bold text-[10.5px] xl:text-[11.5px] tracking-wide uppercase text-white bg-gradient-to-r from-brand-500 via-brand-600 to-orange-600 hover:from-brand-600 hover:to-orange-700 shadow-sm hover:shadow-[0_4px_16px_rgba(249,115,22,0.45)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-1 dark:focus:ring-offset-slate-900"
         >
           <i class="fa-solid fa-arrow-right-to-bracket text-[10.5px]"></i>
           <span>Login</span>
@@ -717,7 +739,7 @@
 
       <!-- 3. HOW IT WORKS -->
       <a id="mNavHowLink" href="how-it-works.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
-        <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 flex items-center justify-center text-xs">
+        <span class="w-6 h-6 rounded-lg bg-[#8FA99A]/15 dark:bg-[#172033] text-[#5d7667] dark:text-[#8FA99A] flex items-center justify-center text-xs">
           <i class="fa-solid fa-arrows-spin"></i>
         </span>
         <span>How It Works</span>
@@ -754,7 +776,7 @@
 
       <!-- 7. HYGIENE & SAFETY -->
       <a id="mNavHygieneLink" href="hygiene.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
-        <span class="w-6 h-6 rounded-lg bg-rose-100 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center text-xs">
+        <span class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs">
           <i class="fa-solid fa-shield-heart"></i>
         </span>
         <span>Hygiene &amp; Safety</span>
@@ -762,7 +784,7 @@
 
       <!-- 8. FAQ -->
       <a id="mNavFaqLink" href="faq.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
-        <span class="w-6 h-6 rounded-lg bg-cyan-100 dark:bg-cyan-950/60 text-cyan-600 flex items-center justify-center text-xs">
+        <span class="w-6 h-6 rounded-lg bg-[#8FA99A]/15 dark:bg-[#172033] text-[#5d7667] dark:text-[#8FA99A] flex items-center justify-center text-xs">
           <i class="fa-solid fa-circle-question"></i>
         </span>
         <span>FAQ</span>
@@ -770,7 +792,7 @@
 
       <!-- 9. CONTACT -->
       <a id="mNavContactLink" href="contact.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
-        <span class="w-6 h-6 rounded-lg bg-violet-100 dark:bg-violet-950/60 text-violet-600 flex items-center justify-center text-xs">
+        <span class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs">
           <i class="fa-solid fa-envelope"></i>
         </span>
         <span>Contact</span>
@@ -784,7 +806,7 @@
           class="w-full flex items-center justify-between py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors focus:outline-none text-start"
         >
           <span class="flex items-center gap-2.5">
-            <span class="w-6 h-6 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-xs">
+            <span class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs">
               <i class="fa-solid fa-gauge-high"></i>
             </span>
             <span class="text-xs">Dashboard</span>
@@ -795,11 +817,11 @@
         <!-- Dashboard Sub-items -->
         <div id="mobileDashboardMenu" class="hidden ps-9 pe-2 py-1 space-y-1">
           <a id="mSubUserDash" href="user-dashboard.html" class="mobile-nav-link flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-            <i class="fa-solid fa-user-circle text-xs text-indigo-500"></i>
+            <i class="fa-solid fa-user-circle text-xs text-[#C9A96E]"></i>
             <span>User Dashboard</span>
           </a>
           <a id="mSubAdminDash" href="admin-dashboard.html" class="mobile-nav-link flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-            <i class="fa-solid fa-shield-halved text-xs text-purple-500"></i>
+            <i class="fa-solid fa-shield-halved text-xs text-[#C9A96E]"></i>
             <span>Admin Dashboard</span>
           </a>
         </div>
@@ -872,9 +894,9 @@
           
           <!-- Gold Pill Status -->
           <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-amber-50/90 dark:bg-slate-800/90 border border-amber-200/80 dark:border-amber-500/40 text-xs sm:text-sm font-semibold text-amber-900 dark:text-amber-300 shadow-sm backdrop-blur-md">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-            <span class="w-2 h-2 rounded-full bg-emerald-500 -ms-4"></span>
-            <span>The Curated Playroom System • Rotated Every 45 Days</span>
+            <span class="w-2 h-2 rounded-full bg-[#8FA99A] animate-ping"></span>
+            <span class="w-2 h-2 rounded-full bg-[#8FA99A] -ms-4"></span>
+            <span>The Curated Playroom System &bull; Rotated Every 45 Days</span>
           </div>
 
           <!-- Editorial Title -->
@@ -921,8 +943,8 @@
 
               <!-- Tab 3: Artisan Creative Studio -->
               <button type="button" data-vibe="creative" class="vibe-btn flex flex-col items-start p-3 rounded-xl border text-start transition-all duration-200 bg-slate-50 dark:bg-slate-900/60 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600">
-                <div class="flex items-center gap-2 text-rose-700 dark:text-rose-300 font-bold text-xs sm:text-sm">
-                  <i class="fa-solid fa-palette text-rose-600 dark:text-rose-400"></i>
+                <div class="flex items-center gap-2 text-[#C9A96E] dark:text-[#C9A96E] font-bold text-xs sm:text-sm">
+                  <i class="fa-solid fa-palette text-[#C9A96E] dark:text-[#C9A96E]"></i>
                   <span>Artisan Studio</span>
                 </div>
                 <span class="text-[11px] text-slate-600 dark:text-slate-400 mt-1 line-clamp-1">Weaving loom, pottery & art</span>
@@ -967,7 +989,7 @@
             </div>
 
             <div class="flex items-center gap-2.5">
-              <div class="w-8 h-8 rounded-lg bg-rose-500/15 dark:bg-rose-400/20 text-rose-600 dark:text-rose-400 flex items-center justify-center shrink-0 text-sm">
+              <div class="w-8 h-8 rounded-lg bg-[#C9A96E]/15 dark:text-[#C9A96E]/20 text-[#C9A96E] dark:text-[#C9A96E] flex items-center justify-center shrink-0 text-sm">
                 <i class="fa-solid fa-face-smile"></i>
               </div>
               <span class="text-xs font-medium text-slate-700 dark:text-slate-200 leading-tight">Zero Wear-Tear Fee</span>
@@ -994,7 +1016,7 @@
 
                 <!-- Floating Live Badge in Top Right -->
                 <div class="absolute top-3 end-3 px-3 py-1.5 rounded-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-white/40 dark:border-slate-700 text-xs font-bold text-slate-800 dark:text-slate-100 flex items-center gap-1.5 shadow-md">
-                  <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                  <i class="fa-solid fa-circle-check text-[#8FA99A]"></i>
                   <span id="vibe-badge-label">Montessori Atelier Active</span>
                 </div>
 
@@ -1012,7 +1034,7 @@
                     4 handcrafted Bavarian beechwood toys + 1 tactile beeswax modeling kit. Designed for balance, calm, and pincer grip precision.
                   </p>
                   <div class="flex items-center justify-between pt-1 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-500 dark:text-slate-400">
-                    <span class="flex items-center gap-1"><i class="fa-solid fa-leaf text-emerald-500"></i> 100% Solid Wood</span>
+                    <span class="flex items-center gap-1"><i class="fa-solid fa-leaf text-[#8FA99A]"></i> 100% Solid Wood</span>
                     <span class="font-semibold text-slate-700 dark:text-slate-200">8,420+ Rotations Active</span>
                   </div>
                 </div>
@@ -1087,12 +1109,12 @@
             <div class="relative h-48 w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900">
               <img src="images/home2_dev_sensory.jpg" alt="Child exploring tactile sensory textures and wooden Montessori toys" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute top-2.5 start-2.5 px-2.5 py-1 rounded-lg bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm text-[11px] font-bold text-amber-800 dark:text-amber-300 border border-amber-200/80 dark:border-amber-500/40 shadow-sm">
-                Stage 01 • 0-18M
+                Stage 01 &bull; 0-18M
               </div>
             </div>
 
             <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400">Sensory & Tactile</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#C9A96E] dark:text-[#C9A96E]">Sensory & Tactile</span>
               <h3 class="text-xl font-bold font-brand text-slate-900 dark:text-white mt-1">Multi-Sensory Integration</h3>
               <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
                 Texture discrimination, acoustic resonance, and sensory calm without flashing lights or battery noise.
@@ -1101,11 +1123,11 @@
 
             <div class="pt-2 border-t border-slate-100 dark:border-slate-700/60 space-y-2 text-xs">
               <div class="flex items-center justify-between text-slate-700 dark:text-slate-300 font-medium">
-                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-500 text-[10px]"></i> Object Permanence</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-[#8FA99A] text-[10px]"></i> Object Permanence</span>
                 <span class="text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/60 px-2 py-0.5 rounded text-[11px]">High</span>
               </div>
               <div class="flex items-center justify-between text-slate-700 dark:text-slate-300 font-medium">
-                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-500 text-[10px]"></i> Tactile Discernment</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-[#8FA99A] text-[10px]"></i> Tactile Discernment</span>
                 <span class="text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/60 px-2 py-0.5 rounded text-[11px]">Vital</span>
               </div>
             </div>
@@ -1126,7 +1148,7 @@
             <div class="relative h-48 w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900">
               <img src="images/home2_dev_motor.jpg" alt="Child developing fine motor grip with wooden balance pillars" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute top-2.5 start-2.5 px-2.5 py-1 rounded-lg bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm text-[11px] font-bold text-teal-800 dark:text-teal-300 border border-teal-200/80 dark:border-teal-500/40 shadow-sm">
-                Stage 02 • 18-36M
+                Stage 02 &bull; 18-36M
               </div>
             </div>
 
@@ -1140,11 +1162,11 @@
 
             <div class="pt-2 border-t border-slate-100 dark:border-slate-700/60 space-y-2 text-xs">
               <div class="flex items-center justify-between text-slate-700 dark:text-slate-300 font-medium">
-                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-500 text-[10px]"></i> Pincer Grasp Precision</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-[#8FA99A] text-[10px]"></i> Pincer Grasp Precision</span>
                 <span class="text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/60 px-2 py-0.5 rounded text-[11px]">Core</span>
               </div>
               <div class="flex items-center justify-between text-slate-700 dark:text-slate-300 font-medium">
-                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-500 text-[10px]"></i> Vestibular Alignment</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-[#8FA99A] text-[10px]"></i> Vestibular Alignment</span>
                 <span class="text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/60 px-2 py-0.5 rounded text-[11px]">High</span>
               </div>
             </div>
@@ -1165,7 +1187,7 @@
             <div class="relative h-48 w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900">
               <img src="images/home2_dev_logic.jpg" alt="Child building complex 3D structures with wooden building blocks" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute top-2.5 start-2.5 px-2.5 py-1 rounded-lg bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm text-[11px] font-bold text-amber-800 dark:text-amber-300 border border-amber-200/80 dark:border-amber-500/40 shadow-sm">
-                Stage 03 • 3-6Y
+                Stage 03 &bull; 3-6Y
               </div>
             </div>
 
@@ -1179,11 +1201,11 @@
 
             <div class="pt-2 border-t border-slate-100 dark:border-slate-700/60 space-y-2 text-xs">
               <div class="flex items-center justify-between text-slate-700 dark:text-slate-300 font-medium">
-                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-500 text-[10px]"></i> Cause-Effect Decomposition</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-[#8FA99A] text-[10px]"></i> Cause-Effect Decomposition</span>
                 <span class="text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/60 px-2 py-0.5 rounded text-[11px]">Advanced</span>
               </div>
               <div class="flex items-center justify-between text-slate-700 dark:text-slate-300 font-medium">
-                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-500 text-[10px]"></i> Geometry Intuition</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-[#8FA99A] text-[10px]"></i> Geometry Intuition</span>
                 <span class="text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/60 px-2 py-0.5 rounded text-[11px]">Key</span>
               </div>
             </div>
@@ -1203,13 +1225,13 @@
           <div class="space-y-4">
             <div class="relative h-48 w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900">
               <img src="images/home2_dev_steam.jpg" alt="Child building hydraulic STEM crane engineering kit" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
-              <div class="absolute top-2.5 start-2.5 px-2.5 py-1 rounded-lg bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm text-[11px] font-bold text-indigo-800 dark:text-indigo-300 border border-indigo-200/80 dark:border-indigo-500/40 shadow-sm">
-                Stage 04 • 6-9Y
+              <div class="absolute top-2.5 start-2.5 px-2.5 py-1 rounded-lg bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm text-[11px] font-bold text-[#172033] dark:text-[#C9A96E] dark:text-[#172033] dark:text-[#C9A96E] border border-slate-200 dark:border-slate-800/80 dark:border-[#172033]/40 dark:border-[#C9A96E]/40/40 shadow-sm">
+                Stage 04 &bull; 6-9Y
               </div>
             </div>
 
             <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Inquiry & Maker Lab</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#172033] dark:text-[#C9A96E] dark:text-[#8FA99A]">Inquiry & Maker Lab</span>
               <h3 class="text-xl font-bold font-brand text-slate-900 dark:text-white mt-1">STEAM Mechanics & Art</h3>
               <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
                 Pneumatic levers, solar-reactive optics, and fiber craftsmanship that develop independent problem-solving skills.
@@ -1218,11 +1240,11 @@
 
             <div class="pt-2 border-t border-slate-100 dark:border-slate-700/60 space-y-2 text-xs">
               <div class="flex items-center justify-between text-slate-700 dark:text-slate-300 font-medium">
-                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-500 text-[10px]"></i> Hypothesis Testing</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-[#8FA99A] text-[10px]"></i> Hypothesis Testing</span>
                 <span class="text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/60 px-2 py-0.5 rounded text-[11px]">Mastery</span>
               </div>
               <div class="flex items-center justify-between text-slate-700 dark:text-slate-300 font-medium">
-                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-500 text-[10px]"></i> Creative Self-Reliance</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-[#8FA99A] text-[10px]"></i> Creative Self-Reliance</span>
                 <span class="text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/60 px-2 py-0.5 rounded text-[11px]">120m Flow</span>
               </div>
             </div>
@@ -1230,9 +1252,9 @@
 
           <div class="mt-5 pt-3 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between">
             <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-400">Curated: 18 Lab Kits</span>
-            <a href="catalog.html?stage=steam" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1">
+            <a href="catalog.html?stage=steam" class="text-xs font-bold text-[#172033] dark:text-[#C9A96E] dark:text-[#8FA99A] hover:underline flex items-center gap-1">
               <span>View Box</span>
-              <i class="fa-solid fa-chevron-right text-[10px] text-indigo-600 dark:text-indigo-400"></i>
+              <i class="fa-solid fa-chevron-right text-[10px] text-[#172033] dark:text-[#C9A96E] dark:text-[#8FA99A]"></i>
             </a>
           </div>
         </div>
@@ -1249,7 +1271,7 @@
       <div class="rounded-3xl bg-gradient-to-b from-white/90 to-amber-50/40 dark:from-slate-800/90 dark:to-slate-900/90 border border-amber-200/60 dark:border-slate-700 p-6 sm:p-10 lg:p-14 shadow-xl">
         
         <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-3">
-          <span class="px-3.5 py-1.5 rounded-full bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800 text-xs font-bold text-rose-800 dark:text-rose-300">
+          <span class="px-3.5 py-1.5 rounded-full bg-slate-50 dark:bg-slate-800/60 dark:bg-[#172033] border text-[#C9A96E] dark:text-[#C9A96E] text-xs font-bold text-[#C9A96E] dark:text-[#C9A96E]">
             Reclaim Your Living Room Sanctuary
           </span>
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white font-brand">
@@ -1319,7 +1341,7 @@
                 <span class="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
                   <i class="fa-solid fa-arrows-rotate text-amber-600 dark:text-amber-400"></i> The PlayLoop Atelier Model
                 </span>
-                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300">
+                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-[#8FA99A]/15 dark:bg-[#172033] text-[#5d7667] dark:text-[#a7bcb0]">
                   Zero Clutter Living
                 </span>
               </div>
@@ -1333,19 +1355,19 @@
 
               <ul class="space-y-3 text-sm text-slate-700 dark:text-slate-200">
                 <li class="flex items-start gap-3">
-                  <i class="fa-solid fa-circle-check text-emerald-500 mt-1 shrink-0"></i>
+                  <i class="fa-solid fa-circle-check text-[#8FA99A] mt-1 shrink-0"></i>
                   <span><strong>Save $700+ Every Year:</strong> Premium $300+ toy capsules at a predictable flat membership.</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <i class="fa-solid fa-circle-check text-emerald-500 mt-1 shrink-0"></i>
+                  <i class="fa-solid fa-circle-check text-[#8FA99A] mt-1 shrink-0"></i>
                   <span><strong>40+ Minutes of Quiet Concentration:</strong> Open-ended wooden play invites imaginative flow.</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <i class="fa-solid fa-circle-check text-emerald-500 mt-1 shrink-0"></i>
+                  <i class="fa-solid fa-circle-check text-[#8FA99A] mt-1 shrink-0"></i>
                   <span><strong>Zero Storage Clutter:</strong> The previous box leaves your doorstep as the new one arrives.</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <i class="fa-solid fa-circle-check text-emerald-500 mt-1 shrink-0"></i>
+                  <i class="fa-solid fa-circle-check text-[#8FA99A] mt-1 shrink-0"></i>
                   <span><strong>100% Worry-Free Protection:</strong> Lost a puzzle piece? Accidental dent? We cover 100% of normal play wear.</span>
                 </li>
               </ul>
@@ -1405,8 +1427,8 @@
       <!-- Section Header -->
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div class="space-y-3 max-w-2xl">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold text-indigo-700 dark:text-indigo-300">
-            <i class="fa-solid fa-flask-vial text-[11px] text-indigo-600 dark:text-indigo-400"></i>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 dark:bg-slate-800/60 dark:bg-[#172033] border border-slate-200 dark:border-slate-800 dark:text-[#172033] dark:text-[#C9A96E] text-xs font-semibold text-[#172033] dark:text-[#172033] dark:text-[#C9A96E]">
+            <i class="fa-solid fa-flask-vial text-[11px] text-[#172033] dark:text-[#C9A96E] dark:text-[#8FA99A]"></i>
             <span>Included In Every Hybrid & Explorer Capsule</span>
           </div>
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white font-brand">
@@ -1432,16 +1454,16 @@
             <div class="relative h-60 w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900">
               <img src="images/home2_kit_kinetic.jpg" alt="Child building hydraulic timber robotic crane" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute top-3 start-3 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-xs font-bold text-white">
-                Mechanical Physics • Age 5-9
+                Mechanical Physics &bull; Age 5-9
               </div>
-              <div class="absolute bottom-3 end-3 px-3 py-1 rounded-full bg-indigo-600/90 backdrop-blur-md text-xs font-bold text-white flex items-center gap-1">
+              <div class="absolute bottom-3 end-3 px-3 py-1 rounded-full bg-[#172033]/90 backdrop-blur-md text-xs font-bold text-white flex items-center gap-1">
                 <i class="fa-solid fa-stopwatch"></i> 120+ Mins Focus
               </div>
             </div>
 
             <div>
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Pneumatics & Fluid Power</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-[#172033] dark:text-[#C9A96E] dark:text-[#8FA99A]">Pneumatics & Fluid Power</span>
                 <span class="text-xs font-semibold text-slate-600 dark:text-slate-300">Keepsake Project</span>
               </div>
               <h3 class="text-2xl font-bold font-brand text-slate-900 dark:text-white mt-1">
@@ -1456,17 +1478,17 @@
             <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/60 space-y-2">
               <span class="text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Inside This Month's Kit:</span>
               <div class="grid grid-cols-2 gap-2 text-xs text-slate-800 dark:text-slate-200">
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> 42 Laser Birch Parts</div>
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> 4 Hydraulic Cylinders</div>
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Flexible Silicone Tubing</div>
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Illustrated Guidebook</div>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A] text-[10px]"></i> 42 Laser Birch Parts</div>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A] text-[10px]"></i> 4 Hydraulic Cylinders</div>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A] text-[10px]"></i> Flexible Silicone Tubing</div>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A] text-[10px]"></i> Illustrated Guidebook</div>
               </div>
             </div>
           </div>
 
           <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between">
             <span class="text-xs text-slate-600 dark:text-slate-300">Skill: <strong class="text-slate-900 dark:text-white">Pascal's Principle & Dexterity</strong></span>
-            <span class="px-3 py-1 rounded-md bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60 font-bold text-xs">Certified STEM.org</span>
+            <span class="px-3 py-1 rounded-md bg-slate-50 dark:bg-slate-800/60 dark:bg-[#172033] text-[#172033] dark:text-[#172033] dark:text-[#C9A96E] border border-slate-200 dark:border-slate-800/60 dark:text-[#172033] dark:text-[#C9A96E]/60 font-bold text-xs">Certified STEM.org</span>
           </div>
         </div>
 
@@ -1476,7 +1498,7 @@
             <div class="relative h-60 w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900">
               <img src="images/home2_kit_solar.jpg" alt="Child inspecting solar cyanotype print and plant specimens" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute top-3 start-3 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-xs font-bold text-white">
-                Solar Astronomy & Botany • Age 4-8
+                Solar Astronomy & Botany &bull; Age 4-8
               </div>
               <div class="absolute bottom-3 end-3 px-3 py-1 rounded-full bg-amber-600/90 backdrop-blur-md text-xs font-bold text-white flex items-center gap-1">
                 <i class="fa-solid fa-sun"></i> Outdoor Lab
@@ -1500,10 +1522,10 @@
             <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/60 space-y-2">
               <span class="text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Inside This Month's Kit:</span>
               <div class="grid grid-cols-2 gap-2 text-xs text-slate-800 dark:text-slate-200">
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> 12 Solar Print Papers</div>
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> UV Acrylic Print Frame</div>
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Magnifying Specimen Tube</div>
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Wildflower Seed Spheres</div>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A] text-[10px]"></i> 12 Solar Print Papers</div>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A] text-[10px]"></i> UV Acrylic Print Frame</div>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A] text-[10px]"></i> Magnifying Specimen Tube</div>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A] text-[10px]"></i> Wildflower Seed Spheres</div>
               </div>
             </div>
           </div>
@@ -1520,16 +1542,16 @@
             <div class="relative h-60 w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900">
               <img src="images/home2_kit_artisan.jpg" alt="Child weaving on solid beechwood lap loom with organic yarn" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute top-3 start-3 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-xs font-bold text-white">
-                Fiber Craft & Symmetry • Age 4-8
+                Fiber Craft & Symmetry &bull; Age 4-8
               </div>
-              <div class="absolute bottom-3 end-3 px-3 py-1 rounded-full bg-rose-600/90 backdrop-blur-md text-xs font-bold text-white flex items-center gap-1">
+              <div class="absolute bottom-3 end-3 px-3 py-1 rounded-full bg-[#b99455]/90 backdrop-blur-md text-xs font-bold text-white flex items-center gap-1">
                 <i class="fa-solid fa-heart"></i> Calming Flow
               </div>
             </div>
 
             <div>
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400">Tactile Artistry</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-[#C9A96E] dark:text-[#C9A96E]">Tactile Artistry</span>
                 <span class="text-xs font-semibold text-slate-600 dark:text-slate-300">Wall Tapestry Craft</span>
               </div>
               <h3 class="text-2xl font-bold font-brand text-slate-900 dark:text-white mt-1">
@@ -1544,17 +1566,17 @@
             <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/60 space-y-2">
               <span class="text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Inside This Month's Kit:</span>
               <div class="grid grid-cols-2 gap-2 text-xs text-slate-800 dark:text-slate-200">
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Solid Beechwood Lap Loom</div>
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> 5 Organic Merino Skeins</div>
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Wooden Shuttle & Comb</div>
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Tapestry Hanging Rod</div>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A] text-[10px]"></i> Solid Beechwood Lap Loom</div>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A] text-[10px]"></i> 5 Organic Merino Skeins</div>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A] text-[10px]"></i> Wooden Shuttle & Comb</div>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A] text-[10px]"></i> Tapestry Hanging Rod</div>
               </div>
             </div>
           </div>
 
           <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between">
             <span class="text-xs text-slate-600 dark:text-slate-300">Skill: <strong class="text-slate-900 dark:text-white">Bilateral Finger Dexterity & Patterns</strong></span>
-            <span class="px-3 py-1 rounded-md bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border border-rose-200/60 dark:border-rose-800/60 font-bold text-xs">Montessori Approved</span>
+            <span class="px-3 py-1 rounded-md bg-slate-50 dark:bg-slate-800/60 dark:bg-[#172033] text-[#C9A96E] dark:text-[#C9A96E] border text-[#C9A96E]/60 dark:text-[#C9A96E]/60 font-bold text-xs">Montessori Approved</span>
           </div>
         </div>
 
@@ -1564,7 +1586,7 @@
             <div class="relative h-60 w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900">
               <img src="images/home2_kit_chemistry.jpg" alt="Child examining grown crystal geodes under UV light" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute top-3 start-3 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-xs font-bold text-white">
-                Earth Science & Chemistry • Age 5-9
+                Earth Science & Chemistry &bull; Age 5-9
               </div>
               <div class="absolute bottom-3 end-3 px-3 py-1 rounded-full bg-teal-600/90 backdrop-blur-md text-xs font-bold text-white flex items-center gap-1">
                 <i class="fa-solid fa-gem"></i> 72h Growth Lab
@@ -1588,10 +1610,10 @@
             <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/60 space-y-2">
               <span class="text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Inside This Month's Kit:</span>
               <div class="grid grid-cols-2 gap-2 text-xs text-slate-800 dark:text-slate-200">
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> 3 Mineral Seed Matrices</div>
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Silicone Mixing Beakers</div>
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Pocket 395nm UV Torch</div>
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i> Mineral Identification Chart</div>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A] text-[10px]"></i> 3 Mineral Seed Matrices</div>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A] text-[10px]"></i> Silicone Mixing Beakers</div>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A] text-[10px]"></i> Pocket 395nm UV Torch</div>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A] text-[10px]"></i> Mineral Identification Chart</div>
               </div>
             </div>
           </div>
@@ -1640,7 +1662,7 @@
             </p>
           </div>
           <div class="pt-3 border-t border-slate-100 dark:border-slate-700/60 text-[11px] font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-            <i class="fa-solid fa-shield-halved text-emerald-500 dark:text-emerald-400"></i> Zero Formaldehyde Glues
+            <i class="fa-solid fa-shield-halved text-[#8FA99A] dark:text-[#8FA99A]"></i> Zero Formaldehyde Glues
           </div>
         </div>
 
@@ -1657,7 +1679,7 @@
             </p>
           </div>
           <div class="pt-3 border-t border-slate-100 dark:border-slate-700/60 text-[11px] font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-            <i class="fa-solid fa-circle-check text-emerald-500 dark:text-emerald-400"></i> Heavy-Metal Free
+            <i class="fa-solid fa-circle-check text-[#8FA99A] dark:text-[#8FA99A]"></i> Heavy-Metal Free
           </div>
         </div>
 
@@ -1674,7 +1696,7 @@
             </p>
           </div>
           <div class="pt-3 border-t border-slate-100 dark:border-slate-700/60 text-[11px] font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-            <i class="fa-solid fa-shield-halved text-emerald-500 dark:text-emerald-400"></i> 99.999% Pathogen Clearance
+            <i class="fa-solid fa-shield-halved text-[#8FA99A] dark:text-[#8FA99A]"></i> 99.999% Pathogen Clearance
           </div>
         </div>
 
@@ -1684,14 +1706,14 @@
             <div class="h-44 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-900">
               <img src="images/home2_craft_restoration.jpg" alt="Artisan hand-buffing wooden toy with organic beeswax" class="w-full h-full object-cover" />
             </div>
-            <span class="text-[11px] font-bold uppercase tracking-wider text-rose-700 dark:text-rose-400">Pillar 04</span>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-[#C9A96E] dark:text-[#C9A96E]">Pillar 04</span>
             <h3 class="text-lg font-bold text-slate-900 dark:text-white font-brand">Beeswax Restoration Clinic</h3>
             <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
               Our wood artisans gently micro-plane scratches and polish surfaces with certified organic German beeswax and linseed oil, restoring that fresh heirloom luster.
             </p>
           </div>
           <div class="pt-3 border-t border-slate-100 dark:border-slate-700/60 text-[11px] font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-            <i class="fa-solid fa-circle-check text-emerald-500 dark:text-emerald-400"></i> 15+ Life Cycles per Toy
+            <i class="fa-solid fa-circle-check text-[#8FA99A] dark:text-[#8FA99A]"></i> 15+ Life Cycles per Toy
           </div>
         </div>
 
@@ -1719,7 +1741,7 @@
             <div class="text-[11px] text-slate-200 dark:text-slate-200 font-semibold mt-0.5">Toys Rotated</div>
           </div>
           <div>
-            <div class="text-xl sm:text-2xl font-black text-emerald-400 font-brand">100%</div>
+            <div class="text-xl sm:text-2xl font-black text-[#8FA99A] font-brand">100%</div>
             <div class="text-[11px] text-slate-200 dark:text-slate-200 font-semibold mt-0.5">Carbon Neutral</div>
           </div>
         </div>
@@ -1754,7 +1776,7 @@
             <div class="h-56 rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900 relative">
               <img src="images/home2_family_brooklyn.jpg" alt="Family playing peacefully in modern minimalist apartment" class="w-full h-full object-cover" />
               <div class="absolute bottom-2.5 start-2.5 px-3 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[11px] font-bold">
-                Brooklyn, NY • 2 Kids Under 4
+                Brooklyn, NY &bull; 2 Kids Under 4
               </div>
             </div>
 
@@ -1773,7 +1795,7 @@
           <div class="pt-4 border-t border-slate-100 dark:border-slate-700/60 space-y-2">
             <div class="flex items-center justify-between text-xs text-slate-600 dark:text-slate-300">
               <span>Toys Rotated: <strong class="text-slate-900 dark:text-white">42 Sets</strong></span>
-              <span class="text-emerald-600 dark:text-emerald-400 font-bold">Saved $1,620 vs Retail</span>
+              <span class="text-[#5d7667] dark:text-[#8FA99A] dark:text-[#8FA99A] font-bold">Saved $1,620 vs Retail</span>
             </div>
             <div class="flex items-center justify-between text-xs text-slate-600 dark:text-slate-300">
               <span>Member Since: <strong class="text-slate-900 dark:text-white">May 2024</strong></span>
@@ -1788,7 +1810,7 @@
             <div class="h-56 rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900 relative">
               <img src="images/home2_family_austin.jpg" alt="Mother and child engaged in hands-on STEM project" class="w-full h-full object-cover" />
               <div class="absolute bottom-2.5 start-2.5 px-3 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[11px] font-bold">
-                Austin, TX • Mateo (6y)
+                Austin, TX &bull; Mateo (6y)
               </div>
             </div>
 
@@ -1807,7 +1829,7 @@
           <div class="pt-4 border-t border-slate-100 dark:border-slate-700/60 space-y-2">
             <div class="flex items-center justify-between text-xs text-slate-600 dark:text-slate-300">
               <span>Kits Completed: <strong class="text-slate-900 dark:text-white">16 Labs</strong></span>
-              <span class="text-indigo-600 dark:text-indigo-400 font-bold">140+ Screen-Free Hours</span>
+              <span class="text-[#172033] dark:text-[#C9A96E] dark:text-[#8FA99A] font-bold">140+ Screen-Free Hours</span>
             </div>
             <div class="flex items-center justify-between text-xs text-slate-600 dark:text-slate-300">
               <span>Member Since: <strong class="text-slate-900 dark:text-white">Oct 2023</strong></span>
@@ -1822,7 +1844,7 @@
             <div class="h-56 rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900 relative">
               <img src="images/home2_family_chicago.jpg" alt="Toddler discovering sensory wooden toys with mother" class="w-full h-full object-cover" />
               <div class="absolute bottom-2.5 start-2.5 px-3 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[11px] font-bold">
-                Chicago, IL • Zoe (18m)
+                Chicago, IL &bull; Zoe (18m)
               </div>
             </div>
 
@@ -1883,7 +1905,7 @@
 
             <!-- Guarantee Stamp -->
             <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+              <div class="w-10 h-10 rounded-full bg-[#8FA99A]/20 text-[#8FA99A] flex items-center justify-center shrink-0">
                 <i class="fa-solid fa-shield-halved text-lg"></i>
               </div>
               <div class="text-xs">
@@ -1927,7 +1949,7 @@
               </div>
 
               <div class="p-3 rounded-xl bg-white/5 border border-white/10 space-y-1">
-                <span class="text-xs font-black text-rose-400">STEP 03</span>
+                <span class="text-xs font-black text-[#C9A96E]">STEP 03</span>
                 <h4 class="text-sm font-bold text-white">Enjoy & Swap</h4>
                 <p class="text-[11px] text-slate-300">Doorstep exchange whenever ready.</p>
               </div>
@@ -2150,7 +2172,7 @@ lkjh            }
           <!-- Trust Badges Grid -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 max-w-sm">
             <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
-              <div class="w-7 h-7 rounded-lg bg-rose-100 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center text-xs flex-shrink-0">
+              <div class="w-7 h-7 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs flex-shrink-0">
                 <i class="fa-solid fa-shield-heart"></i>
               </div>
               <div class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 leading-tight">
@@ -2172,7 +2194,7 @@ lkjh            }
           <div class="pt-2">
             <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-3">Follow The Fun</div>
             <div class="flex items-center gap-2">
-              <a href="#instagram" aria-label="Instagram" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-pink-50 dark:hover:bg-pink-950/60 text-slate-600 dark:text-slate-300 hover:text-pink-500 flex items-center justify-center text-xs transition-colors shadow-sm">
+              <a href="#instagram" aria-label="Instagram" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-[#172033] text-slate-600 dark:text-slate-300 hover:text-[#C9A96E] flex items-center justify-center text-xs transition-colors shadow-sm">
                 <i class="fa-brands fa-instagram"></i>
               </a>
               <a href="#youtube" aria-label="YouTube" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-red-50 dark:hover:bg-red-950/60 text-slate-600 dark:text-slate-300 hover:text-red-500 flex items-center justify-center text-xs transition-colors shadow-sm">
@@ -2181,7 +2203,7 @@ lkjh            }
               <a href="#facebook" aria-label="Facebook" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-950/60 text-slate-600 dark:text-slate-300 hover:text-blue-500 flex items-center justify-center text-xs transition-colors shadow-sm">
                 <i class="fa-brands fa-facebook-f"></i>
               </a>
-              <a href="#pinterest" aria-label="Pinterest" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-rose-950/60 text-slate-600 dark:text-slate-300 hover:text-rose-500 flex items-center justify-center text-xs transition-colors shadow-sm">
+              <a href="#pinterest" aria-label="Pinterest" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-[#172033] text-slate-600 dark:text-slate-300 hover:text-[#C9A96E] flex items-center justify-center text-xs transition-colors shadow-sm">
                 <i class="fa-brands fa-pinterest-p"></i>
               </a>
               <a href="#tiktok" aria-label="TikTok" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white flex items-center justify-center text-xs transition-colors shadow-sm">
@@ -2290,7 +2312,7 @@ lkjh            }
             </li>
             <li>
               <a href="activity.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
-                <i class="fa-solid fa-palette text-[10px] text-pink-500"></i>
+                <i class="fa-solid fa-palette text-[10px] text-[#C9A96E]"></i>
                 <span>Arts &amp; Creative Craft Kits</span>
               </a>
             </li>
@@ -2302,19 +2324,19 @@ lkjh            }
             </li>
             <li>
               <a href="activity.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
-                <i class="fa-solid fa-robot text-[10px] text-indigo-500"></i>
+                <i class="fa-solid fa-robot text-[10px] text-[#C9A96E]"></i>
                 <span>Robotics &amp; Coding Kits (6-12y)</span>
               </a>
             </li>
             <li>
               <a href="catalog.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
-                <i class="fa-solid fa-chess text-[10px] text-purple-500"></i>
+                <i class="fa-solid fa-chess text-[10px] text-[#C9A96E]"></i>
                 <span>Family Board Games</span>
               </a>
             </li>
             <li>
               <a href="plans.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
-                <i class="fa-solid fa-gift text-[10px] text-rose-500"></i>
+                <i class="fa-solid fa-gift text-[10px] text-[#C9A96E]"></i>
                 <span>Gift a Subscription Box</span>
               </a>
             </li>
@@ -2333,7 +2355,7 @@ lkjh            }
           <!-- Dashboard Links from Navbar -->
           <div class="space-y-1.5 pb-2">
             <a href="user-dashboard.html" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 hover:border-brand-500/50 transition-colors group">
-              <div class="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
+              <div class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#172033] dark:text-[#C9A96E] flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-user"></i>
               </div>
               <div class="text-[11.5px] font-semibold text-slate-700 dark:text-slate-200">
@@ -2341,8 +2363,8 @@ lkjh            }
               </div>
             </a>
 
-            <a href="admin-dashboard.html" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 hover:border-purple-500/50 transition-colors group">
-              <div class="w-6 h-6 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
+            <a href="admin-dashboard.html" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 hover:border-[#C9A96E]/40/50 transition-colors group">
+              <div class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-gauge-high"></i>
               </div>
               <div class="text-[11.5px] font-semibold text-slate-700 dark:text-slate-200">
@@ -2595,12 +2617,12 @@ lkjh            }
           document.getElementById('navDashBtn')?.classList.add('active');
           document.getElementById('mobileDashboardToggle')?.classList.add('active');
           if (isUserDash) {
-            document.getElementById('subUserDash')?.classList.add('active', 'bg-indigo-100/90', 'dark:bg-slate-800', 'text-indigo-600', 'dark:text-indigo-400', 'font-bold');
-            document.getElementById('mSubUserDash')?.classList.add('active', 'font-bold', 'text-indigo-600', 'dark:text-indigo-400');
+            document.getElementById('subUserDash')?.classList.add('active', 'bg-[#C9A96E]/15/90', 'dark:bg-slate-800', 'text-[#172033] dark:text-[#C9A96E]', 'dark:text-[#8FA99A]', 'font-bold');
+            document.getElementById('mSubUserDash')?.classList.add('active', 'font-bold', 'text-[#172033] dark:text-[#C9A96E]', 'dark:text-[#8FA99A]');
           }
           if (isAdminDash) {
-            document.getElementById('subAdminDash')?.classList.add('active', 'bg-purple-100/90', 'dark:bg-slate-800', 'text-purple-600', 'dark:text-purple-400', 'font-bold');
-            document.getElementById('mSubAdminDash')?.classList.add('active', 'font-bold', 'text-purple-600', 'dark:text-purple-400');
+            document.getElementById('subAdminDash')?.classList.add('active', 'bg-[#C9A96E]/15/90', 'dark:bg-slate-800', 'text-[#C9A96E]', 'dark:text-[#C9A96E]', 'font-bold');
+            document.getElementById('mSubAdminDash')?.classList.add('active', 'font-bold', 'text-[#C9A96E]', 'dark:text-[#C9A96E]');
           }
         }
       }

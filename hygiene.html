@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PlayLoop Kids - Toy Rental & Activity Kit Subscription</title>
-  <!-- Favicon: PlayLoop Kids Navbar Logo -->
+  <title>Hygiene & Safety Standards &bull; PlayLoop Kids</title>
+  
+  <!-- Favicon: PlayLoop Kids Unified Brand Icons -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="alternate icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   
-  <!-- Google Fonts: Outfit (Heading) & Plus Jakarta Sans (Body) -->
+  <!-- Google Fonts: Outfit (Brand Headings) & Plus Jakarta Sans (Clean Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -34,20 +36,21 @@
               50: '#f5f7fa',
               100: '#eaedf3',
               200: '#d0d7e4',
-              300: '#a6b4cc',
-              400: '#748bb0',
-              500: '#4b6691',
-              600: '#395076',
-              700: '#2d3e5c',
-              800: '#1e293f',
-              900: '#172033', // Primary Deep Navy
-              950: '#0c111c',
+              300: '#a7b5cc',
+              400: '#758cae',
+              500: '#4f6892',
+              600: '#3c5075',
+              700: '#2f3e5c',
+              800: '#232d43',
+              900: '#172033', // Deep Navy Core
+              950: '#0e1320',
             },
             cream: {
-              50: '#fdfcfb',
-              100: '#F8F5EF', // Secondary Warm Cream
-              200: '#f1ede2',
-              300: '#e6decb',
+              50: '#fdfbf7',
+              100: '#F8F5EF', // Warm Cream Core
+              200: '#f1ebd8',
+              300: '#e7ddbd',
+              400: '#d9c897',
             },
             brand: { // Premium Accent: Soft Gold
               50: '#faf7f0',
@@ -109,7 +112,7 @@
     /* Custom Scrollbar: Sleek vertical & completely removed horizontal */
     ::-webkit-scrollbar {
       width: 6px;
-      height: 0px !important; /* Zero height completely eliminates horizontal scrollbar */
+      height: 0px !important;
     }
     ::-webkit-scrollbar:horizontal {
       display: none !important;
@@ -130,7 +133,7 @@
       background: #24334f;
     }
 
-    /* RTL Transition Support */
+    /* Smooth Scrolling */
     html {
       scroll-padding-top: 5.5rem;
       scroll-behavior: smooth;
@@ -210,33 +213,32 @@
       left: 50%;
       width: 0;
       height: 2px;
-      background: linear-gradient(90deg, #e07a5f, #81b29a);
+      background: linear-gradient(90deg, #C9A96E, #8FA99A);
       border-radius: 9999px;
       transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1), left 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
-        /* Active Link State */
     .nav-link:hover::after,
     .nav-link.active::after {
       width: 80% !important;
       left: 10% !important;
     }
     .nav-link.active {
-      color: #ea580c !important;
-      background-color: rgba(255, 237, 213, 0.75) !important;
+      color: #C9A96E !important;
+      background-color: rgba(201, 169, 110, 0.12) !important;
       font-weight: 700 !important;
     }
     html.dark .nav-link.active {
-      color: #fb923c !important;
-      background-color: rgba(51, 65, 85, 0.8) !important;
+      color: #C9A96E !important;
+      background-color: rgba(23, 32, 51, 0.9) !important;
     }
     .mobile-nav-link.active {
-      color: #ea580c !important;
-      background-color: rgba(255, 237, 213, 0.75) !important;
+      color: #C9A96E !important;
+      background-color: rgba(201, 169, 110, 0.12) !important;
       font-weight: 700 !important;
     }
     html.dark .mobile-nav-link.active {
-      color: #fb923c !important;
-      background-color: rgba(51, 65, 85, 0.8) !important;
+      color: #C9A96E !important;
+      background-color: rgba(23, 32, 51, 0.9) !important;
     }
     .nav-link:hover {
       transform: translateY(-1px);
@@ -321,6 +323,24 @@
       pointer-events: auto;
       opacity: 1;
     }
+
+    /* Dashboard Sidebar & View Transition Helpers */
+    .sidebar-nav-item.active {
+      background: rgba(201, 169, 110, 0.15) !important;
+      color: #C9A96E !important;
+      font-weight: 700;
+    }
+    .dark .sidebar-nav-item.active {
+      background: rgba(201, 169, 110, 0.2) !important;
+      color: #C9A96E !important;
+    }
+    @keyframes fadeInView {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .view-panel:not(.hidden) {
+      animation: fadeInView 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
   </style>
 </head>
 <body class="min-h-screen bg-[#F8F5EF] text-slate-800 antialiased dark:bg-[#0c111c] dark:text-[#F8F5EF] font-sans relative selection:bg-brand-500 selection:text-[#172033] flex flex-col justify-between ">
@@ -371,10 +391,10 @@
        Laptop: [LOGO Far Left] ----------- [MENU Center] ----------- [ACTIONS Right]
        Tablet/Mobile: [LOGO Left] ------------------------- [HAMBURGER Right]
        ======================================================== -->
-    <header class="fixed top-3 inset-x-0 z-40 w-full px-3 sm:px-5 lg:px-6 xl:px-8 pointer-events-none transition-all duration-300">
+    <header class="fixed top-3 inset-x-0 z-40 w-full px-3 sm:px-5 lg:px-3 xl:px-8 pointer-events-none transition-all duration-300">
     
     <!-- Floating Island Capsule -->
-    <div class="pointer-events-auto max-w-[1550px] mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-2xl sm:rounded-full border border-[#C9A96E]/25 dark:border-[#C9A96E]/20 shadow-[0_10px_35px_-4px_rgba(23,32,51,0.08),0_0_0_1px_rgba(201,169,110,0.15)] dark:shadow-[0_14px_40px_-4px_rgba(0,0,0,0.65),0_0_0_1px_rgba(255,255,255,0.06)] px-3 sm:px-4 lg:ps-4 lg:pe-4 h-[60px] flex items-center justify-between relative transition-all duration-300">
+    <div class="pointer-events-auto max-w-[1550px] mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-2xl sm:rounded-full border border-[#C9A96E]/25 dark:border-[#C9A96E]/20 shadow-[0_10px_35px_-4px_rgba(23,32,51,0.08),0_0_0_1px_rgba(201,169,110,0.15)] dark:shadow-[0_14px_40px_-4px_rgba(0,0,0,0.65),0_0_0_1px_rgba(255,255,255,0.06)] px-3 sm:px-4 lg:ps-3 lg:pe-3 xl:ps-5 xl:pe-5 h-[60px] flex items-center justify-between relative transition-all duration-300">
 
       <!-- Ambient subtle glow spots inside floating pill -->
       <div class="absolute inset-0 rounded-2xl sm:rounded-full pointer-events-none overflow-hidden -z-10" aria-hidden="true">
@@ -435,7 +455,7 @@
                 KIDS
               </span>
             </div>
-            <span class="text-[8.5px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase leading-tight mt-0.5 hidden sm:inline-block">
+            <span class="text-[8.5px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase leading-tight mt-0.5 hidden xl:inline-block">
               Toy Rental &amp; Activity Kits
             </span>
           </div>
@@ -443,12 +463,12 @@
       </div>
 
       <!-- 2. CENTER SECTION: NAVBAR MENU (Laptop / Desktop View) -->
-      <nav class="hidden lg:flex items-center justify-center flex-1 px-2 xl:px-4" aria-label="Main Navigation">
-        <ul class="flex items-center gap-1 xl:gap-1.5 text-[12px] xl:text-[13px] font-semibold text-slate-700 dark:text-slate-200">
+      <nav class="hidden lg:flex items-center justify-center flex-1 px-1 xl:px-3 2xl:px-4" aria-label="Main Navigation">
+        <ul class="flex items-center gap-0.5 xl:gap-1 2xl:gap-1.5 text-[11px] xl:text-[12px] 2xl:text-[13px] font-semibold text-slate-700 dark:text-slate-200">
           
           <!-- HOME (DROPDOWN: Home 1, Home 2) - CLICK REDIRECTS TO index.html -->
           <li class="relative group shrink-0">
-            <a id="navHomeBtn" href="index.html" class="nav-link flex items-center gap-1 px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
+            <a id="navHomeBtn" href="index.html" class="nav-link flex items-center gap-1 px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
               <span>Home</span>
               <i class="fa-solid fa-chevron-down text-[8.5px] text-slate-400 group-hover:text-brand-500 group-hover:rotate-180 transition-transform duration-200"></i>
             </a>
@@ -478,28 +498,28 @@
 
           <!-- ABOUT -->
           <li class="shrink-0">
-            <a id="navAboutLink" href="about.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navAboutLink" href="about.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               About
             </a>
           </li>
 
           <!-- HOW IT WORKS -->
           <li class="shrink-0">
-            <a id="navHowLink" href="how-it-works.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navHowLink" href="how-it-works.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               How It Works
             </a>
           </li>
 
           <!-- CATALOG -->
           <li class="shrink-0">
-            <a id="navCatalogLink" href="catalog.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navCatalogLink" href="catalog.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               Catalog
             </a>
           </li>
 
           <!-- ACTIVITY KITS -->
           <li class="shrink-0">
-            <a id="navActivityLink" href="activity.html" class="nav-link relative px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navActivityLink" href="activity.html" class="nav-link relative px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               <span>Activity Kits</span>
               <span class="absolute -top-0.5 -right-0.5 px-1 py-0 bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-[8px] font-bold rounded-full shadow-sm leading-tight animate-pulse">
                 Kits
@@ -509,35 +529,35 @@
 
           <!-- PLANS -->
           <li class="shrink-0">
-            <a id="navPlansLink" href="plans.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navPlansLink" href="plans.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               Plans
             </a>
           </li>
 
           <!-- HYGIENE & SAFETY -->
           <li class="shrink-0">
-            <a id="navHygieneLink" href="hygiene.html" class="nav-link active px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navHygieneLink" href="hygiene.html" class="nav-link active px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               Hygiene &amp; Safety
             </a>
           </li>
 
           <!-- FAQ -->
           <li class="shrink-0">
-            <a id="navFaqLink" href="faq.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navFaqLink" href="faq.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               FAQ
             </a>
           </li>
 
           <!-- CONTACT -->
           <li class="shrink-0">
-            <a id="navContactLink" href="contact.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navContactLink" href="contact.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               Contact
             </a>
           </li>
 
           <!-- DASHBOARD (DROPDOWN: User Dashboard, Admin Dashboard) -->
           <li class="relative group shrink-0">
-            <button id="navDashBtn" type="button" class="nav-link flex items-center gap-1 px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
+            <button id="navDashBtn" type="button" class="nav-link flex items-center gap-1 px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
               <span>Dashboard</span>
               <i class="fa-solid fa-chevron-down text-[8.5px] text-slate-400 group-hover:text-brand-500 group-hover:rotate-180 transition-transform duration-200"></i>
             </button>
@@ -545,20 +565,20 @@
             <!-- Dropdown Menu with Glassmorphism & Spring Entrance -->
             <div class="dropdown-menu absolute top-[calc(100%+10px)] end-0 w-max z-50">
               <div class="bg-white/95 dark:bg-slate-900/95 border border-slate-200/80 dark:border-slate-800 rounded-2xl shadow-[0_16px_36px_-6px_rgba(99,102,241,0.18),0_0_1px_1px_rgba(0,0,0,0.04)] dark:shadow-[0_18px_40px_-6px_rgba(0,0,0,0.7),0_0_15px_rgba(99,102,241,0.1)] p-1.5 backdrop-blur-2xl">
-                <a id="subUserDash" href="user-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-indigo-50 dark:hover:bg-slate-800/80 transition-colors group/item whitespace-nowrap">
-                  <div class="w-7 h-7 rounded-lg bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
+                <a id="subUserDash" href="user-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-slate-800/80 transition-colors group/item whitespace-nowrap">
+                  <div class="w-7 h-7 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#172033] dark:text-[#C9A96E] flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
                     <i class="fa-solid fa-user"></i>
                   </div>
                   <div>
-                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-indigo-600 dark:group-hover/item:text-indigo-400 whitespace-nowrap">User Dashboard</div>
+                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-[#172033] dark:text-[#C9A96E] dark:group-hover/item:text-[#8FA99A] whitespace-nowrap">User Dashboard</div>
                   </div>
                 </a>
-                <a id="subAdminDash" href="admin-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-purple-50 dark:hover:bg-slate-800/80 transition-colors group/item mt-0.5 whitespace-nowrap">
-                  <div class="w-7 h-7 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
+                <a id="subAdminDash" href="admin-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-slate-800/80 transition-colors group/item mt-0.5 whitespace-nowrap">
+                  <div class="w-7 h-7 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
                     <i class="fa-solid fa-gauge-high"></i>
                   </div>
                   <div>
-                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-purple-600 dark:group-hover/item:text-purple-400 whitespace-nowrap">Admin Dashboard</div>
+                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-[#C9A96E] dark:group-hover/item:text-[#C9A96E] whitespace-nowrap">Admin Dashboard</div>
                   </div>
                 </a>
               </div>
@@ -569,7 +589,7 @@
       </nav>
 
       <!-- 3. RIGHT SECTION: UTILITIES (Laptop View) -->
-      <div class="hidden lg:flex items-center gap-2 pe-1 sm:pe-1.5 flex-shrink-0">
+      <div class="hidden lg:flex items-center gap-1 xl:gap-1.5 2xl:gap-2 pe-1 sm:pe-1.5 flex-shrink-0">
         
         <!-- DARK MODE TOGGLE (DESKTOP) -->
         <button 
@@ -577,7 +597,7 @@
           type="button" 
           aria-label="Toggle Dark Mode"
           title="Toggle Light / Dark Mode"
-          class="btn-tool w-8 h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 group shadow-sm"
+          class="btn-tool w-7 h-7 xl:w-8 xl:h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 group shadow-sm"
         >
           <i class="fa-solid fa-moon text-xs dark:hidden transition-transform duration-300 group-hover:rotate-45"></i>
           <i class="fa-solid fa-sun text-xs hidden dark:block text-yellow-400 transition-transform duration-300 group-hover:rotate-90"></i>
@@ -589,7 +609,7 @@
           type="button" 
           aria-label="Toggle Right to Left Layout" 
           title="Toggle Direction (LTR / RTL)"
-          class="btn-tool w-8 h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 relative group shadow-sm"
+          class="btn-tool w-7 h-7 xl:w-8 xl:h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 relative group shadow-sm"
         >
           <i class="fa-solid fa-right-left text-xs transition-transform duration-300 group-hover:scale-125 text-slate-700 dark:text-slate-300"></i>
           <span id="desktopRtlIndicator" class="hidden absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-brand-500"></span>
@@ -598,7 +618,7 @@
         <!-- LOGIN BUTTON (DESKTOP) WITH SHIMMER & GLOW -->
         <a 
           href="login.html" 
-          class="btn-sheen relative inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full font-bold text-[11.5px] tracking-wide uppercase text-white bg-gradient-to-r from-brand-500 via-brand-600 to-orange-600 hover:from-brand-600 hover:to-orange-700 shadow-sm hover:shadow-[0_4px_16px_rgba(249,115,22,0.45)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-1 dark:focus:ring-offset-slate-900"
+          class="btn-sheen relative inline-flex items-center justify-center gap-1 xl:gap-1.5 px-2.5 py-1 xl:px-3.5 xl:py-1.5 rounded-full font-bold text-[10.5px] xl:text-[11.5px] tracking-wide uppercase text-white bg-gradient-to-r from-brand-500 via-brand-600 to-orange-600 hover:from-brand-600 hover:to-orange-700 shadow-sm hover:shadow-[0_4px_16px_rgba(249,115,22,0.45)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-1 dark:focus:ring-offset-slate-900"
         >
           <i class="fa-solid fa-arrow-right-to-bracket text-[10.5px]"></i>
           <span>Login</span>
@@ -719,7 +739,7 @@
 
       <!-- 3. HOW IT WORKS -->
       <a id="mNavHowLink" href="how-it-works.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
-        <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 flex items-center justify-center text-xs">
+        <span class="w-6 h-6 rounded-lg bg-[#8FA99A]/15 dark:bg-[#172033] text-[#5d7667] dark:text-[#8FA99A] flex items-center justify-center text-xs">
           <i class="fa-solid fa-arrows-spin"></i>
         </span>
         <span>How It Works</span>
@@ -756,7 +776,7 @@
 
       <!-- 7. HYGIENE & SAFETY -->
       <a id="mNavHygieneLink" href="hygiene.html" class="mobile-nav-link active flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
-        <span class="w-6 h-6 rounded-lg bg-rose-100 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center text-xs">
+        <span class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs">
           <i class="fa-solid fa-shield-heart"></i>
         </span>
         <span>Hygiene &amp; Safety</span>
@@ -764,7 +784,7 @@
 
       <!-- 8. FAQ -->
       <a id="mNavFaqLink" href="faq.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
-        <span class="w-6 h-6 rounded-lg bg-cyan-100 dark:bg-cyan-950/60 text-cyan-600 flex items-center justify-center text-xs">
+        <span class="w-6 h-6 rounded-lg bg-[#8FA99A]/15 dark:bg-[#172033] text-[#5d7667] dark:text-[#8FA99A] flex items-center justify-center text-xs">
           <i class="fa-solid fa-circle-question"></i>
         </span>
         <span>FAQ</span>
@@ -772,7 +792,7 @@
 
       <!-- 9. CONTACT -->
       <a id="mNavContactLink" href="contact.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
-        <span class="w-6 h-6 rounded-lg bg-violet-100 dark:bg-violet-950/60 text-violet-600 flex items-center justify-center text-xs">
+        <span class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs">
           <i class="fa-solid fa-envelope"></i>
         </span>
         <span>Contact</span>
@@ -786,7 +806,7 @@
           class="w-full flex items-center justify-between py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors focus:outline-none text-start"
         >
           <span class="flex items-center gap-2.5">
-            <span class="w-6 h-6 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-xs">
+            <span class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs">
               <i class="fa-solid fa-gauge-high"></i>
             </span>
             <span class="text-xs">Dashboard</span>
@@ -797,11 +817,11 @@
         <!-- Dashboard Sub-items -->
         <div id="mobileDashboardMenu" class="hidden ps-9 pe-2 py-1 space-y-1">
           <a id="mSubUserDash" href="user-dashboard.html" class="mobile-nav-link flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-            <i class="fa-solid fa-user-circle text-xs text-indigo-500"></i>
+            <i class="fa-solid fa-user-circle text-xs text-[#C9A96E]"></i>
             <span>User Dashboard</span>
           </a>
           <a id="mSubAdminDash" href="admin-dashboard.html" class="mobile-nav-link flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-            <i class="fa-solid fa-shield-halved text-xs text-purple-500"></i>
+            <i class="fa-solid fa-shield-halved text-xs text-[#C9A96E]"></i>
             <span>Admin Dashboard</span>
           </a>
         </div>
@@ -892,8 +912,8 @@
           <div class="p-4 rounded-2xl bg-white/90 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-slate-800 shadow-md flex items-center justify-between flex-wrap gap-3">
             <div class="flex items-center gap-3">
               <span class="relative flex h-3 w-3">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full text-[#8FA99A] opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-[#8FA99A]"></span>
               </span>
               <div>
                 <span class="text-xs font-bold text-slate-900 dark:text-white">Cleanroom Facility Active</span>
@@ -909,7 +929,7 @@
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
             
             <div class="p-4 rounded-2xl bg-white/80 dark:bg-[#172033]/80 border border-slate-200/70 dark:border-slate-800 shadow-sm text-center">
-              <div class="font-brand text-2xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400 leading-tight">99.997%</div>
+              <div class="font-brand text-2xl sm:text-3xl font-black text-[#5d7667] dark:text-[#8FA99A] dark:text-[#8FA99A] leading-tight">99.997%</div>
               <div class="text-[11px] font-bold text-slate-700 dark:text-slate-300 mt-1">Pathogen Kill Rate</div>
               <div class="text-[10px] text-slate-400">RSV, Strep &amp; Influenza</div>
             </div>
@@ -1030,8 +1050,8 @@
           <div class="absolute inset-0 bg-gradient-to-t from-[#0c111c] via-[#172033]/60 to-transparent"></div>
           
           <div class="relative z-10 p-6 text-white space-y-2 mt-auto">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 text-[10px] font-extrabold uppercase tracking-wider backdrop-blur-md">
-              <i class="fa-solid fa-bolt-lightning text-xs text-indigo-400"></i>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#172033]/20 text-[#172033] dark:text-[#C9A96E] border text-[#172033] dark:text-[#C9A96E]/30 text-[10px] font-extrabold uppercase tracking-wider backdrop-blur-md">
+              <i class="fa-solid fa-bolt-lightning text-xs text-[#8FA99A]"></i>
               <span>Phase 3 In Focus: 254nm UV-C Vault</span>
             </span>
             <h3 class="font-brand text-xl font-extrabold text-white">
@@ -1214,7 +1234,7 @@
               <!-- Checkpoint 4 -->
               <div class="p-3.5 rounded-2xl bg-white/90 dark:bg-[#0c111c]/90 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:border-[#C9A96E] transition-all">
                 <div class="flex items-center gap-2.5 mb-2">
-                  <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-500 flex items-center justify-center text-xs">
+                  <div class="w-8 h-8 rounded-lg bg-[#172033]/20 text-[#C9A96E] flex items-center justify-center text-xs">
                     <i class="fa-solid fa-circle-radiation text-xs"></i>
                   </div>
                   <h4 class="text-xs font-bold text-slate-900 dark:text-white">XRF Spectrometry for 0% Lead</h4>
@@ -1228,9 +1248,9 @@
 
             <!-- Standard Certifications Footnote -->
             <div class="pt-2 flex items-center gap-4 text-xs font-semibold text-slate-500 dark:text-slate-400 flex-wrap">
-              <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500"></i> ASTM F963-17 Compliant</span>
-              <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500"></i> EN71 Parts 1, 2, 3 Certified</span>
-              <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500"></i> CPSC Children's Product Certified</span>
+              <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A]"></i> ASTM F963-17 Compliant</span>
+              <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A]"></i> EN71 Parts 1, 2, 3 Certified</span>
+              <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#8FA99A]"></i> CPSC Children's Product Certified</span>
             </div>
 
           </div>
@@ -1247,7 +1267,7 @@
               <div class="p-4 bg-white/95 dark:bg-[#0c111c]/95 border-t border-slate-200/80 dark:border-slate-800">
                 <div class="flex items-center justify-between">
                   <span class="text-xs font-bold text-slate-900 dark:text-[#F8F5EF]">Inspection Item: Bevel Arc Radius</span>
-                  <span class="text-xs font-mono font-extrabold text-emerald-600 dark:text-emerald-400">PASS (40.02 mm)</span>
+                  <span class="text-xs font-mono font-extrabold text-[#5d7667] dark:text-[#8FA99A] dark:text-[#8FA99A]">PASS (40.02 mm)</span>
                 </div>
                 <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
                   100% of pieces inspected with white cotton gloves to prevent oil transfer.
@@ -1319,28 +1339,28 @@
 
           <!-- Material 3: Organic Cotton & Linen -->
           <div class="p-5 rounded-2xl bg-white/90 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-2">
-            <div class="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-sm">
+            <div class="w-9 h-9 rounded-xl bg-[#8FA99A]/15 text-[#5d7667] dark:text-[#8FA99A] dark:text-[#8FA99A] flex items-center justify-center text-sm">
               <i class="fa-solid fa-shirt"></i>
             </div>
             <h3 class="text-sm font-extrabold text-slate-900 dark:text-white">GOTS Organic Textiles</h3>
             <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
               Laundered using fragrance-free, plant-based hypoallergenic enzyme cleansers at 60°C, followed by germicidal UV-C treatment to eliminate dust mites and pollen.
             </p>
-            <div class="text-[10px] font-bold text-emerald-500 pt-1">
+            <div class="text-[10px] font-bold text-[#8FA99A] pt-1">
               &bull; GOTS certified organic &bull; Chlorine &amp; dye free
             </div>
           </div>
 
           <!-- Material 4: Water-Based Mineral Dyes -->
           <div class="p-5 rounded-2xl bg-white/90 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-2">
-            <div class="w-9 h-9 rounded-xl bg-rose-500/15 text-rose-600 dark:text-rose-400 flex items-center justify-center text-sm">
+            <div class="w-9 h-9 rounded-xl bg-[#C9A96E]/15 text-[#C9A96E] dark:text-[#C9A96E] flex items-center justify-center text-sm">
               <i class="fa-solid fa-palette"></i>
             </div>
             <h3 class="text-sm font-extrabold text-slate-900 dark:text-white">Non-Toxic Mineral Stains</h3>
             <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
               Dyed with mineral-derived pigments that absorb directly into the wood fiber rather than coating it. Tested to DIN 53160 for saliva and perspiration colorfastness.
             </p>
-            <div class="text-[10px] font-bold text-rose-500 pt-1">
+            <div class="text-[10px] font-bold text-[#C9A96E] pt-1">
               &bull; Non-flaking stain &bull; Zero toxic binders
             </div>
           </div>
@@ -1367,7 +1387,7 @@
                 <i class="fa-solid fa-certificate text-base text-[#C9A96E]"></i>
                 <span class="font-brand font-extrabold text-xs uppercase tracking-wider text-slate-900 dark:text-white">Digital QC Pass Certificate</span>
               </div>
-              <span class="text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">
+              <span class="text-[10px] font-mono font-bold text-[#5d7667] dark:text-[#8FA99A] dark:text-[#8FA99A] bg-[#8FA99A]/10 px-2 py-0.5 rounded-full">
                 PASS: 100% VERIFIED
               </span>
             </div>
@@ -1379,7 +1399,7 @@
               </div>
               <div class="flex justify-between text-slate-600 dark:text-slate-300">
                 <span>ATP Bioluminescence:</span>
-                <strong class="text-emerald-600 dark:text-emerald-400">&lt;5 RLU (Hospital Clean)</strong>
+                <strong class="text-[#5d7667] dark:text-[#8FA99A] dark:text-[#8FA99A]">&lt;5 RLU (Hospital Clean)</strong>
               </div>
               <div class="flex justify-between text-slate-600 dark:text-slate-300">
                 <span>Surface Moisture:</span>
@@ -1392,7 +1412,7 @@
             </div>
 
             <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200 dark:border-slate-800 text-[10.5px] text-slate-500 dark:text-slate-400">
-              <i class="fa-solid fa-shield-check text-emerald-500 me-1"></i>
+              <i class="fa-solid fa-shield-check text-[#8FA99A] me-1"></i>
               Every subscription rotation comes with a physical batch certificate inside the kit box.
             </div>
 
@@ -1438,7 +1458,7 @@
             <div class="space-y-3">
               
               <div class="p-3.5 rounded-2xl bg-white/10 border border-white/10 backdrop-blur-md flex items-start gap-3.5">
-                <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs flex-shrink-0 mt-0.5">
+                <div class="w-8 h-8 rounded-xl bg-[#8FA99A]/20 text-[#8FA99A] flex items-center justify-center text-xs flex-shrink-0 mt-0.5">
                   <i class="fa-solid fa-wand-magic-sparkles"></i>
                 </div>
                 <div>
@@ -1548,15 +1568,15 @@
             <h3 class="text-sm font-bold text-slate-900 dark:text-white">Infant Sensory Standard</h3>
             <ul class="space-y-1.5 text-[11px] text-slate-600 dark:text-slate-400">
               <li class="flex items-start gap-1.5">
-                <i class="fa-solid fa-check text-emerald-500 mt-0.5"></i>
+                <i class="fa-solid fa-check text-[#8FA99A] mt-0.5"></i>
                 <span>Choke-tube test: all pieces &gt;31.7mm diameter.</span>
               </li>
               <li class="flex items-start gap-1.5">
-                <i class="fa-solid fa-check text-emerald-500 mt-0.5"></i>
+                <i class="fa-solid fa-check text-[#8FA99A] mt-0.5"></i>
                 <span>Chew-safe, food-grade raw beeswax finish.</span>
               </li>
               <li class="flex items-start gap-1.5">
-                <i class="fa-solid fa-check text-emerald-500 mt-0.5"></i>
+                <i class="fa-solid fa-check text-[#8FA99A] mt-0.5"></i>
                 <span>Featherlight (&lt;80g) to prevent drop bruises.</span>
               </li>
             </ul>
@@ -1573,15 +1593,15 @@
             <h3 class="text-sm font-bold text-slate-900 dark:text-white">Toddler Discovery Standard</h3>
             <ul class="space-y-1.5 text-[11px] text-slate-600 dark:text-slate-400">
               <li class="flex items-start gap-1.5">
-                <i class="fa-solid fa-check text-emerald-500 mt-0.5"></i>
+                <i class="fa-solid fa-check text-[#8FA99A] mt-0.5"></i>
                 <span>Drop-impact tested from 2.2 meters without splintering.</span>
               </li>
               <li class="flex items-start gap-1.5">
-                <i class="fa-solid fa-check text-emerald-500 mt-0.5"></i>
+                <i class="fa-solid fa-check text-[#8FA99A] mt-0.5"></i>
                 <span>Anti-pinch hinge gaps (&gt;12mm or &lt;5mm spacing).</span>
               </li>
               <li class="flex items-start gap-1.5">
-                <i class="fa-solid fa-check text-emerald-500 mt-0.5"></i>
+                <i class="fa-solid fa-check text-[#8FA99A] mt-0.5"></i>
                 <span>High-contrast mineral non-toxic stains.</span>
               </li>
             </ul>
@@ -1598,15 +1618,15 @@
             <h3 class="text-sm font-bold text-slate-900 dark:text-white">Preschool STEM Standard</h3>
             <ul class="space-y-1.5 text-[11px] text-slate-600 dark:text-slate-400">
               <li class="flex items-start gap-1.5">
-                <i class="fa-solid fa-check text-emerald-500 mt-0.5"></i>
+                <i class="fa-solid fa-check text-[#8FA99A] mt-0.5"></i>
                 <span>Safe kinetic gears with rounded interlock teeth.</span>
               </li>
               <li class="flex items-start gap-1.5">
-                <i class="fa-solid fa-check text-emerald-500 mt-0.5"></i>
+                <i class="fa-solid fa-check text-[#8FA99A] mt-0.5"></i>
                 <span>Double-encapsulated neodymium magnets.</span>
               </li>
               <li class="flex items-start gap-1.5">
-                <i class="fa-solid fa-check text-emerald-500 mt-0.5"></i>
+                <i class="fa-solid fa-check text-[#8FA99A] mt-0.5"></i>
                 <span>Fine-motor dexterity challenge calibration.</span>
               </li>
             </ul>
@@ -1615,23 +1635,23 @@
           <!-- Cohort 4: Young Explorer (6-8y) -->
           <div class="p-5 rounded-2xl bg-white/90 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-extrabold text-purple-500 uppercase tracking-wider">6 &ndash; 8 Years</span>
-              <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-500 flex items-center justify-center text-xs">
+              <span class="text-xs font-extrabold text-[#C9A96E] uppercase tracking-wider">6 &ndash; 8 Years</span>
+              <span class="w-6 h-6 rounded-full bg-[#C9A96E]/20 text-[#C9A96E] flex items-center justify-center text-xs">
                 <i class="fa-solid fa-flask"></i>
               </span>
             </div>
             <h3 class="text-sm font-bold text-slate-900 dark:text-white">Young Explorer Standard</h3>
             <ul class="space-y-1.5 text-[11px] text-slate-600 dark:text-slate-400">
               <li class="flex items-start gap-1.5">
-                <i class="fa-solid fa-check text-emerald-500 mt-0.5"></i>
+                <i class="fa-solid fa-check text-[#8FA99A] mt-0.5"></i>
                 <span>Low-voltage child-safe experiment circuitry.</span>
               </li>
               <li class="flex items-start gap-1.5">
-                <i class="fa-solid fa-check text-emerald-500 mt-0.5"></i>
+                <i class="fa-solid fa-check text-[#8FA99A] mt-0.5"></i>
                 <span>Shatterproof optical acrylic lenses.</span>
               </li>
               <li class="flex items-start gap-1.5">
-                <i class="fa-solid fa-check text-emerald-500 mt-0.5"></i>
+                <i class="fa-solid fa-check text-[#8FA99A] mt-0.5"></i>
                 <span>Non-staining natural dye botanical science kits.</span>
               </li>
             </ul>
@@ -1698,7 +1718,7 @@
               <p class="text-[10px] text-slate-500 dark:text-slate-400">Tamper-evident verification</p>
             </div>
             <div class="p-3 rounded-xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200/70 dark:border-slate-800 text-center">
-              <i class="fa-solid fa-leaf text-xs text-emerald-500 mb-1"></i>
+              <i class="fa-solid fa-leaf text-xs text-[#8FA99A] mb-1"></i>
               <h5 class="text-[11px] font-bold text-slate-900 dark:text-white">Compostable Wrap</h5>
               <p class="text-[10px] text-slate-500 dark:text-slate-400">100% cornstarch film</p>
             </div>
@@ -1728,7 +1748,7 @@
           <div class="space-y-3">
             
             <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-[#0c111c] border border-slate-200/80 dark:border-slate-800 flex items-start gap-3">
-              <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-500 flex items-center justify-center text-xs flex-shrink-0 mt-0.5">
+              <div class="w-7 h-7 rounded-lg bg-[#8FA99A]/20 text-[#8FA99A] flex items-center justify-center text-xs flex-shrink-0 mt-0.5">
                 <i class="fa-solid fa-hand-sparkles"></i>
               </div>
               <div>
@@ -1779,7 +1799,7 @@
 
           <!-- Bottom Micro Assurance -->
           <div class="pt-2 border-t border-slate-200/80 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
-            <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-heart text-emerald-500"></i> Zero Guilt &bull; Zero Penalty Fees</span>
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-heart text-[#8FA99A]"></i> Zero Guilt &bull; Zero Penalty Fees</span>
             <a href="plans.html" class="font-bold text-[#C9A96E] hover:underline flex items-center gap-1">
               Explore Plans <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </a>
@@ -1910,7 +1930,7 @@
           <!-- Trust Badges Grid -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 max-w-sm">
             <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
-              <div class="w-7 h-7 rounded-lg bg-rose-100 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center text-xs flex-shrink-0">
+              <div class="w-7 h-7 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs flex-shrink-0">
                 <i class="fa-solid fa-shield-heart"></i>
               </div>
               <div class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 leading-tight">
@@ -1932,7 +1952,7 @@
           <div class="pt-2">
             <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-3">Follow The Fun</div>
             <div class="flex items-center gap-2">
-              <a href="#instagram" aria-label="Instagram" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-pink-50 dark:hover:bg-pink-950/60 text-slate-600 dark:text-slate-300 hover:text-pink-500 flex items-center justify-center text-xs transition-colors shadow-sm">
+              <a href="#instagram" aria-label="Instagram" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-[#172033] text-slate-600 dark:text-slate-300 hover:text-[#C9A96E] flex items-center justify-center text-xs transition-colors shadow-sm">
                 <i class="fa-brands fa-instagram"></i>
               </a>
               <a href="#youtube" aria-label="YouTube" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-red-50 dark:hover:bg-red-950/60 text-slate-600 dark:text-slate-300 hover:text-red-500 flex items-center justify-center text-xs transition-colors shadow-sm">
@@ -1941,7 +1961,7 @@
               <a href="#facebook" aria-label="Facebook" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-950/60 text-slate-600 dark:text-slate-300 hover:text-blue-500 flex items-center justify-center text-xs transition-colors shadow-sm">
                 <i class="fa-brands fa-facebook-f"></i>
               </a>
-              <a href="#pinterest" aria-label="Pinterest" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-rose-950/60 text-slate-600 dark:text-slate-300 hover:text-rose-500 flex items-center justify-center text-xs transition-colors shadow-sm">
+              <a href="#pinterest" aria-label="Pinterest" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-[#172033] text-slate-600 dark:text-slate-300 hover:text-[#C9A96E] flex items-center justify-center text-xs transition-colors shadow-sm">
                 <i class="fa-brands fa-pinterest-p"></i>
               </a>
               <a href="#tiktok" aria-label="TikTok" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white flex items-center justify-center text-xs transition-colors shadow-sm">
@@ -2050,7 +2070,7 @@
             </li>
             <li>
               <a href="activity.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
-                <i class="fa-solid fa-palette text-[10px] text-pink-500"></i>
+                <i class="fa-solid fa-palette text-[10px] text-[#C9A96E]"></i>
                 <span>Arts &amp; Creative Craft Kits</span>
               </a>
             </li>
@@ -2062,19 +2082,19 @@
             </li>
             <li>
               <a href="activity.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
-                <i class="fa-solid fa-robot text-[10px] text-indigo-500"></i>
+                <i class="fa-solid fa-robot text-[10px] text-[#C9A96E]"></i>
                 <span>Robotics &amp; Coding Kits (6-12y)</span>
               </a>
             </li>
             <li>
               <a href="catalog.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
-                <i class="fa-solid fa-chess text-[10px] text-purple-500"></i>
+                <i class="fa-solid fa-chess text-[10px] text-[#C9A96E]"></i>
                 <span>Family Board Games</span>
               </a>
             </li>
             <li>
               <a href="plans.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
-                <i class="fa-solid fa-gift text-[10px] text-rose-500"></i>
+                <i class="fa-solid fa-gift text-[10px] text-[#C9A96E]"></i>
                 <span>Gift a Subscription Box</span>
               </a>
             </li>
@@ -2093,7 +2113,7 @@
           <!-- Dashboard Links from Navbar -->
           <div class="space-y-1.5 pb-2">
             <a href="user-dashboard.html" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 hover:border-brand-500/50 transition-colors group">
-              <div class="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
+              <div class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#172033] dark:text-[#C9A96E] flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-user"></i>
               </div>
               <div class="text-[11.5px] font-semibold text-slate-700 dark:text-slate-200">
@@ -2101,8 +2121,8 @@
               </div>
             </a>
 
-            <a href="admin-dashboard.html" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 hover:border-purple-500/50 transition-colors group">
-              <div class="w-6 h-6 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
+            <a href="admin-dashboard.html" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 hover:border-[#C9A96E]/40/50 transition-colors group">
+              <div class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-gauge-high"></i>
               </div>
               <div class="text-[11.5px] font-semibold text-slate-700 dark:text-slate-200">

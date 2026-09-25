@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PlayLoop Kids - Toy Rental & Activity Kit Subscription</title>
-  <!-- Favicon: PlayLoop Kids Navbar Logo -->
+  <title>Subscription Plans & Pricing &bull; PlayLoop Kids</title>
+  
+  <!-- Favicon: PlayLoop Kids Unified Brand Icons -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="alternate icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   
-  <!-- Google Fonts: Outfit (Heading) & Plus Jakarta Sans (Body) -->
+  <!-- Google Fonts: Outfit (Brand Headings) & Plus Jakarta Sans (Clean Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -34,20 +36,21 @@
               50: '#f5f7fa',
               100: '#eaedf3',
               200: '#d0d7e4',
-              300: '#a6b4cc',
-              400: '#748bb0',
-              500: '#4b6691',
-              600: '#395076',
-              700: '#2d3e5c',
-              800: '#1e293f',
-              900: '#172033', // Primary Deep Navy
-              950: '#0c111c',
+              300: '#a7b5cc',
+              400: '#758cae',
+              500: '#4f6892',
+              600: '#3c5075',
+              700: '#2f3e5c',
+              800: '#232d43',
+              900: '#172033', // Deep Navy Core
+              950: '#0e1320',
             },
             cream: {
-              50: '#fdfcfb',
-              100: '#F8F5EF', // Secondary Warm Cream
-              200: '#f1ede2',
-              300: '#e6decb',
+              50: '#fdfbf7',
+              100: '#F8F5EF', // Warm Cream Core
+              200: '#f1ebd8',
+              300: '#e7ddbd',
+              400: '#d9c897',
             },
             brand: { // Premium Accent: Soft Gold
               50: '#faf7f0',
@@ -109,7 +112,7 @@
     /* Custom Scrollbar: Sleek vertical & completely removed horizontal */
     ::-webkit-scrollbar {
       width: 6px;
-      height: 0px !important; /* Zero height completely eliminates horizontal scrollbar */
+      height: 0px !important;
     }
     ::-webkit-scrollbar:horizontal {
       display: none !important;
@@ -130,7 +133,7 @@
       background: #24334f;
     }
 
-    /* RTL Transition Support */
+    /* Smooth Scrolling */
     html {
       scroll-padding-top: 5.5rem;
       scroll-behavior: smooth;
@@ -210,33 +213,32 @@
       left: 50%;
       width: 0;
       height: 2px;
-      background: linear-gradient(90deg, #e07a5f, #81b29a);
+      background: linear-gradient(90deg, #C9A96E, #8FA99A);
       border-radius: 9999px;
       transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1), left 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
-        /* Active Link State */
     .nav-link:hover::after,
     .nav-link.active::after {
       width: 80% !important;
       left: 10% !important;
     }
     .nav-link.active {
-      color: #ea580c !important;
-      background-color: rgba(255, 237, 213, 0.75) !important;
+      color: #C9A96E !important;
+      background-color: rgba(201, 169, 110, 0.12) !important;
       font-weight: 700 !important;
     }
     html.dark .nav-link.active {
-      color: #fb923c !important;
-      background-color: rgba(51, 65, 85, 0.8) !important;
+      color: #C9A96E !important;
+      background-color: rgba(23, 32, 51, 0.9) !important;
     }
     .mobile-nav-link.active {
-      color: #ea580c !important;
-      background-color: rgba(255, 237, 213, 0.75) !important;
+      color: #C9A96E !important;
+      background-color: rgba(201, 169, 110, 0.12) !important;
       font-weight: 700 !important;
     }
     html.dark .mobile-nav-link.active {
-      color: #fb923c !important;
-      background-color: rgba(51, 65, 85, 0.8) !important;
+      color: #C9A96E !important;
+      background-color: rgba(23, 32, 51, 0.9) !important;
     }
     .nav-link:hover {
       transform: translateY(-1px);
@@ -321,6 +323,24 @@
       pointer-events: auto;
       opacity: 1;
     }
+
+    /* Dashboard Sidebar & View Transition Helpers */
+    .sidebar-nav-item.active {
+      background: rgba(201, 169, 110, 0.15) !important;
+      color: #C9A96E !important;
+      font-weight: 700;
+    }
+    .dark .sidebar-nav-item.active {
+      background: rgba(201, 169, 110, 0.2) !important;
+      color: #C9A96E !important;
+    }
+    @keyframes fadeInView {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .view-panel:not(.hidden) {
+      animation: fadeInView 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
   </style>
 </head>
 <body class="min-h-screen bg-[#F8F5EF] text-slate-800 antialiased dark:bg-[#0c111c] dark:text-[#F8F5EF] font-sans relative selection:bg-brand-500 selection:text-[#172033] flex flex-col justify-between ">
@@ -371,10 +391,10 @@
        Laptop: [LOGO Far Left] ----------- [MENU Center] ----------- [ACTIONS Right]
        Tablet/Mobile: [LOGO Left] ------------------------- [HAMBURGER Right]
        ======================================================== -->
-    <header class="fixed top-3 inset-x-0 z-40 w-full px-3 sm:px-5 lg:px-6 xl:px-8 pointer-events-none transition-all duration-300">
+    <header class="fixed top-3 inset-x-0 z-40 w-full px-3 sm:px-5 lg:px-3 xl:px-8 pointer-events-none transition-all duration-300">
     
     <!-- Floating Island Capsule -->
-    <div class="pointer-events-auto max-w-[1550px] mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-2xl sm:rounded-full border border-[#C9A96E]/25 dark:border-[#C9A96E]/20 shadow-[0_10px_35px_-4px_rgba(23,32,51,0.08),0_0_0_1px_rgba(201,169,110,0.15)] dark:shadow-[0_14px_40px_-4px_rgba(0,0,0,0.65),0_0_0_1px_rgba(255,255,255,0.06)] px-3 sm:px-4 lg:ps-4 lg:pe-4 h-[60px] flex items-center justify-between relative transition-all duration-300">
+    <div class="pointer-events-auto max-w-[1550px] mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-2xl sm:rounded-full border border-[#C9A96E]/25 dark:border-[#C9A96E]/20 shadow-[0_10px_35px_-4px_rgba(23,32,51,0.08),0_0_0_1px_rgba(201,169,110,0.15)] dark:shadow-[0_14px_40px_-4px_rgba(0,0,0,0.65),0_0_0_1px_rgba(255,255,255,0.06)] px-3 sm:px-4 lg:ps-3 lg:pe-3 xl:ps-5 xl:pe-5 h-[60px] flex items-center justify-between relative transition-all duration-300">
 
       <!-- Ambient subtle glow spots inside floating pill -->
       <div class="absolute inset-0 rounded-2xl sm:rounded-full pointer-events-none overflow-hidden -z-10" aria-hidden="true">
@@ -435,7 +455,7 @@
                 KIDS
               </span>
             </div>
-            <span class="text-[8.5px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase leading-tight mt-0.5 hidden sm:inline-block">
+            <span class="text-[8.5px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase leading-tight mt-0.5 hidden xl:inline-block">
               Toy Rental &amp; Activity Kits
             </span>
           </div>
@@ -443,12 +463,12 @@
       </div>
 
       <!-- 2. CENTER SECTION: NAVBAR MENU (Laptop / Desktop View) -->
-      <nav class="hidden lg:flex items-center justify-center flex-1 px-2 xl:px-4" aria-label="Main Navigation">
-        <ul class="flex items-center gap-1 xl:gap-1.5 text-[12px] xl:text-[13px] font-semibold text-slate-700 dark:text-slate-200">
+      <nav class="hidden lg:flex items-center justify-center flex-1 px-1 xl:px-3 2xl:px-4" aria-label="Main Navigation">
+        <ul class="flex items-center gap-0.5 xl:gap-1 2xl:gap-1.5 text-[11px] xl:text-[12px] 2xl:text-[13px] font-semibold text-slate-700 dark:text-slate-200">
           
           <!-- HOME (DROPDOWN: Home 1, Home 2) - CLICK REDIRECTS TO index.html -->
           <li class="relative group shrink-0">
-            <a id="navHomeBtn" href="index.html" class="nav-link flex items-center gap-1 px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
+            <a id="navHomeBtn" href="index.html" class="nav-link flex items-center gap-1 px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
               <span>Home</span>
               <i class="fa-solid fa-chevron-down text-[8.5px] text-slate-400 group-hover:text-brand-500 group-hover:rotate-180 transition-transform duration-200"></i>
             </a>
@@ -478,28 +498,28 @@
 
           <!-- ABOUT -->
           <li class="shrink-0">
-            <a id="navAboutLink" href="about.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navAboutLink" href="about.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               About
             </a>
           </li>
 
           <!-- HOW IT WORKS -->
           <li class="shrink-0">
-            <a id="navHowLink" href="how-it-works.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navHowLink" href="how-it-works.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               How It Works
             </a>
           </li>
 
           <!-- CATALOG -->
           <li class="shrink-0">
-            <a id="navCatalogLink" href="catalog.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navCatalogLink" href="catalog.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               Catalog
             </a>
           </li>
 
           <!-- ACTIVITY KITS -->
           <li class="shrink-0">
-            <a id="navActivityLink" href="activity.html" class="nav-link relative px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navActivityLink" href="activity.html" class="nav-link relative px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               <span>Activity Kits</span>
               <span class="absolute -top-0.5 -right-0.5 px-1 py-0 bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-[8px] font-bold rounded-full shadow-sm leading-tight animate-pulse">
                 Kits
@@ -509,35 +529,35 @@
 
           <!-- PLANS -->
           <li class="shrink-0">
-            <a id="navPlansLink" href="plans.html" class="nav-link active px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navPlansLink" href="plans.html" class="nav-link active px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               Plans
             </a>
           </li>
 
           <!-- HYGIENE & SAFETY -->
           <li class="shrink-0">
-            <a id="navHygieneLink" href="hygiene.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navHygieneLink" href="hygiene.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               Hygiene &amp; Safety
             </a>
           </li>
 
           <!-- FAQ -->
           <li class="shrink-0">
-            <a id="navFaqLink" href="faq.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navFaqLink" href="faq.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               FAQ
             </a>
           </li>
 
           <!-- CONTACT -->
           <li class="shrink-0">
-            <a id="navContactLink" href="contact.html" class="nav-link px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
+            <a id="navContactLink" href="contact.html" class="nav-link px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 whitespace-nowrap">
               Contact
             </a>
           </li>
 
           <!-- DASHBOARD (DROPDOWN: User Dashboard, Admin Dashboard) -->
           <li class="relative group shrink-0">
-            <button id="navDashBtn" type="button" class="nav-link flex items-center gap-1 px-2.5 py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
+            <button id="navDashBtn" type="button" class="nav-link flex items-center gap-1 px-1.5 py-1 xl:px-2 xl:py-1.5 2xl:px-2.5 2xl:py-1.5 rounded-full hover:text-brand-600 dark:hover:text-brand-400 hover:bg-orange-50/90 dark:hover:bg-slate-800/80 transition-all duration-150 focus:outline-none whitespace-nowrap" aria-haspopup="true" aria-expanded="false">
               <span>Dashboard</span>
               <i class="fa-solid fa-chevron-down text-[8.5px] text-slate-400 group-hover:text-brand-500 group-hover:rotate-180 transition-transform duration-200"></i>
             </button>
@@ -545,20 +565,20 @@
             <!-- Dropdown Menu with Glassmorphism & Spring Entrance -->
             <div class="dropdown-menu absolute top-[calc(100%+10px)] end-0 w-max z-50">
               <div class="bg-white/95 dark:bg-slate-900/95 border border-slate-200/80 dark:border-slate-800 rounded-2xl shadow-[0_16px_36px_-6px_rgba(99,102,241,0.18),0_0_1px_1px_rgba(0,0,0,0.04)] dark:shadow-[0_18px_40px_-6px_rgba(0,0,0,0.7),0_0_15px_rgba(99,102,241,0.1)] p-1.5 backdrop-blur-2xl">
-                <a id="subUserDash" href="user-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-indigo-50 dark:hover:bg-slate-800/80 transition-colors group/item whitespace-nowrap">
-                  <div class="w-7 h-7 rounded-lg bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
+                <a id="subUserDash" href="user-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-slate-800/80 transition-colors group/item whitespace-nowrap">
+                  <div class="w-7 h-7 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#172033] dark:text-[#C9A96E] flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
                     <i class="fa-solid fa-user"></i>
                   </div>
                   <div>
-                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-indigo-600 dark:group-hover/item:text-indigo-400 whitespace-nowrap">User Dashboard</div>
+                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-[#172033] dark:text-[#C9A96E] dark:group-hover/item:text-[#8FA99A] whitespace-nowrap">User Dashboard</div>
                   </div>
                 </a>
-                <a id="subAdminDash" href="admin-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-purple-50 dark:hover:bg-slate-800/80 transition-colors group/item mt-0.5 whitespace-nowrap">
-                  <div class="w-7 h-7 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
+                <a id="subAdminDash" href="admin-dashboard.html" class="flex items-center gap-2.5 p-2 pe-4 rounded-xl hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-slate-800/80 transition-colors group/item mt-0.5 whitespace-nowrap">
+                  <div class="w-7 h-7 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs group-hover/item:scale-115 group-hover/item:rotate-6 transition-transform flex-shrink-0">
                     <i class="fa-solid fa-gauge-high"></i>
                   </div>
                   <div>
-                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-purple-600 dark:group-hover/item:text-purple-400 whitespace-nowrap">Admin Dashboard</div>
+                    <div class="font-bold text-slate-900 dark:text-white text-[11.5px] group-hover/item:text-[#C9A96E] dark:group-hover/item:text-[#C9A96E] whitespace-nowrap">Admin Dashboard</div>
                   </div>
                 </a>
               </div>
@@ -569,7 +589,7 @@
       </nav>
 
       <!-- 3. RIGHT SECTION: UTILITIES (Laptop View) -->
-      <div class="hidden lg:flex items-center gap-2 pe-1 sm:pe-1.5 flex-shrink-0">
+      <div class="hidden lg:flex items-center gap-1 xl:gap-1.5 2xl:gap-2 pe-1 sm:pe-1.5 flex-shrink-0">
         
         <!-- DARK MODE TOGGLE (DESKTOP) -->
         <button 
@@ -577,7 +597,7 @@
           type="button" 
           aria-label="Toggle Dark Mode"
           title="Toggle Light / Dark Mode"
-          class="btn-tool w-8 h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 group shadow-sm"
+          class="btn-tool w-7 h-7 xl:w-8 xl:h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 group shadow-sm"
         >
           <i class="fa-solid fa-moon text-xs dark:hidden transition-transform duration-300 group-hover:rotate-45"></i>
           <i class="fa-solid fa-sun text-xs hidden dark:block text-yellow-400 transition-transform duration-300 group-hover:rotate-90"></i>
@@ -589,7 +609,7 @@
           type="button" 
           aria-label="Toggle Right to Left Layout" 
           title="Toggle Direction (LTR / RTL)"
-          class="btn-tool w-8 h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 relative group shadow-sm"
+          class="btn-tool w-7 h-7 xl:w-8 xl:h-8 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 relative group shadow-sm"
         >
           <i class="fa-solid fa-right-left text-xs transition-transform duration-300 group-hover:scale-125 text-slate-700 dark:text-slate-300"></i>
           <span id="desktopRtlIndicator" class="hidden absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-brand-500"></span>
@@ -598,7 +618,7 @@
         <!-- LOGIN BUTTON (DESKTOP) WITH SHIMMER & GLOW -->
         <a 
           href="login.html" 
-          class="btn-sheen relative inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full font-bold text-[11.5px] tracking-wide uppercase text-white bg-gradient-to-r from-brand-500 via-brand-600 to-orange-600 hover:from-brand-600 hover:to-orange-700 shadow-sm hover:shadow-[0_4px_16px_rgba(249,115,22,0.45)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-1 dark:focus:ring-offset-slate-900"
+          class="btn-sheen relative inline-flex items-center justify-center gap-1 xl:gap-1.5 px-2.5 py-1 xl:px-3.5 xl:py-1.5 rounded-full font-bold text-[10.5px] xl:text-[11.5px] tracking-wide uppercase text-white bg-gradient-to-r from-brand-500 via-brand-600 to-orange-600 hover:from-brand-600 hover:to-orange-700 shadow-sm hover:shadow-[0_4px_16px_rgba(249,115,22,0.45)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-1 dark:focus:ring-offset-slate-900"
         >
           <i class="fa-solid fa-arrow-right-to-bracket text-[10.5px]"></i>
           <span>Login</span>
@@ -719,7 +739,7 @@
 
       <!-- 3. HOW IT WORKS -->
       <a id="mNavHowLink" href="how-it-works.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
-        <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 flex items-center justify-center text-xs">
+        <span class="w-6 h-6 rounded-lg bg-[#8FA99A]/15 dark:bg-[#172033] text-[#5d7667] dark:text-[#8FA99A] flex items-center justify-center text-xs">
           <i class="fa-solid fa-arrows-spin"></i>
         </span>
         <span>How It Works</span>
@@ -756,7 +776,7 @@
 
       <!-- 7. HYGIENE & SAFETY -->
       <a id="mNavHygieneLink" href="hygiene.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
-        <span class="w-6 h-6 rounded-lg bg-rose-100 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center text-xs">
+        <span class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs">
           <i class="fa-solid fa-shield-heart"></i>
         </span>
         <span>Hygiene &amp; Safety</span>
@@ -764,7 +784,7 @@
 
       <!-- 8. FAQ -->
       <a id="mNavFaqLink" href="faq.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
-        <span class="w-6 h-6 rounded-lg bg-cyan-100 dark:bg-cyan-950/60 text-cyan-600 flex items-center justify-center text-xs">
+        <span class="w-6 h-6 rounded-lg bg-[#8FA99A]/15 dark:bg-[#172033] text-[#5d7667] dark:text-[#8FA99A] flex items-center justify-center text-xs">
           <i class="fa-solid fa-circle-question"></i>
         </span>
         <span>FAQ</span>
@@ -772,7 +792,7 @@
 
       <!-- 9. CONTACT -->
       <a id="mNavContactLink" href="contact.html" class="mobile-nav-link flex items-center gap-2.5 py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors text-xs">
-        <span class="w-6 h-6 rounded-lg bg-violet-100 dark:bg-violet-950/60 text-violet-600 flex items-center justify-center text-xs">
+        <span class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs">
           <i class="fa-solid fa-envelope"></i>
         </span>
         <span>Contact</span>
@@ -786,7 +806,7 @@
           class="w-full flex items-center justify-between py-2 px-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors focus:outline-none text-start"
         >
           <span class="flex items-center gap-2.5">
-            <span class="w-6 h-6 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-xs">
+            <span class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs">
               <i class="fa-solid fa-gauge-high"></i>
             </span>
             <span class="text-xs">Dashboard</span>
@@ -797,11 +817,11 @@
         <!-- Dashboard Sub-items -->
         <div id="mobileDashboardMenu" class="hidden ps-9 pe-2 py-1 space-y-1">
           <a id="mSubUserDash" href="user-dashboard.html" class="mobile-nav-link flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-            <i class="fa-solid fa-user-circle text-xs text-indigo-500"></i>
+            <i class="fa-solid fa-user-circle text-xs text-[#C9A96E]"></i>
             <span>User Dashboard</span>
           </a>
           <a id="mSubAdminDash" href="admin-dashboard.html" class="mobile-nav-link flex items-center gap-2 py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-            <i class="fa-solid fa-shield-halved text-xs text-purple-500"></i>
+            <i class="fa-solid fa-shield-halved text-xs text-[#C9A96E]"></i>
             <span>Admin Dashboard</span>
           </a>
         </div>
@@ -885,7 +905,7 @@
             <span class="rounded-full bg-[#C9A96E] text-[#172033]" style="width: 20px !important; height: 20px !important; min-width: 20px !important; max-width: 20px !important; min-height: 20px !important; max-height: 20px !important; flex: 0 0 20px !important; flex-shrink: 0 !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; box-sizing: border-box !important;">
               <i class="fa-solid fa-arrows-spin text-[10px]"></i>
             </span>
-            <span>Rotation Architecture • Circular Toy Access • Zero Home Clutter</span>
+            <span>Rotation Architecture &bull; Circular Toy Access &bull; Zero Home Clutter</span>
           </div>
 
           <!-- Headline -->
@@ -918,7 +938,7 @@
                   <span class="font-extrabold">Monthly Orbit</span>
                 </div>
                 <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Every 30 Days</span>
-                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-extrabold mt-0.5 block">Recommended</span>
+                <span class="text-[10px] text-[#5d7667] dark:text-[#8FA99A] dark:text-[#8FA99A] font-extrabold mt-0.5 block">Recommended</span>
               </button>
 
               <button type="button" class="cadence-pill p-3 rounded-2xl border text-xs font-bold transition-all text-start border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#0c111c] text-slate-700 dark:text-slate-300 hover:border-[#C9A96E]" data-cadence="bimonthly">
@@ -936,7 +956,7 @@
                   <span class="font-extrabold">Express Sprints</span>
                 </div>
                 <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Every 14–21 Days</span>
-                <span class="text-[10px] text-purple-500 font-bold mt-0.5 block">High-Energy Minds</span>
+                <span class="text-[10px] text-[#C9A96E] font-bold mt-0.5 block">High-Energy Minds</span>
               </button>
             </div>
 
@@ -1002,7 +1022,7 @@
 
               <!-- Floating Pill: Rotation Status -->
               <div class="absolute top-4 start-4 px-3.5 py-2 rounded-2xl bg-[#172033]/90 backdrop-blur-md text-white border border-white/20 shadow-lg flex items-center gap-2.5">
-                <span class="rounded-full bg-emerald-500 text-white flex items-center justify-center flex-shrink-0" style="width: 18px; height: 18px;">
+                <span class="rounded-full bg-[#8FA99A] text-white flex items-center justify-center flex-shrink-0" style="width: 18px; height: 18px;">
                   <i class="fa-solid fa-check text-[10px]"></i>
                 </span>
                 <span class="text-xs font-extrabold tracking-wide">Monthly Doorstep Swap Active</span>
@@ -1071,7 +1091,7 @@
           </button>
           <div class="flex items-center gap-1.5">
             <span class="text-xs font-extrabold text-slate-500 dark:text-slate-400" id="labelAnnualBilling">Annual Billing</span>
-            <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-extrabold uppercase tracking-wide">
+            <span class="px-2 py-0.5 rounded-full bg-[#8FA99A]/20 text-[#5d7667] dark:text-[#8FA99A] dark:text-[#8FA99A] text-[10px] font-extrabold uppercase tracking-wide">
               Save 20%
             </span>
           </div>
@@ -1117,7 +1137,7 @@
                 <span class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-[#F8F5EF] plan-price" data-monthly="29" data-annual="23">$29</span>
                 <span class="text-xs font-bold text-slate-400 plan-period">/ month</span>
               </div>
-              <span class="text-[10px] text-slate-400 block mt-0.5 plan-billing-note">Billed monthly • Cancel anytime</span>
+              <span class="text-[10px] text-slate-400 block mt-0.5 plan-billing-note">Billed monthly &bull; Cancel anytime</span>
             </div>
 
             <!-- Quantitative Spec Matrix -->
@@ -1143,15 +1163,15 @@
             <!-- Feature Bullet List -->
             <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
               <li class="flex items-start gap-2">
-                <i class="fa-solid fa-check text-emerald-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <i class="fa-solid fa-check text-[#8FA99A] text-xs mt-0.5 flex-shrink-0"></i>
                 <span>Hospital-grade 5-stage sanitization</span>
               </li>
               <li class="flex items-start gap-2">
-                <i class="fa-solid fa-check text-emerald-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <i class="fa-solid fa-check text-[#8FA99A] text-xs mt-0.5 flex-shrink-0"></i>
                 <span>Free 2-way doorstep shipping tote</span>
               </li>
               <li class="flex items-start gap-2">
-                <i class="fa-solid fa-check text-emerald-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <i class="fa-solid fa-check text-[#8FA99A] text-xs mt-0.5 flex-shrink-0"></i>
                 <span>Standard "Oops!" loss protection</span>
               </li>
               <li class="flex items-start gap-2 text-slate-400 dark:text-slate-600">
@@ -1213,7 +1233,7 @@
                 <span class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-[#F8F5EF] plan-price" data-monthly="49" data-annual="39">$49</span>
                 <span class="text-xs font-bold text-slate-400 plan-period">/ month</span>
               </div>
-              <span class="text-[10px] text-[#C9A96E] font-bold block mt-0.5 plan-billing-note">Billed monthly • Includes Early Swap</span>
+              <span class="text-[10px] text-[#C9A96E] font-bold block mt-0.5 plan-billing-note">Billed monthly &bull; Includes Early Swap</span>
             </div>
 
             <!-- Quantitative Spec Matrix -->
@@ -1228,7 +1248,7 @@
               </div>
               <div class="flex items-center justify-between">
                 <span class="text-slate-600 dark:text-slate-300 font-medium">Early Swap:</span>
-                <span class="font-extrabold text-emerald-600 dark:text-emerald-400">1 Free Swap / Mo</span>
+                <span class="font-extrabold text-[#5d7667] dark:text-[#8FA99A] dark:text-[#8FA99A]">1 Free Swap / Mo</span>
               </div>
               <div class="flex items-center justify-between">
                 <span class="text-slate-600 dark:text-slate-300 font-medium">Box Retail Value:</span>
@@ -1239,19 +1259,19 @@
             <!-- Feature Bullet List -->
             <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
               <li class="flex items-start gap-2">
-                <i class="fa-solid fa-circle-check text-emerald-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <i class="fa-solid fa-circle-check text-[#8FA99A] text-xs mt-0.5 flex-shrink-0"></i>
                 <span class="font-semibold text-slate-900 dark:text-white">1 Free early swap after 14 days</span>
               </li>
               <li class="flex items-start gap-2">
-                <i class="fa-solid fa-circle-check text-emerald-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <i class="fa-solid fa-circle-check text-[#8FA99A] text-xs mt-0.5 flex-shrink-0"></i>
                 <span>Printed Pediatric Milestone Guidebook</span>
               </li>
               <li class="flex items-start gap-2">
-                <i class="fa-solid fa-circle-check text-emerald-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <i class="fa-solid fa-circle-check text-[#8FA99A] text-xs mt-0.5 flex-shrink-0"></i>
                 <span>Full "Oops!" waiver: 100% loss/spill protection</span>
               </li>
               <li class="flex items-start gap-2">
-                <i class="fa-solid fa-circle-check text-emerald-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <i class="fa-solid fa-circle-check text-[#8FA99A] text-xs mt-0.5 flex-shrink-0"></i>
                 <span>20% Member Borrow-to-Buy discount</span>
               </li>
             </ul>
@@ -1276,7 +1296,7 @@
             <!-- Tier Badge & Image Header -->
             <div class="relative h-44 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800">
               <img src="images/plan_tier_premium.jpg" alt="Premium Plan - Master Builder Guild Architectural Castle and Engineering Sets" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="eager" />
-              <span class="absolute top-3 start-3 px-3 py-1 rounded-full bg-[#172033]/85 text-purple-400 text-xs font-extrabold backdrop-blur-md">
+              <span class="absolute top-3 start-3 px-3 py-1 rounded-full bg-[#172033]/85 text-[#C9A96E] text-xs font-extrabold backdrop-blur-md">
                 Architect & Gross Motor
               </span>
               <span class="absolute bottom-3 end-3 px-2.5 py-1 rounded-lg bg-white/90 dark:bg-black/80 text-[#172033] dark:text-[#F8F5EF] text-[11px] font-bold shadow">
@@ -1288,7 +1308,7 @@
             <div>
               <div class="flex items-center justify-between text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">
                 <span>Premium Plan</span>
-                <span class="text-purple-500 font-extrabold"><i class="fa-solid fa-layer-group me-1"></i> 8 Toys + Large Sets</span>
+                <span class="text-[#C9A96E] font-extrabold"><i class="fa-solid fa-layer-group me-1"></i> 8 Toys + Large Sets</span>
               </div>
               <h3 class="font-brand font-bold text-2xl text-slate-900 dark:text-[#F8F5EF]">Master Builder</h3>
               <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
@@ -1302,11 +1322,11 @@
                 <span class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-[#F8F5EF] plan-price" data-monthly="79" data-annual="63">$79</span>
                 <span class="text-xs font-bold text-slate-400 plan-period">/ month</span>
               </div>
-              <span class="text-[10px] text-slate-400 block mt-0.5 plan-billing-note">Billed monthly • Unlimited Swaps</span>
+              <span class="text-[10px] text-slate-400 block mt-0.5 plan-billing-note">Billed monthly &bull; Unlimited Swaps</span>
             </div>
 
             <!-- Quantitative Spec Matrix -->
-            <div class="p-3.5 rounded-2xl bg-purple-500/10 border border-purple-500/20 space-y-2 text-xs">
+            <div class="p-3.5 rounded-2xl bg-[#C9A96E]/10 border border-[#C9A96E]/40/20 space-y-2 text-xs">
               <div class="flex items-center justify-between">
                 <span class="text-slate-500 dark:text-slate-400 font-medium">Included Toys:</span>
                 <span class="font-extrabold text-slate-900 dark:text-[#F8F5EF]">8 Items + Motor Set</span>
@@ -1317,7 +1337,7 @@
               </div>
               <div class="flex items-center justify-between">
                 <span class="text-slate-500 dark:text-slate-400 font-medium">Early Swap:</span>
-                <span class="font-extrabold text-purple-600 dark:text-purple-400">Unlimited Free Swaps</span>
+                <span class="font-extrabold text-[#C9A96E] dark:text-[#C9A96E]">Unlimited Free Swaps</span>
               </div>
               <div class="flex items-center justify-between">
                 <span class="text-slate-500 dark:text-slate-400 font-medium">Box Retail Value:</span>
@@ -1328,19 +1348,19 @@
             <!-- Feature Bullet List -->
             <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
               <li class="flex items-start gap-2">
-                <i class="fa-solid fa-check text-purple-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <i class="fa-solid fa-check text-[#C9A96E] text-xs mt-0.5 flex-shrink-0"></i>
                 <span>Unlimited early swaps whenever ready</span>
               </li>
               <li class="flex items-start gap-2">
-                <i class="fa-solid fa-check text-purple-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <i class="fa-solid fa-check text-[#C9A96E] text-xs mt-0.5 flex-shrink-0"></i>
                 <span>Sibling multi-age split box option</span>
               </li>
               <li class="flex items-start gap-2">
-                <i class="fa-solid fa-check text-purple-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <i class="fa-solid fa-check text-[#C9A96E] text-xs mt-0.5 flex-shrink-0"></i>
                 <span>Oversize toy vault: Wobble boards & Pikler arches</span>
               </li>
               <li class="flex items-start gap-2">
-                <i class="fa-solid fa-check text-purple-500 text-xs mt-0.5 flex-shrink-0"></i>
+                <i class="fa-solid fa-check text-[#C9A96E] text-xs mt-0.5 flex-shrink-0"></i>
                 <span>Dedicated Family Play Concierge (WhatsApp)</span>
               </li>
             </ul>
@@ -1392,7 +1412,7 @@
                 <span class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-[#F8F5EF] plan-price" data-monthly="89" data-annual="71">$89</span>
                 <span class="text-xs font-bold text-slate-400 plan-period">/ month</span>
               </div>
-              <span class="text-[10px] text-teal-600 font-bold block mt-0.5 plan-billing-note">Billed monthly • Keep the projects!</span>
+              <span class="text-[10px] text-teal-600 font-bold block mt-0.5 plan-billing-note">Billed monthly &bull; Keep the projects!</span>
             </div>
 
             <!-- Quantitative Spec Matrix -->
@@ -1507,7 +1527,7 @@
                 </th>
                 <th class="p-4 sm:p-5 text-center font-brand font-bold text-sm min-w-[140px]">
                   <div>Master Builder</div>
-                  <div class="text-[11px] font-extrabold text-purple-500 mt-0.5">$79/mo</div>
+                  <div class="text-[11px] font-extrabold text-[#C9A96E] mt-0.5">$79/mo</div>
                 </th>
                 <th class="p-4 sm:p-5 text-center font-brand font-bold text-sm min-w-[150px]">
                   <div>Atelier Hybrid</div>
@@ -1541,7 +1561,7 @@
                 </td>
                 <td class="p-4 sm:p-5 text-center text-slate-700 dark:text-slate-300">Every 30 Days</td>
                 <td class="p-4 sm:p-5 text-center font-bold text-slate-900 dark:text-white bg-[#C9A96E]/5 border-x border-[#C9A96E]/20">Every 30 Days (Flexible)</td>
-                <td class="p-4 sm:p-5 text-center font-bold text-purple-600 dark:text-purple-400">Bi-Weekly on Demand</td>
+                <td class="p-4 sm:p-5 text-center font-bold text-[#C9A96E] dark:text-[#C9A96E]">Bi-Weekly on Demand</td>
                 <td class="p-4 sm:p-5 text-center text-slate-700 dark:text-slate-300">Monthly Hybrid Cycle</td>
               </tr>
               <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="logistics">
@@ -1551,7 +1571,7 @@
                 </td>
                 <td class="p-4 sm:p-5 text-center text-slate-600 dark:text-slate-400">~$180</td>
                 <td class="p-4 sm:p-5 text-center font-extrabold text-[#C9A96E] bg-[#C9A96E]/5 border-x border-[#C9A96E]/20">~$340</td>
-                <td class="p-4 sm:p-5 text-center font-extrabold text-purple-500">~$620</td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-[#C9A96E]">~$620</td>
                 <td class="p-4 sm:p-5 text-center font-extrabold text-teal-500">~$540</td>
               </tr>
               <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="logistics">
@@ -1559,10 +1579,10 @@
                   Doorstep Reusable Tote &amp; 2-Way Shipping
                   <span class="block text-[11px] text-slate-400 font-normal mt-0.5">Zero cardboard boxes, carbon-neutral carrier</span>
                 </td>
-                <td class="p-4 sm:p-5 text-center text-emerald-500"><i class="fa-solid fa-check"></i> Included</td>
-                <td class="p-4 sm:p-5 text-center text-emerald-500 bg-[#C9A96E]/5 border-x border-[#C9A96E]/20"><i class="fa-solid fa-check"></i> Included</td>
-                <td class="p-4 sm:p-5 text-center text-emerald-500"><i class="fa-solid fa-check"></i> Priority Routing</td>
-                <td class="p-4 sm:p-5 text-center text-emerald-500"><i class="fa-solid fa-check"></i> Included</td>
+                <td class="p-4 sm:p-5 text-center text-[#8FA99A]"><i class="fa-solid fa-check"></i> Included</td>
+                <td class="p-4 sm:p-5 text-center text-[#8FA99A] bg-[#C9A96E]/5 border-x border-[#C9A96E]/20"><i class="fa-solid fa-check"></i> Included</td>
+                <td class="p-4 sm:p-5 text-center text-[#8FA99A]"><i class="fa-solid fa-check"></i> Priority Routing</td>
+                <td class="p-4 sm:p-5 text-center text-[#8FA99A]"><i class="fa-solid fa-check"></i> Included</td>
               </tr>
 
               <!-- GROUP 2: EARLY SWAP & FLEXIBILITY -->
@@ -1577,8 +1597,8 @@
                   <span class="block text-[11px] text-slate-400 font-normal mt-0.5">How soon you can request a fresh collection</span>
                 </td>
                 <td class="p-4 sm:p-5 text-center text-slate-500 dark:text-slate-400">Standard 30 Days</td>
-                <td class="p-4 sm:p-5 text-center font-extrabold text-emerald-600 dark:text-emerald-400 bg-[#C9A96E]/5 border-x border-[#C9A96E]/20">14 Days (1 Free/Mo)</td>
-                <td class="p-4 sm:p-5 text-center font-extrabold text-purple-600 dark:text-purple-400">Unlimited on Demand</td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-[#5d7667] dark:text-[#8FA99A] dark:text-[#8FA99A] bg-[#C9A96E]/5 border-x border-[#C9A96E]/20">14 Days (1 Free/Mo)</td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-[#C9A96E] dark:text-[#C9A96E]">Unlimited on Demand</td>
                 <td class="p-4 sm:p-5 text-center font-bold text-slate-900 dark:text-white">14 Days (1 Free/Mo)</td>
               </tr>
               <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="logistics">
@@ -1587,9 +1607,9 @@
                   <span class="block text-[11px] text-slate-400 font-normal mt-0.5">If child doesn't engage, immediate replacement</span>
                 </td>
                 <td class="p-4 sm:p-5 text-center text-slate-400">$10 courier fee</td>
-                <td class="p-4 sm:p-5 text-center text-emerald-500 font-bold bg-[#C9A96E]/5 border-x border-[#C9A96E]/20"><i class="fa-solid fa-check"></i> Free Guarantee</td>
-                <td class="p-4 sm:p-5 text-center text-emerald-500 font-bold"><i class="fa-solid fa-check"></i> Free Guarantee</td>
-                <td class="p-4 sm:p-5 text-center text-emerald-500 font-bold"><i class="fa-solid fa-check"></i> Free Guarantee</td>
+                <td class="p-4 sm:p-5 text-center text-[#8FA99A] font-bold bg-[#C9A96E]/5 border-x border-[#C9A96E]/20"><i class="fa-solid fa-check"></i> Free Guarantee</td>
+                <td class="p-4 sm:p-5 text-center text-[#8FA99A] font-bold"><i class="fa-solid fa-check"></i> Free Guarantee</td>
+                <td class="p-4 sm:p-5 text-center text-[#8FA99A] font-bold"><i class="fa-solid fa-check"></i> Free Guarantee</td>
               </tr>
               <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="logistics">
                 <td class="p-4 sm:p-5 font-bold text-slate-900 dark:text-[#F8F5EF]">
@@ -1598,7 +1618,7 @@
                 </td>
                 <td class="p-4 sm:p-5 text-center text-slate-700 dark:text-slate-300">Up to 30 Days</td>
                 <td class="p-4 sm:p-5 text-center font-bold text-slate-900 dark:text-white bg-[#C9A96E]/5 border-x border-[#C9A96E]/20">Up to 60 Days</td>
-                <td class="p-4 sm:p-5 text-center font-bold text-purple-600 dark:text-purple-400">Up to 90 Days</td>
+                <td class="p-4 sm:p-5 text-center font-bold text-[#C9A96E] dark:text-[#C9A96E]">Up to 90 Days</td>
                 <td class="p-4 sm:p-5 text-center font-bold text-teal-600 dark:text-teal-400">Up to 90 Days</td>
               </tr>
               <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="logistics">
@@ -1608,14 +1628,14 @@
                 </td>
                 <td class="p-4 sm:p-5 text-center text-slate-700 dark:text-slate-300">15% Off Retail</td>
                 <td class="p-4 sm:p-5 text-center font-extrabold text-[#C9A96E] bg-[#C9A96E]/5 border-x border-[#C9A96E]/20">25% Off Retail</td>
-                <td class="p-4 sm:p-5 text-center font-extrabold text-purple-500">35% Off Retail</td>
+                <td class="p-4 sm:p-5 text-center font-extrabold text-[#C9A96E]">35% Off Retail</td>
                 <td class="p-4 sm:p-5 text-center font-extrabold text-teal-500">30% Off Retail</td>
               </tr>
 
               <!-- GROUP 3: PROTECTION & SUBSCRIPTION BENEFITS -->
               <tr class="matrix-row bg-slate-100/60 dark:bg-slate-800/40 text-slate-800 dark:text-slate-200 font-bold" data-group="safety">
                 <td colspan="5" class="px-5 py-2.5 uppercase tracking-wider text-[10px] text-slate-500 dark:text-slate-400">
-                  <i class="fa-solid fa-shield-heart me-1.5 text-rose-500"></i> Protection &amp; Pedagogical Benefits
+                  <i class="fa-solid fa-shield-heart me-1.5 text-[#C9A96E]"></i> Protection &amp; Pedagogical Benefits
                 </td>
               </tr>
               <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="safety">
@@ -1623,10 +1643,10 @@
                   100% "Oops!" Accident &amp; Wear Waiver
                   <span class="block text-[11px] text-slate-400 font-normal mt-0.5">Lost marble, chipped wood or spilled paint is completely free</span>
                 </td>
-                <td class="p-4 sm:p-5 text-center text-emerald-500 font-bold"><i class="fa-solid fa-check"></i> Covered</td>
-                <td class="p-4 sm:p-5 text-center text-emerald-500 font-bold bg-[#C9A96E]/5 border-x border-[#C9A96E]/20"><i class="fa-solid fa-check"></i> Covered</td>
-                <td class="p-4 sm:p-5 text-center text-emerald-500 font-bold"><i class="fa-solid fa-check"></i> Covered</td>
-                <td class="p-4 sm:p-5 text-center text-emerald-500 font-bold"><i class="fa-solid fa-check"></i> Covered</td>
+                <td class="p-4 sm:p-5 text-center text-[#8FA99A] font-bold"><i class="fa-solid fa-check"></i> Covered</td>
+                <td class="p-4 sm:p-5 text-center text-[#8FA99A] font-bold bg-[#C9A96E]/5 border-x border-[#C9A96E]/20"><i class="fa-solid fa-check"></i> Covered</td>
+                <td class="p-4 sm:p-5 text-center text-[#8FA99A] font-bold"><i class="fa-solid fa-check"></i> Covered</td>
+                <td class="p-4 sm:p-5 text-center text-[#8FA99A] font-bold"><i class="fa-solid fa-check"></i> Covered</td>
               </tr>
               <tr class="matrix-row hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors" data-group="safety">
                 <td class="p-4 sm:p-5 font-bold text-slate-900 dark:text-[#F8F5EF]">
@@ -1745,7 +1765,7 @@
               <!-- Swap Status Card Overlay -->
               <div class="absolute bottom-4 inset-x-4 p-4 rounded-2xl bg-white/95 dark:bg-[#172033]/95 backdrop-blur-md border border-slate-200/80 dark:border-[#C9A96E]/20 space-y-2">
                 <div class="flex items-center justify-between text-xs">
-                  <span class="font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                  <span class="font-extrabold text-[#5d7667] dark:text-[#8FA99A] dark:text-[#8FA99A] flex items-center gap-1">
                     <i class="fa-solid fa-circle-check"></i> Eligible for Early Swap
                   </span>
                   <span class="text-slate-400 font-bold">Day 16 of 30</span>
@@ -1869,7 +1889,7 @@
         <!-- Benefit 5: Carbon-Neutral Doorstep Swaps -->
         <div class="p-6 rounded-3xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 shadow-premium-card space-y-4 hover:border-[#C9A96E]/60 transition-all group flex flex-col justify-between h-full">
           <div class="space-y-3">
-            <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-500 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+            <div class="w-12 h-12 rounded-2xl bg-[#8FA99A]/20 text-[#8FA99A] flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
               <i class="fa-solid fa-leaf"></i>
             </div>
             <h3 class="font-brand font-bold text-lg text-slate-900 dark:text-[#F8F5EF]">
@@ -1879,7 +1899,7 @@
               Delivered in washable organic cotton canvas satchels. Zero single-use plastic wrap, zero tape waste, and 100% electric delivery fleet routing.
             </p>
           </div>
-          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-bold text-emerald-500 flex items-center gap-1.5">
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-bold text-[#8FA99A] flex items-center gap-1.5">
             <i class="fa-solid fa-earth-americas text-xs"></i>
             <span>Closed-Loop Sustainable Transport</span>
           </div>
@@ -1888,7 +1908,7 @@
         <!-- Benefit 6: Borrow-to-Buy Discount -->
         <div class="p-6 rounded-3xl bg-white/95 dark:bg-[#172033]/90 border border-slate-200/80 dark:border-[#C9A96E]/20 shadow-premium-card space-y-4 hover:border-[#C9A96E]/60 transition-all group flex flex-col justify-between h-full">
           <div class="space-y-3">
-            <div class="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-500 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+            <div class="w-12 h-12 rounded-2xl bg-[#C9A96E]/20 text-[#C9A96E] flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
               <i class="fa-solid fa-gift"></i>
             </div>
             <h3 class="font-brand font-bold text-lg text-slate-900 dark:text-[#F8F5EF]">
@@ -1898,7 +1918,7 @@
               If your child creates an unforgettable emotional bond with an heirloom toy, keep it forever with member discounts up to 35% off retail price.
             </p>
           </div>
-          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-bold text-purple-500 flex items-center gap-1.5">
+          <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-bold text-[#C9A96E] flex items-center gap-1.5">
             <i class="fa-solid fa-tag text-xs"></i>
             <span>Up to 35% Off Retail Price</span>
           </div>
@@ -2066,7 +2086,7 @@
             
             <div class="flex items-center justify-between gap-2 border-b border-white/10 pb-4">
               <span class="text-xs font-extrabold uppercase tracking-wider text-[#C9A96E]">Your Recommended Match:</span>
-              <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-extrabold shrink-0 whitespace-nowrap" id="calcMatchBadge">
+              <span class="px-3 py-1 rounded-full bg-[#8FA99A]/20 text-[#8FA99A] text-xs font-extrabold shrink-0 whitespace-nowrap" id="calcMatchBadge">
                 Standard Plan
               </span>
             </div>
@@ -2090,9 +2110,9 @@
                 <span class="text-slate-300 text-[11px] sm:text-xs">Retail Value if Purchased:</span>
                 <span class="font-extrabold text-slate-300 line-through text-[11px] sm:text-xs shrink-0 whitespace-nowrap" id="calcRetailValue">$4,080 / yr</span>
               </div>
-              <div class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300">
+              <div class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-[#8FA99A]/15 border border-[#8FA99A]/40/30 text-[#a7bcb0]">
                 <span class="font-bold text-[11px] sm:text-xs">Your Annual Family Savings:</span>
-                <span class="font-extrabold text-sm sm:text-base text-emerald-400 shrink-0 whitespace-nowrap" id="calcAnnualSavings">Save $3,492 / yr</span>
+                <span class="font-extrabold text-sm sm:text-base text-[#8FA99A] shrink-0 whitespace-nowrap" id="calcAnnualSavings">Save $3,492 / yr</span>
               </div>
             </div>
 
@@ -2136,7 +2156,7 @@
         <!-- 4 Guarantee Seals -->
         <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 pt-2 relative z-10">
           <div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-1">
-            <i class="fa-solid fa-hand-holding-dollar text-emerald-400 text-lg"></i>
+            <i class="fa-solid fa-hand-holding-dollar text-[#8FA99A] text-lg"></i>
             <h4 class="font-brand font-bold text-sm text-white">30-Day Money Back</h4>
             <p class="text-[11px] text-slate-300">100% full refund on your first rotation if unsatisfied.</p>
           </div>
@@ -2154,7 +2174,7 @@
           </div>
 
           <div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-1">
-            <i class="fa-solid fa-certificate text-purple-400 text-lg"></i>
+            <i class="fa-solid fa-certificate text-[#C9A96E] text-lg"></i>
             <h4 class="font-brand font-bold text-sm text-white">Zero Deposit Required</h4>
             <p class="text-[11px] text-slate-300">No security holds or hidden fees on your card.</p>
           </div>
@@ -2199,8 +2219,8 @@
           if (isAnnual) {
             billingToggleKnob.classList.remove('translate-x-0');
             billingToggleKnob.classList.add('translate-x-7');
-            billingToggleBtn.classList.add('bg-emerald-600');
-            labelAnnualBilling.classList.add('text-emerald-500', 'font-black');
+            billingToggleBtn.classList.add('bg-[#5d7667]');
+            labelAnnualBilling.classList.add('text-[#8FA99A]', 'font-black');
             labelMonthlyBilling.classList.remove('font-extrabold');
             labelMonthlyBilling.classList.add('font-normal', 'text-slate-400');
 
@@ -2208,13 +2228,13 @@
               el.textContent = '$' + el.getAttribute('data-annual');
             });
             planBillingNotes.forEach(el => {
-              el.textContent = 'Billed annually • 2 Months Free Included';
+              el.textContent = 'Billed annually &bull; 2 Months Free Included';
             });
           } else {
             billingToggleKnob.classList.remove('translate-x-7');
             billingToggleKnob.classList.add('translate-x-0');
-            billingToggleBtn.classList.remove('bg-emerald-600');
-            labelAnnualBilling.classList.remove('text-emerald-500', 'font-black');
+            billingToggleBtn.classList.remove('bg-[#5d7667]');
+            labelAnnualBilling.classList.remove('text-[#8FA99A]', 'font-black');
             labelMonthlyBilling.classList.add('font-extrabold');
             labelMonthlyBilling.classList.remove('font-normal', 'text-slate-400');
 
@@ -2222,7 +2242,7 @@
               el.textContent = '$' + el.getAttribute('data-monthly');
             });
             planBillingNotes.forEach(el => {
-              el.textContent = 'Billed monthly • Cancel anytime';
+              el.textContent = 'Billed monthly &bull; Cancel anytime';
             });
           }
         });
@@ -2476,7 +2496,7 @@
           <!-- Trust Badges Grid -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 max-w-sm">
             <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
-              <div class="w-7 h-7 rounded-lg bg-rose-100 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center text-xs flex-shrink-0">
+              <div class="w-7 h-7 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-xs flex-shrink-0">
                 <i class="fa-solid fa-shield-heart"></i>
               </div>
               <div class="text-[11px] font-semibold text-slate-700 dark:text-slate-300 leading-tight">
@@ -2498,7 +2518,7 @@
           <div class="pt-2">
             <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-3">Follow The Fun</div>
             <div class="flex items-center gap-2">
-              <a href="#instagram" aria-label="Instagram" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-pink-50 dark:hover:bg-pink-950/60 text-slate-600 dark:text-slate-300 hover:text-pink-500 flex items-center justify-center text-xs transition-colors shadow-sm">
+              <a href="#instagram" aria-label="Instagram" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-[#172033] text-slate-600 dark:text-slate-300 hover:text-[#C9A96E] flex items-center justify-center text-xs transition-colors shadow-sm">
                 <i class="fa-brands fa-instagram"></i>
               </a>
               <a href="#youtube" aria-label="YouTube" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-red-50 dark:hover:bg-red-950/60 text-slate-600 dark:text-slate-300 hover:text-red-500 flex items-center justify-center text-xs transition-colors shadow-sm">
@@ -2507,7 +2527,7 @@
               <a href="#facebook" aria-label="Facebook" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-950/60 text-slate-600 dark:text-slate-300 hover:text-blue-500 flex items-center justify-center text-xs transition-colors shadow-sm">
                 <i class="fa-brands fa-facebook-f"></i>
               </a>
-              <a href="#pinterest" aria-label="Pinterest" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-rose-950/60 text-slate-600 dark:text-slate-300 hover:text-rose-500 flex items-center justify-center text-xs transition-colors shadow-sm">
+              <a href="#pinterest" aria-label="Pinterest" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-50 dark:bg-slate-800/60 dark:hover:bg-[#172033] text-slate-600 dark:text-slate-300 hover:text-[#C9A96E] flex items-center justify-center text-xs transition-colors shadow-sm">
                 <i class="fa-brands fa-pinterest-p"></i>
               </a>
               <a href="#tiktok" aria-label="TikTok" class="btn-tool w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white flex items-center justify-center text-xs transition-colors shadow-sm">
@@ -2616,7 +2636,7 @@
             </li>
             <li>
               <a href="activity.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
-                <i class="fa-solid fa-palette text-[10px] text-pink-500"></i>
+                <i class="fa-solid fa-palette text-[10px] text-[#C9A96E]"></i>
                 <span>Arts &amp; Creative Craft Kits</span>
               </a>
             </li>
@@ -2628,19 +2648,19 @@
             </li>
             <li>
               <a href="activity.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
-                <i class="fa-solid fa-robot text-[10px] text-indigo-500"></i>
+                <i class="fa-solid fa-robot text-[10px] text-[#C9A96E]"></i>
                 <span>Robotics &amp; Coding Kits (6-12y)</span>
               </a>
             </li>
             <li>
               <a href="catalog.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
-                <i class="fa-solid fa-chess text-[10px] text-purple-500"></i>
+                <i class="fa-solid fa-chess text-[10px] text-[#C9A96E]"></i>
                 <span>Family Board Games</span>
               </a>
             </li>
             <li>
               <a href="plans.html" class="hover:text-playTeal-600 dark:hover:text-playTeal-400 transition-colors flex items-center gap-1.5">
-                <i class="fa-solid fa-gift text-[10px] text-rose-500"></i>
+                <i class="fa-solid fa-gift text-[10px] text-[#C9A96E]"></i>
                 <span>Gift a Subscription Box</span>
               </a>
             </li>
@@ -2659,7 +2679,7 @@
           <!-- Dashboard Links from Navbar -->
           <div class="space-y-1.5 pb-2">
             <a href="user-dashboard.html" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 hover:border-brand-500/50 transition-colors group">
-              <div class="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
+              <div class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#172033] dark:text-[#C9A96E] flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-user"></i>
               </div>
               <div class="text-[11.5px] font-semibold text-slate-700 dark:text-slate-200">
@@ -2667,8 +2687,8 @@
               </div>
             </a>
 
-            <a href="admin-dashboard.html" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 hover:border-purple-500/50 transition-colors group">
-              <div class="w-6 h-6 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
+            <a href="admin-dashboard.html" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 hover:border-[#C9A96E]/40/50 transition-colors group">
+              <div class="w-6 h-6 rounded-lg bg-[#C9A96E]/15 dark:bg-[#172033] text-[#C9A96E] flex items-center justify-center text-[11px] group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-gauge-high"></i>
               </div>
               <div class="text-[11.5px] font-semibold text-slate-700 dark:text-slate-200">
